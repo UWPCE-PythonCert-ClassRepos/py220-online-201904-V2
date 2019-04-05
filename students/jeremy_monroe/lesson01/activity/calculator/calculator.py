@@ -1,5 +1,6 @@
 from .exceptions import InsufficientOperands
 
+
 class Calculator(object):
 
     def __init__(self, adder, subtracter, multiplier, divider):

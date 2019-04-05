@@ -1,3 +1,8 @@
+"""
+This module provides an addition operator.
+"""
+
+
 class Adder(object):
 
     @staticmethod

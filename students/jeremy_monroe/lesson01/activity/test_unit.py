@@ -41,7 +41,7 @@ class MultiplierTests(TestCase):
 
 class DividerTests(TestCase):
 
-    def test_divider(self):
+    def test_dividing(self):
         divider = Divider()
 
         for i in range(-10, 10):
@@ -86,3 +86,22 @@ class CalculatorTests(TestCase):
         self.calculator.subtract()
 
         self.subtracter.calc.assert_called_with(1, 2)
+
+
+class ModuleTest(TestCase):
+
+    def test_module(self):
+        calculator = Calculator(Adder(), Subtracter(), Multiplier(), Divider())
+
+        calculator.enter_number(5)
+        calculator.enter_number(2)
+
+        calculator.multiply()
+        calculator.enter_number(46)
+        calculator.add()
+        calculator.enter_number(8)
+        calculator.divide()
+        calculator.enter_number(1)
+        result = calculator.subtract()
+
+        self.assertEqual(6, result)
