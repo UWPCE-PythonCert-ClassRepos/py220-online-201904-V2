@@ -1,7 +1,7 @@
 """
 Electric appliances module"""
 
-from students.jeff_shabani.lesson01.assignment.inventory_management.inventoryclass import *
+from inventoryclass import Inventory
 
 
 class ElectricAppliances(Inventory):
