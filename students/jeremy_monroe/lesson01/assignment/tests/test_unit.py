@@ -1,6 +1,8 @@
 """ Unit tests for inventory management. """
 
 import unittest
+import io
+import sys
 from unittest.mock import MagicMock, patch
 
 from inventory_class import Inventory
@@ -87,22 +89,35 @@ class MainTests(unittest.TestCase):
         self.assertEqual(main.main_menu('2'), main.item_info)
         self.assertEqual(main.main_menu('q'), main.exit_program)
 
-    def test_item_info(self):
-        """ Tests main.add_new_item using simulated user input. """
+        inputs = (user_in for user_in in ['What?', '1'])
+        def mock_input(prompt):
+            return next(inputs)
 
-        new_item = Furniture(5, 'Desk', 500, 50, 'wood', 'l')
-        new_item_dict = new_item.return_as_dictionary()
-        test_dict = {5: new_item_dict}
+        with patch('builtins.input', mock_input):
+            main_menu_output = main.main_menu()
 
-        main.item_info = MagicMock(return_value=test_dict[5]['description'])
+        self.assertEqual(main.add_new_item, main_menu_output)
 
-        self.assertEqual('Desk', main.item_info())
 
-    def test_system_exit(self):
-        """ Tests main.exit_program. """
+        inputs2 = (user_in2 for user_in2 in ['Yes', 'NO', '2'])
+        def mock_input2(prompt):
+            return next(inputs2)
 
-        with self.assertRaises(SystemExit):
-            main.exit_program()
+        with patch('builtins.input', mock_input2):
+            main_menu_output2 = main.main_menu()
+
+        self.assertEqual(main.item_info, main_menu_output2)
+
+    def test_get_price(self):
+        expected_output = "Get price\n"
+
+        captured_output = io.StringIO()
+        sys.stdout = captured_output
+
+        main.get_price()
+        sys.stdout = sys.__stdout__
+
+        self.assertEqual(expected_output, captured_output.getvalue())
 
     def test_add_new_item(self):
         """ Tests main.add_new_item with simulated user input. """
@@ -145,7 +160,8 @@ class MainTests(unittest.TestCase):
 
         main.FULL_INVENTORY = {}
 
-        inputs = (user_in for user_in in [246, 'Blender', 75, 'n', 'y', 'Krups', 110])
+        inputs = (user_in for user_in in [
+                  246, 'Blender', 75, 'n', 'y', 'Krups', 110])
 
         def mock_input(prompt):
             return next(inputs)
@@ -157,3 +173,48 @@ class MainTests(unittest.TestCase):
                      'rental_price': 75, 'brand': 'Krups', 'voltage': 110}
 
         self.assertEqual(test_dict, main.FULL_INVENTORY[246])
+
+    def test_item_info(self):
+        """ 
+        Testing main.item_info by adding an item to FULL_INVENTORY, calling
+        item_info with its item_code, and capturing item_info's print statements
+        to verify their accuracy.
+        """
+
+        main.FULL_INVENTORY = {}
+        inputs = (user_in for user_in in [999, 'Vase', 1400, 'n', 'n'])
+
+        def mock_input(prompt):
+            return next(inputs)
+
+        with patch('builtins.input', mock_input):
+            main.add_new_item()
+
+        expected_output = ('product_code:999\n'
+                           'description:Vase\n'
+                           'market_price:24\n'
+                           'rental_price:1400\n')
+
+        expected_output2 = "Item not found in inventory\n"
+
+        captured_output = io.StringIO()
+        sys.stdout = captured_output
+
+        main.item_info(999)
+        sys.stdout = sys.__stdout__
+
+        self.assertEqual(expected_output, captured_output.getvalue())
+
+        captured_output2 = io.StringIO()
+        sys.stdout = captured_output2
+
+        main.item_info(432)
+        sys.stdout = sys.__stdout__
+
+        self.assertEqual(expected_output2, captured_output2.getvalue())
+
+    def test_system_exit(self):
+        """ Tests main.exit_program. """
+
+        with self.assertRaises(SystemExit):
+            main.exit_program()

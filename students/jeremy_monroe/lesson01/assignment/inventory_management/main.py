@@ -74,7 +74,8 @@ def add_new_item():
 def item_info(item_code=None):
     """ Gets an item from its item_code and displays that item's info. """
 
-    item_code = input("Enter item code: ")
+    if not item_code:
+        item_code = input("Enter item code: ")
     if item_code in FULL_INVENTORY:
         print_dict = FULL_INVENTORY[item_code]
         for key, value in print_dict.items():
