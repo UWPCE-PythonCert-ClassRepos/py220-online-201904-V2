@@ -1,7 +1,7 @@
 """ Unit tests for inventory management. """
 
 import unittest
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 
 from inventory_class import Inventory
 from furniture_class import Furniture
@@ -103,3 +103,20 @@ class MainTests(unittest.TestCase):
 
         with self.assertRaises(SystemExit):
             main.exit_program()
+
+    def test_add_new_item(self):
+        """ Tests main.add_new_item with simulated user input. """
+
+        main.FULL_INVENTORY = {}
+
+        inputs = (user_in for user_in in [123, 'Desk', 125, 'y', 'wood', 'l']) 
+
+        def mock_input(prompt):
+           return next(inputs)
+
+        with mock.patch('builtins.input', mock_input):
+            main.add_new_item()
+
+        test_dict = {'item_code': 123, 'description': 'Desk', 'market_price': 123, 'rental_price': 125, 'material': 'wood', 'size': 'l'}
+
+        self.assertEqual(test_dict, main.FULL_INVENTORY[123])
