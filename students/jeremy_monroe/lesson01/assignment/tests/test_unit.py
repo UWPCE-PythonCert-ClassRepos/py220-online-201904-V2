@@ -69,6 +69,8 @@ class MarketPricesTests(unittest.TestCase):
         Test to ensure get_latest_price is called with expected argument.
         """
 
+        self.assertEqual(100, market_prices.get_latest_price(100))
+
         market_prices.get_latest_price = MagicMock(return_value=24)
         market_prices.get_latest_price(100)
 
@@ -84,3 +86,20 @@ class MainTests(unittest.TestCase):
         self.assertEqual(main.main_menu('1'), main.add_new_item)
         self.assertEqual(main.main_menu('2'), main.item_info)
         self.assertEqual(main.main_menu('q'), main.exit_program)
+
+    def test_item_info(self):
+        """ Tests main.add_new_item using simulated user input. """
+
+        new_item = Furniture(5, 'Desk', 500, 50, 'wood', 'l')
+        new_item_dict = new_item.return_as_dictionary()
+        test_dict = {5: new_item_dict}
+
+        main.item_info = MagicMock(return_value=test_dict[5]['description'])
+
+        self.assertEqual('Desk', main.item_info())
+
+    def test_system_exit(self):
+        """ Tests main.exit_program. """
+
+        with self.assertRaises(SystemExit):
+            main.exit_program()

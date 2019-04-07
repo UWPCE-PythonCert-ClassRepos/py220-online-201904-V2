@@ -71,7 +71,7 @@ def add_new_item():
     print("New inventory item added")
 
 
-def item_info():
+def item_info(item_code=None):
     """ Gets an item from its item_code and displays that item's info. """
 
     item_code = input("Enter item code: ")
