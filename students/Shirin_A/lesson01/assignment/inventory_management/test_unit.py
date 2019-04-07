@@ -30,7 +30,7 @@ class InventoryTest(TestCase):
     ''' 
     def test_inventory(self):
         inventory_test = Inventory('5122', 'toaster', '24.00', '15.00')             
-        furniture_dict_test = inventory_test.return_as_dict() 
+        furniture_dict_test = inventory_test.return_as_dictionary() 
         self.assertEqual(furniture_dict_test, {'product_code': '5122',
                                                'description': 'Toaster',
 
