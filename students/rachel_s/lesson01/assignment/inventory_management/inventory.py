@@ -1,6 +1,7 @@
 """A generic inventory item class
 """
 
+
 class Inventory:
     """Creates generic inventory
     """

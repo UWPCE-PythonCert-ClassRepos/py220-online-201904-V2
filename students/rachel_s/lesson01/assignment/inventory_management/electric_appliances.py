@@ -2,7 +2,9 @@
 electric appliances
 """
 
+
 from inventory import Inventory
+
 
 class ElectricAppliances(Inventory):
     """Creates a modified inventory of electric appliances, with

@@ -2,7 +2,9 @@
 furniture
 """
 
+
 from inventory import Inventory
+
 
 class Furniture(Inventory):
     """Creates a modified inventory of furniture, with
@@ -28,4 +30,3 @@ class Furniture(Inventory):
         output_dict['size'] = self.size
 
         return output_dict
-        
