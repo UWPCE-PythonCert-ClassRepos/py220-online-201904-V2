@@ -29,7 +29,7 @@ def main_menu(user_prompt=None):
     return valid_prompts.get(user_prompt)
 
 
-def get_price(item_code):
+def get_price():
     """ Temporary docstring as this doesn't really do things yet. """
 
     print("Get price")
