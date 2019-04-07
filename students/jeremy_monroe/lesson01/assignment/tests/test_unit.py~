@@ -109,51 +109,14 @@ class MainTests(unittest.TestCase):
 
         main.FULL_INVENTORY = {}
 
-        inputs = (user_in for user_in in [999, 'Vase', 1400, 'n', 'n'])
+        inputs = (user_in for user_in in [123, 'Desk', 125, 'y', 'wood', 'l']) 
 
         def mock_input(prompt):
-            return next(inputs)
+           return next(inputs)
 
-        with patch('builtins.input', mock_input):
+        with mock.patch('builtins.input', mock_input):
             main.add_new_item()
 
-        test_dict = {'product_code': 999, 'description': 'Vase', 'market_price': 24,
-                     'rental_price': 1400}
-
-        self.assertEqual(test_dict, main.FULL_INVENTORY[999])
-
-    def test_add_new_item_furniture(self):
-        """ Tests main.add_new_item with simulated user input. """
-
-        main.FULL_INVENTORY = {}
-
-        inputs = (user_in for user_in in [123, 'Desk', 125, 'y', 'wood', 'l'])
-
-        def mock_input(prompt):
-            return next(inputs)
-
-        with patch('builtins.input', mock_input):
-            main.add_new_item()
-
-        test_dict = {'product_code': 123, 'description': 'Desk', 'market_price': 24,
-                     'rental_price': 125, 'material': 'wood', 'size': 'l'}
+        test_dict = {'item_code': 123, 'description': 'Desk', 'market_price': 123, 'rental_price': 125, 'material': 'wood', 'size': 'l'}
 
         self.assertEqual(test_dict, main.FULL_INVENTORY[123])
-
-    def test_add_new_item_electric_appliance(self):
-        """ Tests main.add_new_item with simulated user input. """
-
-        main.FULL_INVENTORY = {}
-
-        inputs = (user_in for user_in in [246, 'Blender', 75, 'n', 'y', 'Krups', 110])
-
-        def mock_input(prompt):
-            return next(inputs)
-
-        with patch('builtins.input', mock_input):
-            main.add_new_item()
-
-        test_dict = {'product_code': 246, 'description': 'Blender', 'market_price': 24,
-                     'rental_price': 75, 'brand': 'Krups', 'voltage': 110}
-
-        self.assertEqual(test_dict, main.FULL_INVENTORY[246])
