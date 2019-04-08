@@ -6,4 +6,4 @@ class Squarer(object):
         # return operand*operand   # OLD
         # return operand**operand  # WRONG
         # return operand*operand   # OLD
-        # return operand**2
+        return operand**2
