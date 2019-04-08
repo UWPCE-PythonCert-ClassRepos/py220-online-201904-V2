@@ -7,7 +7,7 @@ import datetime
 import math
 import logging
 
-LOG_FORMAT = "%(asctime)s %(filename)s:%(lineno)-3d %(levelname)s %(message)s"
+LOG_FORMAT = '%(asctime)s %(filename)s:%(lineno)-3d %(levelname)s %(message)s'
 FORMATTER = logging.Formatter(LOG_FORMAT)
 LOGGER = logging.getLogger()
 
@@ -18,7 +18,8 @@ def parse_cmd_arguments():
     parser = argparse.ArgumentParser(description='Process some integers.')
     parser.add_argument('-i', '--input', help='input JSON file', required=True)
     parser.add_argument('-o', '--output', help='ouput JSON file', required=True)
-
+    parser.add_argument('-d', '--debug', help='enable debug logging',
+                        required=False, default=0)
     return parser.parse_args()
 
 def log_level_settings(log_level):
@@ -44,7 +45,6 @@ def log_level_settings(log_level):
     else:
         return
 
-
 def load_rentals_file(filename):
     '''
     Loads rental data from a file on the system.
@@ -52,30 +52,51 @@ def load_rentals_file(filename):
     with open(filename) as file:
         try:
             data = json.load(file)
-        except:
+            import pdb; pdb.set_trace()
+        except ValueError as err_code:
+            logging.error('Error reading file %s', file)
+            print(f'Error reading the file: {err_code}')
             exit(0)
+    import pdb; pdb.set_trace()
     return data
 
 def calculate_additional_fields(data):
+    '''
+    Calculate fields from the file.  To be honest at this stage I don't know
+    what it actually does.
+    '''
     for value in data.values():
         try:
             rental_start = datetime.datetime.strptime(value['rental_start'], '%m/%d/%y')
             rental_end = datetime.datetime.strptime(value['rental_end'], '%m/%d/%y')
-            value['total_days'] = (rental_end - rental_start).days
-            value['total_price'] = value['total_days'] * value['price_per_day']
-            value['sqrt_total_price'] = math.sqrt(value['total_price'])
-            value['unit_cost'] = value['total_price'] / value['units_rented']
-        except:
-            exit(0)
+        except ValueError as date_error:
+            logging.error('%s Incorrect date formatting.', date_error)
+            print(f'Date format is incorrect. m/d/y is correct.')
+            logging.debug(value)
 
+        value['total_days'] = (rental_end - rental_start).days
+        value['total_price'] = value['total_days'] * value['price_per_day']
+        value['sqrt_total_price'] = math.sqrt(value['total_price'])
+        value['unit_cost'] = value['total_price'] / value['units_rented']
+        import pdb; pdb.set_trace()
+#        except:
+#            exit(0)
+#            import pdb; pdb.set_trace()
     return data
 
 def save_to_json(filename, data):
+    '''
+    Does what it says on the tin.  Saves a json file.
+    '''
+    logging.debug('Saving file %s', filename)
     with open(filename, 'w') as file:
+        import pdb; pdb.set_trace()
         json.dump(data, file)
 
-if __name__ == "__main__":
-    args = parse_cmd_arguments()
-    data = load_rentals_file(args.input)
-    data = calculate_additional_fields(data)
-    save_to_json(args.output, data)
+if __name__ == '__main__':
+    ARGS = parse_cmd_arguments()
+    DEBUG_LEVEL = int(ARGS.debug)
+    log_level_settings(DEBUG_LEVEL)
+    DATA = load_rentals_file(ARGS.input)
+    DATA = calculate_additional_fields(DATA)
+    save_to_json(ARGS.output, DATA)
