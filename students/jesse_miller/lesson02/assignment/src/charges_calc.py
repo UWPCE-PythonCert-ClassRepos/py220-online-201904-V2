@@ -1,20 +1,54 @@
 '''
-Returns total price paid for individual rentals 
+Returns total price paid for individual rentals
 '''
 import argparse
 import json
 import datetime
 import math
+import logging
+
+LOG_FORMAT = "%(asctime)s %(filename)s:%(lineno)-3d %(levelname)s %(message)s"
+FORMATTER = logging.Formatter(LOG_FORMAT)
+LOGGER = logging.getLogger()
 
 def parse_cmd_arguments():
+    '''
+    Parses arguments from the commandline when run
+    '''
     parser = argparse.ArgumentParser(description='Process some integers.')
     parser.add_argument('-i', '--input', help='input JSON file', required=True)
     parser.add_argument('-o', '--output', help='ouput JSON file', required=True)
 
     return parser.parse_args()
 
+def log_level_settings(log_level):
+    '''
+    This will set the log levels we're going to use.  We'll be using ERROR,
+    WARNING, and DEBUG, and OFF
+    0 = Off       Adding these because first idea of strings was bad I guess.
+    1 = ERROR
+    2 = WARNING
+    3 = DEBUG
+    '''
+    # if log_level == 'OFF': Well that doesn't work.
+    log_file = logging.FileHandler('charges_calc.log')
+    log_file.setFormatter(FORMATTER)
+    LOGGER.addHandler(log_file)
+
+    if log_level == 1:
+        LOGGER.setLevel(logging.ERROR)
+    elif log_level == 2:
+        LOGGER.setLevel(logging.WARNING)
+    elif log_level == 3:
+        LOGGER.setLevel(logging.DEBUG)
+    else:
+        return
+
 
 def load_rentals_file(filename):
+    '''
+    Loads rental data from a file on the system.
+    '''
     with open(filename) as file:
         try:
             data = json.load(file)
