@@ -2,12 +2,15 @@
 This module provides a custom calculator
 """
 
+
 from .exceptions import InsufficientOperands
+
 
 class Calculator:
     '''
     Class used to build the calculator
     '''
+
     def __init__(self, adder, subtracter, multiplier, divider):
         '''
         initializes variables
@@ -23,14 +26,15 @@ class Calculator:
         '''
         stores the numbers entered, used in other methods
         '''
-        #old
-        #self.stack.insert(0,number)
-        #new
+        # old
+        # self.stack.insert(0,number)
+        # new
         self.stack.append(number)
 
     def _do_calc(self, operator):
         '''
-        does the calculations and raises exception there is insuffiecent operands
+        does the calculations and raises exception
+        if there is insuffiecent operands
         '''
         try:
             result = operator.calc(self.stack[0], self.stack[1])

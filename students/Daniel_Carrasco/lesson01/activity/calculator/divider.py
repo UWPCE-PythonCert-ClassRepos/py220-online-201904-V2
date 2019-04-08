@@ -2,6 +2,7 @@
 This module provides a division operator
 """
 
+
 class Divider:
     # pylint: disable=R0903
     '''

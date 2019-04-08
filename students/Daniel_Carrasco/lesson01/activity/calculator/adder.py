@@ -2,6 +2,7 @@
 This module provides a addition operator
 """
 
+
 class Adder:
     # pylint: disable=R0903
     '''

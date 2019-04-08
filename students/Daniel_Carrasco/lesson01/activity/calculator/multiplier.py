@@ -2,6 +2,7 @@
 This module provides a multiplier operator
 """
 
+
 class Multiplier:
     # pylint: disable=R0903
     '''
