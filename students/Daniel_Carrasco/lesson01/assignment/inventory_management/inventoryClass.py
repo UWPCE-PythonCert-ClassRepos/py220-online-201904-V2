@@ -1,17 +1,34 @@
+'''
+Inventory Class
+'''
+
 # Inventory class
-class inventory:
 
-    def __init__(self, productCode, description, marketPrice, rentalPrice):
-        self.productCode = productCode
+
+class Inventory:
+    '''
+    Class for inventory
+    '''
+
+    def __init__(self, productcode, description, marketprice, rentalprice):
+        '''
+        initializing variables
+        '''
+
+        self.productcode = productcode
         self.description = description
-        self.marketPrice = marketPrice
-        self.rentalPrice = rentalPrice
+        self.marketprice = marketprice
+        self.rentalprice = rentalprice
 
-    def returnAsDictionary(self):
-        outputDict = {}
-        outputDict['productCode'] = self.productCode
-        outputDict['description'] = self.description
-        outputDict['marketPrice'] = self.marketPrice
-        outputDict['rentalPrice'] = self.rentalPrice
+    def returnasdictionary(self):
+        '''
+        returns as dictionary
+        '''
 
-        return outputDict
+        outputdict = {}
+        outputdict['productcode'] = self.productcode
+        outputdict['description'] = self.description
+        outputdict['marketprice'] = self.marketprice
+        outputdict['rentalprice'] = self.rentalprice
+
+        return outputdict
