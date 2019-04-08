@@ -83,7 +83,15 @@ class MainTests(unittest.TestCase):
     """ Tests for the main module. """
 
     def test_main_menu(self):
-        """ Tests main.main_menu using simulated user input. """
+        """ 
+        Tests main.main_menu in a couple different ways.
+
+        First by passing in a menu option as an argument.
+        And second by using simulated user input to navigate the menu.
+
+        Both tests verify that the proper function is called based on the menu
+        input provided.
+        """
 
         self.assertEqual(main.main_menu('1'), main.add_new_item)
         self.assertEqual(main.main_menu('2'), main.item_info)
@@ -109,6 +117,9 @@ class MainTests(unittest.TestCase):
         self.assertEqual(main.item_info, main_menu_output2)
 
     def test_get_price(self):
+        """
+        Calls main.get_price and verifies the content of its print statement.
+        """
         expected_output = "Get price\n"
 
         captured_output = io.StringIO()
@@ -138,7 +149,11 @@ class MainTests(unittest.TestCase):
         self.assertEqual(test_dict, main.FULL_INVENTORY[999])
 
     def test_add_new_item_furniture(self):
-        """ Tests main.add_new_item with simulated user input. """
+        """
+        Tests main.add_new_item with simulated user input by populating
+        FULL_INVENTORY with a sample product and verifying that product is stored
+        with the expected keys and values.
+        """
 
         main.FULL_INVENTORY = {}
 

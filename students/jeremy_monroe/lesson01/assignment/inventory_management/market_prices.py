@@ -1,4 +1,4 @@
-""" Just here to make things difficult. """
+""" Will eventually return the product market price. """
 
 def get_latest_price(item_code):
     """ I'm just here to make things difficult. """

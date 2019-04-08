@@ -1,7 +1,12 @@
 """ Inventory class """
 
 class Inventory:
-    """ Base class for products in our inventory. """
+    """
+    Base class for products in our inventory.
+
+    User input is fed here to be formatted before adding it to the full
+    inventory.
+    """
 
     def __init__(self, product_code, description, market_price, rental_price):
         self.product_code = product_code

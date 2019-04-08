@@ -37,8 +37,8 @@ def get_price():
 
 def add_new_item():
     """
-    Handles getting the information for a new
-    item and adding that information to the inventory.
+    Handles getting input for a new product and processing that information
+    to be added to the FULL_INVENTORY dict.
     """
 
     item_code = input("Enter item code: ")
