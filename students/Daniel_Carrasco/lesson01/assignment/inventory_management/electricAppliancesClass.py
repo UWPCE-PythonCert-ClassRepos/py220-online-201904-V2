@@ -5,6 +5,7 @@ Electric appliances Class
 # Electric appliances class
 from .inventoryclass import Inventory
 
+
 class Electricappliances(Inventory):
     '''
     Class docstring
