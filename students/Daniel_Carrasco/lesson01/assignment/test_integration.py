@@ -8,22 +8,7 @@ from inventory_management.market_prices import get_latest_price as glp
 import inventory_management.main as mm
 
 class ModuleTest(TestCase):
-    test_eadict = {
-                'productcode': 'AB123',
-                'description': 'TEST',
-                'marketprice': '150.00',
-                'rentalprice': '50.25',
-                'brand': 'TEST',
-                'voltage': '321'
-                }
-    test_fdict = {
-                'productcode': 'AB123',
-                'description': 'TEST',
-                'marketprice': '150.00',
-                'rentalprice': '50.25',
-                'material': 'TEST',
-                'size': '321'
-                }
+
     test_dict = {
                 'productcode': 'AB123',
                 'description': 'TEST',
@@ -43,3 +28,6 @@ class ModuleTest(TestCase):
                     'rentalprice': '50.25',
                     }
         self.assertEqual(addnewitem(), dict_inv)
+
+
+
