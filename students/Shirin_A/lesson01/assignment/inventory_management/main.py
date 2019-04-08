@@ -8,8 +8,8 @@ import electric_appliances
 FULL_INVENTORY = {}
 
 def main_menu(user_prompt=None):
-    # pylint: disable=W0612,W0613
-    """ Main Menu"""
+    # pylint: disable=W0612,C0305
+    """Run Main Menu"""
     valid_prompts = {"1": add_new_item,
                      "2": item_info,
                      "q": exit_program}
@@ -61,10 +61,10 @@ def add_new_item():
                                                  item_price, item_rental_price)
     FULL_INVENTORY[item_code] = new_item.return_as_dictionary()
     print("New inventory item added")
-
+    return FULL_INVENTORY
 
 def item_info():
-    """ item information for new product"""
+    """looks up information about an item, returns if exists """
     item_code = input("Enter item code: ")
     if item_code in FULL_INVENTORY:
         print_dict = FULL_INVENTORY[item_code]
@@ -73,6 +73,9 @@ def item_info():
             print("{}:{}".format(k, v))
     else:
         print("Item not found in inventory")
+def return_inventory():
+    """return inventory"""
+    return FULL_INVENTORY
 
 def exit_program():
     """Exit Program"""
