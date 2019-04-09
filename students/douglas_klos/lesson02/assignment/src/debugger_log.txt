@@ -1,0 +1,322 @@
+###############################################################################
+# First problem, the line data = json.load(file) is failing.
+#   Malformed json file. Remove extra comma on line 5884
+###############################################################################
+
+
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(2)<module>()
+-> """Returns total price paid for individual rentals"""
+(Pdb) b 23
+Breakpoint 1 at /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py:23
+(Pdb) c
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(23)load_rentals_file()
+-> try:
+(Pdb) ll
+ 21  	def load_rentals_file(filename):
+ 22  	    with open(filename) as file:
+ 23 B->	        try:
+ 24  	            data = json.load(file)
+ 25  	        except:
+ 26  	            logging.error("Loading data from json failed, exiting")
+ 27  	            exit(0)
+ 28  	    return data
+(Pdb) s
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(24)load_rentals_file()
+-> data = json.load(file)
+(Pdb) pp file
+<_io.TextIOWrapper name='./source.json' mode='r' encoding='UTF-8'>
+(Pdb) pp filename
+'./source.json'
+(Pdb) n
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 5884 column 23 (char 130093)
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(24)load_rentals_file()
+-> data = json.load(file)
+(Pdb) 
+
+
+###############################################################################
+# After adding logging of exception
+###############################################################################
+
+
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(2)<module>()
+-> """Returns total price paid for individual rentals"""
+(Pdb) b 23
+Breakpoint 1 at /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py:23
+(Pdb) c
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(23)load_rentals_file()
+-> try:
+(Pdb) ll
+ 21  	def load_rentals_file(filename):
+ 22  	    with open(filename) as file:
+ 23 B->	        try:
+ 24  	            data = json.load(file)
+ 25  	        except Exception as e:
+ 26  	            logging.error(f'Loading data from json failed.\n\tException: {repr(e)}')
+ 27  	            exit(0)
+ 28  	    return data
+(Pdb) s
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(24)load_rentals_file()
+-> data = json.load(file)
+(Pdb) pp file
+<_io.TextIOWrapper name='./source.json' mode='r' encoding='UTF-8'>
+(Pdb) pp filename
+'./source.json'
+(Pdb) n
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 5884 column 23 (char 130093)
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(24)load_rentals_file()
+-> data = json.load(file)
+(Pdb) n
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(25)load_rentals_file()
+-> except Exception as e:
+(Pdb) n
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(26)load_rentals_file()
+-> logging.error(f'Loading data from json failed.\n\tException: {repr(e)}')
+(Pdb) n
+2019-04-09 09:22:31,111 charges_calc.py:26  ERROR Loading data from json failed.
+	Exception: JSONDecodeError('Expecting property name enclosed in double quotes: line 5884 column 23 (char 130093)')
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(27)load_rentals_file()
+-> exit(0)
+(Pdb) 
+
+
+###############################################################################
+# Now we have a 'math domain error' for key RNT001
+#   That's all we know though, so going into pdb 
+###############################################################################
+
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(2)<module>()
+-> """Returns total price paid for individual rentals"""
+(Pdb) b 54
+Breakpoint 1 at /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py:54
+(Pdb) condition 1 key=='RNT001'
+New condition set for breakpoint 1.
+(Pdb) c
+2019-04-09 10:14:13,664 charges_calc.py:31  DEBUG Start of parse_cmd_arguments()
+2019-04-09 10:14:13,668 charges_calc.py:41  DEBUG Start of load_rental_file
+2019-04-09 10:14:13,671 charges_calc.py:52  DEBUG Start of load_additional_fields
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(54)calculate_additional_fields()
+-> try:
+(Pdb) pp key
+'RNT001'
+(Pdb) ll
+ 51  	def calculate_additional_fields(data):
+ 52  	    logging.debug('Start of load_additional_fields')
+ 53  	    for key, value in data.items():
+ 54 B->	        try:
+ 55  	            rental_start = datetime.datetime.strptime(value['rental_start'], '%m/%d/%y')
+ 56  	            rental_end = datetime.datetime.strptime(value['rental_end'], '%m/%d/%y')
+ 57  	            value['total_days'] = (rental_end - rental_start).days
+ 58  	            value['total_price'] = value['total_days'] * value['price_per_day']
+ 59  	            value['sqrt_total_price'] = math.sqrt(value['total_price'])
+ 60  	            value['unit_cost'] = value['total_price'] / value['units_rented']
+ 61  	        except Exception as e:
+ 62  	            logging.error(f'Calculating additional fields failed.\n\tException: {repr(e)}\n\tkey: {key}\n\tvalue: {value}')
+ 63  	            # exit(0)
+ 64  	
+ 65  	    return data
+(Pdb) s
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(55)calculate_additional_fields()
+-> rental_start = datetime.datetime.strptime(value['rental_start'], '%m/%d/%y')
+(Pdb) n
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(56)calculate_additional_fields()
+-> rental_end = datetime.datetime.strptime(value['rental_end'], '%m/%d/%y')
+(Pdb) n
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(57)calculate_additional_fields()
+-> value['total_days'] = (rental_end - rental_start).days
+(Pdb) n
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(58)calculate_additional_fields()
+-> value['total_price'] = value['total_days'] * value['price_per_day']
+(Pdb) n
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(59)calculate_additional_fields()
+-> value['sqrt_total_price'] = math.sqrt(value['total_price'])
+(Pdb) n
+ValueError: math domain error
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(59)calculate_additional_fields()
+-> value['sqrt_total_price'] = math.sqrt(value['total_price'])
+(Pdb) pp value['total_price']
+-2542
+(Pdb) pp rental_start
+datetime.datetime(2017, 6, 12, 0, 0)
+(Pdb) pp rental_end
+datetime.datetime(2017, 3, 22, 0, 0)
+(Pdb) pp value['total_days']
+-82
+(Pdb) 
+
+###############################################################################
+# So it turns out we're trying to sqrt a negative and apparently it doesn't 
+#   spit out an imaginary so it crashes.
+# Looking at the values, the rental start comes after the rental end, resulting
+#   in a negative rental period. 
+# We could abs() it and hope for the best while issuing a warning.
+###############################################################################
+
+# This is strange...
+
+(Pdb) value['rental_end']
+'12/7/17'
+(Pdb) value['rental_start']
+'8/14/16'
+(Pdb) value['rental_end'] < value['rental_start']
+True
+(Pdb) rental_end < rental_start
+False
+(Pdb) rental_end
+datetime.datetime(2017, 12, 7, 0, 0)
+(Pdb) rental_start
+datetime.datetime(2016, 8, 14, 0, 0).
+
+# So we have to cast to python format datetime before comparison.
+
+###############################################################################
+# We ended up coding a repair_dates(data) function that corrects the
+#   reversed dates
+###############################################################################
+
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(2)<module>()
+-> """Returns total price paid for individual rentals"""
+(Pdb) b 58
+Breakpoint 1 at /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py:58
+(Pdb) c
+2019-04-09 13:56:47,576 charges_calc.py:30  DEBUG Start of parse_cmd_arguments()
+2019-04-09 13:56:47,578 charges_calc.py:40  INFO -----Start of load_rental_file-----
+2019-04-09 13:56:47,579 charges_calc.py:50  INFO -----Start of repair_dates-----
+-----removed warnings for brevity-----
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(58)repair_dates()
+-> except ValueError:
+(Pdb) l
+ 53  	            rental_start = datetime.datetime.strptime(value['rental_start'], '%m/%d/%y')
+ 54  	            rental_end = datetime.datetime.strptime(value['rental_end'], '%m/%d/%y')
+ 55  	            if rental_end < rental_start:
+ 56  	                logging.warning(f'Key:{key} rental start, end dates reversed.  Repairing.')
+ 57  	                value['rental_start'], value['rental_end'] = value['rental_end'], value['rental_start']
+ 58 B->	        except ValueError:
+ 59  	            logging.error(f'Key:{key} contains bad date data.  Skipping.')
+ 60  	            logging.debug(f'Value:{value}')
+ 61  	
+ 62  	    return data
+ 63  	
+(Pdb) key
+'RNT776'
+(Pdb) value
+{'product_code': 'PRD70', 'units_rented': 1, 'price_per_day': 14, 'rental_start': '6/19/16', 'rental_end': ''}
+(Pdb) 
+
+###############################################################################
+# We now have an entry with no rental_end, key=RTN776.
+#   We add an error to the log and skip the entry.
+#   We should now be able to enter calculate additional fields
+###############################################################################
+
+(Pdb) b 67
+Breakpoint 2 at /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py:67
+(Pdb) c
+2019-04-09 14:00:13,742 charges_calc.py:59  ERROR Key:RNT776 contains bad date data.  Skipping.
+2019-04-09 14:00:13,744 charges_calc.py:60  DEBUG Value:{'product_code': 'PRD70', 'units_rented': 1, 'price_per_day': 14, 'rental_start': '6/19/16', 'rental_end': ''}
+2019-04-09 
+-----removed warnings for brevity-----
+2019-04-09 14:00:13,776 charges_calc.py:66  INFO -----Start of load_additional_fields-----
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(67)calculate_additional_fields()
+-> for key, value in data.items():
+(Pdb) l
+ 62  	    return data
+ 63  	
+ 64  	
+ 65  	def calculate_additional_fields(data):
+ 66  	    logging.info('-----Start of load_additional_fields-----')
+ 67 B->	    for key, value in data.items():
+ 68  	        try:
+ 69  	            rental_start = datetime.datetime.strptime(value['rental_start'], '%m/%d/%y')
+ 70  	            rental_end = datetime.datetime.strptime(value['rental_end'], '%m/%d/%y')
+ 71  	            value['total_days'] = (rental_end - rental_start).days
+ 72  	            value['total_price'] = value['total_days'] * value['price_per_day']
+(Pdb) clear
+Clear all breaks? y
+Deleted breakpoint 1 at /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py:58
+Deleted breakpoint 2 at /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py:67
+(Pdb) b 75
+Breakpoint 3 at /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py:75
+(Pdb) c
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(75)calculate_additional_fields()
+-> except:
+(Pdb) l
+ 70  	            rental_end = datetime.datetime.strptime(value['rental_end'], '%m/%d/%y')
+ 71  	            value['total_days'] = (rental_end - rental_start).days
+ 72  	            value['total_price'] = value['total_days'] * value['price_per_day']
+ 73  	            value['sqrt_total_price'] = math.sqrt(value['total_price'])
+ 74  	            value['unit_cost'] = value['total_price'] / value['units_rented']
+ 75 B->	        except:
+ 76  	            exit(0)
+ 77  	
+ 78  	    return data
+ 79  	
+ 80  	
+(Pdb) n
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(76)calculate_additional_fields()
+-> exit(0)
+(Pdb) 
+
+###############################################################################
+# We made it to the except statement in calculate additional fields.
+#   This means there's a problem in the function or with the data,
+#   what ever could it be?
+#   We'll just have to add more logging statements!
+###############################################################################
+
+
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(2)<module>()
+-> """Returns total price paid for individual rentals"""
+(Pdb) b 75
+Breakpoint 1 at /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py:75
+(Pdb) c
+2019-04-09 14:07:42,545 charges_calc.py:30  DEBUG Start of parse_cmd_arguments()
+2019-04-09 14:07:42,547 charges_calc.py:40  INFO -----Start of load_rental_file-----
+2019-04-09 14:07:42,548 charges_calc.py:50  INFO -----Start of repair_dates-----
+2019-04-09 14:07:42,550 charges_calc.py:56  WARNING Key:RNT001 rental start, end dates reversed.  Repairing.
+-----removed warnings for brevity-----
+2019-04-09 14:07:42,632 charges_calc.py:56  WARNING Key:RNT774 rental start, end dates reversed.  Repairing.
+2019-04-09 14:07:42,633 charges_calc.py:59  ERROR Key:RNT776 contains bad date data.  Skipping.
+2019-04-09 14:07:42,633 charges_calc.py:60  DEBUG Value:{'product_code': 'PRD70', 'units_rented': 1, 'price_per_day': 14, 'rental_start': '6/19/16', 'rental_end': ''}
+2019-04-09 14:07:42,633 charges_calc.py:56  WARNING Key:RNT778 rental start, end dates reversed.  Repairing.
+-----removed warnings for brevity-----
+2019-04-09 14:07:42,657 charges_calc.py:56  WARNING Key:RNT999 rental start, end dates reversed.  Repairing.
+2019-04-09 14:07:42,657 charges_calc.py:66  INFO -----Start of load_additional_fields-----
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(75)calculate_additional_fields()
+-> except Exception as e:
+(Pdb) n
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(76)calculate_additional_fields()
+-> logging.error(f'Key:{key} Failed calculating additional fields.  Skipping.')
+(Pdb) n
+2019-04-09 14:08:49,880 charges_calc.py:76  ERROR Key:RNT776 Failed calculating additional fields.  Skipping.
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(77)calculate_additional_fields()
+-> logging.debug(f'Value:{value}')
+(Pdb) n
+2019-04-09 14:08:53,699 charges_calc.py:77  DEBUG Value:{'product_code': 'PRD70', 'units_rented': 1, 'price_per_day': 14, 'rental_start': '6/19/16', 'rental_end': ''}
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(67)calculate_additional_fields()
+-> for key, value in data.items():
+(Pdb) c
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(75)calculate_additional_fields()
+-> except Exception as e:
+(Pdb) n
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(76)calculate_additional_fields()
+-> logging.error(f'Key:{key} Failed calculating additional fields.  Skipping.')
+(Pdb) n
+2019-04-09 14:09:19,078 charges_calc.py:76  ERROR Key:RNT843 Failed calculating additional fields.  Skipping.
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(77)calculate_additional_fields()
+-> logging.debug(f'Value:{value}')
+(Pdb) n
+2019-04-09 14:09:22,586 charges_calc.py:77  DEBUG Value:{'product_code': 'PRD79', 'units_rented': 0, 'price_per_day': 34, 'rental_start': '6/26/16', 'rental_end': '11/7/17', 'total_days': 499, 'total_price': 16966, 'sqrt_total_price': 130.25359879865124}
+> /home/doug/git/py220-online-201904-V2/students/douglas_klos/lesson02/assignment/src/charges_calc.py(67)calculate_additional_fields()
+-> for key, value in data.items():
+(Pdb) c
+2019-04-09 14:09:32,417 charges_calc.py:83  INFO -----Start of save_to_json(filename, data)-----
+The program finished and will be restarted
+
+###############################################################################
+# We made it to the end of the program.
+#   Our new exception logs the errors now instead of calling exit(0).
+#   Turns out we had an entry with no end date, which breaks sqrt
+#   and another with 'units_rented' of 0, which causes div by 0 error.
+#   Our exception traps these and processes the remainder of data.
+###############################################################################

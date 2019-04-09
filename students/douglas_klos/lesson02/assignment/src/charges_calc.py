@@ -27,7 +27,7 @@ logger.addHandler(console_handler)
 
 
 def parse_cmd_arguments():
-    logging.debug('Start of parse_cmd_arguments()')
+    logging.info('Start of parse_cmd_arguments()')
     parser = argparse.ArgumentParser(description='Process some integers.')
     parser.add_argument('-i', '--input', help='input JSON file', required=True)
     parser.add_argument('-o', '--output', help='ouput JSON file', required=True)
@@ -62,7 +62,7 @@ def repair_dates(data):
     return data
 
 
-def calculate_additional_fields(data):
+def calculate_additional_fields(data, bad_data):
     logging.info('-----Start of load_additional_fields-----')
     for key, value in data.items():
         try:
@@ -73,11 +73,18 @@ def calculate_additional_fields(data):
             value['sqrt_total_price'] = math.sqrt(value['total_price'])
             value['unit_cost'] = value['total_price'] / value['units_rented']
         except Exception as e:
+            bad_data[key] = value
             logging.error(f'Key:{key} Failed calculating additional fields.  Skipping.')
             logging.debug(f'Value:{value}')
-            # exit(0)
 
-    return data
+    return data, bad_data
+
+
+def remove_bad_data(data, bad_data):
+    for key in bad_data:
+        del data[key]
+    
+    return data, bad_data
 
 
 def save_to_json(filename, data):
@@ -87,8 +94,11 @@ def save_to_json(filename, data):
 
 
 if __name__ == "__main__":
+    bad_data = {}
     args = parse_cmd_arguments()
     data = load_rentals_file(args.input)
     data = repair_dates(data)
-    data = calculate_additional_fields(data)
+    data, bad_data = calculate_additional_fields(data, bad_data)
+    data, bad_data = remove_bad_data(data, bad_data)
     save_to_json(args.output, data)
+    save_to_json('bad_data.json', bad_data)
