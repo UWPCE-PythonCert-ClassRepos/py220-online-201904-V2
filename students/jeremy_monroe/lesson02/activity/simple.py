@@ -2,7 +2,9 @@
 
 import logging
 
+log_format = "%(asctime)s %(filename)s:%(lineno)-4d %(levelname)s %(message)s"
 logging.basicConfig(level=logging.WARNING)
+
 def my_fun(n):
     for i in range(0, n):
         logging.debug(i)

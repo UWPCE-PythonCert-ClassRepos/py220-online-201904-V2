@@ -101,3 +101,37 @@ This will create an `htmlcov` directory. On windows in command prompt we can use
 `start htmlcov/index.html`
 
 to open this in a web browser.
+
+
+
+
+
+# Week 2
+
+### Logging
+
+logging levels are:
+
+* Critical
+* Error
+* Warning
+* Info
+* Debug
+
+logging does have to be imported: `import logging`
+
+Set logging level using:
+
+`logging.basicConfig(level=logging.WARNING)`
+
+warning is the default level.
+
+In your code add log messages simply with:
+
+`logging.error("example log error")`
+
+if the log level is higher than the set level it will be logged.
+
+Next we'll set up `log_format` so our logs will provide us with more information:
+
+`log_format  = "%(asctime)s %(filename)s:%(lineno)-4d %(levelname)s %(message)s"`
