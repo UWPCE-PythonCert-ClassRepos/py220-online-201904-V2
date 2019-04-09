@@ -1,11 +1,19 @@
+# pylint: disable=C0103, C0111
 #!/usr/bin/python
-
+'''
+I don't even know /what/ this is supposed to do.
+After clean up a bit:  Oh, it's genetic analysis.  Dear lord
+-J
+'''
+import sys
+from re import match
+from argparse import ArgumentParser
 """
 CODENAME:     PhyRe
 DESCRIPTION:
-Copyright (c) 2009 Ronald R. Ferrucci, Federico Plazzi, and Marco Passamonti..
+Copyright (c) 2009 Ronald R. FerrucCI, Federico Plazzi, and Marco Passamonti..
 Permission is hereby granted, free of charge, to any person
-obtaining a copy of this software and associated documentation
+obtaining a copy of this software and assoCIated documentation
 files (the "Software"), to deal in the Software without
 restriction, including without limitation the rights to use,
 copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -24,97 +32,123 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 """
 
-import sys
 
-samplefile = sys.argv[1];      del sys.argv[1]
-popfile = sys.argv[1];      del sys.argv[1]
+SAMPLEFILE = sys.argv[1]
+del sys.argv[1]
+POPFILE = sys.argv[1]
+del sys.argv[1]
 #outfile= sys.argv[1];      del sys.argv[1]
 
-#outfile = samplefile
+#outfile = SAMPLEFILE
 #output = open(outfile, 'w')
 
 #efile = open('error.log','w')
 #sys.stderr = efile
 
 #output = open('output','w')
-#out.write(allelesfile)
-#out.close()
+# out.write(allelesfile)
+# out.close()
 ###-----------------options-------------------------###
 
-"""p = permutations for confidence intervals, d1 and d2 are range for number of
-species for funnel plot. parameter: m = AvTD, v = VarTD, e = euler, b = AvTD and VarTd.
-ci = confidence intervals b = batch file. l = user-defined path lengths
+"""
+P = permutations for confidence intervals
+D1 and D2 are range for number of species for funnel plot parameter
+m = AvTD
+v = VarTD
+e = euler
+B = AvTD and VarTd
+CI = confidence intervals
+B = batch file
+L = user-defined path lengths
 """
 
-p = 1000; d1 = 10; d2 = 70; ci = 'y'; b = 'n'; l = 'n'
-batch = b; pathlengths = l; missing = 'n'
+P = 1000
+D1 = 10
+D2 = 70
+CI = 'y'
+B = 'n'
+L = 'n'
+BATCH = B
+PATHLENGTHS = L
+MISSING = 'n'
 #parameter = 'm';
 
-from optparse import OptionParser
-parser = OptionParser()
+PARSER = ArgumentParser()
 
-d1= int(sys.argv[1]);      del sys.argv[1]
-d2= int(sys.argv[1]);      del sys.argv[1]
+D1 = int(sys.argv[1])
+del sys.argv[1]
+D2 = int(sys.argv[1])
+del sys.argv[1]
 
-parser.add_option('-o')
-parser.add_option('-p',type = 'int')
-parser.add_option('-c')
-parser.add_option('-b')
-parser.add_option('-l')
-parser.add_option('-m')
+PARSER.add_argument('-o')
+PARSER.add_argument('-p', type='int')
+PARSER.add_argument('-c')
+PARSER.add_argument('-b')
+PARSER.add_argument('-l')
+PARSER.add_argument('-m')
 
+(options, args) = PARSER.parse_args()
 
-(options,args) = parser.parse_args()
-
-if options.m: missing = options.m
-else: missing = 'n'
+if options.m:
+    MISSING = options.m
+else:
+    MISSING = 'n'
 
 if options.o:
     out = options.o
 else:
-    out = samplefile.split('.')[0]
+    out = SAMPLEFILE.split('.')[0]
 
 
-if options.p: p = options.p
-else: p = 1000
+if options.p:
+    P = options.p
+else:
+    P = 1000
 
-if options.c: ci = options.c
-else: ci = 'y'
+if options.c:
+    CI = options.c
+else:
+    CI = 'y'
 
-if options.b: batch = options.b
-else: batch = 'n'
+if options.b:
+    BATCH = options.b
+else:
+    BATCH = 'n'
 
-if options.l: pathlengths = options.l
-else: pathlengths = 'n'
+if options.l:
+    PATHLENGTHS = options.l
+else:
+    PATHLENGTHS = 'n'
 
 
-
-sample = {}; population = {}
-
+sample = {}
+population = {}
 
 
 output = out + '.out'
 
 
-
-o = open(output,'a')
+o = open(output, 'a')
 
 saveout = sys.stdout
 sys.stdout = open(output, 'w')
 
-from re import *
 
-#def Taxon():
-if batch == 'y':
+# def Taxon():
+if BATCH == 'y':
     Files = []
 else:
-    Files = [samplefile]
+    Files = [SAMPLEFILE]
 
-Index = {}; Taxon = {}; coef = {}; Taxon = {}; taxon = []
+Index = {}
+Taxon = {}
+coef = {}
+Taxon = {}
+taxon = []
 
-pathLengths= {}
+PATHLENGTHS = {}
 
-for i in open(samplefile):
+for i in open(SAMPLEFILE):
     """
     if match('Taxon:', i):
         x = i.split()
@@ -125,19 +159,19 @@ for i in open(samplefile):
             j = x.index(i)
             Index[i] = j + 1
         continue
-    elif match('Coefficients:', i):
+    elif match('CoeffiCIents:', i):
         x = i.split()
-        x.remove('Coefficients:')
+        x.remove('CoeffiCIents:')
         x = map(eval, x)
 
         for t in taxon:
             i = taxon.index(t)
             coef[t] = sum(x[i:])
-            pathLengths[t] = x[i]
+            PATHLENGTHS[t] = x[i]
         continue
     """
 
-    if batch == 'y':
+    if BATCH == 'y':
         j = i.strip()
         Files.append(j)
     else:
@@ -145,37 +179,38 @@ for i in open(samplefile):
 
 duplicates = []
 
-for i in open(popfile):
+for i in open(POPFILE):
     if match('Taxon:', i):
         x = i.split()
         x.remove('Taxon:')
         #x = [string.lower() for string in x]
 
-        for i in x:
-            taxon.append(i)
-            j = x.index(i)
-            Index[i] = j + 1
+        for e in x:
+            taxon.append(e)
+            j = x.index(e)
+            Index[e] = j + 1
         continue
 
-    elif match('Coefficients:', i):
+    elif match('CoeffiCIents:', i):
         x = i.split()
-        x.remove('Coefficients:')
+        x.remove('CoeffiCIents:')
         x = map(eval, x)
 
         for t in taxon:
             i = taxon.index(t)
             coef[t] = sum(x[i:])
-            pathLengths[t] = x[i]
+            PATHLENGTHS[t] = x[i]
 
         continue
 
     i.strip()
     x = i.split()
 
-    #if match('Taxon:', i): continue
-    #if match('Coefficients:', i): continue
+    # if match('Taxon:', i): continue
+    # if match('CoeffiCIents:', i): continue
 
-    species = x[0]; population[species] = {}
+    species = x[0]
+    population[species] = {}
 
     if species in sample.keys():
         duplicates.append(species)
@@ -183,8 +218,7 @@ for i in open(popfile):
         sample[species] = {}
         population[species] = {}
 
-
-    if missing == 'y':
+    if MISSING == 'y':
         mtax = ''
         for t in taxon:
             if x[Index[t]] == '/':
@@ -202,14 +236,17 @@ for i in open(popfile):
             sample[species][t] = x[Index[t]]
         population[species][t] = sample[species][t]
 
-    #for t in taxon:
+    # for t in taxon:
         #y = Taxon[t]
     #    population[species][t] = x[Index[t]]
 
 
-if len(duplicates) > 0:
-    print "Population master list contains duplicates:"
-    for i in duplicates: print i,'\n'
+# if len(duplicates) > 0:
+if duplicates:
+    print("Population master list contains duplicates: ")
+    for i in duplicates:
+        print(i, '\n')
+
 
 def PathLength(population):
     taxonN = {}
@@ -223,15 +260,15 @@ def PathLength(population):
         for i in set(X[t]):
             Taxon[t][i] = X[t].count(i)
     else:
-            for i in set(X[t]):
-                if i not in X[taxon[taxon.index(t)-1]]:
-                    Taxon[t][i] = X[t].count(i)
+        for i in set(X[t]):
+            if i not in X[taxon[taxon.index(t)-1]]:
+                Taxon[t][i] = X[t].count(i)
 
         taxonN[t] = len(Taxon[t])
 
     n = [float(len(Taxon[t])) for t in taxon]
 
-    n.insert(0,1.0)
+    n.insert(0, 1.0)
 
     #s = 100/float(N)
     raw = []
@@ -248,30 +285,39 @@ def PathLength(population):
     s = sum(raw)
     adjco = [i*100/s for i in raw]
 
-    coef = {}; pathLengths = {}
+    coef = {}
+    PATHLENGTHS = {}
     for i in range(len(taxon)):
         t = taxon[i]
         coef[t] = sum(adjco[i:])
-        pathLengths[t] = adjco[i]
+        PATHLENGTHS[t] = adjco[i]
 
-    return coef, taxonN, pathLengths
+    return coef, taxonN, PATHLENGTHS
 
-if pathlengths == 'n':
-    coef, popN, pathLengths = PathLength(population)
-if pathlengths == 'y':
+
+if PATHLENGTHS == 'n':
+    coef, popN, PATHLENGTHS = PathLength(population)
+if PATHLENGTHS == 'y':
     XXX, popN, YYY = PathLength(population)
     del XXX, YYY
 
 #N = len(sample.keys())
-def ATDmean(data,sample):
-    #[sample = data.keys()
+
+
+def ATDmean(data, sample):
+    # [sample = data.keys()
     N = len(sample)
 
-    Taxon = {}; taxonN = {}; AvTD = 0; n = 0
-    #Taxon are counts of taxa at each level, taxonN are numbers of pairwise differences
-    #at each level, with n being the accumlation of pairwise differences at that level. the difference
-    #between n and TaxonN is the number of species that are in different taxa in that level
-    #but not in upper levels
+    Taxon = {}
+    taxonN = {}
+    AvTD = 0
+    n = 0
+
+    # Taxon are counts of taxa at each level, taxonN are numbers of pairwise
+    # differences at each level, with n being the accumlation of pairwise
+    # differences at that level. the difference between n and TaxonN is the
+    # number of species that are in different taxa in that level but not in
+    # upper levels
 
     for t in taxon:
         Taxon[t] = {}
@@ -280,22 +326,26 @@ def ATDmean(data,sample):
             Taxon[t][i] = x.count(i)
 
     for t in taxon:
-        taxonN[t] = sum([Taxon[t][i] * Taxon[t][j] for i in Taxon[t] for j in Taxon[t] if i != j])
+        taxonN[t] = sum([Taxon[t][i] * Taxon[t][j] for i in Taxon[t] for j in
+                         Taxon[t] if i != j])
         n = taxonN[t] - n
         AvTD = AvTD + (n * coef[t])
         n = taxonN[t]
 
-    #print sample
+    # print sample
     AvTD /= (N * (N - 1))
 
-    return AvTD,taxonN, Taxon
+    return AvTD, taxonN, Taxon
+
 
 def ATDvariance(taxonN, sample, atd):
     vtd = []
 
     #N = sum(taxon)
 
-    vtd = 0; N = 0; n = 0
+    vtd = 0
+    N = 0
+    n = 0
 
     for t in taxon:
         n = taxonN[t] - n
@@ -311,6 +361,7 @@ def ATDvariance(taxonN, sample, atd):
 
     return vtd
 
+
 def euler(data, atd, TaxonN):
     sample = data.keys()
 
@@ -319,8 +370,8 @@ def euler(data, atd, TaxonN):
     N = 0
     for t in taxon:
         k = len(Taxon[t])
-        TDmin += coef[t] * (((k-1)*(n-k +1)* 2+ (k-1)*(k-2))-N)
-        N += ((k-1)*(n-k +1)* 2 + (k-1)*(k-2))-N
+        TDmin += coef[t] * (((k-1)*(n-k + 1) * 2 + (k-1)*(k-2))-N)
+        N += ((k-1)*(n-k + 1) * 2 + (k-1)*(k-2))-N
 
     TDmin /= (n * (n-1))
 
@@ -328,13 +379,13 @@ def euler(data, atd, TaxonN):
 
     #tax = []
 
-    #taxon.append('sample')
+    # taxon.append('sample')
     #Taxon['sample'] = sample
     taxon.reverse()
     TaxMax = {}
 
     taxonN = {}
-    import random
+    # import random
     for t in taxon:
         TaxMax[t] = []
         if taxon.index(t) == 0:
@@ -342,43 +393,54 @@ def euler(data, atd, TaxonN):
             for i in range(len(Taxon[t])):
                 TaxMax[t].append([])
             for i in range(len(Taxon[t])):
-                TaxMax[t][i] = [sample[j] for j in range(i,n,len(Taxon[t]))]
+                TaxMax[t][i] = [sample[j] for j in range(i, n, len(Taxon[t]))]
         else:
             TaxMax[t] = []
             for i in range(len(Taxon[t])):
                 TaxMax[t].append([])
                 s = taxon[taxon.index(t)-1]
 
-                Tax = [TaxMax[s][j] for j in range(i,len(Taxon[s]),len(Taxon[t]))]
+                Tax = [TaxMax[s][j] for j in range(i, len(Taxon[s]),
+                                                   len(Taxon[t]))]
 
                 for j in Tax:
                     TaxMax[t][i] += j
         TaxMax[t].reverse()
 
-    taxon.reverse(); TDmax = 0; n = 0; N = len(sample)
+    taxon.reverse()
+    TDmax = 0
+    n = 0
+    N = len(sample)
     for t in taxon:
-        taxonN[t] = sum([len(TaxMax[t][i]) * len(TaxMax[t][j]) for i in range(len(TaxMax[t])) for j in range(len(TaxMax[t])) if i != j])
+        taxonN[t] = sum([len(TaxMax[t][i]) * len(TaxMax[t][j]) for i in
+                         range(len(TaxMax[t])) for j in range(len(TaxMax[t]))
+                         if i != j])
         n = taxonN[t] - n
         TDmax += n * coef[t]
         n = taxonN[t]
-        #for i in TaxMax[t]:
+        # for i in TaxMax[t]:
         #    print t, len(i)
 
     TDmax /= (N * (N-1))
 
     EI = (TDmax-atd)/(TDmax-TDmin)
 
-    Eresults = {'EI':EI, 'TDmin':TDmin,'TDmax':TDmax}
+    Eresults = {'EI': EI, 'TDmin': TDmin, 'TDmax': TDmax}
     return Eresults
-    #print TDmax
+    # print TDmax
 
-print "Output from Average Taxonomic Distinctness\n"
-def Sample(samplefile):
+
+print("Output from Average Taxonomic Distinctness\n")
+
+
+def Sample(SAMPLEFILE):
     sample = {}
-    print samplefile
-    for i in open(samplefile):
-        if match('Taxon:', i): continue
-        elif match('Coefficients:', i): continue
+    print(SAMPLEFILE)
+    for i in open(SAMPLEFILE):
+        if match('Taxon:', i):
+            continue
+        elif match('CoeffiCIents:', i):
+            continue
 
         x = i.split()
 
@@ -401,9 +463,9 @@ for f in Files:
 
     samp = sample.keys()
 
-    atd,taxonN, Taxon = ATDmean(sample,samp)
-    vtd = ATDvariance(taxonN,samp,atd)
-    Eresults = euler(sample,atd, taxonN)
+    atd, taxonN, Taxon = ATDmean(sample, samp)
+    vtd = ATDvariance(taxonN, samp, atd)
+    Eresults = euler(sample, atd, taxonN)
 
     results[f]['atd'] = atd
     results[f]['vtd'] = vtd
@@ -414,145 +476,159 @@ for f in Files:
 
 N = len(sample.keys())
 
+
 def printResults():
-    #if parameter == 'm':
-    #if parameter == 'm':
+    # if parameter == 'm':
+    # if parameter == 'm':
     #    print "parameter is Average Taxonomic Distinctness\n"
-    #elif parameter == 'v':
+    # elif parameter == 'v':
     #    print "parameter is Variation in Taxonomic Distinctness\n"
-    #elif parameter == 'e':
+    # elif parameter == 'e':
     #    print "parameter is Euler's Index of Imbalance\n"
 
-    print "Number of taxa and path lengths for each taxonomic level:"
+    print("Number of taxa and path lengths for each taxonomic level:")
 
     for t in taxon:
-        print '%-10s\t%d\t%.4f' %(t,popN[t],pathLengths[t])
+        print('%-10s\t%d\t%.4f' % (t, popN[t], PATHLENGTHS[t]))
         n = taxonN[t]
 
-    print "\n",
+    print("\n",)
 
     for f in results:
-        print "---------------------------------------------------"
-        print "Results for sample: ", f,'\n'
-        print "Dimension for this sample is", results[f]['n'], '\n\n',
-        print "Number of taxa and pairwise comparisons  at each taxon level:"
+        print("---------------------------------------------------")
+        print("Results for sample: ", f, '\n')
+        print("Dimension for this sample is", results[f]['n'], '\n\n',)
+        print("Number of taxa and pairwise comparisons  at each taxon level:")
 
         n = 0
         for t in taxon:
 
             N = results[f]['N'][t] - n
-            print '%-10s\t%i\t%i' %(t,len(results[f]['taxon'][t]),N)
+            print('%-10s\t%i\t%i' % (t, len(results[f]['taxon'][t]), N))
             n = results[f]['N'][t]
 
-        print """\nNumber of pairwise comparisons is for pairs that differ \
-at each level excluding comparisons that differ at upper levels"""
-        print "\n",
+        print('\nNumber of pairwise comparisons is for pairs that differ \
+at each level excluding comparisons that differ at upper levels')
+        print("\n",)
 
-        print "Average taxonomic distinctness      = %.4f" % results[f]['atd']
-        print "Variation in taxonomic distinctness = %.4f" % results[f]['vtd']
-        print "Minimum taxonomic distinctness      = %.4f" % results[f]['euler']['TDmin']
-        print "Maximum taxonomic distinctness      = %.4f" % results[f]['euler']['TDmax']
-        print "von Euler's index of imbalance      = %.4f" % results[f]['euler']['EI']
-        print '\n',
+        print("Average taxonomic distinctness      = %.4f" % results[f]['atd'])
+        print("Variation in taxonomic distinctness = %.4f" % results[f]['vtd'])
+        print("Minimum taxonomic distinctness      = %.4f" % results[f]
+              ['euler']['TDmin'])
+        print("Maximum taxonomic distinctness      = %.4f" % results[f]
+              ['euler']['TDmax'])
+        print("von Euler's index of imbalance      = %.4f" % results[f]
+              ['euler']['EI'])
+        print('\n',)
 
 
 printResults()
-print "---------------------------------------------------"
+print("---------------------------------------------------")
 
 #sys.stdout = saveout
 
-#sys.stdout=sys.__stdout__
+# sys.stdout=sys.__stdout__
 
 
 sys.stdout = saveout
 
-sys.stdout=sys.__stdout__
+sys.stdout = sys.__stdout__
 
-if ci == 'y':
+if CI == 'y':
 
     output = out.split('_')[0] + '_funnel.out'
 
-    o = open(output,'a')
+    o = open(output, 'a')
 
     saveout = sys.stdout
     sys.stdout = open(output, 'w')
-    print """Confidence limits for average taxonomic distinctness and variation in taxonomic distinctness
-limits are lower 95% limit for AvTD and upper 95% limit for VarTD
-"""
-    print "Number of permutations for confidence limits =", p, '\n'
+    print('Confidence limits for average taxonomic distinctness and variation \
+    in taxonomic distinctness limits are lower 95% limit for AvTD and upper \
+    95% limit for VarTD')
+    print("Number of permutations for confidence limits =", P, '\n')
 
-    #if paramter == 'm':
+    # if paramter == 'm':
     #    print "Confidence limits for Average Taxonomic Distinctiveness are in file ", output
-    #if paramter == 'v':
+    # if paramter == 'v':
     #    print "Confidence limits for Variation in Taxonomic Distinctiveness are in file ", output
-
 
     #o = open('sample2.txt','w')
 
     #saveout = sys.stdout
     #sys.stdout = open(output, 'w')
 
-    ciarray = []; x = [];carray = []
-    def Funnel(p,d1,d2):
+    CIarray = []
+    x = []
+    carray = []
+
+    def Funnel(P, D1, D2):
         from random import sample
         pop = population.keys()
 
-        dims = []; up = []; lo = []; means = []
+        dims = []
+        up = []
+        lo = []
+        means = []
 
-        print "dimension AvTD05%   AvTDmean  AvTD95%   AvTDup    VarTDlow   VarTD05%   VarTDmean  VarTD95%"
-        for d in range(d1, d2 + 1):
-        #for i in range(10):
+        print("dimension AvTD05%   AvTDmean  AvTD95%   AvTDuP    VarTDlow   \
+VarTD05%   VarTDmean  VarTD95%")
+        for d in range(D1, D2 + 1):
+            # for i in range(10):
             #d = N
-            #if d != N: continue
+            # if d != N: continue
             #from math import max, min
             x.append(d)
-            AvTDci = []; VarTDci = []
-            for j in range(p):
-                rsamp = sample(pop,d)
+            AvTDCI = []
+            VarTDCI = []
+            for j in range(P):
+                rsamp = sample(pop, d)
 
-                atd,taxonN, Taxon = ATDmean(population,rsamp); AvTDci.append(atd)
-                vtd = ATDvariance(taxonN,rsamp,atd); VarTDci.append(vtd)
+                atd, taxonN, Taxon = ATDmean(population, rsamp)
+                AvTDCI.append(atd)
+                vtd = ATDvariance(taxonN, rsamp, atd)
+                VarTDCI.append(vtd)
 
-            AvTDci.sort()
-            VarTDci.sort()
+            AvTDCI.sort()
+            VarTDCI.sort()
 
-            AvTD = AvTDci[int(.05 * p)], sum(AvTDci)/p, AvTDci[int(.95 * p)], max(AvTDci)
-            VarTD = min(VarTDci), VarTDci[int(.05 * p)],sum(VarTDci)/p,VarTDci[int(.95 * p)]
+            AvTD = AvTDCI[int(.05 * P)], sum(AvTDCI)/P, AvTDCI[int(.95 * P)], max(AvTDCI)
+            VarTD = min(VarTDCI), VarTDCI[int(.05 * P)], sum(VarTDCI)/P, VarTDCI[int(.95 * P)]
 
             dims.append(d)
-            ciarray.append(AvTD[0])
+            CIarray.append(AvTD[0])
             carray.append(AvTD[1])
 
-            #up.append(ci95[1])
-            #lo.append(ci95[0])
-            #means.append(mean)
-            print '%i        %6.4f   %6.4f   %6.4f   %6.4f   %6.4f   %6.4f   %6.4f   %6.4f' \
-                %(d, AvTD[0], AvTD[1], AvTD[2], AvTD[3], VarTD[0], VarTD[1], VarTD[2], VarTD[3])
+            # up.append(CI95[1])
+            # lo.append(CI95[0])
+            # means.append(mean)
+            print('%i        %6.4f   %6.4f   %6.4f   %6.4f   %6.4f   %6.4f   \
+            %6.4f   %6.4f' % (d, AvTD[0], AvTD[1], AvTD[2], AvTD[3], VarTD[0],
+                              VarTD[1], VarTD[2], VarTD[3]))
 
-            #if d == N:
+            # if d == N:
             #    Ie = (max(cache)-atd)/(max(cache)-min(cache))
-            #    print d, Ie, ci95, mean
+            #    print d, Ie, CI95, mean
 
-        #return dims, up, lo, means
-            #print d,ci95
+        # return dims, up, lo, means
+            # print d,CI95
 
-    Funnel(p,d1,d2)
-    #dims, up, lo, means = Funnel(p,d1,d2)
+    Funnel(P, D1, D2)
+    #dims, up, lo, means = Funnel(p,D1,D2)
 
     sys.stdout = saveout
 
-    sys.stdout=sys.__stdout__
+    sys.stdout = sys.__stdout__
 
     #from QUASImage import *; from numpy import *
-    #ciarray = array(ciarray)
+    #CIarray = array(CIarray)
     #from pgen import *
 
-    #ciarray += carray
+    #CIarray += carray
 
     #x *= 1
-    #charplot(x,ciarray)
+    # charplot(x,CIarray)
 
-    #plot(ciarray)
+    # plot(CIarray)
 """
     from matplotlib.pylab import *
 
@@ -568,7 +644,7 @@ limits are lower 95% limit for AvTD and upper 95% limit for VarTD
     #figure(1)
     plot(dims,up,dims, lo, dims, means)
     title('ATD',fontstyle='italic')
-    xlabel('Number of Species')
+    xlabel('Number of species')
     ylabel(param,fontstyle='italic')
     #savefig(figureOutput+".png")
 
