@@ -52,12 +52,12 @@ def load_rentals_file(filename):
     with open(filename) as file:
         try:
             data = json.load(file)
-            import pdb; pdb.set_trace()
+            # import pdb; pdb.set_trace()
         except ValueError as err_code:
             logging.error('Error reading file %s', file)
             print(f'Error reading the file: {err_code}')
             exit(0)
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
     return data
 
 def calculate_additional_fields(data):
@@ -75,10 +75,29 @@ def calculate_additional_fields(data):
             logging.debug(value)
 
         value['total_days'] = (rental_end - rental_start).days
+        if value["total_days"] < 0:
+            logging.error('Total days is negative.')
+            print('Total days cannot be negative.')
+            logging.debug(value)
+
         value['total_price'] = value['total_days'] * value['price_per_day']
-        value['sqrt_total_price'] = math.sqrt(value['total_price'])
-        value['unit_cost'] = value['total_price'] / value['units_rented']
-        import pdb; pdb.set_trace()
+
+        try:
+            value['sqrt_total_price'] = math.sqrt(value['total_price'])
+
+        except ValueError as math_domain_error:
+            logging.error('%s Unable to calculate.', math_domain_error)
+            print('Square root of negative number attempted.')
+            logging.debug(value)
+
+        try:
+            value['unit_cost'] = value['total_price'] / value['units_rented']
+        except ZeroDivisionError as div_error:
+            logging.warning("%s division by 0.", div_error)
+            print("Error with units rented. Division by 0.")
+            logging.debug(value)
+
+        # import pdb; pdb.set_trace()
 #        except:
 #            exit(0)
 #            import pdb; pdb.set_trace()
@@ -90,7 +109,7 @@ def save_to_json(filename, data):
     '''
     logging.debug('Saving file %s', filename)
     with open(filename, 'w') as file:
-        import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         json.dump(data, file)
 
 if __name__ == '__main__':
