@@ -1,5 +1,6 @@
 # pylint: disable=C0103, C0111
 #!/usr/bin/python
+<<<<<<< Updated upstream
 '''
 I don't even know /what/ this is supposed to do.
 After clean up a bit:  Oh, it's genetic analysis.  Dear lord
@@ -9,12 +10,21 @@ import sys
 from re import match
 from argparse import ArgumentParser
 """
+=======
+
+'''
+>>>>>>> Stashed changes
 CODENAME:     PhyRe
 DESCRIPTION:
 Copyright (c) 2009 Ronald R. FerrucCI, Federico Plazzi, and Marco Passamonti..
 Permission is hereby granted, free of charge, to any person
+<<<<<<< Updated upstream
 obtaining a copy of this software and assoCIated documentation
 files (the "Software"), to deal in the Software without
+=======
+obtaining a copy of this software and associated documentation
+files (the'Software'), to deal in the Software without
+>>>>>>> Stashed changes
 restriction, including without limitation the rights to use,
 copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the
@@ -22,7 +32,7 @@ Software is furnished to do so, subject to the following
 conditions:
 The above copyright notice and this permission notice shall be
 included in all copies or substantial portions of the Software.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+THE SOFTWARE IS PROVIDED'AS IS', WITHOUT WARRANTY OF ANY KIND,
 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
 OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
 NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
@@ -30,7 +40,7 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
-"""
+'''
 
 
 SAMPLEFILE = sys.argv[1]
@@ -39,8 +49,13 @@ POPFILE = sys.argv[1]
 del sys.argv[1]
 #outfile= sys.argv[1];      del sys.argv[1]
 
+<<<<<<< Updated upstream
 #outfile = SAMPLEFILE
 #output = open(outfile, 'w')
+=======
+#outfile = samplefile
+#output = open(outfile,'w')
+>>>>>>> Stashed changes
 
 #efile = open('error.log','w')
 #sys.stderr = efile
@@ -50,6 +65,7 @@ del sys.argv[1]
 # out.close()
 ###-----------------options-------------------------###
 
+<<<<<<< Updated upstream
 """
 P = permutations for confidence intervals
 D1 and D2 are range for number of species for funnel plot parameter
@@ -72,13 +88,32 @@ BATCH = B
 PATHLENGTHS = L
 MISSING = 'n'
 #parameter = 'm';
+=======
+'''p = permutations for confidence intervals, d1 and d2 are range for number of
+species for funnel plot. parameter: m = AvTD, v = VarTD, e = euler, b = AvTD and VarTd.
+ci = confidence intervals b = batch file. l = user-defined path lengths
+'''
+
+p = 1000; d1 = 10; d2 = 70; ci ='y'; b ='n'; l ='n'
+batch = b; pathlengths = l; missing ='n'
+#parameter ='m';
+>>>>>>> Stashed changes
 
 PARSER = ArgumentParser()
 
+<<<<<<< Updated upstream
 D1 = int(sys.argv[1])
 del sys.argv[1]
 D2 = int(sys.argv[1])
 del sys.argv[1]
+=======
+parser.add_option('-o')
+parser.add_option('-p',type ='int')
+parser.add_option('-c')
+parser.add_option('-b')
+parser.add_option('-l')
+parser.add_option('-m')
+>>>>>>> Stashed changes
 
 PARSER.add_argument('-o')
 PARSER.add_argument('-p', type='int')
@@ -89,16 +124,22 @@ PARSER.add_argument('-m')
 
 (options, args) = PARSER.parse_args()
 
+<<<<<<< Updated upstream
 if options.m:
     MISSING = options.m
 else:
     MISSING = 'n'
+=======
+if options.m: missing = options.m
+else: missing ='n'
+>>>>>>> Stashed changes
 
 if options.o:
     out = options.o
 else:
     out = SAMPLEFILE.split('.')[0]
 
+<<<<<<< Updated upstream
 
 if options.p:
     P = options.p
@@ -109,6 +150,16 @@ if options.c:
     CI = options.c
 else:
     CI = 'y'
+=======
+if options.c: ci = options.c
+else: ci ='y'
+
+if options.b: batch = options.b
+else: batch ='n'
+
+if options.l: pathlengths = options.l
+else: pathlengths ='n'
+>>>>>>> Stashed changes
 
 if options.b:
     BATCH = options.b
@@ -125,17 +176,22 @@ sample = {}
 population = {}
 
 
-output = out + '.out'
+output = out +'.out'
 
 
 o = open(output, 'a')
 
 saveout = sys.stdout
-sys.stdout = open(output, 'w')
+sys.stdout = open(output,'w')
 
 
+<<<<<<< Updated upstream
 # def Taxon():
 if BATCH == 'y':
+=======
+#def Taxon():
+if batch =='y':
+>>>>>>> Stashed changes
     Files = []
 else:
     Files = [SAMPLEFILE]
@@ -148,8 +204,12 @@ taxon = []
 
 PATHLENGTHS = {}
 
+<<<<<<< Updated upstream
 for i in open(SAMPLEFILE):
     """
+=======
+for i in open(samplefile):
+>>>>>>> Stashed changes
     if match('Taxon:', i):
         x = i.split()
         x.remove('Taxon:')
@@ -169,9 +229,12 @@ for i in open(SAMPLEFILE):
             coef[t] = sum(x[i:])
             PATHLENGTHS[t] = x[i]
         continue
-    """
 
+<<<<<<< Updated upstream
     if BATCH == 'y':
+=======
+    if batch =='y':
+>>>>>>> Stashed changes
         j = i.strip()
         Files.append(j)
     else:
@@ -218,10 +281,16 @@ for i in open(POPFILE):
         sample[species] = {}
         population[species] = {}
 
+<<<<<<< Updated upstream
     if MISSING == 'y':
         mtax = ''
+=======
+
+    if missing =='y':
+        mtax =''
+>>>>>>> Stashed changes
         for t in taxon:
-            if x[Index[t]] == '/':
+            if x[Index[t]] =='/':
                 #sample[species][t] = sample[species][t]
                 sample[species][t] = mtax
             else:
@@ -241,12 +310,19 @@ for i in open(POPFILE):
     #    population[species][t] = x[Index[t]]
 
 
+<<<<<<< Updated upstream
 # if len(duplicates) > 0:
 if duplicates:
     print("Population master list contains duplicates: ")
     for i in duplicates:
         print(i, '\n')
 
+=======
+if len(duplicates) > 0:
+    print(('Population master list contains duplicates:')
+    for i in duplicates:
+        print(i,'\n')
+>>>>>>> Stashed changes
 
 def PathLength(population):
     taxonN = {}
@@ -260,11 +336,18 @@ def PathLength(population):
         for i in set(X[t]):
             Taxon[t][i] = X[t].count(i)
     else:
+<<<<<<< Updated upstream
         for i in set(X[t]):
             if i not in X[taxon[taxon.index(t)-1]]:
                 Taxon[t][i] = X[t].count(i)
 
         taxonN[t] = len(Taxon[t])
+=======
+            for i in set(X[t]):
+                if i not in X[taxon[taxon.index(t)-1]]:
+                    Taxon[t][i] = X[t].count(i)
+    taxonN[t] = len(Taxon[t])
+>>>>>>> Stashed changes
 
     n = [float(len(Taxon[t])) for t in taxon]
 
@@ -295,9 +378,15 @@ def PathLength(population):
     return coef, taxonN, PATHLENGTHS
 
 
+<<<<<<< Updated upstream
 if PATHLENGTHS == 'n':
     coef, popN, PATHLENGTHS = PathLength(population)
 if PATHLENGTHS == 'y':
+=======
+if pathlengths =='n':
+    coef, popN, pathLengths = PathLength(population)
+if pathlengths =='y':
+>>>>>>> Stashed changes
     XXX, popN, YYY = PathLength(population)
     del XXX, YYY
 
@@ -332,7 +421,11 @@ def ATDmean(data, sample):
         AvTD = AvTD + (n * coef[t])
         n = taxonN[t]
 
+<<<<<<< Updated upstream
     # print sample
+=======
+    #print( sample
+>>>>>>> Stashed changes
     AvTD /= (N * (N - 1))
 
     return AvTD, taxonN, Taxon
@@ -418,13 +511,19 @@ def euler(data, atd, TaxonN):
         n = taxonN[t] - n
         TDmax += n * coef[t]
         n = taxonN[t]
+<<<<<<< Updated upstream
         # for i in TaxMax[t]:
         #    print t, len(i)
+=======
+        #for i in TaxMax[t]:
+        #    print( t, len(i)
+>>>>>>> Stashed changes
 
     TDmax /= (N * (N-1))
 
     EI = (TDmax-atd)/(TDmax-TDmin)
 
+<<<<<<< Updated upstream
     Eresults = {'EI': EI, 'TDmin': TDmin, 'TDmax': TDmax}
     return Eresults
     # print TDmax
@@ -441,6 +540,19 @@ def Sample(SAMPLEFILE):
             continue
         elif match('CoeffiCIents:', i):
             continue
+=======
+    Eresults = {'EI':EI,'TDmin':TDmin,'TDmax':TDmax}
+    return Eresults
+    #print( TDmax
+
+    print(('Output from Average Taxonomic Distinctness\n')
+def Sample(samplefile):
+    sample = {}
+    print((samplefile)
+    for i in open(samplefile):
+        if match('Taxon:', i): continue
+        elif match('Coefficients:', i): continue
+>>>>>>> Stashed changes
 
         x = i.split()
 
@@ -476,6 +588,7 @@ for f in Files:
 
 N = len(sample.keys())
 
+<<<<<<< Updated upstream
 
 def printResults():
     # if parameter == 'm':
@@ -499,11 +612,36 @@ def printResults():
         print("Results for sample: ", f, '\n')
         print("Dimension for this sample is", results[f]['n'], '\n\n',)
         print("Number of taxa and pairwise comparisons  at each taxon level:")
+=======
+def print(Results():
+    #if parameter =='m':
+    #if parameter =='m':
+    #    print('parameter is Average Taxonomic Distinctness\n'
+    #elif parameter =='v':
+    #    print('parameter is Variation in Taxonomic Distinctness\n'
+    #elif parameter =='e':
+    #    print('parameter is Euler's Index of Imbalance\n'
+
+    print(('Number of taxa and path lengths for each taxonomic level:')
+
+    for t in taxon:
+        print(('%-10s\t%d\t%.4f' %(t,popN[t],pathLengths[t]))
+        n = taxonN[t]
+
+    print(('\n'),
+
+    for f in results:
+        print(('---------------------------------------------------')
+        print(('Results for sample:', f,'\n')
+        print(('Dimension for this sample is', results[f]['n'],'\n\n',)
+        print(('Number of taxa and pairwise comparisons  at each taxon level:')
+>>>>>>> Stashed changes
 
         n = 0
         for t in taxon:
 
             N = results[f]['N'][t] - n
+<<<<<<< Updated upstream
             print('%-10s\t%i\t%i' % (t, len(results[f]['taxon'][t]), N))
             n = results[f]['N'][t]
 
@@ -524,6 +662,25 @@ at each level excluding comparisons that differ at upper levels')
 
 printResults()
 print("---------------------------------------------------")
+=======
+            print(('%-10s\t%i\t%i' %(t,len(results[f]['taxon'][t]),N))
+            n = results[f]['N'][t]
+
+        print(('\nNumber of pairwise comparisons is for pairs that differ \
+at each level excluding comparisons that differ at upper levels')
+        print('\n',
+
+        print('Average taxonomic distinctness      = %.4f' % results[f]['atd'])
+        print('Variation in taxonomic distinctness = %.4f' % results[f]['vtd'])
+        print('Minimum taxonomic distinctness      = %.4f' % results[f]['euler']['TDmin'])
+        print('Maximum taxonomic distinctness      = %.4f' % results[f]['euler']['TDmax'])
+        print('von Euler's index of imbalance      = %.4f' % results[f]['euler']['EI'])
+        print('\n',
+
+
+print(Results()
+print('---------------------------------------------------')
+>>>>>>> Stashed changes
 
 #sys.stdout = saveout
 
@@ -534,13 +691,18 @@ sys.stdout = saveout
 
 sys.stdout = sys.__stdout__
 
+<<<<<<< Updated upstream
 if CI == 'y':
+=======
+if ci =='y':
+>>>>>>> Stashed changes
 
-    output = out.split('_')[0] + '_funnel.out'
+    output = out.split('_')[0] +'_funnel.out'
 
     o = open(output, 'a')
 
     saveout = sys.stdout
+<<<<<<< Updated upstream
     sys.stdout = open(output, 'w')
     print('Confidence limits for average taxonomic distinctness and variation \
     in taxonomic distinctness limits are lower 95% limit for AvTD and upper \
@@ -551,11 +713,23 @@ if CI == 'y':
     #    print "Confidence limits for Average Taxonomic Distinctiveness are in file ", output
     # if paramter == 'v':
     #    print "Confidence limits for Variation in Taxonomic Distinctiveness are in file ", output
+=======
+    sys.stdout = open(output,'w')
+    print('''Confidence limits for average taxonomic distinctness and variation in taxonomic distinctness
+limits are lower 95% limit for AvTD and upper 95% limit for VarTD
+'''
+    print('Number of permutations for confidence limits =', p,'\n'
+
+    #if paramter =='m':
+    #    print('Confidence limits for Average Taxonomic Distinctiveness are in file', output
+    #if paramter =='v':
+    #    print('Confidence limits for Variation in Taxonomic Distinctiveness are in file', output
+>>>>>>> Stashed changes
 
     #o = open('sample2.txt','w')
 
     #saveout = sys.stdout
-    #sys.stdout = open(output, 'w')
+    #sys.stdout = open(output,'w')
 
     CIarray = []
     x = []
@@ -570,10 +744,16 @@ if CI == 'y':
         lo = []
         means = []
 
+<<<<<<< Updated upstream
         print("dimension AvTD05%   AvTDmean  AvTD95%   AvTDuP    VarTDlow   \
 VarTD05%   VarTDmean  VarTD95%")
         for d in range(D1, D2 + 1):
             # for i in range(10):
+=======
+        print('dimension AvTD05%   AvTDmean  AvTD95%   AvTDup    VarTDlow   VarTD05%   VarTDmean  VarTD95%'
+        for d in range(d1, d2 + 1):
+        #for i in range(10):
+>>>>>>> Stashed changes
             #d = N
             # if d != N: continue
             #from math import max, min
@@ -598,19 +778,34 @@ VarTD05%   VarTDmean  VarTD95%")
             CIarray.append(AvTD[0])
             carray.append(AvTD[1])
 
+<<<<<<< Updated upstream
             # up.append(CI95[1])
             # lo.append(CI95[0])
             # means.append(mean)
             print('%i        %6.4f   %6.4f   %6.4f   %6.4f   %6.4f   %6.4f   \
             %6.4f   %6.4f' % (d, AvTD[0], AvTD[1], AvTD[2], AvTD[3], VarTD[0],
                               VarTD[1], VarTD[2], VarTD[3]))
+=======
+            #up.append(ci95[1])
+            #lo.append(ci95[0])
+            #means.append(mean)
+            print('%i        %6.4f   %6.4f   %6.4f   %6.4f   %6.4f   %6.4f   %6.4f   %6.4f' \
+                %(d, AvTD[0], AvTD[1], AvTD[2], AvTD[3], VarTD[0], VarTD[1], VarTD[2], VarTD[3])
+>>>>>>> Stashed changes
 
             # if d == N:
             #    Ie = (max(cache)-atd)/(max(cache)-min(cache))
+<<<<<<< Updated upstream
             #    print d, Ie, CI95, mean
 
         # return dims, up, lo, means
             # print d,CI95
+=======
+            #    print( d, Ie, ci95, mean
+
+        #return dims, up, lo, means
+            #print( d,ci95
+>>>>>>> Stashed changes
 
     Funnel(P, D1, D2)
     #dims, up, lo, means = Funnel(p,D1,D2)
@@ -628,29 +823,34 @@ VarTD05%   VarTDmean  VarTD95%")
     #x *= 1
     # charplot(x,CIarray)
 
+<<<<<<< Updated upstream
     # plot(CIarray)
 """
+=======
+    #plot(ciarray)
+'''
+>>>>>>> Stashed changes
     from matplotlib.pylab import *
 
-    if parameter == 'm':
-        param = 'Average Taxonomic Distinctiveness'
-    elif parameter == 'v':
-        param = 'Variation in Taxnomic Distinctiveness'
-    elif parameter == 'e':
-        param = 'Imbalance'
+    if parameter =='m':
+        param ='Average Taxonomic Distinctiveness'
+    elif parameter =='v':
+        param ='Variation in Taxnomic Distinctiveness'
+    elif parameter =='e':
+        param ='Imbalance'
 
     #N = len(sample)
-    #print N, atd
+    #print( N, atd
     #figure(1)
     plot(dims,up,dims, lo, dims, means)
     title('ATD',fontstyle='italic')
     xlabel('Number of species')
     ylabel(param,fontstyle='italic')
-    #savefig(figureOutput+".png")
+    #savefig(figureOutput+'.png')
 
     show()
 
     #sys.stdout = saveout
 
     #sys.stdout=sys.__stdout__
-"""
+'''

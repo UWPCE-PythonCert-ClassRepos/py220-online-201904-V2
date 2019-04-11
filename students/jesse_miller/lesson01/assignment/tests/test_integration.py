@@ -121,7 +121,7 @@ class MainMenuTests(TestCase):
             sys.stdout = text_trap
             user_input = ['123', 'Testing', '123.45', '12.34', 'N', 'N']
             with patch('builtins.input', side_effect=user_input):
-                test_dict = add_new_item(test_dict)
+                test_dict = add_new_item()
         user_input = ["2"]
         with patch('builtins.input', side_effect=user_input):
             function = main_menu()
@@ -142,5 +142,5 @@ class MainMenuTests(TestCase):
         with patch('builtins.input', side_effect=user_input):
             test_dict = add_new_item()
         sys.stdout = sys.__stdout__
-#        return test_dict
-        self.assertEqual(test_dict, self.test_dict_main)
+        return test_dict
+#        self.assertEqual(test_dict, test_dict_main)
