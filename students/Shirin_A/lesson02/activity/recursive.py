@@ -12,5 +12,7 @@ def my_fun(n):
 
 
 if __name__ == '__main__':
+    import pdb; pdb.set_trace()
     n = int(sys.argv[1])
+#    import pdb; pdb.set_trace()
     print(my_fun(n))

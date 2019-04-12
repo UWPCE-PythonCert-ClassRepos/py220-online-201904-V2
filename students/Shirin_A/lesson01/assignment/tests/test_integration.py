@@ -3,10 +3,12 @@
 from unittest.mock import patch
 from unittest import TestCase
 import pytest
+import sys
+#sys.path.append(r"C:\Users\Public\py220-online-201904-V2\students\Shirin_A\lesson01\assignment\inventory_management")
 from main import add_new_item, return_inventory 
 from main import item_info
-from electric_appliances import ElectricAppliances
-from furniture_class import Furniture  
+#from electric_appliances import ElectricAppliances
+#from furniture_class import Furniture  
 from inventory_class import Inventory 
 import market_prices
 

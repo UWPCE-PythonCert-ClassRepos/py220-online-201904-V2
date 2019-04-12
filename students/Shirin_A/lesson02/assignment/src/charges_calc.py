@@ -5,6 +5,46 @@ import argparse
 import json
 import datetime
 import math
+import logging
+
+LOG_FORMAT = "%(asctime)s %(filename)s:%(lineno)-3d %(levelname)s %(message)s"
+FORMATTER = logging.Formatter(LOG_FORMAT)
+LOGGER = logging.getLogger()
+
+def setup_log_level(log_level):
+    """
+    Sets log level for debugger
+    :param log_level: 0, 1, 2, or 3
+    :return:
+    """
+    if log_level == 0:
+        return
+    file_handler = logging.FileHandler('charges_calc.log')
+    file_handler.setFormatter(FORMATTER)
+    LOGGER.addHandler(file_handler)
+    
+    if log_level == 1:
+        LOGGER.setLevel(logging.ERROR)
+    elif log_level == 2:
+        LOGGER.setLevel(logging.WARNING)
+    elif log_level == 3:
+        LOGGER.setLevel(logging.DEBUG)
+        
+def load_rentals_file(filename):
+    """
+    Load rental data from source file.
+    :param filename: source file
+    :return: data
+    """
+    logging.debug("Opening file %s", filename)
+    with open(filename) as file:
+        try:
+            data = json.load(file)
+        except ValueError as err:
+            logging.error("Error reading input file %s", file)
+            print(f"Error reading the input file: {err}")
+            exit(0)
+    return data
 
 def parse_cmd_arguments():
     parser = argparse.ArgumentParser(description='Process some integers.')

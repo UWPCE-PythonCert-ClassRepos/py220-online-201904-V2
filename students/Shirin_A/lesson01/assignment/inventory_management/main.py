@@ -73,6 +73,7 @@ def item_info():
             print("{}:{}".format(k, v))
     else:
         print("Item not found in inventory")
+        
 def return_inventory():
     """return inventory"""
     return FULL_INVENTORY

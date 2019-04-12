@@ -6,6 +6,7 @@ import json
 import datetime
 import math
 
+
 def parse_cmd_arguments():
     parser = argparse.ArgumentParser(description='Process some integers.')
     parser.add_argument('-i', '--input', help='input JSON file', required=True)

@@ -2,13 +2,15 @@
 # pylint: disable=C0303
 from unittest.mock import patch
 from unittest import TestCase
+import sys
 import pytest
+sys.path.append(r"C:\Users\Public\py220-online-201904-V2\students\Shirin_A\lesson01\assignment\inventory_management")
 from main import add_new_item, return_inventory
 import main
 from main import item_info, exit_program
-from electric_appliances import ElectricAppliances 
-from furniture_class import Furniture  
-from inventory_class import Inventory 
+#from electric_appliances import ElectricAppliances 
+#from furniture_class import Furniture  
+#from inventory_class import Inventory 
 import market_prices
 
 class ElectricAppliancesTest(TestCase):    
@@ -37,7 +39,7 @@ class FurnitureClassTest(TestCase):
                     'rentalprice': '60',
                     'material': 'wood',
                     'size': 'M'}
-        furniture_test = Furniture(*testdict.values())
+        furniture_test = furniture_class.Furniture(*testdict.values())
         furniture_dict_test = furniture_test.return_as_dictionary()
         self.assertDictEqual(testdict, furniture_dict_test)
 
@@ -50,7 +52,7 @@ class InventoryClassTest(TestCase):
                     'description': 'shoe',
                     'marketprice': '15',
                     'rentalprice': '20',}
-        inventory_test = Inventory(*testdict.values())
+        inventory_test = inventory_class.Inventory(*testdict.values())
         inventory_dict_test = inventory_test.return_as_dictionary()
         self.assertDictEqual(testdict, inventory_dict_test)        
 
