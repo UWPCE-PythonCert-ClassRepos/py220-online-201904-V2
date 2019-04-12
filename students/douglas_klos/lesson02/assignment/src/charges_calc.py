@@ -75,7 +75,7 @@ def set_debug_level(args):
             LOGGER.disabled = False
             LOGGER.setLevel(logging.DEBUG)
         else:
-            print(f"Invalid debug level specified: {args.debug}.  (1-4)")
+            print(f"Invalid debug level specified: {args.debug}.  (0-3)")
             exit(0)
 
 
@@ -95,7 +95,10 @@ def load_rentals_file(filename):
             new_data = json.load(file)
         except json.decoder.JSONDecodeError as ex:
             logging.critical(
-                "Loading data from json failed.\n\tException: %s", repr(ex)
+                "Loading data from json failed."
+                "\n\tThe following error should contain the line where the "
+                "problem occured.\n\tFix the source file and try again."
+                "\n\tException: %s", repr(ex)
             )
             exit(0)
     return new_data
