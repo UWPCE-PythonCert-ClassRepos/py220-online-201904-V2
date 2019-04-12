@@ -1,14 +1,11 @@
 """ Integration test for inventory_management"""
 # pylint: disable=C0303
 from unittest.mock import patch
-from unittest import TestCase
-import pytest
-import sys
-#sys.path.append(r"C:\Users\Public\py220-online-201904-V2\students\Shirin_A\lesson01\assignment\inventory_management")
+from unittest import TestCase, mock
 from main import add_new_item, return_inventory 
-from main import item_info
-#from electric_appliances import ElectricAppliances
-#from furniture_class import Furniture  
+from main import main_menu
+from electric_appliances import ElectricAppliances
+from furniture_class import Furniture  
 from inventory_class import Inventory 
 import market_prices
 
@@ -45,13 +42,14 @@ class IntegrationTest(TestCase):
             '3': item3.return_as_dictionary()}
         self.assertEqual(actual_inventory, expected_inventory)
         
-    def test_item_information(self):
-        """Tests if item_info gets returned"""
-        input1 = [10]
-        with patch('builtins.input', side_effect=input1):
-            self.assertEqual(item_info(), None)
-            
-      
+    @mock.patch('builtins.input')
+    def test_mainmenu_q(self, mocked_input):        
+        '''doc string'''        
+        mocked_input.side_effect = ['q']
+        with self.assertRaises(SystemExit):            
+            main_menu()()
+        
+          
 
 
         
