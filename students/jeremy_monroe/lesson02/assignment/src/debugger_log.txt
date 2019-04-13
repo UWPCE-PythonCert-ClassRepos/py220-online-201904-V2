@@ -1,38 +1,34 @@
-## Initial debugging
+Initial debugging
 
 The first thing I determined was that there was an error in the source.json file.
 
-> ```
-> python3 -m pdb charges_calc.py --input=source.json --output=test_output.json 
-> 
-> > /home/jereamon/Documents/webDev/uwClass/py220-online-201904-V2/students/jeremy_monroe/lesson02/assignment/src/charges_calc.py(3)<module>()
-> > -> '''
-> > (Pdb) b 25
-> > Breakpoint 1 at /home/jereamon/Documents/webDev/uwClass/py220-online-201904-V2/students/jeremy_monroe/lesson02/assignment/src/charges_calc.py:25
-> > (Pdb) c
-> > -> with open(filename) as file:
-> > (Pdb) n
-> > -> try:
-> > (Pdb) n
-> > -> data = json.load(file)
-> > (Pdb) n
-> > json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 5884 column 23 (char 130093)
-> > -> data = json.load(file)
-> > (Pdb) n
-> > -> except:
-> > (Pdb) n
-> > -> exit(0)
-> > (Pdb) n
-> > SystemExit: 0
-> ```
->
-> 
+python3 -m pdb charges_calc.py --input=source.json --output=test_output.json
+
+> /home/jereamon/Documents/webDev/uwClass/py220-online-201904-V2/students/jeremy_monroe/lesson02/assignment/src/charges_calc.py(3)<module>()
+> -> '''
+> (Pdb) b 25
+> Breakpoint 1 at /home/jereamon/Documents/webDev/uwClass/py220-online-201904-V2/students/jeremy_monroe/lesson02/assignment/src/charges_calc.py:25
+> (Pdb) c
+> -> with open(filename) as file:
+> (Pdb) n
+> -> try:
+> (Pdb) n
+> -> data = json.load(file)
+> (Pdb) n
+> json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 5884 column 23 (char 130093)
+> -> data = json.load(file)
+> (Pdb) n
+> -> except:
+> (Pdb) n
+> -> exit(0)
+> (Pdb) n
+> SystemExit: 0
 
 
 
-First thing I added debug argument to `parse_cmd_arguments` then I debugged again just to make sure it was set properly.
 
-```
+My first change to charges_calc.py was to add a debug argument to `parse_cmd_arguments` then I debugged again just to make sure it was set properly.
+
 python3 -m pdb charges_calc.py --input=source.json --output=test_output.json -d=1
 
 > b 25
@@ -46,15 +42,17 @@ python3 -m pdb charges_calc.py --input=source.json --output=test_output.json -d=
 > -> data = load_rentals_file(args.input)
 > (Pdb) pp args.debug
 > '1'
-```
 
 
 
-Ok, I've implemented an error message for buggy json imports and have moved on to  `calculate_additional_fields`.  By debugging I discovered that `total_days` was resulting in a negative number of days and subsequently throwing an error when calculating `sqrt_total_price`.
 
-This is me later. Looks like it's not `rental_end - rental_start` that's giving me negative `total_days` but errors in the json file.
+I implemented a critical error message for json files that are unable to be imported.
+Then moved on to  `calculate_additional_fields`.  By debugging I discovered that `total_days` was resulting in a negative number of days and subsequently throwing an error when calculating `sqrt_total_price`.
 
-```
+This is me later. Looks like it's errors in the json file giving me negative `total_days`. Some of the start and end dates are reversed.
+
+I added a warning message for errors in individual json items. The data for them is still loaded in but with the errors in place.
+
 python3 -m pdb charges_calc.py -i=source_bug_fixed.json -o=test_output.json -d=1
 
 -> '''
@@ -107,13 +105,11 @@ ValueError: math domain error
 (Pdb) pp math.sqrt(value['total_price'])
 *** ValueError: math domain error
 
-```
 
 
 
 I changed the for loop at the start of `calculate_additional_fields()` to `for key, value in data.items()` so that I can use the `key` in the logging message to help users find and correct errors in the json file.
 
-```
 python3 -m pdb charges_calc.py -i=source_bug_fixed.json -o=test_output.json -d=1
 
 -> '''
@@ -135,5 +131,3 @@ in first line of calculate_additional_fields
  'rental_start': '6/19/16',
  'units_rented': 1}
 (Pdb)
-```
-
