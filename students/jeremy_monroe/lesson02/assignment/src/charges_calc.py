@@ -58,6 +58,10 @@ def turn_on_debug(debug_level):
     logger.addHandler(console_handler)
     logger.addHandler(file_handler)
 
+    logging.debug(("Debug set to: %s\n"
+                   "Log messages will be stored in:\n"
+                   "%s\n"
+                   "In the current directory."), ARGS.debug, log_file)
 
 def load_rentals_file(filename):
     """
@@ -94,6 +98,7 @@ def calculate_additional_fields(data):
     structure.
     """
     logging.debug("At start of calculate_additional_fields")
+    error_dict = {}
 
     for key, value in data.items():
         try:
@@ -109,16 +114,16 @@ def calculate_additional_fields(data):
             value['sqrt_total_price'] = math.sqrt(value['total_price'])
             value['unit_cost'] = value['total_price'] / value['units_rented']
         except ValueError:
+            error_dict[key] = value
             logging.warning(("Error in input file: %s\n"
-                             "Program will continue and process"
-                             " all unaffected data.\n"
-                             "Item with error will be included"
-                             " in output but will "
-                             "have errors or missing data."
-                             " Fix the error in the "
-                             "source file and rerun to fix errors in output.\n"
-                             "Item number: %s\n"
-                             "Item info:\n%s"), ARGS.input, key, value)
+                             "Program will continue and process all "
+                             "unaffected data. Affected data will not "
+                             "be included.\n"
+                             "Item Number: %s\n"
+                             "Item Info:\n%s"), ARGS.input, key, value)
+
+    for key in error_dict:
+        del data[key]
 
     logging.debug("json file processed returning with additional fields.")
     return data
