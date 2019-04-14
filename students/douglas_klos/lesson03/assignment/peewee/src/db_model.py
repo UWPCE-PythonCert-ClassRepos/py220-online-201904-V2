@@ -23,4 +23,3 @@ class Customer(BaseModel):
     email_address = CharField(max_length=30)
     status = CharField(max_length=30)
     credit_limit = CharField(max_length=30)
-    
