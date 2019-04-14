@@ -1,8 +1,8 @@
 '''
 Uses previously gathered inventory and rental data to calculate new fields.
 
-I have a logging message in place to inform a user if their json file has errors
-preventing it from being loaded at all.
+I have a logging message in place to inform a user if their json file has
+errors preventing it from being loaded at all.
 As well a a message to inform users of errors within a loaded json file that
 will result in bad output.
 If the debug level is set to 3 (logging.DEBUG in this case) debug messages will
@@ -24,8 +24,10 @@ def parse_cmd_arguments():
     # the script is called in the command line.
     parser = argparse.ArgumentParser(description='Process some integers.')
     parser.add_argument('-i', '--input', help='input JSON file', required=True)
-    parser.add_argument('-o', '--output', help='ouput JSON file', required=True)
-    parser.add_argument('-d', '--debug', nargs='?', const='0', help='debug level')
+    parser.add_argument('-o', '--output',
+                        help='ouput JSON file', required=True)
+    parser.add_argument('-d', '--debug', nargs='?',
+                        const='0', help='debug level')
 
     return parser.parse_args()
 
@@ -35,7 +37,8 @@ def turn_on_debug(debug_level):
     This will set the debug level based on the debug argument
     passed in by the user at the command line.
     """
-    debug_levels = {'1': logging.ERROR, '2': logging.WARNING, '3': logging.DEBUG}
+    debug_levels = {'1': logging.ERROR, '2': logging.WARNING,
+                    '3': logging.DEBUG}
     log_format = ("\n%(asctime)s %(filename)s:%(lineno)-3d %(levelname)s"
                   "\n%(message)s")
 
@@ -72,16 +75,18 @@ def load_rentals_file(filename):
         # It took me a while but I figured out how to access the error's
         # attributes.
         except json.JSONDecodeError as json_error:
-            logging.error(("Critical error unable to load file: {}\n"
-                "This error needs to be fixed before any data can be processed.\n"
-                "Json error message: {}\n"
-                "Line Number: {}\n"
-                "Column Number: {}").format(filename, json_error.msg,
-                                            json_error.lineno, json_error.colno))
+            logging.error(("Critical error unable to load file: %s\n"
+                           "This error needs to be fixed before"
+                           " any data can be processed.\n"
+                           "Json error message: %s\n"
+                           "Line Number: %s\n"
+                           "Column Number: %s"), filename, json_error.msg,
+                          json_error.lineno, json_error.colno)
             exit(1)
 
     logging.debug("Json file loaded successfully, returning loaded file.")
     return in_file
+
 
 def calculate_additional_fields(data):
     """
@@ -92,8 +97,10 @@ def calculate_additional_fields(data):
 
     for key, value in data.items():
         try:
-            rental_start = datetime.datetime.strptime(value['rental_start'], '%m/%d/%y')
-            rental_end = datetime.datetime.strptime(value['rental_end'], '%m/%d/%y')
+            rental_start = datetime.datetime.strptime(
+                value['rental_start'], '%m/%d/%y')
+            rental_end = datetime.datetime.strptime(
+                value['rental_end'], '%m/%d/%y')
             # Ok, so sometimes the rental_start and end are mixed up.
             value['total_days'] = (rental_end - rental_start).days
             value['total_price'] = value['total_days'] * value['price_per_day']
@@ -102,16 +109,20 @@ def calculate_additional_fields(data):
             value['sqrt_total_price'] = math.sqrt(value['total_price'])
             value['unit_cost'] = value['total_price'] / value['units_rented']
         except ValueError:
-            logging.warning(("Error in input file: {}\n"
-            "Program will continue and process all unaffected data.\n"
-            "Item with error will be included in output but will "
-            "have errors or missing data. Fix the error in the "
-            "source file and rerun to fix errors in output.\n"
-            "Item number: {}\n"
-            "Item info:\n{}").format(ARGS.input, key, value))
+            logging.warning(("Error in input file: %s\n"
+                             "Program will continue and process"
+                             " all unaffected data.\n"
+                             "Item with error will be included"
+                             " in output but will "
+                             "have errors or missing data."
+                             " Fix the error in the "
+                             "source file and rerun to fix errors in output.\n"
+                             "Item number: %s\n"
+                             "Item info:\n%s"), ARGS.input, key, value)
 
     logging.debug("json file processed returning with additional fields.")
     return data
+
 
 def save_to_json(filename, data):
     """
@@ -121,6 +132,7 @@ def save_to_json(filename, data):
     logging.debug("At start of save_to_json.")
     with open(filename, 'w') as file:
         json.dump(data, file)
+
 
 if __name__ == "__main__":
     ARGS = parse_cmd_arguments()
