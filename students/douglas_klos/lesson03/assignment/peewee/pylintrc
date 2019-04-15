@@ -146,7 +146,7 @@ indent-string='    '
 [SIMILARITIES]
 
 # Minimum lines number of a similarity.
-min-similarity-lines=4
+min-similarity-lines=10
 
 # Ignore comments when computing similarities.
 ignore-comments=yes

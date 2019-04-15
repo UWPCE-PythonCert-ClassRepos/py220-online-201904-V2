@@ -1,19 +1,29 @@
-#!/usr/bin/env python3
+# pylint: disable=E0401, R0913, W0401, E0602
 """
     Basic operations for HP Norton database
 """
 
 
 import logging
+from peewee import *
 import src.db_model as db
 
+
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-logger.info("HP Norton Database")
+LOGGER = logging.getLogger(__name__)
+LOGGER.info("HP Norton Database")
 
 
-def add_customer(customer_id, name, lastname, home_address,
-                 phone_number, email_address, status, credit_limit,):
+def add_customer(
+        customer_id,
+        name,
+        lastname,
+        home_address,
+        phone_number,
+        email_address,
+        status,
+        credit_limit,
+):
     """Adds a new customer to the HPNorton database
 
     Arguments:
@@ -24,23 +34,24 @@ def add_customer(customer_id, name, lastname, home_address,
         phone_number {string} -- Phone number of customer
         email_address {string} -- Email address of customer
         status {string} -- Active / Inactive status of customer
-        credit_limit {float} -- Credit limit of customer
+        credit_limit {int} -- Credit limit of customer
     """
     try:
         with db.database.transaction():
-            new_customer = db.Customer.create(
+            db.Customer.create(
                 customer_id=customer_id,
                 name=name,
                 last_name=lastname,
                 home_address=home_address,
                 phone_number=phone_number,
                 email_address=email_address,
-                status=status,
+                status=status.lower(),
                 credit_limit=credit_limit,
             )
-            logger.info(f"Adding record for {customer_id}")
-    except Exception as ex:
-        logger.info(ex)
+            LOGGER.info("Adding record for %s", customer_id)
+    except IntegrityError as ex:
+        LOGGER.info(ex)
+        raise IntegrityError
 
 
 def search_customer(customer_id):
@@ -57,16 +68,14 @@ def search_customer(customer_id):
     query = db.Customer.select(db.Customer).where(
         db.Customer.customer_id == customer_id
     )
-
     cust = {}
-    # There should be only one in list, how to do without for loop?
     for item in query:
+        cust["customer_id"] = item.customer_id
         cust["name"] = item.name
         cust["lastname"] = item.last_name
         cust["email"] = item.email_address
         cust["phone_number"] = item.phone_number
         cust["home_address"] = item.home_address
-        cust["email_address"] = item.email_address
         cust["status"] = item.status
         cust["credit_limit"] = item.credit_limit
     return cust
@@ -112,5 +121,8 @@ def list_active_customers():
     Returns:
         integer -- Number of active customers
     """
-
-    return db.Customer.select().where(db.Customer.status == "active").count()
+    return (
+        db.Customer.select()
+        .where(fn.LOWER(db.Customer.status == "active"))
+        .count()
+    )

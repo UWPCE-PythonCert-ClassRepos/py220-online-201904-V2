@@ -1,3 +1,4 @@
+# pylint: disable=C0111, R0801
 """
     Autograde Lesson 3 assignment
     Run pytest
@@ -6,21 +7,21 @@
 
 """
 
-import pytest
 
+import pytest
 import src.basic_operations as l
 
 
 @pytest.fixture
 def _add_customers():
     return [
-        ("123", "Name", "Lastname", "Address", "phone", "email", "active", 999),
-        ("456", "Name", "Lastname", "Address", "phone", "email", "inactive", 10),
-        ("123", "Name", "Lastname", "Address", "phone", "email", "active", 999),
-        ("789", "Name", "Lastname", "Address", "phone", "email", "active", 0),
-        ("345", "Name", "Lastname", "Address", "phone", "email", "active", -10),
-        ("0123", "Name", "Lastname", "Address", "phone", "email", "active", 999),
-        ("777", "Name", "Lastname", "Address", "phone", "email", "active", 999),
+        ("123", "Name", "Lastname", "Address", "cell", "email", "active", 999),
+        ("234", "Name", "Lastname", "Address", "cell", "email", "inactive", 5),
+        ("345", "Name", "Lastname", "Address", "cell", "email", "active", 999),
+        ("456", "Name", "Lastname", "Address", "cell", "email", "active", 0),
+        ("567", "Name", "Lastname", "Address", "cell", "email", "active", -10),
+        ("678", "Name", "Lastname", "Address", "cell", "email", "active", 999),
+        ("789", "Name", "Lastname", "Address", "cell", "email", "active", 999),
     ]
 
 
@@ -28,8 +29,8 @@ def _add_customers():
 def _search_customers():  # needs to del with database
     return [
         [
-            ("998", "Name", "Lastname", "Address", "phone", "email", "active", 999),
-            ("997", "Name", "Lastname", "Address", "phone", "email", "inactive", 10),
+            ("998", "Name", "Last", "Address", "cell", "email", "active", 999),
+            ("997", "Name", "Last", "Address", "cell", "email", "inactive", 10),
         ],
         ("998", "000"),
     ]
@@ -38,29 +39,29 @@ def _search_customers():  # needs to del with database
 @pytest.fixture
 def _delete_customers():  # needs to del with database
     return [
-        ("898", "Name", "Lastname", "Address", "phone", "email", "active", 999),
-        ("897", "Name", "Lastname", "Address", "phone", "email", "inactive", 10),
+        ("898", "Name", "Lastname", "Address", "cell", "email", "active", 999),
+        ("897", "Name", "Lastname", "Address", "cell", "email", "inactive", 0),
     ]
 
 
 @pytest.fixture
 def _update_customer_credit():  # needs to del with database
     return [
-        ("798", "Name", "Lastname", "Address", "phone", "email", "active", 999),
-        ("797", "Name", "Lastname", "Address", "phone", "email", "inactive", 10),
-        ("796", "Name", "Lastname", "Address", "phone", "email", "inactive", -99),
+        ("798", "Name", "Lastname", "Address", "cell", "email", "active", 999),
+        ("797", "Name", "Lastname", "Address", "cell", "email", "inactive", 10),
+        ("796", "Name", "Lastname", "Address", "cell", "email", "inactive", -9),
     ]
 
 
 @pytest.fixture
 def _list_active_customers():
     return [
-        ("598", "Name", "Lastname", "Address", "phone", "email", "active", 999),
-        ("597", "Name", "Lastname", "Address", "phone", "email", "inactive", 10),
-        ("596", "Name", "Lastname", "Address", "phone", "email", "inactive", 99),
-        ("595", "Name", "Lastname", "Address", "phone", "email", "active", 999),
-        ("594", "Name", "Lastname", "Address", "phone", "email", "active", 10),
-        ("593", "Name", "Lastname", "Address", "phone", "email", "active", 99),
+        ("598", "Name", "Lastname", "Address", "cell", "email", "active", 999),
+        ("597", "Name", "Lastname", "Address", "cell", "email", "inactive", 10),
+        ("596", "Name", "Lastname", "Address", "cell", "email", "inactive", 99),
+        ("595", "Name", "Lastname", "Address", "cell", "email", "active", 999),
+        ("594", "Name", "Lastname", "Address", "cell", "email", "active", 10),
+        ("593", "Name", "Lastname", "Address", "cell", "email", "active", 99),
     ]
 
 
@@ -77,9 +78,8 @@ def test_list_active_customers(_list_active_customers):
             customer[6],
             customer[7],
         )
-    actives = l.list_active_customers()
 
-    # assert actives == 2 # This original line is incorrect, should be 4
+    actives = l.list_active_customers()
     assert actives == 4
 
     for customer in _list_active_customers:
@@ -132,8 +132,6 @@ def test_search_customer(_search_customers):
     assert result["email"] == _search_customers[0][1][5]
     assert result["phone_number"] == _search_customers[0][1][4]
 
-    # This line was originally missing the [0]
-    # for customer in _search_customers:
     for customer in _search_customers[0]:
         print(customer[0])
         l.delete_customer(customer[0])
@@ -174,10 +172,13 @@ def test_update_customer_credit(_update_customer_credit):
             customer[7],
         )
 
-    print(l.update_customer_credit("798", 0))
-    print(l.update_customer_credit("797", 1000))
-    print(l.update_customer_credit("797", -42))
-    print(l.update_customer_credit("796", 500))
+    l.update_customer_credit("798", 0)
+    l.update_customer_credit("797", 1000)
+    l.update_customer_credit("797", -42)
+    l.update_customer_credit("796", 500)
     with pytest.raises(ValueError) as excinfo:
-        print(l.update_customer_credit("00100", 1000))  # error
+        l.update_customer_credit("00100", 1000)  # error
         assert "NoCustomer" in str(excinfo.value)
+
+    for customer in _update_customer_credit:
+        l.delete_customer(customer[0])

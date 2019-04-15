@@ -1,3 +1,3 @@
 rm HPNorton.db
-cp data/HPCopy.db ./HPNorton.db 
+cp data/HPBlank.db ./HPNorton.db 
 

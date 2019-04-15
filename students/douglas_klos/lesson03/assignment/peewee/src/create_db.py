@@ -12,45 +12,72 @@
 
 
 import logging
+import argparse
 import time
-from db_model import *
+import db_model as db
 
-start = time.time()
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-logger.info("Initializes the HP Norton database from csv")
-filename = "../data/head-cust.csv"
-database.create_tables([Customer])
+LOGGER = logging.getLogger(__name__)
 
-CUSTOMER_ID = 0
-NAME = 1
-LAST_NAME = 2
-HOME_ADDRESS = 3
-PHONE_NUMBER = 4
-EMAIL_ADDRESS = 5
-STATUS = 6
-CREDIT_LIMIT = 7
 
-with open(filename, "rb") as content:
-    next(content)  # Skip first line, it's the column names
-    lines = content.read().decode("utf-8", errors="ignore").split("\n")
-    for line in lines:
-        customer = line.split(",")
-        try:
-            with database.transaction():
-                new_customer = Customer.create(
-                    customer_id=customer[CUSTOMER_ID],
-                    name=customer[NAME],
-                    last_name=customer[LAST_NAME],
-                    home_address=customer[HOME_ADDRESS],
-                    phone_number=customer[PHONE_NUMBER],
-                    email_address=customer[EMAIL_ADDRESS],
-                    status=customer[STATUS],
-                    credit_limit=customer[CREDIT_LIMIT],
-                )
-                logger.info(f"Adding record for {customer[CUSTOMER_ID]}")
-        except IndexError:
-            logger.info("End of file")
+def main():
+    """Initializes HPNorton database
+    """
+    start = time.time()
+    args = parse_cmd_arguments()
+    LOGGER.info("Initializes the HP Norton database from csv")
+    LOGGER.info("Adding tables...")
+    add_tables()
+    populate_database(args.input)
+    LOGGER.info("Closing database")
+    db.database.close()
+    LOGGER.info("Time to init: %s", time.time() - start)
 
-logger.info(f"Time to init: {time.time() - start}")
-database.close()
+
+def parse_cmd_arguments():
+    """Parses the command line arguments
+
+    Returns:
+        ArgumentParser.parse_args
+    """
+    parser = argparse.ArgumentParser(description="Build HP Norton Database")
+    parser.add_argument("-i", "--input", help="input CSV file", required=True)
+    parser.add_argument("-d", "--debug", help="debugger level", required=False)
+    return parser.parse_args()
+
+
+def add_tables():
+    """Adds tables to database"""
+    db.database.create_tables([db.Customer])
+
+
+def populate_database(filename):
+    """Populates database from csv file"
+
+    Arguments:
+        filename {string} -- csv file to be read
+    """
+    with open(filename, "rb") as content:
+        next(content)  # Skip first line, it's the column names
+        lines = content.read().decode("utf-8", errors="ignore").split("\n")
+        for line in lines:
+            customer = line.split(",")
+            try:
+                with db.database.transaction():
+                    db.Customer.create(
+                        customer_id=customer[0],
+                        name=customer[1],
+                        last_name=customer[2],
+                        home_address=customer[3],
+                        phone_number=customer[4],
+                        email_address=customer[5],
+                        status=customer[6].lower(),
+                        credit_limit=customer[7],
+                    )
+                    LOGGER.info("Adding record for %s", customer[0])
+            except IndexError:
+                LOGGER.info("End of file")
+
+
+if __name__ == "__main__":
+    main()
