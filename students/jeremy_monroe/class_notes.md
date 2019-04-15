@@ -135,3 +135,79 @@ if the log level is higher than the set level it will be logged.
 Next we'll set up `log_format` so our logs will provide us with more information:
 
 `log_format  = "%(asctime)s %(filename)s:%(lineno)-4d %(levelname)s %(message)s"`
+
+
+
+Once we have our log messages formatted more prettily we can specify to save them to another file for later review. We'll add to the `logging.basicConfig`:
+
+`logging.basicConfig(level=logging.WARNING, format=log_format, filename='mylog.log')`
+
+The file `mylog.log` will be created in the cwd. If the python script is run repeatedly the log will be appended with the later log messages.
+
+#### More complicated better logging config
+
+Ok, to improve on our original setup we have to take a deeper dive into `logging`
+
+We'll leave `log_format` in place and replace `logging.basicConfig` with:
+
+```python
+# Create a "formatter" using our format string
+formatter = logging.Formatter(log_format)
+
+# Create a log message handler that sends output to the file 'mylog.log'
+file_handler = logging.FileHandler('mylog.log')
+file_handler.setFormatter(formatter)
+
+# get the 'root' logger
+logger = logging.getLogger()
+# Add our file_handler to the 'root' logger's handlers.
+logger.addHandler(file_handler)
+```
+
+This is still a fairly basic setup. To mix things up let's say we want to send only log messages above level `WARNING` to our log file but send every log message to the console. It would look like this:
+
+```python
+# we're still using the log_format variable we defined earlier
+formatter = logging.Formatter(log_format)
+
+file_handler = logging.FileHandler('mylog.log')
+file_handler.setLevel(logging.WARNING)
+file_handler.setFormatter(formatter)
+
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.DEBUG)
+console_handler.setFormatter(formatter)
+
+logger = logging.getLogger()
+# We set the logging level for each handler above and then set it here too. If we didn't set the logger level here it would default to WARNING and wouldn't send log messages lower than that to either handler.
+logger.setLevel(logging.DEBUG)
+logger.addHandler(file_handler)
+logger.addHanlder(console_handler)
+```
+
+Super.
+
+
+
+### Debugging
+
+We'll use `pdb`, the built in Python debugging module to start. To debug a file use:
+
+`python3 -m pdb my_file.py`
+
+Once `pdb` is running your file some basic commands are:
+
+* `?` - help
+* `n` - next
+* `s` - step into a function call
+* `l` - list, show where you are in the file
+* `b` - set a break point
+* `condition 1` - would set a condition for breakpoint 1.
+* `c`, `cont`, or `continue` - run code until breakpoint is reached
+* `disable 1` - will disable breakpoint 1
+
+To set a breakpoint first set the breakpoint, then define the condition when the breakpoint will come into effect:
+
+`b 15` will set a breakpoint at line 15
+
+`condition 1 i > 700` sets a condition for breakpoint 1 so that the code will run until that condition is reached.

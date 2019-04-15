@@ -3,7 +3,30 @@
 import logging
 
 log_format = "%(asctime)s %(filename)s:%(lineno)-4d %(levelname)s %(message)s"
-logging.basicConfig(level=logging.WARNING)
+
+# Create a "formatter" using our format string.
+formatter = logging.Formatter(log_format)
+
+# Create a log message handler that sends output to the file 'mylog.log'
+file_handler = logging.FileHandler('mylog.log')
+file_handler.setLevel(logging.WARNING)
+file_handler.setFormatter(formatter)
+
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.DEBUG)
+console_handler.setFormatter(formatter)
+
+# Get the "root" logger.
+logger = logging.getLogger()
+# Set root level to DEBUG. otherwise anything below WARNING wouldn't be sent to
+# our handlers.
+logger.setLevel(logging.DEBUG)
+logger.addHandler(file_handler)
+logger.addHandler(console_handler)
+
+# Below is the original way we specified the logging config.
+# logging.basicConfig(level=logging.WARNING, format=log_format,
+# filename='mylog.log')
 
 def my_fun(n):
     for i in range(0, n):
