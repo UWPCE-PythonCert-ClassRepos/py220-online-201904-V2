@@ -6,6 +6,7 @@
 import pytest
 import sqlalchemy
 from sqlalchemy.sql import select
+from sqlalchemy import exc
 from sqlalchemy.orm.exc import NoResultFound
 import src.basic_operations as l
 
@@ -126,7 +127,6 @@ def test_add_customer(_customers):
             customer[6],
             customer[7],
         )
-
         select_st = l.customers.select().where(l.customers.c.customer_id == customer[0])
         query = l.session.execute(select_st)
 
@@ -192,115 +192,120 @@ def test_search_customer(_customers):
             query.one()
 
 
-# def test_delete_customer(_customers):
-#     """ test delete customer """
-#     for customer in _customers:
-#         assert l.delete_customer(customer[0]) is False
+def test_delete_customer(_customers):
+    """ test delete customer """
+    for customer in _customers:
+        assert l.delete_customer(customer[0]) is False
 
-#     for customer in _customers:
-#         l.add_customer(
-#             customer[0],
-#             customer[1],
-#             customer[2],
-#             customer[3],
-#             customer[4],
-#             customer[5],
-#             customer[6],
-#             customer[7],
-#         )
+    for customer in _customers:
+        l.add_customer(
+            customer[0],
+            customer[1],
+            customer[2],
+            customer[3],
+            customer[4],
+            customer[5],
+            customer[6],
+            customer[7],
+        )
 
-#     for customer in _customers:
-#         assert l.delete_customer(customer[0]) is True
-
-
-# def test_update_customer(_customers):
-#     """ test update customer """
-#     for customer in _customers:
-#         with pytest.raises(ValueError):
-#             l.update_customer_credit(customer[0], 1000)
-
-#     for customer in _customers:
-#         l.add_customer(
-#             customer[0],
-#             customer[1],
-#             customer[2],
-#             customer[3],
-#             customer[4],
-#             customer[5],
-#             customer[6],
-#             customer[7],
-#         )
-
-#     for customer in _customers:
-#         query = l.db.Customer.get(l.db.Customer.customer_id == customer[0])
-#         assert query.credit_limit != 1000
-#         l.update_customer_credit(customer[0], 1000)
-#         query = l.db.Customer.get(l.db.Customer.customer_id == customer[0])
-#         assert query.credit_limit == 1000
-
-#     for customer in _customers:
-#         query = l.db.Customer.delete().where(
-#             l.db.Customer.customer_id == customer[0]
-#         )
-#         query.execute()
+    for customer in _customers:
+        assert l.delete_customer(customer[0]) is True
 
 
-# def test_list_active_customers(_customers):
-#     """ test list active customers """
-#     active = l.list_active_customers()
-#     assert active == 0
+def test_update_customer(_customers):
+    """ test update customer """
+    for customer in _customers:
+        with pytest.raises(ValueError):
+            l.update_customer_credit(customer[0], 1000)
 
-#     for customer in _customers:
-#         l.add_customer(
-#             customer[0],
-#             customer[1],
-#             customer[2],
-#             customer[3],
-#             customer[4],
-#             customer[5],
-#             customer[6],
-#             customer[7],
-#         )
+    for customer in _customers:
+        l.add_customer(
+            customer[0],
+            customer[1],
+            customer[2],
+            customer[3],
+            customer[4],
+            customer[5],
+            customer[6],
+            customer[7],
+        )
 
-#     active = l.list_active_customers()
-#     assert active == 6
+    for customer in _customers:
+        query = l.session.query(l.db.Customer).filter(l.db.Customer.customer_id == customer[0])
+        result = query.one()
+        assert result.credit_limit != 1000
+        l.update_customer_credit(customer[0], '1000')
+        query = l.session.query(l.db.Customer).filter(l.db.Customer.customer_id == customer[0])
+        result = query.one()
+        assert result.credit_limit == 1000
 
-#     for customer in _customers:
-#         query = l.db.Customer.delete().where(
-#             l.db.Customer.customer_id == customer[0]
-#         )
-#         query.execute()
+    # Delete all new entries from the database
+    for customer in _customers:
+        query = l.customers.delete().where(
+            l.customers.c.customer_id == customer[0]
+        )
+        query.execute()
 
 
-# def test_add_integrity_error(_customers):
-#     """ Add records already present to throw Integrity Error """
-#     for customer in _customers:
-#         l.add_customer(
-#             customer[0],
-#             customer[1],
-#             customer[2],
-#             customer[3],
-#             customer[4],
-#             customer[5],
-#             customer[6],
-#             customer[7],
-#         )
+def test_list_active_customers(_customers):
+    """ test list active customers """
+    active = l.list_active_customers()
+    assert active == 0
 
-#     with pytest.raises(IntegrityError):
-#         for customer in _customers:
-#             l.add_customer(
-#                 customer[0],
-#                 customer[1],
-#                 customer[2],
-#                 customer[3],
-#                 customer[4],
-#                 customer[5],
-#                 customer[6],
-#                 customer[7],
-#             )
+    for customer in _customers:
+        l.add_customer(
+            customer[0],
+            customer[1],
+            customer[2],
+            customer[3],
+            customer[4],
+            customer[5],
+            customer[6],
+            customer[7],
+        )
 
-#     for customer in _customers:
-#         query = l.db.Customer.delete().where(
-#             l.db.Customer.customer_id == customer[0]
-#         )
-#         query.execute()
+    active = l.list_active_customers()
+    assert active == 6
+
+    # Delete all new entries from the database
+    for customer in _customers:
+        query = l.customers.delete().where(
+            l.customers.c.customer_id == customer[0]
+        )
+        query.execute()
+
+
+def test_add_integrity_error(_customers):
+    """ Add records already present to throw Integrity Error """
+    for customer in _customers:
+        l.add_customer(
+            customer[0],
+            customer[1],
+            customer[2],
+            customer[3],
+            customer[4],
+            customer[5],
+            customer[6],
+            customer[7],
+        )
+
+    with pytest.raises(exc.IntegrityError):
+        for customer in _customers:
+            l.add_customer(
+                customer[0],
+                customer[1],
+                customer[2],
+                customer[3],
+                customer[4],
+                customer[5],
+                customer[6],
+                customer[7],
+            )
+
+    # Delete all new entries from the database
+    for customer in _customers:
+        query = l.customers.delete().where(
+            l.customers.c.customer_id == customer[0]
+        )
+        query.execute()

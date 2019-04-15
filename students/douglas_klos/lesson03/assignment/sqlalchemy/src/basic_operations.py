@@ -5,11 +5,12 @@
 
 import logging
 import src.db_model as db
+import sqlite3
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import Table
 from sqlalchemy import MetaData
-# from sqlalchemy import Select
+from sqlalchemy import func
 
 logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
@@ -20,7 +21,6 @@ db_session = sessionmaker(bind=engine)
 session = db_session()
 metadata = MetaData(bind=engine)
 customers = Table('Customer', metadata, autoload=True)
-# table = meta.tables['customers']
 
 
 def add_customer(
@@ -59,8 +59,9 @@ def add_customer(
         session.add(new_customer)
         session.commit()
         LOGGER.info("Adding record for %s", customer_id)
-    except Exception as ex:
+    except sqlite3.IntegrityError as ex:
         LOGGER.info(ex)
+        raise sqlite3.IntegrityError
 
 
 def search_customer(customer_id):
@@ -75,7 +76,6 @@ def search_customer(customer_id):
                             if customer not found.
     """
     cust = {}
-    
     select_st = customers.select().where(customers.c.customer_id == customer_id)
     query = session.execute(select_st)
     for item in query:
@@ -88,5 +88,52 @@ def search_customer(customer_id):
         cust["status"] = item.status
         cust["credit_limit"] = item.credit_limit
 
-
     return cust
+
+
+def delete_customer(customer_id):
+    """Deletes the specified customer from database.
+
+    Arguments:
+        customer_id {string} -- Unique identifier for customer.
+
+    Returns:
+        bool -- Ture if successful, False if not.
+    """
+    if (search_customer(customer_id) == {}):
+        return False
+    query = customers.delete().where(customers.c.customer_id == customer_id)
+    query.execute()
+    if (search_customer(customer_id) == {}):
+        return True
+    raise Exception("Deletion failed")
+
+
+def list_active_customers():
+    """Returns an integer specifying the number of active customers
+
+    Returns:
+        integer -- Number of active customers
+    """
+    
+    return session.query(customers).filter(customers.c.status == "active").statement.with_only_columns([func.count()]).scalar()
+
+
+def update_customer_credit(customer_id, credit_limit):
+    """Update the credit limit of the specified customer.
+
+    Arguments:
+        customer_id {string} -- Unique identifier for customer
+        credit_limit {float} -- New credit limit for customer
+
+    Raises:
+        ValueError -- Raises ValueError if customer_id not in database.
+
+    Returns:
+        bool -- Ture if successful, False if not.
+    """
+    if (search_customer(customer_id) == {}):
+        raise ValueError
+
+    session.query(db.Customer).filter(db.Customer.customer_id == customer_id).update({"credit_limit": credit_limit})
+    return session.commit()
