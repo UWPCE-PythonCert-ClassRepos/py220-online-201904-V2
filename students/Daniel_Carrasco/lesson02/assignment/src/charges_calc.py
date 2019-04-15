@@ -31,13 +31,13 @@ def parse_cmd_arguments():
     method to parse through cmd line agrument
     """
     logging.info(
-        'Start Debug: parse_cmd_arguments()')  # will not print anything
+        'Start Debug: parse_cmd_arguments()')
     parser = argparse.ArgumentParser(description='Process some integers.')
     parser.add_argument('-i', '--input', help='input JSON file', required=True)
     parser.add_argument(
         '-o', '--output', help='ouput JSON file', required=True)
     parser.add_argument("-d", "--debug", help="debugger level", required=False)
-    logging.info('End: parse_cmd_arguments() \n')  # will not print anything
+    logging.info('End: parse_cmd_arguments() \n')
     return parser.parse_args()
 
 
@@ -46,7 +46,7 @@ def set_logging_level(debug_level):
     sets the logging level
     """
     logging.info(
-        'Start Debug: set_logging_level(debug_level)')  # will not print anything
+        'Start Debug: set_logging_level(debug_level)')
 
     if debug_level == "0":
         pass
@@ -57,7 +57,7 @@ def set_logging_level(debug_level):
     elif debug_level == "3":
         LOGGER.setLevel(logging.DEBUG)
 
-    # will not print anything
+
     logging.info('End: set_logging_level(debug_level) \n')
 
 
@@ -66,17 +66,18 @@ def load_rentals_file(filename):
     method to load rental file
     """
 
-    # will not print anything
+
     logging.info('Start Debug: load_rentals_file(filename)')
     with open(filename) as file:
         try:
             data = json.load(file)
             logging.warning("is %s the correct file?", repr(file.name))
         except Exception:
-            logging.error('Fix the source data @')
+            logging.error('Fix the source.json @')
             logging.error(traceback.format_exc())  # used to see type of error
             exit(0)
-    logging.info('End: load_rentals_file(filename) \n')  # will not print anything
+
+    logging.info('End: load_rentals_file(filename) \n')
     return data
 
 
@@ -85,12 +86,14 @@ def calculate_additional_fields(data):
     method to calculate additional fields
     """
 
-    # will not print anything
+
     logging.info('Start: calculate_additional_fields(data)')
     for value in data.values():
         try:
-            rental_start = datetime.datetime.strptime(value['rental_start'], '%m/%d/%y')
-            rental_end = datetime.datetime.strptime(value['rental_end'], '%m/%d/%y')
+            rental_start = datetime.datetime.strptime(
+                value['rental_start'], '%m/%d/%y')
+            rental_end = datetime.datetime.strptime(
+                value['rental_end'], '%m/%d/%y')
 
         except ValueError as time_data_error:
             logging.error('%s', time_data_error)
@@ -103,10 +106,13 @@ def calculate_additional_fields(data):
             logging.debug("current end date %s", value['rental_end'])
             value["rental_start"] = value["rental_start"]
             value["rental_end"] = value["rental_end"]
-            rental_start = datetime.datetime.strptime(value['rental_end'], '%m/%d/%y')
-            rental_end = datetime.datetime.strptime(value['rental_start'], '%m/%d/%y')
+            rental_start = datetime.datetime.strptime(
+                value['rental_end'], '%m/%d/%y')
+            rental_end = datetime.datetime.strptime(
+                value['rental_start'], '%m/%d/%y')
             value['total_days'] = (rental_end - rental_start).days
-            logging.debug("this value has to be positive %s \n", value['total_days'])
+            logging.debug("this value has to be positive %s \n",
+                          value['total_days'])
         else:
             value['total_days'] = (rental_end - rental_start).days
 
@@ -123,12 +129,12 @@ def calculate_additional_fields(data):
             logging.debug(value['total_price'])
             logging.debug(value['units_rented'])
             logging.error('%s', ZeroDivisionError)
-            logging.error("Calc = (total_price / units_rented  =  (%s / %s)", value['total_days'], value['price_per_day'])
+            logging.error("Calc = (total_price / units_rented  =  (%s / %s)",
+                          value['total_days'], value['price_per_day'])
         else:
             pass
 
 
-    # will not print anything
     logging.info('End: calculate_additional_fields(data) \n')
 
     return DATA
@@ -138,7 +144,8 @@ def save_to_json(filename, data):
     """
     method to save to json
     """
-    logging.info('Start: save_to_json(filename, data)')  # will not print anything
+    logging.info(
+        'Start: save_to_json(filename, data)')
     with open(filename, 'w') as file:
         try:
             json.dump(data, file)
@@ -147,7 +154,6 @@ def save_to_json(filename, data):
         except Exception:
             logging.error(traceback.format_exc())  # used to see type of error
     logging.info('End: save_to_json(filename, data) \n')
-
 
 
 if __name__ == "__main__":
