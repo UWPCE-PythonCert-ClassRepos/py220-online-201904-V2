@@ -1,12 +1,11 @@
 """Unit Test Module"""
+# pylint: disable=C0303, C0305
 from unittest.mock import patch
 from unittest import TestCase
-import sys
-sys.path.append(r"C:\Users\Public\py220-online-201904-V2\students\Shirin_A\lesson01\assignment\inventory_management")
 from main import add_new_item, return_inventory
-import main as main
+import main
 from main import item_info, exit_program
-from electric_appliances import ElectricAppliances
+from electric_appliances import ElectricAppliances 
 from furniture_class import Furniture  
 from inventory_class import Inventory 
 import market_prices
@@ -80,7 +79,7 @@ class MainMenuTests(TestCase):
     @patch('main.main_menu', return_value=exit_program)
     def test_main_manu_exit_program(self, main_menu):
         """tests that in main menu function, user input of
-           3 will return exit_program """
+           q will return exit_program """
         self.assertEqual(main_menu('q'), exit_program)
 
 
@@ -117,7 +116,6 @@ class MainMenuTests(TestCase):
         self.assertEqual(test_inventory, return_inventory())
         
         #add furniture to inventory
-        
         input3 = [3, 'couch', 20, 'y', 'leather', 'M']
         test_inventory = {1: {'productcode': 1, 'description': 'shoes',
 
@@ -139,20 +137,12 @@ class MainMenuTests(TestCase):
             add_new_item()
         self.assertEqual(test_inventory, return_inventory())
 
-    def test_no_item_info(self):
-        """Tests if item_info gets returned"""
-        input1 = [20]
-        with patch('builtins.input', side_effect=input1):
-            item = item_info()
-        self.assertEqual(item, None)
-
     def test_item_information(self):
         """Tests if item_info gets returned"""
         input1 = [1]
         with patch('builtins.input', side_effect=input1):
-            item = item_info()
-        self.assertEqual(item, None)
-
+            self.assertEqual(item_info(), None)
+            
     def test_system_exit(self):
         """ Tests main.exit_program."""
         with self.assertRaises(SystemExit):
