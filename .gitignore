@@ -120,4 +120,5 @@ _gsdata_/
 
 .DS_Store
 
-
+# VSCode workspace
+.vscode

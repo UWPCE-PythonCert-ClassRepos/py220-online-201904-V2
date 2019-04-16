@@ -255,7 +255,7 @@ def PathLength(population):
             if i not in X[taxon[taxon.index(t) - 1]]:
                 Taxon[t][i] = X[t].count(i)
 
-        taxonN[t] = len(Taxon[t])
+    taxonN[t] = len(Taxon[t])
 
     n = [float(len(Taxon[t])) for t in taxon]
 
