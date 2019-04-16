@@ -1,26 +1,27 @@
+#pylint: disable=E0401
 """
     Basic operations for HP Norton database
 """
 
 
 import logging
-import src.db_model as db
 import sqlite3
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import Table
 from sqlalchemy import MetaData
 from sqlalchemy import func
+import src.db_model as db
 
 logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
 LOGGER.info("HP Norton Database")
 
-engine = create_engine('sqlite:///HPNorton.db')
-db_session = sessionmaker(bind=engine)
-session = db_session()
-metadata = MetaData(bind=engine)
-customers = Table('Customer', metadata, autoload=True)
+ENGINE = create_engine("sqlite:///HPNorton.db")
+DB_SESSION = sessionmaker(bind=ENGINE)
+SESSION = DB_SESSION()
+METADATA = MetaData(bind=ENGINE)
+CUSTOMERS = Table("Customer", METADATA, autoload=True)
 
 
 def add_customer(
@@ -44,6 +45,9 @@ def add_customer(
         email_address {string} -- Email address of customer
         status {string} -- Active / Inactive status of customer
         credit_limit {int} -- Credit limit of customer
+
+    Raises:
+        IntegrityError -- Raised when trying to insert a duplicate primary key.
     """
     try:
         new_customer = db.Customer(
@@ -56,8 +60,8 @@ def add_customer(
             status=status.lower(),
             credit_limit=credit_limit,
         )
-        session.add(new_customer)
-        session.commit()
+        SESSION.add(new_customer)
+        SESSION.commit()
         LOGGER.info("Adding record for %s", customer_id)
     except sqlite3.IntegrityError as ex:
         LOGGER.info(ex)
@@ -76,8 +80,8 @@ def search_customer(customer_id):
                             if customer not found.
     """
     cust = {}
-    select_st = customers.select().where(customers.c.customer_id == customer_id)
-    query = session.execute(select_st)
+    select_st = CUSTOMERS.select().where(CUSTOMERS.c.customer_id == customer_id)
+    query = SESSION.execute(select_st)
     for item in query:
         cust["customer_id"] = item.customer_id
         cust["name"] = item.name
@@ -100,11 +104,11 @@ def delete_customer(customer_id):
     Returns:
         bool -- Ture if successful, False if not.
     """
-    if (search_customer(customer_id) == {}):
+    if search_customer(customer_id) == {}:
         return False
-    query = customers.delete().where(customers.c.customer_id == customer_id)
+    query = CUSTOMERS.delete().where(CUSTOMERS.c.customer_id == customer_id)
     query.execute()
-    if (search_customer(customer_id) == {}):
+    if search_customer(customer_id) == {}:
         return True
     raise Exception("Deletion failed")
 
@@ -115,8 +119,13 @@ def list_active_customers():
     Returns:
         integer -- Number of active customers
     """
-    
-    return session.query(customers).filter(customers.c.status == "active").statement.with_only_columns([func.count()]).scalar()
+
+    return (
+        SESSION.query(CUSTOMERS)
+        .filter(CUSTOMERS.c.status == "active")
+        .statement.with_only_columns([func.count()])
+        .scalar()
+    )
 
 
 def update_customer_credit(customer_id, credit_limit):
@@ -132,8 +141,10 @@ def update_customer_credit(customer_id, credit_limit):
     Returns:
         bool -- Ture if successful, False if not.
     """
-    if (search_customer(customer_id) == {}):
+    if search_customer(customer_id) == {}:
         raise ValueError
 
-    session.query(db.Customer).filter(db.Customer.customer_id == customer_id).update({"credit_limit": credit_limit})
-    return session.commit()
+    SESSION.query(db.Customer).filter(
+        db.Customer.customer_id == customer_id
+    ).update({"credit_limit": credit_limit})
+    return SESSION.commit()

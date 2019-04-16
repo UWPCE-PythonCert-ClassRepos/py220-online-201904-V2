@@ -106,7 +106,8 @@ def _customers():
 
 
 def test_add_customer(_customers):
-    """ test add customer """
+    """test add customer
+    """
     for customer in _customers:
 
         with pytest.raises(DoesNotExist):
@@ -141,7 +142,8 @@ def test_add_customer(_customers):
 
 
 def test_search_customer(_customers):
-    """ test search customer """
+    """test search customer
+    """
     for customer in _customers:
         assert l.search_customer(customer[0]) == {}
 
@@ -176,7 +178,8 @@ def test_search_customer(_customers):
 
 
 def test_delete_customer(_customers):
-    """ test delete customer """
+    """test delete customer
+    """
     for customer in _customers:
         assert l.delete_customer(customer[0]) is False
 
@@ -197,7 +200,8 @@ def test_delete_customer(_customers):
 
 
 def test_update_customer(_customers):
-    """ test update customer """
+    """test update customer
+    """
     for customer in _customers:
         with pytest.raises(ValueError):
             l.update_customer_credit(customer[0], 1000)
@@ -229,7 +233,8 @@ def test_update_customer(_customers):
 
 
 def test_list_active_customers(_customers):
-    """ test list active customers """
+    """test list active customers
+    """
     active = l.list_active_customers()
     assert active == 0
 
@@ -256,7 +261,8 @@ def test_list_active_customers(_customers):
 
 
 def test_add_integrity_error(_customers):
-    """ Add records already present to throw Integrity Error """
+    """Add records already present to throw Integrity Error
+    """
     for customer in _customers:
         l.add_customer(
             customer[0],

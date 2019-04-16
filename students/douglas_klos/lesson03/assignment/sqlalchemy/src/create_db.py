@@ -48,7 +48,8 @@ def parse_cmd_arguments():
 
 
 def add_tables(engine):
-    """Adds tables to database"""
+    """Adds tables to database
+    """
     db.BASE.metadata.create_all(engine)
 
 

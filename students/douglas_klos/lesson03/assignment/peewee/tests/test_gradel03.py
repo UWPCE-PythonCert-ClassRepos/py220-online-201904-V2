@@ -66,7 +66,8 @@ def _list_active_customers():
 
 
 def test_list_active_customers(_list_active_customers):
-    """ actives """
+    """Tests list active customers
+    """
     for customer in _list_active_customers:
         l.add_customer(
             customer[0],
@@ -87,7 +88,8 @@ def test_list_active_customers(_list_active_customers):
 
 
 def test_add_customer(_add_customers):
-    """ additions """
+    """Tests add customer
+    """
     for customer in _add_customers:
         l.add_customer(
             customer[0],
@@ -110,7 +112,8 @@ def test_add_customer(_add_customers):
 
 
 def test_search_customer(_search_customers):
-    """ search """
+    """Tests search
+    """
     for customer in _search_customers[0]:
         l.add_customer(
             customer[0],
@@ -138,7 +141,8 @@ def test_search_customer(_search_customers):
 
 
 def test_delete_customer(_delete_customers):
-    """ delete """
+    """Tests delete
+    """
     for customer in _delete_customers:
         l.add_customer(
             customer[0],
@@ -159,7 +163,8 @@ def test_delete_customer(_delete_customers):
 
 
 def test_update_customer_credit(_update_customer_credit):
-    """ update """
+    """Tests update credit
+    """
     for customer in _update_customer_credit:
         l.add_customer(
             customer[0],

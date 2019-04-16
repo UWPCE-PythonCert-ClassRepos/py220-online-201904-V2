@@ -35,6 +35,9 @@ def add_customer(
         email_address {string} -- Email address of customer
         status {string} -- Active / Inactive status of customer
         credit_limit {int} -- Credit limit of customer
+
+    Raises:
+        IntegrityError -- Raised when trying to insert a duplicate primary key.
     """
     try:
         with db.database.transaction():

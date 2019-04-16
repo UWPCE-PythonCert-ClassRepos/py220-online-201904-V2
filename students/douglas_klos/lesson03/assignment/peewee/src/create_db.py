@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-    Imports customer.csv to sqlite database
+    Imports customer.csv to sqlite database using Peewee
 """
 
 # Execution time for seeding the database: 293.8888795375824 seconds.
@@ -47,7 +47,8 @@ def parse_cmd_arguments():
 
 
 def add_tables():
-    """Adds tables to database"""
+    """Adds tables to database
+    """
     db.database.create_tables([db.Customer])
 
 
