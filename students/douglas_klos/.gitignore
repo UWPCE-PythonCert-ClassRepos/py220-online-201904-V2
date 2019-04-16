@@ -1,4 +1,5 @@
 *.swp
 *.back
 .vscode
-lesson01/assignment/commands.txt
+lesson01/assignment/unittests/test_assistance.py
+lesson01/douglas-klos.lesson01.assignment.zip

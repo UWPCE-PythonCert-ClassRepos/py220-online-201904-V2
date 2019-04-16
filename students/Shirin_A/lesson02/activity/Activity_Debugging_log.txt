@@ -1,0 +1,98 @@
+
+Activity Question:
+1) What is wrong with our logic?
+ans: Unless the user inputs a multiple of 4, the program will run forever.
+
+2) Why doesn't the function stop calling itself?
+ans:Because it is a recursive function. It will keep going untill the
+if statement is fulfilled.
+
+3)What’s happening to the value of ‘n’ as the function gets deeper and deeper into recursion?
+ Unless the initial value was a multiple of 4,the value keeps getting halved 
+ and gets closer and closer to zero.
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+          Below is my debugging log:
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+#The function keeps calling itself and calling itself and it can't stop because
+# the value is not multiple of 4.
+
+ $ python -m pdb recursive.py 9
+> c:\users\public\py220-online-201904-v2\students\shirin_a\lesson02\activity\recursive.py(3)<module>()
+-> """
+(Pdb) n
+> c:\users\public\py220-online-201904-v2\students\shirin_a\lesson02\activity\recursive.py(5)<module>()
+-> import sys
+(Pdb) n
+> c:\users\public\py220-online-201904-v2\students\shirin_a\lesson02\activity\recursive.py(6)<module>()
+-> import logging
+(Pdb) n
+> c:\users\public\py220-online-201904-v2\students\shirin_a\lesson02\activity\recursive.py(8)<module>()
+-> logging.basicConfig(level= logging.DEBUG)
+(Pdb) n
+> c:\users\public\py220-online-201904-v2\students\shirin_a\lesson02\activity\recursive.py(9)<module>()
+-> def my_fun(n):
+(Pdb) n
+> c:\users\public\py220-online-201904-v2\students\shirin_a\lesson02\activity\recursive.py(15)<module>()
+-> if __name__ == '__main__':
+(Pdb) n
+> c:\users\public\py220-online-201904-v2\students\shirin_a\lesson02\activity\recursive.py(17)<module>()
+-> n = int(sys.argv[1])
+(Pdb) n
+> c:\users\public\py220-online-201904-v2\students\shirin_a\lesson02\activity\recursive.py(18)<module>()
+-> print(my_fun(n))
+(Pdb) s
+--Call--
+> c:\users\public\py220-online-201904-v2\students\shirin_a\lesson02\activity\recursive.py(9)my_fun()
+-> def my_fun(n):
+(Pdb) s
+> c:\users\public\py220-online-201904-v2\students\shirin_a\lesson02\activity\recursive.py(10)my_fun()
+-> logging.debug(n)
+(Pdb) n
+DEBUG:root:9
+> c:\users\public\py220-online-201904-v2\students\shirin_a\lesson02\activity\recursive.py(11)my_fun()
+-> if n == 2:
+(Pdb) n
+> c:\users\public\py220-online-201904-v2\students\shirin_a\lesson02\activity\recursive.py(13)my_fun()
+-> return my_fun(n / 2)
+(Pdb) ll
+  9     def my_fun(n):
+ 10         logging.debug(n)
+ 11         if n == 2:
+ 12             return True
+ 13  ->     return my_fun(n / 2)
+(Pdb) b 13
+Breakpoint 1 at c:\users\public\py220-online-201904-v2\students\shirin_a\lesson02\activity\recursive.py:13
+(Pdb) condition 1 n/2<2
+New condition set for breakpoint 1.
+(Pdb) c
+DEBUG:root:4.5
+DEBUG:root:2.25
+> c:\users\public\py220-online-201904-v2\students\shirin_a\lesson02\activity\recursive.py(13)my_fun()
+-> return my_fun(n / 2)
+(Pdb) n
+DEBUG:root:1.125
+> c:\users\public\py220-online-201904-v2\students\shirin_a\lesson02\activity\recursive.py(13)my_fun()
+-> return my_fun(n / 2)
+(Pdb) n
+DEBUG:root:0.5625
+> c:\users\public\py220-online-201904-v2\students\shirin_a\lesson02\activity\recursive.py(13)my_fun()
+-> return my_fun(n / 2)
+(Pdb) n
+DEBUG:root:0.28125
+> c:\users\public\py220-online-201904-v2\students\shirin_a\lesson02\activity\recursive.py(13)my_fun()
+-> return my_fun(n / 2)
+(Pdb) n
+DEBUG:root:0.140625
+> c:\users\public\py220-online-201904-v2\students\shirin_a\lesson02\activity\recursive.py(13)my_fun()
+-> return my_fun(n / 2)
+(Pdb) n
+DEBUG:root:0.0703125
+> c:\users\public\py220-online-201904-v2\students\shirin_a\lesson02\activity\recursive.py(13)my_fun()
+-> return my_fun(n / 2)
+(Pdb) n
+
+
+
+
+
