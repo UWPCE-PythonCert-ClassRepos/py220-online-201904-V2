@@ -4,8 +4,6 @@
 """
 
 import pytest
-# import sqlalchemy
-# from sqlalchemy.sql import select
 from sqlalchemy import exc
 from sqlalchemy.orm.exc import NoResultFound
 import src.basic_operations as l

@@ -52,9 +52,13 @@ $ pytest --cov=src --cov-report html ./tests/test_gradel03.py
 ```
 
 A new copy of the HPNorton database can be generated as following.
-
 ```
 $ ./src/create_db.py -i data/customer.csv
+```
+
+A new blank database can be created with:
+```
+$ ./src/create_db.py -i data/customer.csv -b
 ```
 
 My conclusion after doing both of these, Peewee is certainly easier to use, 

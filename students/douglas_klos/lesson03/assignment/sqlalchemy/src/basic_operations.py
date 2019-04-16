@@ -11,6 +11,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import Table
 from sqlalchemy import MetaData
 from sqlalchemy import func
+from sqlalchemy import exc
 import src.db_model as db
 
 logging.basicConfig(level=logging.INFO)
@@ -65,7 +66,7 @@ def add_customer(
         LOGGER.info("Adding record for %s", customer_id)
     except sqlite3.IntegrityError as ex:
         LOGGER.info(ex)
-        raise sqlite3.IntegrityError
+        raise exc.IntegrityError
 
 
 def search_customer(customer_id):
