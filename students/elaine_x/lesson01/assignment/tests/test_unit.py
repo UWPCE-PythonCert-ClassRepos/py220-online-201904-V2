@@ -4,17 +4,17 @@
 from unittest import TestCase
 from unittest import mock
 
-from ..inventory_management.main import mainmenu, add_new_item, item_info, exit_program
-from ..inventory_management.InventoryClass import Inventory
-from ..inventory_management.FurnitureClass import Furniture
-from ..inventory_management.ElectricAppliancesClass import ElectricAppliances
-from ..inventory_management.market_prices import get_latest_price
+#from ..inventory_management.main import mainmenu, add_new_item, item_info, exit_program
+#from ..inventory_management.InventoryClass import Inventory
+#from ..inventory_management.FurnitureClass import Furniture
+#from ..inventory_management.ElectricAppliancesClass import ElectricAppliances
+#from ..inventory_management.market_prices import get_latest_price
 
-#import main
-#import InventoryClass
-#import FurnitureClass
-#import ElectricAppliancesClass
-#import market_prices
+from main import mainmenu, add_new_item, item_info, exit_program
+from InventoryClass import Inventory
+from FurnitureClass import Furniture
+from ElectricAppliancesClass import ElectricAppliances
+from market_prices import get_latest_price
 
 
 class InventoryTests(TestCase):
