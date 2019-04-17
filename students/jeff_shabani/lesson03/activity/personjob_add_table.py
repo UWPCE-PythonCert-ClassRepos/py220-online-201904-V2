@@ -34,10 +34,10 @@ class Department(BaseModel):
     person_name = CharField(max_length=30)
     logger.info('Job is linked to job table')
     job_name = CharField(max_length=30)
-    job_duration = DecimalField(decimal_places=1, default=0)
+    job_duration = DecimalField(decimal_places=1)
     logger.info('Dates for calculating job duration')
-    start_date = DateField(formats='YYYY-MM-DD')
-    end_date = DateField(formats='YYYY-MM-DD')
+    start_date = DateField()
+    end_date = DateField()
 
 def create_table():
 
@@ -61,8 +61,8 @@ jobs = [
     ('Analyst', '2001-09-22', '2003-01-30', 65500, 'Andrew', 'A100', 'Market Analytics', 'Ashly Lashbrooke'),
     ('Senior analyst', '2003-02-01', '2006-10-22', 70000, 'Andrew','A101', 'Market Research', 'Dieter Hekking'),
     ('Senior business analyst', '2006-10-23', '2016-12-24', 80000, 'Andrew', 'B200', 'Cyber Security', 'Jans Feldman'),
-    ('Admin supervisor', '2012-10-01', '2014-11,10', 45900, 'Peter', 'C300', 'Finance', 'Karsten Kruse'),
-    ('Admin manager', '2014-11-14', '2018-01,05', 45900, 'Peter', 'C301', 'Forecasting', 'Max Rotring')]
+    ('Admin supervisor', '2012-10-01', '2014-11-10', 45900, 'Peter', 'C300', 'Finance', 'Karsten Kruse'),
+    ('Admin manager', '2014-11-14', '2018-01-05', 45900, 'Peter', 'C301', 'Forecasting', 'Max Rotring')]
 
 
 def add_records():

@@ -8,7 +8,7 @@ import logging
 
 from datetime import date, datetime
 from peewee import *
-from peewee_migrations import *
+# from peewee_migrations import *
 from personjob_add_table import *
 
 logging.basicConfig(level=logging.INFO)
@@ -18,16 +18,16 @@ db = SqliteDatabase('personjob.db')
 db.connect()
 db.execute_sql(('PRAGMA foreign_keys = ON;'))
 
-logger.info('Simple test query')
+logger.info('This query should return years in job but currently returns days')
 query = (Department
-         .select(Department.start_date, Department.end_date)
-         .where(Department.start_date > date(2001, 9, 22)))
-# .where(Department.person_name == 'Peter'))
-for person in query:
-    print(person.start_date - person.end_date)
+         .select(Department.start_date, Department.end_date))
 
+for person in query:
+    print((person.end_date - person.start_date) / 365)
+
+logger.info('This updates job duration field')
 try:
-    update_query = Department.update(job_duration=0)
+    update_query = Department.update(job_duration=Department.end_date - Department.start_date)
     update_query.execute()
     logging.info('Job duration updated successfully')
 except Exception as e:
