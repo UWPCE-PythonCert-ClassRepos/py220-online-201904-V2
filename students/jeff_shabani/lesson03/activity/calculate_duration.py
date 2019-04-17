@@ -4,11 +4,6 @@
 was held.
 """
 
-import logging
-
-from datetime import date, datetime
-from peewee import *
-# from peewee_migrations import *
 from personjob_add_table import *
 
 logging.basicConfig(level=logging.INFO)
@@ -16,14 +11,7 @@ logger = logging.getLogger(__name__)
 
 db = SqliteDatabase('personjob.db')
 db.connect()
-db.execute_sql(('PRAGMA foreign_keys = ON;'))
-
-logger.info('This query should return years in job but currently returns days')
-query = (Department
-         .select(Department.start_date, Department.end_date))
-
-for person in query:
-    print((person.end_date - person.start_date) / 365)
+db.execute_sql('PRAGMA foreign_keys = ON;')
 
 logger.info('This updates job duration field')
 try:

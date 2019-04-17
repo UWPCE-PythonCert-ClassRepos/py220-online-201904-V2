@@ -10,10 +10,9 @@ from peewee import *
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-
 db = SqliteDatabase('personjob.db')
 db.connect()
-db.execute_sql(('PRAGMA foreign_keys = ON;'))
+db.execute_sql('PRAGMA foreign_keys = ON;')
 
 
 class BaseModel(Model):
@@ -39,13 +38,14 @@ class Department(BaseModel):
     start_date = DateField()
     end_date = DateField()
 
-def create_table():
 
+def create_table():
     try:
         db.create_tables([Department])
         logger.info('Table added successfully')
     except Exception as e:
         logger.info(f'Table addition failed with error {e}')
+
 
 JOB_NAME = 0
 START_DATE = 1
@@ -59,14 +59,13 @@ DEPT_MGR = 7
 logger.info('List of employee data tuples to add to department table')
 jobs = [
     ('Analyst', '2001-09-22', '2003-01-30', 65500, 'Andrew', 'A100', 'Market Analytics', 'Ashly Lashbrooke'),
-    ('Senior analyst', '2003-02-01', '2006-10-22', 70000, 'Andrew','A101', 'Market Research', 'Dieter Hekking'),
+    ('Senior analyst', '2003-02-01', '2006-10-22', 70000, 'Andrew', 'A101', 'Market Research', 'Dieter Hekking'),
     ('Senior business analyst', '2006-10-23', '2016-12-24', 80000, 'Andrew', 'B200', 'Cyber Security', 'Jans Feldman'),
     ('Admin supervisor', '2012-10-01', '2014-11-10', 45900, 'Peter', 'C300', 'Finance', 'Karsten Kruse'),
     ('Admin manager', '2014-11-14', '2018-01-05', 45900, 'Peter', 'C301', 'Forecasting', 'Max Rotring')]
 
 
 def add_records():
-
     for job in jobs:
         try:
             with database.transaction():
@@ -75,20 +74,19 @@ def add_records():
                     start_date=job[START_DATE],
                     end_date=job[END_DATE],
                     person_name=job[PERSON_EMPLOYED],
-                    department_number = job[DEPT_NUM],
-                    department_name = job[DEPT_NAME],
-                    department_manager = job[DEPT_MGR],
-                    job_duration = 0)
+                    department_number=job[DEPT_NUM],
+                    department_name=job[DEPT_NAME],
+                    department_manager=job[DEPT_MGR],
+                    job_duration=0)
                 new_job.save()
 
         except Exception as e:
             logger.info(f'Error creating = {job[JOB_NAME]}')
             logger.info(e)
 
+
 db.close()
 
 if __name__ == '__main__':
     create_table()
     add_records()
-
-
