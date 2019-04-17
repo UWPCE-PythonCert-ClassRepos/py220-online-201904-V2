@@ -4,7 +4,8 @@
 from unittest import TestCase
 from unittest import mock
 
-from ..inventory_management.main import mainmenu
+#from ..inventory_management.main import mainmenu
+from main import mainmenu
 #import main
 
 

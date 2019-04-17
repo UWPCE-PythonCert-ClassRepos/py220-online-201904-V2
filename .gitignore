@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+.idea
 
 # C extensions
 *.so
@@ -120,4 +121,5 @@ _gsdata_/
 
 .DS_Store
 
-
+# VSCode workspace
+.vscode
