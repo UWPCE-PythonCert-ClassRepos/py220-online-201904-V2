@@ -7,6 +7,7 @@ import peewee
 import pytest
 import customer_schema as cs
 import basic_operations as bops
+import customer_creation as cc
 
 customer1 = {"customer_id": "1",
              "first_name": "Ann",
@@ -61,13 +62,7 @@ def create_empty_database():
     Testing DB initializtion
     '''
     clear_database()
-
-    cs.database.create_tables([
-        cs.Customer
-    ])
-
-    cs.database.close()
-
+    cc.main()
 
 def test_add_customers():
     create_empty_database()
