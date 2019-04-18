@@ -4,46 +4,56 @@ Testing basic operations and database functions
 '''
 # pylint: disable-all
 import peewee
+import unittest.mock
 import pytest
 import customer_schema as cs
 import basic_operations as bops
 import customer_creation as cc
 
-customer1 = {"customer_id": "1",
-             "first_name": "Ann",
-             "last_name": "Wilson",
-             "home_address": "506 2nd Ave, Seattle, 98104",
-             "phone_number": "206-624-0414",
-             "email_address": "awilson@hotmail.com",
-             "active_status": True,
-             "credit_limit": 100.00}
+customer1 = {'customer_id': '1',
+             'first_name': 'Ann',
+             'last_name': 'Wilson',
+             'home_address': '506 2nd Ave, Seattle, 98104',
+             'phone_number': '206-624-0414',
+             'email_address': 'awilson@hotmail.com',
+             'active_status': True,
+             'credit_limit': 100.00}
 
-customer2 = {"customer_id": "2",
-             "first_name": "Kelly",
-             "last_name": "Deal",
-             "home_address": "505 2nd Ave, Seattle, 98104",
-             "phone_number": "206-635-2732",
-             "email_address": "kdeal@aol.com",
-             "active_status": False,
-             "credit_limit": 50.00}
+customer2 = {'customer_id': '2',
+             'first_name': 'Kelly',
+             'last_name': 'Deal',
+             'home_address': '505 2nd Ave, Seattle, 98104',
+             'phone_number': '206-635-2732',
+             'email_address': 'kdeal@aol.com',
+             'active_status': False,
+             'credit_limit': 50.00}
 
-customer3 = {"customer_id": "3",
-             "first_name": "Nancy",
-             "last_name": "Wilson",
-             "home_address": "506 2nd Ave, Seattle, 98104",
-             "phone_number": "206-624-0414",
-             "email_address": "nwilson@hotmail.com",
-             "active_status": True,
-             "credit_limit": 100.00}
+customer3 = {'customer_id': '3',
+             'first_name': 'Nancy',
+             'last_name': 'Wilson',
+             'home_address': '506 2nd Ave, Seattle, 98104',
+             'phone_number': '206-624-0414',
+             'email_address': 'nwilson@hotmail.com',
+             'active_status': True,
+             'credit_limit': 100.00}
 
-customer4 = {"customer_id": "4",
-             "first_name": "Kim",
-             "last_name": "Deal",
-             "home_address": "505 2nd Ave, Seattle, 98104",
-             "phone_number": "206-635-2732",
-             "email_address": "kideal@aol.com",
-             "active_status": False,
-             "credit_limit": 50.00}
+customer4 = {'customer_id': '4',
+             'first_name': 'Kim',
+             'last_name': 'Deal',
+             'home_address': '505 2nd Ave, Seattle, 98104',
+             'phone_number': '206-635-2732',
+             'email_address': 'kideal@aol.com',
+             'active_status': False,
+             'credit_limit': 50.00}
+
+customer5 = {'customer_id': '5',
+             'first_name': 'Sean',
+             'last_name': 'Ysult',
+             'home_address': '506 2nd Ave, Seattle, 98104',
+             'phone_number': '206-614-6372',
+             'email_address': 'sysult@aol.com',
+             'active_status': False,
+             'credit_limit': 50.00}
 
 
 def clear_database():
@@ -64,18 +74,19 @@ def create_empty_database():
     clear_database()
     cc.main()
 
+
 def test_add_customers():
     create_empty_database()
     bops.add_customer(**customer1)
     bops.add_customer(**customer2)
 
-    test_customer1 = cs.Customer.get(cs.Customer.customer_id == "1")
-    assert test_customer1.first_name == customer1["first_name"]
-    assert test_customer1.last_name == customer1["last_name"]
+    test_customer1 = cs.Customer.get(cs.Customer.customer_id == '1')
+    assert test_customer1.first_name == customer1['first_name']
+    assert test_customer1.last_name == customer1['last_name']
 
-    test_customer2 = cs.Customer.get(cs.Customer.customer_id == "2")
-    assert test_customer2.first_name == customer2["first_name"]
-    assert test_customer2.last_name == customer2["last_name"]
+    test_customer2 = cs.Customer.get(cs.Customer.customer_id == '2')
+    assert test_customer2.first_name == customer2['first_name']
+    assert test_customer2.last_name == customer2['last_name']
 
     clear_database()
 
@@ -168,6 +179,12 @@ def test_all():
     bops.delete_customer(customer4['customer_id'])
 
     '''
+    Now let's delete someone not there
+    '''
+    bops.delete_customer(customer5['customer_id'])
+    assert 'ERROR'
+
+    '''
     Now, let's give the guitarist from Heart a lot more money, then check if
     it worked.
     '''
@@ -186,3 +203,17 @@ def test_all():
     Last, we list the active customers
     '''
     assert bops.list_active_customers() == 2
+
+
+    # def test_init():
+        # '''
+        # This, is because I'm curious and I have a few minutes
+        # '''
+        # with mock.patch.object(module, 'main', return_value=42):
+            # with mock.patch.object(module, '__name__', '__main__'):
+                # with mock.patch.object(module.sys,'exit') as mock_exit:
+                    # module.init()
+#
+                    # assert mock_exit.call_args[0][0] == 42
+#
+#  Yeah, this doesn't work as I want
