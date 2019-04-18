@@ -75,7 +75,11 @@ def list_active_customers():
     '''
     List all active customers
     '''
-    pass
+    total_custs = (cs.Customer.select().where(cs.Customer.active_status).count())
+
+    logging.info('The current number of active customers is %s', total_custs)
+
+    return total_custs
 
 
 def update_customer_credit(customer_id, new_limit):

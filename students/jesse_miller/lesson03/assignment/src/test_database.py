@@ -140,3 +140,48 @@ def test_update_credit_none():
         bops.update_customer_credit('44', 5000)
 
     clear_database()
+
+
+def test_list_customers():
+    create_sample_database()
+    assert bops.list_active_customers() == 2
+    clear_database()
+
+
+def test_list_customers_none():
+    create_empty_database()
+    assert bops.list_active_customers() == 0
+    clear_database()
+
+def test_all():
+    '''
+    Okay, this one I'm commenting.  I will be populating a DB and testing all
+    the functions against an integrated system.  Wish me luck
+    '''
+    create_empty_database()
+
+    bops.add_customer(**customer1)
+    bops.add_customer(**customer2)
+    bops.add_customer(**customer3)
+    bops.add_customer(**customer4)
+
+    '''
+    Here, we will delete Kim Deal.  Which is a shame, I loved The Breeders when
+    I was a kid
+    '''
+    bops.delete_customer(customer4['customer_id'])
+
+    '''
+    Now, let's give the guitarist from Heart a lot more money, then check if
+    it worked.
+    '''
+    bops.update_customer_credit('3', 20000)
+
+    nancy_update = cs.Customer.get(cs.Customer.customer_id == 3)
+    assert nancy_update.credit_limit == 20000
+
+    '''
+    Here, we're going to find Nancy's sister Ann.
+    '''
+    ann_search = bops.search_customer(customer1['customer_id'])
+    assert ann_search['first_name'] == customer1['first_name']
