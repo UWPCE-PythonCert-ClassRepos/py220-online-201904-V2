@@ -31,7 +31,7 @@ def add_customer(customer_id, first_name, last_name, home_address, phone_number,
         logging.info('%s %s has been added to the database.', first_name,
                      last_name)
     except peewee.IntegrityError as add_error:
-        logging.error("%s. Error cannot add %s %s to the database.", add_error,
+        logging.error('%s. Error cannot add %s %s to the database.', add_error,
                       first_name, last_name)
         raise peewee.IntegrityError
 
@@ -42,18 +42,28 @@ def delete_customer(customer_id):
     '''
     try:
         former_customer = cs.Customer.get(cs.Customer.customer_id == customer_id)
-        logging.info("%s: %s %s has been removed from the database.", customer_id,
+        logging.info('%s: %s %s has been removed from the database.', customer_id,
                      former_customer.first_name, former_customer.last_name)
         former_customer.delete_instance()
     except peewee.DoesNotExist:
-        logging.error("Non-existant customer.")
+        logging.error('Non-existant customer.')
 
 
-def search_customer():
+def search_customer(customer_id):
     '''
     Search DB for an active customer
     '''
-    pass
+    current_customer = cs.Customer.get(cs.Customer.customer_id == customer_id)
+
+    customer_dict = {'first_name': current_customer.first_name,
+                     'last_name': current_customer.last_name,
+                     'email_address': current_customer.email_address,
+                     'phone_number': current_customer.phone_number}
+    logging.info('Found customer %s: %s %s.', customer_id,
+                 current_customer.first_name, current_customer.last_name)
+
+    return customer_dict
+
 
 def list_active_customers():
     '''
