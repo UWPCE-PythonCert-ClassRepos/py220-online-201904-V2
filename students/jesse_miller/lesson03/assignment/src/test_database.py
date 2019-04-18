@@ -153,6 +153,7 @@ def test_list_customers_none():
     assert bops.list_active_customers() == 0
     clear_database()
 
+
 def test_all():
     '''
     Okay, this one I'm commenting.  I will be populating a DB and testing all
@@ -185,3 +186,8 @@ def test_all():
     '''
     ann_search = bops.search_customer(customer1['customer_id'])
     assert ann_search['first_name'] == customer1['first_name']
+
+    '''
+    Last, we list the active customers
+    '''
+    assert bops.list_active_customers() == 2
