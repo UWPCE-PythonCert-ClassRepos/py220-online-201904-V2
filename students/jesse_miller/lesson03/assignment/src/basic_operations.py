@@ -5,6 +5,7 @@ Creating customer database for Norton Furniture
 import logging
 import peewee
 import customer_schema as cs
+import customer_creation as cc
 
 logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
@@ -61,11 +62,11 @@ def search_customer(customer_id):
                          'email_address': current_customer.email_address,
                          'phone_number': current_customer.phone_number}
         logging.info('%s: %s %s exists', customer_id,
-                 current_customer.first_name, current_customer.last_name)
+                     current_customer.first_name, current_customer.last_name)
 
-    return customer_dict
+        return customer_dict
 
-except peewee.DoesNotExist:
+    except peewee.DoesNotExist:
         logging.error('Non-existant customer.')
         return dict()
 
@@ -76,8 +77,22 @@ def list_active_customers():
     '''
     pass
 
-def update_customer_credit():
+
+def update_customer_credit(customer_id, new_limit):
     '''
     Update customer credit limits
     '''
-    pass
+    try:
+        update_cust = cs.Customer.get(cs.Customer.customer_id == customer_id)
+        update_cust.credit_limit = new_limit
+        update_cust.save()
+        logging.info('Raise credit limit for %s %s to %s',
+                     update_cust.first_name, update_cust.last_name, new_limit)
+
+    except peewee.DoesNotExist:
+        logging.error('Unable to comply, customer does not exist')
+        raise peewee.DoesNotExist
+
+
+if __name__ == 'main':
+    cc.main()

@@ -122,3 +122,21 @@ def test_search_customer_missing():
 
     assert bops.search_customer('8') == dict()
     clear_database()
+
+
+def test_update_credit():
+    create_sample_database()
+
+    bops.update_customer_credit('1', 25500)
+    cust_update = cs.Customer.get(cs.Customer.customer_id == 1)
+    assert cust_update.credit_limit == 25500
+    clear_database()
+
+
+def test_update_credit_none():
+    create_sample_database()
+
+    with pytest.raises(peewee.DoesNotExist):
+        bops.update_customer_credit('44', 5000)
+
+    clear_database()
