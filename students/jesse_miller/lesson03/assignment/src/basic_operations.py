@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 '''
-Lesson 3, learning database operations.
+Lesson 3, learning database operations for Norton Furniture.
 '''
 import logging
 import peewee

@@ -2,6 +2,7 @@
 '''
 Testing basic operations and database functions
 '''
+# pylint: disable-all
 import peewee
 import pytest
 import customer_schema as cs
@@ -43,6 +44,7 @@ customer4 = {"customer_id": "4",
              "active_status": False,
              "credit_limit": 50.00}
 
+
 def clear_database():
     '''
     Testing clearing the DB
@@ -63,5 +65,45 @@ def create_empty_database():
     cs.database.create_tables([
         cs.Customer
     ])
+
+    cs.database.close()
+
+
+def test_add_customers():
+    create_empty_database()
+    bops.add_customer(**customer1)
+    bops.add_customer(**customer2)
+
+    test_customer1 = cs.Customer.get(cs.Customer.customer_id == "1")
+    assert test_customer1.first_name == customer1["first_name"]
+    assert test_customer1.last_name == customer1["last_name"]
+
+    test_customer2 = cs.Customer.get(cs.Customer.customer_id == "2")
+    assert test_customer2.first_name == customer2["first_name"]
+    assert test_customer2.last_name == customer2["last_name"]
+
+    clear_database()
+
+
+def test_add_customers_duplicate():
+    create_empty_database()
+    bops.add_customer(**customer1)
+
+    with pytest.raises(peewee.IntegrityError):
+        bops.add_customer(**customer1)
+
+    clear_database()
+
+
+def create_sample_database():
+    clear_database()
+
+    cs.database.create_tables([
+        cs.Customer
+    ])
+    bops.add_customer(**customer1)
+    bops.add_customer(**customer2)
+    bops.add_customer(**customer3)
+    bops.add_customer(**customer4)
 
     cs.database.close()
