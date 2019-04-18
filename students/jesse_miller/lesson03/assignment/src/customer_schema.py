@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-#pylint: disable=C0103, R0903, C0111
+#pylint: disable=C0103, R0903, C0111 # Honestly I dislike doing this.
 '''
-Norton Furniture
+Norton Furniture customer database schema
 '''
 import logging
 import peewee
@@ -25,6 +25,9 @@ class Customer(BaseModel):
     '''
     logger.info('Customer class configuration')
     customer_id = peewee.CharField(primary_key=True, max_length=30)
+    '''
+    Primary key is true here, because those are unique identifiers
+    '''
     first_name = peewee.CharField(max_length=30)
     last_name = peewee.CharField(max_length=30)
     home_address = peewee.CharField(max_length=100)

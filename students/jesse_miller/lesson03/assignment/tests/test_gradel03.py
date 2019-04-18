@@ -5,6 +5,7 @@
     Student should submit an empty database
 
 """
+# pylint: disable = E0401
 import pytest
 import basic_operations as l
 

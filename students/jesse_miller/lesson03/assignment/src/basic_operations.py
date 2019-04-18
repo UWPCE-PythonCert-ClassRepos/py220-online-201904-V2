@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 '''
-Lesson 3, learning database operations for Norton Furniture.
+Creating customer database for Norton Furniture
 '''
 import logging
 import peewee
-import customer_creation as cc
 import customer_schema as cs
 
 logging.basicConfig(level=logging.INFO)
@@ -12,7 +11,7 @@ LOGGER = logging.getLogger(__name__)
 
 logging.info('Starting basic operations for customer database.')
 
-# pylint: disable = R0913
+# pylint: disable=R0913
 def add_customer(customer_id, first_name, last_name, home_address, phone_number,
                  email_address, active_status, credit_limit):
     '''
@@ -29,19 +28,26 @@ def add_customer(customer_id, first_name, last_name, home_address, phone_number,
             active_status=active_status,
             credit_limit=credit_limit)
         new_customer.save()
-        logging.info('Successfully added %s %s to the database.', first_name, \
-        last_name)
-
+        logging.info('%s %s has been added to the database.', first_name,
+                     last_name)
     except peewee.IntegrityError as add_error:
-        logging.error("%s. Error adding %s %s to the database.", add_error, \
-        first_name, last_name)
+        logging.error("%s. Error cannot add %s %s to the database.", add_error,
+                      first_name, last_name)
         raise peewee.IntegrityError
 
-def delete_customer():
+
+def delete_customer(customer_id):
     '''
     Deleting a customer from the DB
     '''
-    pass
+    try:
+        former_customer = cs.Customer.get(cs.Customer.customer_id == customer_id)
+        logging.info("%s: %s %s has been removed from the database.", customer_id,
+                     former_customer.first_name, former_customer.last_name)
+        former_customer.delete_instance()
+    except peewee.DoesNotExist:
+        logging.error("Non-existant customer.")
+
 
 def search_customer():
     '''

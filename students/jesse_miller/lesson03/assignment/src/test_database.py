@@ -107,3 +107,18 @@ def create_sample_database():
     bops.add_customer(**customer4)
 
     cs.database.close()
+
+
+def test_customer_search():
+    create_sample_database()
+
+    test_customer = bops.search_customer('3')
+    assert test_customer['email_address'] == customer3['email_address']
+    clear_database()
+
+
+def test_search_customer_missing():
+    create_sample_database()
+
+    assert bops.search_customer('8') == dict()
+    clear_database()
