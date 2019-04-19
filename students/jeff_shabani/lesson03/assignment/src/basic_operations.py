@@ -37,7 +37,7 @@ CUSTOMERS = [
 ]
 
 
-def _add_customers(*args):
+def add_customers(*args):
     """
     Function to add customers to the customer table.
     :param args: an iterable of customer information
@@ -65,7 +65,7 @@ def _add_customers(*args):
                 LOGGER.info(error)
 
 
-def _search_customers(cust_id):
+def search_customers(cust_id):
     """
     returns values of selected user
     :param cust_id:
@@ -82,7 +82,7 @@ def _search_customers(cust_id):
     return f'{[e.values() for e in query.dicts()]}'
 
 
-def _del_customers(cust_id):
+def del_customers(cust_id):
     """
     Deletes a customer specified by customer id
     :param cust_id:
@@ -92,7 +92,7 @@ def _del_customers(cust_id):
     del_query.delete_instance()
 
 
-def _update_customer_credit(cust_id, new_credit_limit):
+def update_customer_credit(cust_id, new_credit_limit):
     """
     Query that updates a specific customer's credit limit.
     :param cust_id:
@@ -107,7 +107,7 @@ def _update_customer_credit(cust_id, new_credit_limit):
         print(f'Record record doe not exist')
 
 
-def _list_active_customers():
+def list_active_customers():
     """
     Returns number of active customers.
     :return: integer representing count
@@ -120,7 +120,7 @@ def _list_active_customers():
         return f'There are {count.cust_count} active customers'
 
 
-def _del_all_records():
+def del_all_records():
     """
     Deletes all records. Used only for testing purposes.
     :return: An empty customer table
