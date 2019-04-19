@@ -6,6 +6,7 @@
 """
 
 from peewee import *
+from datetime import date
 
 database = SqliteDatabase('personjob.db')
 database.connect()
@@ -44,3 +45,32 @@ class PersonNumKey(BaseModel):
     person_name = CharField(max_length = 30)
     lives_in_town = CharField(max_length = 40)
     nickname = CharField(max_length = 20, null = True)
+
+
+#LESSON03 ACTIVITY ADDED BELOW
+
+class Department(BaseModel):
+    """
+        This class defines the department, which maintains details of the
+        department number, name, manager and duration the job was held.
+    """
+    dept_number = CharField(primary_key = True, max_length = 4) 
+    dept_name = CharField(max_length = 30)
+
+    dept_manager = CharField(max_length = 30)
+
+    start_date = DateField(formats = 'YYYY-MM-DD')
+    end_date = DateField(formats = 'YYYY-MM-DD')
+    
+    d_duration = end_date - start_date 
+    person_employed = ForeignKeyField(Person, related_name='was_filled_by', null = False)  
+
+
+
+    
+
+
+
+
+
+    
