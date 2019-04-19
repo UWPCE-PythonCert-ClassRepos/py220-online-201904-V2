@@ -1,0 +1,73 @@
+
+
+> /Users/alex/UW_Python/py220-online/py220-online-201904-V2/students/alex_w/lesson02/assignment/src/charges_calc.py(2)<module>()
+-> """Returns total price paid for individual rentals"""
+(Pdb) b 23
+Breakpoint 1 at /Users/alex/UW_Python/py220-online/py220-online-201904-V2/students/alex_w/lesson02/assignment/src/charges_calc.py:23
+(Pdb) c
+> /Users/alex/UW_Python/py220-online/py220-online-201904-V2/students/alex_w/lesson02/assignment/src/charges_calc.py(23)load_rentals_file()
+-> try:
+(Pdb) ll
+ 21     def load_rentals_file(filename):
+ 22         with open(filename) as file:
+ 23 B->         try:
+ 24                 data = json.load(file)
+ 25             except:
+ 26                 logging.error("Loading data from json failed, exiting")
+ 27                 exit(0)
+ 28         return data
+(Pdb) s
+> /Users/alex/UW_Python/py220-online/py220-online-201904-V2/students/alex_w/lesson02/assignment/src/charges_calc.py(24)load_rentals_file()
+-> data = json.load(file)
+(Pdb) pp file
+<_io.TextIOWrapper name='./source.json' mode='r' encoding='UTF-8'>
+(Pdb) pp filename
+'./source.json'
+(Pdb) n
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 5884 column 23 (char 130093)
+> /Users/alex/UW_Python/py220-online/py220-online-201904-V2/students/alex_w/lesson02/assignment/src/charges_calc.py(24)load_rentals_file()
+-> data = json.load(file)
+(Pdb)
+> /Users/alex/UW_Python/py220-online/py220-online-201904-V2/students/alex_w/lesson02/assignment/src/charges_calc.py(2)<module>()
+-> """Returns total price paid for individual rentals"""
+(Pdb) b 23
+Breakpoint 1 at /Users/alex/UW_Python/py220-online/py220-online-201904-V2/students/alex_w/lesson02/assignment/src/charges_calc.py:23
+(Pdb) c
+> /Users/alex/UW_Python/py220-online/py220-online-201904-V2/students/alex_w/lesson02/assignment/src/charges_calc.py(23)load_rentals_file()
+-> try:
+(Pdb) ll
+ 21     def load_rentals_file(filename):
+ 22         with open(filename) as file:
+ 23 B->         try:
+ 24                 data = json.load(file)
+ 25             except Exception as e:
+ 26                 logging.error(f'Loading data from json failed.\n\tException: {repr(e)}')
+ 27                 exit(0)
+ 28         return data
+(Pdb) s
+> /Users/alex/UW_Python/py220-online/py220-online-201904-V2/students/alex_w/lesson02/assignment/src/charges_calc.py(24)load_rentals_file()
+-> data = json.load(file)
+(Pdb) pp file
+<_io.TextIOWrapper name='./source.json' mode='r' encoding='UTF-8'>
+(Pdb) pp filename
+'./source.json'
+(Pdb) n
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 5884 column 23 (char 130093)
+> /Users/alex/UW_Python/py220-online/py220-online-201904-V2/students/alex_w/lesson02/assignment/src/charges_calc.py(24)load_rentals_file()
+-> data = json.load(file)
+(Pdb) n
+> /Users/alex/UW_Python/py220-online/py220-online-201904-V2/students/alex_w/lesson02/assignment/src/charges_calc.py(25)load_rentals_file()
+-> except Exception as e:
+(Pdb) n
+> /Users/alex/UW_Python/py220-online/py220-online-201904-V2/students/alex_w/lesson02/assignment/src/charges_calc.py(26)load_rentals_file()
+-> logging.error(f'Loading data from json failed.\n\tException: {repr(e)}')
+(Pdb) n
+2019-04-09 09:22:31,111 charges_calc.py:26  ERROR Loading data from json failed.
+    Exception: JSONDecodeError('Expecting property name enclosed in double quotes: line 5884 column 23 (char 130093)')
+> /Users/alex/UW_Python/py220-online/py220-online-201904-V2/students/alex_w/lesson02/assignment/src/charges_calc.py(27)load_rentals_file()
+-> exit(0)
+(Pdb)
+> /Users/alex/UW_Python/py220-online/py220-online-201904-V2/students/alex_w/lesson02/assignment/src/charges_calc.py(2)<module>()
+-> """Returns total price paid for individual rentals"""
+(Pdb) b 54
+Breakpoint 1 at /Users/alex/UW_Python/py220-online/py220-online-201904-V2/students/alex_w/lesson02/assignment/src/charges_calc.py:54
