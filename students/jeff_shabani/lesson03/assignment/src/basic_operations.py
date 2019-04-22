@@ -116,18 +116,3 @@ def del_all_records():
     """
     delete_alles = Customer.delete().where(Customer.name >= '')
     delete_alles.execute()
-
-
-if __name__ == '__main__':
-    # add_customer(CUSTOMERS)
-    # print((123))
-    # del_customers(123)
-    # print(search_customers(123))
-    # update_customer_credit(456, 10000)
-    # update_customer_credit(654, 10000)
-    print(search_customer(997))
-    # print(list_active_customers())
-    # del_all_records()
-    print(list_active_customers())
-
-    DB.close()
