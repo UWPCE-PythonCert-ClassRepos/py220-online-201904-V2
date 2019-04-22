@@ -8,7 +8,7 @@
 
 import pytest
 
-import basic_operations as l
+import src.basic_operations as l
 
 @pytest.fixture
 def _add_customers():

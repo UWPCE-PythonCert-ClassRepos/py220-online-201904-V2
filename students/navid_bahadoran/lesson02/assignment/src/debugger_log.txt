@@ -1,0 +1,636 @@
+2019-04-15 22:51:54,989 charges_calc.py:37  ERROR exception occurred
+Traceback (most recent call last):
+  File "charges_calc.py", line 35, in load_rentals_file
+    data = json.load(file)
+  File "C:\Python37\lib\json\__init__.py", line 296, in load
+    parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "C:\Python37\lib\json\__init__.py", line 348, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python37\lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python37\lib\json\decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 5884 column 23 (char 130093)
+2019-04-15 23:02:50,725 charges_calc.py:39  ERROR exception occurred
+Traceback (most recent call last):
+  File "charges_calc.py", line 36, in load_rentals_file
+    data = json.load(file)
+  File "C:\Python37\lib\json\__init__.py", line 296, in load
+    parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "C:\Python37\lib\json\__init__.py", line 348, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python37\lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python37\lib\json\decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 5884 column 23 (char 130093)
+2019-04-16 05:34:07,500 charges_calc.py:39  ERROR exception occurred
+Traceback (most recent call last):
+  File "charges_calc.py", line 36, in load_rentals_file
+    data = json.load(file)
+  File "C:\Python37\lib\json\__init__.py", line 296, in load
+    parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "C:\Python37\lib\json\__init__.py", line 348, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python37\lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python37\lib\json\decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 5884 column 23 (char 130093)
+2019-04-16 05:38:07,095 charges_calc.py:39  WARNING exception occurred
+2019-04-16 05:47:29,268 charges_calc.py:53  ERROR calculated_additional_fields
+Traceback (most recent call last):
+  File "charges_calc.py", line 50, in calculate_additional_fields
+    value['sqrt_total_price'] = math.sqrt(value['total_price'])
+ValueError: math domain error
+2019-04-16T22:55:56.533771-0700 charges_calc.py:79 ERROR calculated_additional_fields
+Traceback (most recent call last):
+
+  File "charges_calc.py", line 96, in <module>
+    data = calculate_additional_fields(data)
+    |      |                           -> {'RNT001': {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '6/12/17', 'rental_end': '3/22/17',...
+    |      -> <function calculate_additional_fields at 0x0000025171389BF8>
+    -> {'RNT001': {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '6/12/17', 'rental_end': '3/22/17',...
+
+> File "charges_calc.py", line 76, in calculate_additional_fields
+    value['sqrt_total_price'] = math.sqrt(value['total_price'])
+    |                           |    |    -> {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '6/12/17', 'rental_end': '3/22/17', 'total_day...
+    |                           |    -> <built-in function sqrt>
+    |                           -> <module 'math' (built-in)>
+    -> {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '6/12/17', 'rental_end': '3/22/17', 'total_day...
+
+ValueError: math domain error
+2019-04-16T22:56:11.039251-0700 charges_calc.py:79 ERROR calculated_additional_fields
+Traceback (most recent call last):
+
+  File "charges_calc.py", line 96, in <module>
+    data = calculate_additional_fields(data)
+    |      |                           -> {'RNT001': {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '6/12/17', 'rental_end': '3/22/17',...
+    |      -> <function calculate_additional_fields at 0x00000221F2A19BF8>
+    -> {'RNT001': {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '6/12/17', 'rental_end': '3/22/17',...
+
+> File "charges_calc.py", line 76, in calculate_additional_fields
+    value['sqrt_total_price'] = math.sqrt(value['total_price'])
+    |                           |    |    -> {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '6/12/17', 'rental_end': '3/22/17', 'total_day...
+    |                           |    -> <built-in function sqrt>
+    |                           -> <module 'math' (built-in)>
+    -> {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '6/12/17', 'rental_end': '3/22/17', 'total_day...
+
+ValueError: math domain error
+2019-04-17T20:50:15.182695-0700 charges_calc.py:83 ERROR calculated_additional_fields
+Traceback (most recent call last):
+
+  File "charges_calc.py", line 96, in <module>
+    main()
+    -> <function main at 0x000001347FD4C2F0>
+
+  File "charges_calc.py", line 18, in main
+    new_data = calculate_additional_fields(data)
+               |                           -> {'RNT001': {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '6/12/17', 'rental_end': '3/22/17',...
+               -> <function calculate_additional_fields at 0x0000013401BE9C80>
+
+> File "charges_calc.py", line 80, in calculate_additional_fields
+    value['sqrt_total_price'] = math.sqrt(value['total_price'])
+    |                           |    |    -> {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '6/12/17', 'rental_end': '3/22/17', 'total_day...
+    |                           |    -> <built-in function sqrt>
+    |                           -> <module 'math' (built-in)>
+    -> {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '6/12/17', 'rental_end': '3/22/17', 'total_day...
+
+ValueError: math domain error
+2019-04-17T21:01:30.750756-0700 charges_calc.py:84 ERROR calculated_additional_fields
+Traceback (most recent call last):
+
+  File "charges_calc.py", line 97, in <module>
+    main()
+    -> <function main at 0x00000211C52BC2F0>
+
+  File "charges_calc.py", line 18, in main
+    new_data = calculate_additional_fields(data)
+               |                           -> {'RNT001': {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '6/12/17', 'rental_end': '3/22/17',...
+               -> <function calculate_additional_fields at 0x00000211C781CC80>
+
+> File "charges_calc.py", line 80, in calculate_additional_fields
+    value['sqrt_total_price'] = math.sqrt(value['total_price'])
+    |                           |    |    -> {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '6/12/17', 'rental_end': '3/22/17', 'total_day...
+    |                           |    -> <built-in function sqrt>
+    |                           -> <module 'math' (built-in)>
+    -> {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '6/12/17', 'rental_end': '3/22/17', 'total_day...
+
+ValueError: math domain error
+2019-04-17 21:28:40.150 charges_calc.py:84 ERROR calculated_additional_fields
+Traceback (most recent call last):
+
+  File "charges_calc.py", line 97, in <module>
+    main()
+    -> <function main at 0x0000011B3C87C2F0>
+
+  File "charges_calc.py", line 18, in main
+    new_data = calculate_additional_fields(data)
+               |                           -> {'RNT001': {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '6/12/17', 'rental_end': '3/22/17',...
+               -> <function calculate_additional_fields at 0x0000011B3EDDDC80>
+
+> File "charges_calc.py", line 80, in calculate_additional_fields
+    value['sqrt_total_price'] = math.sqrt(value['total_price'])
+    |                           |    |    -> {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '6/12/17', 'rental_end': '3/22/17', 'total_day...
+    |                           |    -> <built-in function sqrt>
+    |                           -> <module 'math' (built-in)>
+    -> {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '6/12/17', 'rental_end': '3/22/17', 'total_day...
+
+ValueError: math domain error
+2019-04-17 21:43:21.841 charges_calc.py:79 WARNING the end date and start date of {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '6/12/17', 'rental_end': '3/22/17'} was reversed, and it is fixed.
+2019-04-17 21:43:21.842 charges_calc.py:87 ERROR calculated_additional_fields
+Traceback (most recent call last):
+
+  File "charges_calc.py", line 100, in <module>
+    main()
+    -> <function main at 0x000001C6D4FDC2F0>
+
+  File "charges_calc.py", line 18, in main
+    new_data = calculate_additional_fields(data)
+               |                           -> {'RNT001': {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '3/22/17', 'rental_end': '6/12/17',...
+               -> <function calculate_additional_fields at 0x000001C6D5A3AD08>
+
+> File "charges_calc.py", line 83, in calculate_additional_fields
+    value['sqrt_total_price'] = math.sqrt(value['total_price'])
+    |                           |    |    -> {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '3/22/17', 'rental_end': '6/12/17', 'total_day...
+    |                           |    -> <built-in function sqrt>
+    |                           -> <module 'math' (built-in)>
+    -> {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '3/22/17', 'rental_end': '6/12/17', 'total_day...
+
+ValueError: math domain error
+2019-04-17 21:47:23.697 charges_calc.py:79 WARNING the end date and start date of RNT001 was reversed, and it is fixed.
+2019-04-17 21:47:23.697 charges_calc.py:87 ERROR calculated_additional_fields
+Traceback (most recent call last):
+
+  File "charges_calc.py", line 100, in <module>
+    main()
+    -> <function main at 0x00000164E1D0C2F0>
+
+  File "charges_calc.py", line 18, in main
+    new_data = calculate_additional_fields(data)
+               |                           -> {'RNT001': {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '3/22/17', 'rental_end': '6/12/17',...
+               -> <function calculate_additional_fields at 0x00000164E277AD08>
+
+> File "charges_calc.py", line 83, in calculate_additional_fields
+    value['sqrt_total_price'] = math.sqrt(value['total_price'])
+    |                           |    |    -> {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '3/22/17', 'rental_end': '6/12/17', 'total_day...
+    |                           |    -> <built-in function sqrt>
+    |                           -> <module 'math' (built-in)>
+    -> {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '3/22/17', 'rental_end': '6/12/17', 'total_day...
+
+ValueError: math domain error
+2019-04-17 21:51:13.770 charges_calc.py:79 WARNING the end date and start date of RNT001 was reversed, and it is fixed.
+2019-04-17 21:51:13.770 charges_calc.py:79 WARNING the end date and start date of RNT006 was reversed, and it is fixed.
+2019-04-17 21:51:13.770 charges_calc.py:79 WARNING the end date and start date of RNT007 was reversed, and it is fixed.
+2019-04-17 21:51:13.771 charges_calc.py:79 WARNING the end date and start date of RNT008 was reversed, and it is fixed.
+2019-04-17 21:51:13.771 charges_calc.py:79 WARNING the end date and start date of RNT009 was reversed, and it is fixed.
+2019-04-17 21:51:13.771 charges_calc.py:79 WARNING the end date and start date of RNT010 was reversed, and it is fixed.
+2019-04-17 21:51:13.772 charges_calc.py:79 WARNING the end date and start date of RNT011 was reversed, and it is fixed.
+2019-04-17 21:51:13.772 charges_calc.py:79 WARNING the end date and start date of RNT012 was reversed, and it is fixed.
+2019-04-17 21:51:13.772 charges_calc.py:79 WARNING the end date and start date of RNT014 was reversed, and it is fixed.
+2019-04-17 21:51:13.773 charges_calc.py:79 WARNING the end date and start date of RNT016 was reversed, and it is fixed.
+2019-04-17 21:51:13.773 charges_calc.py:79 WARNING the end date and start date of RNT017 was reversed, and it is fixed.
+2019-04-17 21:51:13.773 charges_calc.py:79 WARNING the end date and start date of RNT018 was reversed, and it is fixed.
+2019-04-17 21:51:13.774 charges_calc.py:79 WARNING the end date and start date of RNT019 was reversed, and it is fixed.
+2019-04-17 21:51:13.774 charges_calc.py:79 WARNING the end date and start date of RNT020 was reversed, and it is fixed.
+2019-04-17 21:51:13.774 charges_calc.py:79 WARNING the end date and start date of RNT021 was reversed, and it is fixed.
+2019-04-17 21:51:13.774 charges_calc.py:79 WARNING the end date and start date of RNT025 was reversed, and it is fixed.
+2019-04-17 21:51:13.775 charges_calc.py:79 WARNING the end date and start date of RNT026 was reversed, and it is fixed.
+2019-04-17 21:51:13.775 charges_calc.py:79 WARNING the end date and start date of RNT028 was reversed, and it is fixed.
+2019-04-17 21:51:13.775 charges_calc.py:79 WARNING the end date and start date of RNT030 was reversed, and it is fixed.
+2019-04-17 21:51:13.776 charges_calc.py:79 WARNING the end date and start date of RNT031 was reversed, and it is fixed.
+2019-04-17 21:51:13.776 charges_calc.py:79 WARNING the end date and start date of RNT034 was reversed, and it is fixed.
+2019-04-17 21:51:13.777 charges_calc.py:79 WARNING the end date and start date of RNT040 was reversed, and it is fixed.
+2019-04-17 21:51:13.777 charges_calc.py:79 WARNING the end date and start date of RNT041 was reversed, and it is fixed.
+2019-04-17 21:51:13.777 charges_calc.py:79 WARNING the end date and start date of RNT044 was reversed, and it is fixed.
+2019-04-17 21:51:13.777 charges_calc.py:79 WARNING the end date and start date of RNT045 was reversed, and it is fixed.
+2019-04-17 21:51:13.778 charges_calc.py:79 WARNING the end date and start date of RNT046 was reversed, and it is fixed.
+2019-04-17 21:51:13.778 charges_calc.py:79 WARNING the end date and start date of RNT047 was reversed, and it is fixed.
+2019-04-17 21:51:13.779 charges_calc.py:79 WARNING the end date and start date of RNT048 was reversed, and it is fixed.
+2019-04-17 21:51:13.779 charges_calc.py:79 WARNING the end date and start date of RNT050 was reversed, and it is fixed.
+2019-04-17 21:51:13.779 charges_calc.py:79 WARNING the end date and start date of RNT056 was reversed, and it is fixed.
+2019-04-17 21:51:13.780 charges_calc.py:79 WARNING the end date and start date of RNT058 was reversed, and it is fixed.
+2019-04-17 21:51:13.780 charges_calc.py:79 WARNING the end date and start date of RNT060 was reversed, and it is fixed.
+2019-04-17 21:51:13.781 charges_calc.py:79 WARNING the end date and start date of RNT061 was reversed, and it is fixed.
+2019-04-17 21:51:13.781 charges_calc.py:79 WARNING the end date and start date of RNT062 was reversed, and it is fixed.
+2019-04-17 21:51:13.781 charges_calc.py:79 WARNING the end date and start date of RNT065 was reversed, and it is fixed.
+2019-04-17 21:51:13.781 charges_calc.py:79 WARNING the end date and start date of RNT067 was reversed, and it is fixed.
+2019-04-17 21:51:13.782 charges_calc.py:79 WARNING the end date and start date of RNT071 was reversed, and it is fixed.
+2019-04-17 21:51:13.782 charges_calc.py:79 WARNING the end date and start date of RNT074 was reversed, and it is fixed.
+2019-04-17 21:51:13.782 charges_calc.py:79 WARNING the end date and start date of RNT076 was reversed, and it is fixed.
+2019-04-17 21:51:13.783 charges_calc.py:79 WARNING the end date and start date of RNT077 was reversed, and it is fixed.
+2019-04-17 21:51:13.783 charges_calc.py:79 WARNING the end date and start date of RNT079 was reversed, and it is fixed.
+2019-04-17 21:51:13.783 charges_calc.py:79 WARNING the end date and start date of RNT084 was reversed, and it is fixed.
+2019-04-17 21:51:13.784 charges_calc.py:79 WARNING the end date and start date of RNT086 was reversed, and it is fixed.
+2019-04-17 21:51:13.784 charges_calc.py:79 WARNING the end date and start date of RNT087 was reversed, and it is fixed.
+2019-04-17 21:51:13.784 charges_calc.py:79 WARNING the end date and start date of RNT089 was reversed, and it is fixed.
+2019-04-17 21:51:13.785 charges_calc.py:79 WARNING the end date and start date of RNT092 was reversed, and it is fixed.
+2019-04-17 21:51:13.785 charges_calc.py:79 WARNING the end date and start date of RNT095 was reversed, and it is fixed.
+2019-04-17 21:51:13.785 charges_calc.py:79 WARNING the end date and start date of RNT097 was reversed, and it is fixed.
+2019-04-17 21:51:13.786 charges_calc.py:79 WARNING the end date and start date of RNT099 was reversed, and it is fixed.
+2019-04-17 21:51:13.786 charges_calc.py:79 WARNING the end date and start date of RNT100 was reversed, and it is fixed.
+2019-04-17 21:51:13.786 charges_calc.py:79 WARNING the end date and start date of RNT101 was reversed, and it is fixed.
+2019-04-17 21:51:13.787 charges_calc.py:79 WARNING the end date and start date of RNT102 was reversed, and it is fixed.
+2019-04-17 21:51:13.787 charges_calc.py:79 WARNING the end date and start date of RNT103 was reversed, and it is fixed.
+2019-04-17 21:51:13.787 charges_calc.py:79 WARNING the end date and start date of RNT104 was reversed, and it is fixed.
+2019-04-17 21:51:13.787 charges_calc.py:79 WARNING the end date and start date of RNT105 was reversed, and it is fixed.
+2019-04-17 21:51:13.788 charges_calc.py:79 WARNING the end date and start date of RNT106 was reversed, and it is fixed.
+2019-04-17 21:51:13.788 charges_calc.py:79 WARNING the end date and start date of RNT107 was reversed, and it is fixed.
+2019-04-17 21:51:13.788 charges_calc.py:79 WARNING the end date and start date of RNT109 was reversed, and it is fixed.
+2019-04-17 21:51:13.789 charges_calc.py:79 WARNING the end date and start date of RNT114 was reversed, and it is fixed.
+2019-04-17 21:51:13.789 charges_calc.py:79 WARNING the end date and start date of RNT115 was reversed, and it is fixed.
+2019-04-17 21:51:13.789 charges_calc.py:79 WARNING the end date and start date of RNT116 was reversed, and it is fixed.
+2019-04-17 21:51:13.790 charges_calc.py:79 WARNING the end date and start date of RNT118 was reversed, and it is fixed.
+2019-04-17 21:51:13.790 charges_calc.py:79 WARNING the end date and start date of RNT119 was reversed, and it is fixed.
+2019-04-17 21:51:13.790 charges_calc.py:79 WARNING the end date and start date of RNT120 was reversed, and it is fixed.
+2019-04-17 21:51:13.791 charges_calc.py:79 WARNING the end date and start date of RNT121 was reversed, and it is fixed.
+2019-04-17 21:51:13.791 charges_calc.py:79 WARNING the end date and start date of RNT122 was reversed, and it is fixed.
+2019-04-17 21:51:13.791 charges_calc.py:79 WARNING the end date and start date of RNT123 was reversed, and it is fixed.
+2019-04-17 21:51:13.792 charges_calc.py:79 WARNING the end date and start date of RNT125 was reversed, and it is fixed.
+2019-04-17 21:51:13.792 charges_calc.py:79 WARNING the end date and start date of RNT129 was reversed, and it is fixed.
+2019-04-17 21:51:13.792 charges_calc.py:79 WARNING the end date and start date of RNT130 was reversed, and it is fixed.
+2019-04-17 21:51:13.793 charges_calc.py:79 WARNING the end date and start date of RNT135 was reversed, and it is fixed.
+2019-04-17 21:51:13.793 charges_calc.py:79 WARNING the end date and start date of RNT139 was reversed, and it is fixed.
+2019-04-17 21:51:13.793 charges_calc.py:79 WARNING the end date and start date of RNT141 was reversed, and it is fixed.
+2019-04-17 21:51:13.794 charges_calc.py:79 WARNING the end date and start date of RNT142 was reversed, and it is fixed.
+2019-04-17 21:51:13.795 charges_calc.py:79 WARNING the end date and start date of RNT143 was reversed, and it is fixed.
+2019-04-17 21:51:13.795 charges_calc.py:79 WARNING the end date and start date of RNT145 was reversed, and it is fixed.
+2019-04-17 21:51:13.796 charges_calc.py:79 WARNING the end date and start date of RNT148 was reversed, and it is fixed.
+2019-04-17 21:51:13.797 charges_calc.py:79 WARNING the end date and start date of RNT149 was reversed, and it is fixed.
+2019-04-17 21:51:13.797 charges_calc.py:79 WARNING the end date and start date of RNT151 was reversed, and it is fixed.
+2019-04-17 21:51:13.798 charges_calc.py:79 WARNING the end date and start date of RNT154 was reversed, and it is fixed.
+2019-04-17 21:51:13.799 charges_calc.py:79 WARNING the end date and start date of RNT155 was reversed, and it is fixed.
+2019-04-17 21:51:13.799 charges_calc.py:79 WARNING the end date and start date of RNT157 was reversed, and it is fixed.
+2019-04-17 21:51:13.800 charges_calc.py:79 WARNING the end date and start date of RNT158 was reversed, and it is fixed.
+2019-04-17 21:51:13.800 charges_calc.py:79 WARNING the end date and start date of RNT160 was reversed, and it is fixed.
+2019-04-17 21:51:13.801 charges_calc.py:79 WARNING the end date and start date of RNT163 was reversed, and it is fixed.
+2019-04-17 21:51:13.802 charges_calc.py:79 WARNING the end date and start date of RNT164 was reversed, and it is fixed.
+2019-04-17 21:51:13.802 charges_calc.py:79 WARNING the end date and start date of RNT166 was reversed, and it is fixed.
+2019-04-17 21:51:13.803 charges_calc.py:79 WARNING the end date and start date of RNT167 was reversed, and it is fixed.
+2019-04-17 21:51:13.803 charges_calc.py:79 WARNING the end date and start date of RNT168 was reversed, and it is fixed.
+2019-04-17 21:51:13.803 charges_calc.py:79 WARNING the end date and start date of RNT169 was reversed, and it is fixed.
+2019-04-17 21:51:13.804 charges_calc.py:79 WARNING the end date and start date of RNT170 was reversed, and it is fixed.
+2019-04-17 21:51:13.804 charges_calc.py:79 WARNING the end date and start date of RNT175 was reversed, and it is fixed.
+2019-04-17 21:51:13.804 charges_calc.py:79 WARNING the end date and start date of RNT178 was reversed, and it is fixed.
+2019-04-17 21:51:13.805 charges_calc.py:79 WARNING the end date and start date of RNT179 was reversed, and it is fixed.
+2019-04-17 21:51:13.805 charges_calc.py:79 WARNING the end date and start date of RNT180 was reversed, and it is fixed.
+2019-04-17 21:51:13.805 charges_calc.py:79 WARNING the end date and start date of RNT183 was reversed, and it is fixed.
+2019-04-17 21:51:13.806 charges_calc.py:79 WARNING the end date and start date of RNT184 was reversed, and it is fixed.
+2019-04-17 21:51:13.806 charges_calc.py:79 WARNING the end date and start date of RNT187 was reversed, and it is fixed.
+2019-04-17 21:51:13.806 charges_calc.py:79 WARNING the end date and start date of RNT189 was reversed, and it is fixed.
+2019-04-17 21:51:13.807 charges_calc.py:79 WARNING the end date and start date of RNT192 was reversed, and it is fixed.
+2019-04-17 21:51:13.807 charges_calc.py:79 WARNING the end date and start date of RNT195 was reversed, and it is fixed.
+2019-04-17 21:51:13.808 charges_calc.py:79 WARNING the end date and start date of RNT196 was reversed, and it is fixed.
+2019-04-17 21:51:13.808 charges_calc.py:79 WARNING the end date and start date of RNT197 was reversed, and it is fixed.
+2019-04-17 21:51:13.808 charges_calc.py:79 WARNING the end date and start date of RNT201 was reversed, and it is fixed.
+2019-04-17 21:51:13.809 charges_calc.py:79 WARNING the end date and start date of RNT202 was reversed, and it is fixed.
+2019-04-17 21:51:13.809 charges_calc.py:79 WARNING the end date and start date of RNT207 was reversed, and it is fixed.
+2019-04-17 21:51:13.809 charges_calc.py:79 WARNING the end date and start date of RNT208 was reversed, and it is fixed.
+2019-04-17 21:51:13.810 charges_calc.py:79 WARNING the end date and start date of RNT210 was reversed, and it is fixed.
+2019-04-17 21:51:13.810 charges_calc.py:79 WARNING the end date and start date of RNT214 was reversed, and it is fixed.
+2019-04-17 21:51:13.811 charges_calc.py:79 WARNING the end date and start date of RNT216 was reversed, and it is fixed.
+2019-04-17 21:51:13.811 charges_calc.py:79 WARNING the end date and start date of RNT217 was reversed, and it is fixed.
+2019-04-17 21:51:13.812 charges_calc.py:79 WARNING the end date and start date of RNT218 was reversed, and it is fixed.
+2019-04-17 21:51:13.813 charges_calc.py:79 WARNING the end date and start date of RNT221 was reversed, and it is fixed.
+2019-04-17 21:51:13.813 charges_calc.py:79 WARNING the end date and start date of RNT223 was reversed, and it is fixed.
+2019-04-17 21:51:13.814 charges_calc.py:79 WARNING the end date and start date of RNT224 was reversed, and it is fixed.
+2019-04-17 21:51:13.815 charges_calc.py:79 WARNING the end date and start date of RNT225 was reversed, and it is fixed.
+2019-04-17 21:51:13.815 charges_calc.py:79 WARNING the end date and start date of RNT227 was reversed, and it is fixed.
+2019-04-17 21:51:13.816 charges_calc.py:79 WARNING the end date and start date of RNT229 was reversed, and it is fixed.
+2019-04-17 21:51:13.816 charges_calc.py:79 WARNING the end date and start date of RNT233 was reversed, and it is fixed.
+2019-04-17 21:51:13.817 charges_calc.py:79 WARNING the end date and start date of RNT234 was reversed, and it is fixed.
+2019-04-17 21:51:13.817 charges_calc.py:79 WARNING the end date and start date of RNT236 was reversed, and it is fixed.
+2019-04-17 21:51:13.817 charges_calc.py:79 WARNING the end date and start date of RNT238 was reversed, and it is fixed.
+2019-04-17 21:51:13.818 charges_calc.py:79 WARNING the end date and start date of RNT241 was reversed, and it is fixed.
+2019-04-17 21:51:13.818 charges_calc.py:79 WARNING the end date and start date of RNT242 was reversed, and it is fixed.
+2019-04-17 21:51:13.818 charges_calc.py:79 WARNING the end date and start date of RNT243 was reversed, and it is fixed.
+2019-04-17 21:51:13.819 charges_calc.py:79 WARNING the end date and start date of RNT244 was reversed, and it is fixed.
+2019-04-17 21:51:13.819 charges_calc.py:79 WARNING the end date and start date of RNT246 was reversed, and it is fixed.
+2019-04-17 21:51:13.819 charges_calc.py:79 WARNING the end date and start date of RNT247 was reversed, and it is fixed.
+2019-04-17 21:51:13.820 charges_calc.py:79 WARNING the end date and start date of RNT254 was reversed, and it is fixed.
+2019-04-17 21:51:13.820 charges_calc.py:79 WARNING the end date and start date of RNT258 was reversed, and it is fixed.
+2019-04-17 21:51:13.821 charges_calc.py:79 WARNING the end date and start date of RNT259 was reversed, and it is fixed.
+2019-04-17 21:51:13.821 charges_calc.py:79 WARNING the end date and start date of RNT260 was reversed, and it is fixed.
+2019-04-17 21:51:13.821 charges_calc.py:79 WARNING the end date and start date of RNT261 was reversed, and it is fixed.
+2019-04-17 21:51:13.821 charges_calc.py:79 WARNING the end date and start date of RNT264 was reversed, and it is fixed.
+2019-04-17 21:51:13.822 charges_calc.py:79 WARNING the end date and start date of RNT265 was reversed, and it is fixed.
+2019-04-17 21:51:13.822 charges_calc.py:79 WARNING the end date and start date of RNT270 was reversed, and it is fixed.
+2019-04-17 21:51:13.822 charges_calc.py:79 WARNING the end date and start date of RNT271 was reversed, and it is fixed.
+2019-04-17 21:51:13.823 charges_calc.py:79 WARNING the end date and start date of RNT272 was reversed, and it is fixed.
+2019-04-17 21:51:13.823 charges_calc.py:79 WARNING the end date and start date of RNT274 was reversed, and it is fixed.
+2019-04-17 21:51:13.823 charges_calc.py:79 WARNING the end date and start date of RNT277 was reversed, and it is fixed.
+2019-04-17 21:51:13.824 charges_calc.py:79 WARNING the end date and start date of RNT282 was reversed, and it is fixed.
+2019-04-17 21:51:13.824 charges_calc.py:79 WARNING the end date and start date of RNT283 was reversed, and it is fixed.
+2019-04-17 21:51:13.825 charges_calc.py:79 WARNING the end date and start date of RNT288 was reversed, and it is fixed.
+2019-04-17 21:51:13.825 charges_calc.py:79 WARNING the end date and start date of RNT290 was reversed, and it is fixed.
+2019-04-17 21:51:13.825 charges_calc.py:79 WARNING the end date and start date of RNT295 was reversed, and it is fixed.
+2019-04-17 21:51:13.826 charges_calc.py:79 WARNING the end date and start date of RNT296 was reversed, and it is fixed.
+2019-04-17 21:51:13.826 charges_calc.py:79 WARNING the end date and start date of RNT298 was reversed, and it is fixed.
+2019-04-17 21:51:13.827 charges_calc.py:79 WARNING the end date and start date of RNT299 was reversed, and it is fixed.
+2019-04-17 21:51:13.827 charges_calc.py:79 WARNING the end date and start date of RNT300 was reversed, and it is fixed.
+2019-04-17 21:51:13.827 charges_calc.py:79 WARNING the end date and start date of RNT301 was reversed, and it is fixed.
+2019-04-17 21:51:13.828 charges_calc.py:79 WARNING the end date and start date of RNT302 was reversed, and it is fixed.
+2019-04-17 21:51:13.829 charges_calc.py:79 WARNING the end date and start date of RNT303 was reversed, and it is fixed.
+2019-04-17 21:51:13.829 charges_calc.py:79 WARNING the end date and start date of RNT304 was reversed, and it is fixed.
+2019-04-17 21:51:13.829 charges_calc.py:79 WARNING the end date and start date of RNT305 was reversed, and it is fixed.
+2019-04-17 21:51:13.830 charges_calc.py:79 WARNING the end date and start date of RNT306 was reversed, and it is fixed.
+2019-04-17 21:51:13.830 charges_calc.py:79 WARNING the end date and start date of RNT308 was reversed, and it is fixed.
+2019-04-17 21:51:13.831 charges_calc.py:79 WARNING the end date and start date of RNT309 was reversed, and it is fixed.
+2019-04-17 21:51:13.831 charges_calc.py:79 WARNING the end date and start date of RNT310 was reversed, and it is fixed.
+2019-04-17 21:51:13.832 charges_calc.py:79 WARNING the end date and start date of RNT311 was reversed, and it is fixed.
+2019-04-17 21:51:13.832 charges_calc.py:79 WARNING the end date and start date of RNT312 was reversed, and it is fixed.
+2019-04-17 21:51:13.833 charges_calc.py:79 WARNING the end date and start date of RNT313 was reversed, and it is fixed.
+2019-04-17 21:51:13.834 charges_calc.py:79 WARNING the end date and start date of RNT314 was reversed, and it is fixed.
+2019-04-17 21:51:13.834 charges_calc.py:79 WARNING the end date and start date of RNT315 was reversed, and it is fixed.
+2019-04-17 21:51:13.834 charges_calc.py:79 WARNING the end date and start date of RNT316 was reversed, and it is fixed.
+2019-04-17 21:51:13.835 charges_calc.py:79 WARNING the end date and start date of RNT320 was reversed, and it is fixed.
+2019-04-17 21:51:13.835 charges_calc.py:79 WARNING the end date and start date of RNT321 was reversed, and it is fixed.
+2019-04-17 21:51:13.835 charges_calc.py:79 WARNING the end date and start date of RNT324 was reversed, and it is fixed.
+2019-04-17 21:51:13.836 charges_calc.py:79 WARNING the end date and start date of RNT325 was reversed, and it is fixed.
+2019-04-17 21:51:13.836 charges_calc.py:79 WARNING the end date and start date of RNT331 was reversed, and it is fixed.
+2019-04-17 21:51:13.837 charges_calc.py:79 WARNING the end date and start date of RNT335 was reversed, and it is fixed.
+2019-04-17 21:51:13.837 charges_calc.py:79 WARNING the end date and start date of RNT336 was reversed, and it is fixed.
+2019-04-17 21:51:13.837 charges_calc.py:79 WARNING the end date and start date of RNT337 was reversed, and it is fixed.
+2019-04-17 21:51:13.838 charges_calc.py:79 WARNING the end date and start date of RNT339 was reversed, and it is fixed.
+2019-04-17 21:51:13.838 charges_calc.py:79 WARNING the end date and start date of RNT343 was reversed, and it is fixed.
+2019-04-17 21:51:13.838 charges_calc.py:79 WARNING the end date and start date of RNT345 was reversed, and it is fixed.
+2019-04-17 21:51:13.839 charges_calc.py:79 WARNING the end date and start date of RNT346 was reversed, and it is fixed.
+2019-04-17 21:51:13.839 charges_calc.py:79 WARNING the end date and start date of RNT347 was reversed, and it is fixed.
+2019-04-17 21:51:13.839 charges_calc.py:79 WARNING the end date and start date of RNT352 was reversed, and it is fixed.
+2019-04-17 21:51:13.840 charges_calc.py:79 WARNING the end date and start date of RNT353 was reversed, and it is fixed.
+2019-04-17 21:51:13.840 charges_calc.py:79 WARNING the end date and start date of RNT355 was reversed, and it is fixed.
+2019-04-17 21:51:13.840 charges_calc.py:79 WARNING the end date and start date of RNT356 was reversed, and it is fixed.
+2019-04-17 21:51:13.841 charges_calc.py:79 WARNING the end date and start date of RNT361 was reversed, and it is fixed.
+2019-04-17 21:51:13.841 charges_calc.py:79 WARNING the end date and start date of RNT363 was reversed, and it is fixed.
+2019-04-17 21:51:13.842 charges_calc.py:79 WARNING the end date and start date of RNT364 was reversed, and it is fixed.
+2019-04-17 21:51:13.843 charges_calc.py:79 WARNING the end date and start date of RNT366 was reversed, and it is fixed.
+2019-04-17 21:51:13.844 charges_calc.py:79 WARNING the end date and start date of RNT371 was reversed, and it is fixed.
+2019-04-17 21:51:13.844 charges_calc.py:79 WARNING the end date and start date of RNT372 was reversed, and it is fixed.
+2019-04-17 21:51:13.845 charges_calc.py:79 WARNING the end date and start date of RNT374 was reversed, and it is fixed.
+2019-04-17 21:51:13.846 charges_calc.py:79 WARNING the end date and start date of RNT376 was reversed, and it is fixed.
+2019-04-17 21:51:13.847 charges_calc.py:79 WARNING the end date and start date of RNT379 was reversed, and it is fixed.
+2019-04-17 21:51:13.848 charges_calc.py:79 WARNING the end date and start date of RNT381 was reversed, and it is fixed.
+2019-04-17 21:51:13.848 charges_calc.py:79 WARNING the end date and start date of RNT383 was reversed, and it is fixed.
+2019-04-17 21:51:13.849 charges_calc.py:79 WARNING the end date and start date of RNT384 was reversed, and it is fixed.
+2019-04-17 21:51:13.849 charges_calc.py:79 WARNING the end date and start date of RNT386 was reversed, and it is fixed.
+2019-04-17 21:51:13.850 charges_calc.py:79 WARNING the end date and start date of RNT387 was reversed, and it is fixed.
+2019-04-17 21:51:13.851 charges_calc.py:79 WARNING the end date and start date of RNT388 was reversed, and it is fixed.
+2019-04-17 21:51:13.851 charges_calc.py:79 WARNING the end date and start date of RNT391 was reversed, and it is fixed.
+2019-04-17 21:51:13.852 charges_calc.py:79 WARNING the end date and start date of RNT392 was reversed, and it is fixed.
+2019-04-17 21:51:13.852 charges_calc.py:79 WARNING the end date and start date of RNT394 was reversed, and it is fixed.
+2019-04-17 21:51:13.853 charges_calc.py:79 WARNING the end date and start date of RNT395 was reversed, and it is fixed.
+2019-04-17 21:51:13.854 charges_calc.py:79 WARNING the end date and start date of RNT397 was reversed, and it is fixed.
+2019-04-17 21:51:13.854 charges_calc.py:79 WARNING the end date and start date of RNT400 was reversed, and it is fixed.
+2019-04-17 21:51:13.855 charges_calc.py:79 WARNING the end date and start date of RNT405 was reversed, and it is fixed.
+2019-04-17 21:51:13.855 charges_calc.py:79 WARNING the end date and start date of RNT408 was reversed, and it is fixed.
+2019-04-17 21:51:13.855 charges_calc.py:79 WARNING the end date and start date of RNT409 was reversed, and it is fixed.
+2019-04-17 21:51:13.855 charges_calc.py:79 WARNING the end date and start date of RNT412 was reversed, and it is fixed.
+2019-04-17 21:51:13.856 charges_calc.py:79 WARNING the end date and start date of RNT413 was reversed, and it is fixed.
+2019-04-17 21:51:13.856 charges_calc.py:79 WARNING the end date and start date of RNT414 was reversed, and it is fixed.
+2019-04-17 21:51:13.857 charges_calc.py:79 WARNING the end date and start date of RNT416 was reversed, and it is fixed.
+2019-04-17 21:51:13.857 charges_calc.py:79 WARNING the end date and start date of RNT421 was reversed, and it is fixed.
+2019-04-17 21:51:13.858 charges_calc.py:79 WARNING the end date and start date of RNT422 was reversed, and it is fixed.
+2019-04-17 21:51:13.858 charges_calc.py:79 WARNING the end date and start date of RNT423 was reversed, and it is fixed.
+2019-04-17 21:51:13.858 charges_calc.py:79 WARNING the end date and start date of RNT424 was reversed, and it is fixed.
+2019-04-17 21:51:13.859 charges_calc.py:79 WARNING the end date and start date of RNT427 was reversed, and it is fixed.
+2019-04-17 21:51:13.859 charges_calc.py:79 WARNING the end date and start date of RNT428 was reversed, and it is fixed.
+2019-04-17 21:51:13.859 charges_calc.py:79 WARNING the end date and start date of RNT430 was reversed, and it is fixed.
+2019-04-17 21:51:13.860 charges_calc.py:79 WARNING the end date and start date of RNT435 was reversed, and it is fixed.
+2019-04-17 21:51:13.860 charges_calc.py:79 WARNING the end date and start date of RNT436 was reversed, and it is fixed.
+2019-04-17 21:51:13.861 charges_calc.py:79 WARNING the end date and start date of RNT440 was reversed, and it is fixed.
+2019-04-17 21:51:13.862 charges_calc.py:79 WARNING the end date and start date of RNT443 was reversed, and it is fixed.
+2019-04-17 21:51:13.862 charges_calc.py:79 WARNING the end date and start date of RNT445 was reversed, and it is fixed.
+2019-04-17 21:51:13.862 charges_calc.py:79 WARNING the end date and start date of RNT446 was reversed, and it is fixed.
+2019-04-17 21:51:13.863 charges_calc.py:79 WARNING the end date and start date of RNT447 was reversed, and it is fixed.
+2019-04-17 21:51:13.863 charges_calc.py:79 WARNING the end date and start date of RNT449 was reversed, and it is fixed.
+2019-04-17 21:51:13.863 charges_calc.py:79 WARNING the end date and start date of RNT451 was reversed, and it is fixed.
+2019-04-17 21:51:13.864 charges_calc.py:79 WARNING the end date and start date of RNT453 was reversed, and it is fixed.
+2019-04-17 21:51:13.864 charges_calc.py:79 WARNING the end date and start date of RNT454 was reversed, and it is fixed.
+2019-04-17 21:51:13.864 charges_calc.py:79 WARNING the end date and start date of RNT457 was reversed, and it is fixed.
+2019-04-17 21:51:13.865 charges_calc.py:79 WARNING the end date and start date of RNT461 was reversed, and it is fixed.
+2019-04-17 21:51:13.865 charges_calc.py:79 WARNING the end date and start date of RNT462 was reversed, and it is fixed.
+2019-04-17 21:51:13.865 charges_calc.py:79 WARNING the end date and start date of RNT463 was reversed, and it is fixed.
+2019-04-17 21:51:13.866 charges_calc.py:79 WARNING the end date and start date of RNT465 was reversed, and it is fixed.
+2019-04-17 21:51:13.866 charges_calc.py:79 WARNING the end date and start date of RNT467 was reversed, and it is fixed.
+2019-04-17 21:51:13.866 charges_calc.py:79 WARNING the end date and start date of RNT472 was reversed, and it is fixed.
+2019-04-17 21:51:13.867 charges_calc.py:79 WARNING the end date and start date of RNT476 was reversed, and it is fixed.
+2019-04-17 21:51:13.867 charges_calc.py:79 WARNING the end date and start date of RNT480 was reversed, and it is fixed.
+2019-04-17 21:51:13.868 charges_calc.py:79 WARNING the end date and start date of RNT485 was reversed, and it is fixed.
+2019-04-17 21:51:13.868 charges_calc.py:79 WARNING the end date and start date of RNT487 was reversed, and it is fixed.
+2019-04-17 21:51:13.868 charges_calc.py:79 WARNING the end date and start date of RNT489 was reversed, and it is fixed.
+2019-04-17 21:51:13.869 charges_calc.py:79 WARNING the end date and start date of RNT490 was reversed, and it is fixed.
+2019-04-17 21:51:13.869 charges_calc.py:79 WARNING the end date and start date of RNT491 was reversed, and it is fixed.
+2019-04-17 21:51:13.869 charges_calc.py:79 WARNING the end date and start date of RNT493 was reversed, and it is fixed.
+2019-04-17 21:51:13.870 charges_calc.py:79 WARNING the end date and start date of RNT495 was reversed, and it is fixed.
+2019-04-17 21:51:13.870 charges_calc.py:79 WARNING the end date and start date of RNT496 was reversed, and it is fixed.
+2019-04-17 21:51:13.870 charges_calc.py:79 WARNING the end date and start date of RNT497 was reversed, and it is fixed.
+2019-04-17 21:51:13.870 charges_calc.py:79 WARNING the end date and start date of RNT501 was reversed, and it is fixed.
+2019-04-17 21:51:13.871 charges_calc.py:79 WARNING the end date and start date of RNT503 was reversed, and it is fixed.
+2019-04-17 21:51:13.872 charges_calc.py:79 WARNING the end date and start date of RNT507 was reversed, and it is fixed.
+2019-04-17 21:51:13.872 charges_calc.py:79 WARNING the end date and start date of RNT508 was reversed, and it is fixed.
+2019-04-17 21:51:13.872 charges_calc.py:79 WARNING the end date and start date of RNT509 was reversed, and it is fixed.
+2019-04-17 21:51:13.873 charges_calc.py:79 WARNING the end date and start date of RNT512 was reversed, and it is fixed.
+2019-04-17 21:51:13.873 charges_calc.py:79 WARNING the end date and start date of RNT513 was reversed, and it is fixed.
+2019-04-17 21:51:13.873 charges_calc.py:79 WARNING the end date and start date of RNT514 was reversed, and it is fixed.
+2019-04-17 21:51:13.874 charges_calc.py:79 WARNING the end date and start date of RNT515 was reversed, and it is fixed.
+2019-04-17 21:51:13.874 charges_calc.py:79 WARNING the end date and start date of RNT516 was reversed, and it is fixed.
+2019-04-17 21:51:13.874 charges_calc.py:79 WARNING the end date and start date of RNT517 was reversed, and it is fixed.
+2019-04-17 21:51:13.875 charges_calc.py:79 WARNING the end date and start date of RNT518 was reversed, and it is fixed.
+2019-04-17 21:51:13.875 charges_calc.py:79 WARNING the end date and start date of RNT520 was reversed, and it is fixed.
+2019-04-17 21:51:13.875 charges_calc.py:79 WARNING the end date and start date of RNT522 was reversed, and it is fixed.
+2019-04-17 21:51:13.876 charges_calc.py:79 WARNING the end date and start date of RNT524 was reversed, and it is fixed.
+2019-04-17 21:51:13.876 charges_calc.py:79 WARNING the end date and start date of RNT525 was reversed, and it is fixed.
+2019-04-17 21:51:13.876 charges_calc.py:79 WARNING the end date and start date of RNT528 was reversed, and it is fixed.
+2019-04-17 21:51:13.877 charges_calc.py:79 WARNING the end date and start date of RNT532 was reversed, and it is fixed.
+2019-04-17 21:51:13.878 charges_calc.py:79 WARNING the end date and start date of RNT533 was reversed, and it is fixed.
+2019-04-17 21:51:13.878 charges_calc.py:79 WARNING the end date and start date of RNT535 was reversed, and it is fixed.
+2019-04-17 21:51:13.878 charges_calc.py:79 WARNING the end date and start date of RNT536 was reversed, and it is fixed.
+2019-04-17 21:51:13.879 charges_calc.py:79 WARNING the end date and start date of RNT537 was reversed, and it is fixed.
+2019-04-17 21:51:13.879 charges_calc.py:79 WARNING the end date and start date of RNT538 was reversed, and it is fixed.
+2019-04-17 21:51:13.879 charges_calc.py:79 WARNING the end date and start date of RNT539 was reversed, and it is fixed.
+2019-04-17 21:51:13.880 charges_calc.py:79 WARNING the end date and start date of RNT541 was reversed, and it is fixed.
+2019-04-17 21:51:13.880 charges_calc.py:79 WARNING the end date and start date of RNT544 was reversed, and it is fixed.
+2019-04-17 21:51:13.880 charges_calc.py:79 WARNING the end date and start date of RNT545 was reversed, and it is fixed.
+2019-04-17 21:51:13.881 charges_calc.py:79 WARNING the end date and start date of RNT546 was reversed, and it is fixed.
+2019-04-17 21:51:13.881 charges_calc.py:79 WARNING the end date and start date of RNT548 was reversed, and it is fixed.
+2019-04-17 21:51:13.881 charges_calc.py:79 WARNING the end date and start date of RNT550 was reversed, and it is fixed.
+2019-04-17 21:51:13.881 charges_calc.py:79 WARNING the end date and start date of RNT551 was reversed, and it is fixed.
+2019-04-17 21:51:13.882 charges_calc.py:79 WARNING the end date and start date of RNT555 was reversed, and it is fixed.
+2019-04-17 21:51:13.882 charges_calc.py:79 WARNING the end date and start date of RNT558 was reversed, and it is fixed.
+2019-04-17 21:51:13.883 charges_calc.py:79 WARNING the end date and start date of RNT561 was reversed, and it is fixed.
+2019-04-17 21:51:13.883 charges_calc.py:79 WARNING the end date and start date of RNT562 was reversed, and it is fixed.
+2019-04-17 21:51:13.883 charges_calc.py:79 WARNING the end date and start date of RNT566 was reversed, and it is fixed.
+2019-04-17 21:51:13.884 charges_calc.py:79 WARNING the end date and start date of RNT569 was reversed, and it is fixed.
+2019-04-17 21:51:13.884 charges_calc.py:79 WARNING the end date and start date of RNT570 was reversed, and it is fixed.
+2019-04-17 21:51:13.884 charges_calc.py:79 WARNING the end date and start date of RNT572 was reversed, and it is fixed.
+2019-04-17 21:51:13.885 charges_calc.py:79 WARNING the end date and start date of RNT575 was reversed, and it is fixed.
+2019-04-17 21:51:13.885 charges_calc.py:79 WARNING the end date and start date of RNT580 was reversed, and it is fixed.
+2019-04-17 21:51:13.885 charges_calc.py:79 WARNING the end date and start date of RNT582 was reversed, and it is fixed.
+2019-04-17 21:51:13.886 charges_calc.py:79 WARNING the end date and start date of RNT585 was reversed, and it is fixed.
+2019-04-17 21:51:13.886 charges_calc.py:79 WARNING the end date and start date of RNT586 was reversed, and it is fixed.
+2019-04-17 21:51:13.886 charges_calc.py:79 WARNING the end date and start date of RNT587 was reversed, and it is fixed.
+2019-04-17 21:51:13.887 charges_calc.py:79 WARNING the end date and start date of RNT590 was reversed, and it is fixed.
+2019-04-17 21:51:13.887 charges_calc.py:79 WARNING the end date and start date of RNT591 was reversed, and it is fixed.
+2019-04-17 21:51:13.888 charges_calc.py:79 WARNING the end date and start date of RNT592 was reversed, and it is fixed.
+2019-04-17 21:51:13.888 charges_calc.py:79 WARNING the end date and start date of RNT593 was reversed, and it is fixed.
+2019-04-17 21:51:13.888 charges_calc.py:79 WARNING the end date and start date of RNT595 was reversed, and it is fixed.
+2019-04-17 21:51:13.889 charges_calc.py:79 WARNING the end date and start date of RNT597 was reversed, and it is fixed.
+2019-04-17 21:51:13.889 charges_calc.py:79 WARNING the end date and start date of RNT598 was reversed, and it is fixed.
+2019-04-17 21:51:13.889 charges_calc.py:79 WARNING the end date and start date of RNT599 was reversed, and it is fixed.
+2019-04-17 21:51:13.890 charges_calc.py:79 WARNING the end date and start date of RNT601 was reversed, and it is fixed.
+2019-04-17 21:51:13.890 charges_calc.py:79 WARNING the end date and start date of RNT602 was reversed, and it is fixed.
+2019-04-17 21:51:13.890 charges_calc.py:79 WARNING the end date and start date of RNT603 was reversed, and it is fixed.
+2019-04-17 21:51:13.890 charges_calc.py:79 WARNING the end date and start date of RNT604 was reversed, and it is fixed.
+2019-04-17 21:51:13.891 charges_calc.py:79 WARNING the end date and start date of RNT605 was reversed, and it is fixed.
+2019-04-17 21:51:13.891 charges_calc.py:79 WARNING the end date and start date of RNT606 was reversed, and it is fixed.
+2019-04-17 21:51:13.892 charges_calc.py:79 WARNING the end date and start date of RNT611 was reversed, and it is fixed.
+2019-04-17 21:51:13.892 charges_calc.py:79 WARNING the end date and start date of RNT613 was reversed, and it is fixed.
+2019-04-17 21:51:13.892 charges_calc.py:79 WARNING the end date and start date of RNT615 was reversed, and it is fixed.
+2019-04-17 21:51:13.893 charges_calc.py:79 WARNING the end date and start date of RNT622 was reversed, and it is fixed.
+2019-04-17 21:51:13.894 charges_calc.py:79 WARNING the end date and start date of RNT626 was reversed, and it is fixed.
+2019-04-17 21:51:13.895 charges_calc.py:79 WARNING the end date and start date of RNT630 was reversed, and it is fixed.
+2019-04-17 21:51:13.895 charges_calc.py:79 WARNING the end date and start date of RNT632 was reversed, and it is fixed.
+2019-04-17 21:51:13.896 charges_calc.py:79 WARNING the end date and start date of RNT633 was reversed, and it is fixed.
+2019-04-17 21:51:13.896 charges_calc.py:79 WARNING the end date and start date of RNT634 was reversed, and it is fixed.
+2019-04-17 21:51:13.896 charges_calc.py:79 WARNING the end date and start date of RNT636 was reversed, and it is fixed.
+2019-04-17 21:51:13.896 charges_calc.py:79 WARNING the end date and start date of RNT638 was reversed, and it is fixed.
+2019-04-17 21:51:13.897 charges_calc.py:79 WARNING the end date and start date of RNT639 was reversed, and it is fixed.
+2019-04-17 21:51:13.897 charges_calc.py:79 WARNING the end date and start date of RNT640 was reversed, and it is fixed.
+2019-04-17 21:51:13.897 charges_calc.py:79 WARNING the end date and start date of RNT642 was reversed, and it is fixed.
+2019-04-17 21:51:13.898 charges_calc.py:79 WARNING the end date and start date of RNT643 was reversed, and it is fixed.
+2019-04-17 21:51:13.898 charges_calc.py:79 WARNING the end date and start date of RNT647 was reversed, and it is fixed.
+2019-04-17 21:51:13.898 charges_calc.py:79 WARNING the end date and start date of RNT648 was reversed, and it is fixed.
+2019-04-17 21:51:13.899 charges_calc.py:79 WARNING the end date and start date of RNT649 was reversed, and it is fixed.
+2019-04-17 21:51:13.899 charges_calc.py:79 WARNING the end date and start date of RNT651 was reversed, and it is fixed.
+2019-04-17 21:51:13.899 charges_calc.py:79 WARNING the end date and start date of RNT653 was reversed, and it is fixed.
+2019-04-17 21:51:13.900 charges_calc.py:79 WARNING the end date and start date of RNT656 was reversed, and it is fixed.
+2019-04-17 21:51:13.900 charges_calc.py:79 WARNING the end date and start date of RNT659 was reversed, and it is fixed.
+2019-04-17 21:51:13.900 charges_calc.py:79 WARNING the end date and start date of RNT662 was reversed, and it is fixed.
+2019-04-17 21:51:13.901 charges_calc.py:79 WARNING the end date and start date of RNT663 was reversed, and it is fixed.
+2019-04-17 21:51:13.901 charges_calc.py:79 WARNING the end date and start date of RNT664 was reversed, and it is fixed.
+2019-04-17 21:51:13.901 charges_calc.py:79 WARNING the end date and start date of RNT665 was reversed, and it is fixed.
+2019-04-17 21:51:13.902 charges_calc.py:79 WARNING the end date and start date of RNT667 was reversed, and it is fixed.
+2019-04-17 21:51:13.902 charges_calc.py:79 WARNING the end date and start date of RNT668 was reversed, and it is fixed.
+2019-04-17 21:51:13.902 charges_calc.py:79 WARNING the end date and start date of RNT670 was reversed, and it is fixed.
+2019-04-17 21:51:13.903 charges_calc.py:79 WARNING the end date and start date of RNT671 was reversed, and it is fixed.
+2019-04-17 21:51:13.903 charges_calc.py:79 WARNING the end date and start date of RNT674 was reversed, and it is fixed.
+2019-04-17 21:51:13.903 charges_calc.py:79 WARNING the end date and start date of RNT677 was reversed, and it is fixed.
+2019-04-17 21:51:13.904 charges_calc.py:79 WARNING the end date and start date of RNT678 was reversed, and it is fixed.
+2019-04-17 21:51:13.904 charges_calc.py:79 WARNING the end date and start date of RNT679 was reversed, and it is fixed.
+2019-04-17 21:51:13.904 charges_calc.py:79 WARNING the end date and start date of RNT682 was reversed, and it is fixed.
+2019-04-17 21:51:13.904 charges_calc.py:79 WARNING the end date and start date of RNT684 was reversed, and it is fixed.
+2019-04-17 21:51:13.905 charges_calc.py:79 WARNING the end date and start date of RNT688 was reversed, and it is fixed.
+2019-04-17 21:51:13.905 charges_calc.py:79 WARNING the end date and start date of RNT691 was reversed, and it is fixed.
+2019-04-17 21:51:13.905 charges_calc.py:79 WARNING the end date and start date of RNT692 was reversed, and it is fixed.
+2019-04-17 21:51:13.906 charges_calc.py:79 WARNING the end date and start date of RNT694 was reversed, and it is fixed.
+2019-04-17 21:51:13.906 charges_calc.py:79 WARNING the end date and start date of RNT695 was reversed, and it is fixed.
+2019-04-17 21:51:13.906 charges_calc.py:79 WARNING the end date and start date of RNT698 was reversed, and it is fixed.
+2019-04-17 21:51:13.907 charges_calc.py:79 WARNING the end date and start date of RNT702 was reversed, and it is fixed.
+2019-04-17 21:51:13.907 charges_calc.py:79 WARNING the end date and start date of RNT703 was reversed, and it is fixed.
+2019-04-17 21:51:13.907 charges_calc.py:79 WARNING the end date and start date of RNT704 was reversed, and it is fixed.
+2019-04-17 21:51:13.908 charges_calc.py:79 WARNING the end date and start date of RNT706 was reversed, and it is fixed.
+2019-04-17 21:51:13.908 charges_calc.py:79 WARNING the end date and start date of RNT709 was reversed, and it is fixed.
+2019-04-17 21:51:13.908 charges_calc.py:79 WARNING the end date and start date of RNT711 was reversed, and it is fixed.
+2019-04-17 21:51:13.908 charges_calc.py:79 WARNING the end date and start date of RNT712 was reversed, and it is fixed.
+2019-04-17 21:51:13.909 charges_calc.py:79 WARNING the end date and start date of RNT715 was reversed, and it is fixed.
+2019-04-17 21:51:13.909 charges_calc.py:79 WARNING the end date and start date of RNT717 was reversed, and it is fixed.
+2019-04-17 21:51:13.909 charges_calc.py:79 WARNING the end date and start date of RNT719 was reversed, and it is fixed.
+2019-04-17 21:51:13.910 charges_calc.py:79 WARNING the end date and start date of RNT721 was reversed, and it is fixed.
+2019-04-17 21:51:13.910 charges_calc.py:79 WARNING the end date and start date of RNT722 was reversed, and it is fixed.
+2019-04-17 21:51:13.911 charges_calc.py:79 WARNING the end date and start date of RNT725 was reversed, and it is fixed.
+2019-04-17 21:51:13.911 charges_calc.py:79 WARNING the end date and start date of RNT726 was reversed, and it is fixed.
+2019-04-17 21:51:13.912 charges_calc.py:79 WARNING the end date and start date of RNT729 was reversed, and it is fixed.
+2019-04-17 21:51:13.912 charges_calc.py:79 WARNING the end date and start date of RNT731 was reversed, and it is fixed.
+2019-04-17 21:51:13.913 charges_calc.py:79 WARNING the end date and start date of RNT732 was reversed, and it is fixed.
+2019-04-17 21:51:13.913 charges_calc.py:79 WARNING the end date and start date of RNT733 was reversed, and it is fixed.
+2019-04-17 21:51:13.913 charges_calc.py:79 WARNING the end date and start date of RNT740 was reversed, and it is fixed.
+2019-04-17 21:51:13.914 charges_calc.py:79 WARNING the end date and start date of RNT745 was reversed, and it is fixed.
+2019-04-17 21:51:13.914 charges_calc.py:79 WARNING the end date and start date of RNT746 was reversed, and it is fixed.
+2019-04-17 21:51:13.915 charges_calc.py:79 WARNING the end date and start date of RNT748 was reversed, and it is fixed.
+2019-04-17 21:51:13.915 charges_calc.py:79 WARNING the end date and start date of RNT750 was reversed, and it is fixed.
+2019-04-17 21:51:13.915 charges_calc.py:79 WARNING the end date and start date of RNT751 was reversed, and it is fixed.
+2019-04-17 21:51:13.915 charges_calc.py:79 WARNING the end date and start date of RNT753 was reversed, and it is fixed.
+2019-04-17 21:51:13.916 charges_calc.py:79 WARNING the end date and start date of RNT756 was reversed, and it is fixed.
+2019-04-17 21:51:13.916 charges_calc.py:79 WARNING the end date and start date of RNT757 was reversed, and it is fixed.
+2019-04-17 21:51:13.917 charges_calc.py:79 WARNING the end date and start date of RNT759 was reversed, and it is fixed.
+2019-04-17 21:51:13.917 charges_calc.py:79 WARNING the end date and start date of RNT766 was reversed, and it is fixed.
+2019-04-17 21:51:13.917 charges_calc.py:79 WARNING the end date and start date of RNT770 was reversed, and it is fixed.
+2019-04-17 21:51:13.918 charges_calc.py:79 WARNING the end date and start date of RNT772 was reversed, and it is fixed.
+2019-04-17 21:51:13.918 charges_calc.py:79 WARNING the end date and start date of RNT773 was reversed, and it is fixed.
+2019-04-17 21:51:13.919 charges_calc.py:79 WARNING the end date and start date of RNT774 was reversed, and it is fixed.
+2019-04-17 21:55:21.918 charges_calc.py:88 ERROR calculated_additional_fields
+Traceback (most recent call last):
+
+  File "charges_calc.py", line 101, in <module>
+    main()
+    -> <function main at 0x000002671EC0C2F0>
+
+  File "charges_calc.py", line 18, in main
+    new_data = calculate_additional_fields(data)
+               |                           -> {'RNT001': {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '3/22/17', 'rental_end': '6/12/17',...
+               -> <function calculate_additional_fields at 0x000002671F64BC80>
+
+> File "charges_calc.py", line 77, in calculate_additional_fields
+    rental_end = datetime.datetime.strptime(value['rental_end'], '%m/%d/%y')
+    |            |        |        |        -> {'product_code': 'PRD70', 'units_rented': 1, 'price_per_day': 14, 'rental_start': '6/19/16', 'rental_end': ''}
+    |            |        |        -> <built-in method strptime of type object at 0x00007FFCC753D6C0>
+    |            |        -> <class 'datetime.datetime'>
+    |            -> <module 'datetime' from 'C:\\Python37\\lib\\datetime.py'>
+    -> datetime.datetime(2018, 10, 10, 0, 0)
+
+  File "C:\Python37\lib\_strptime.py", line 577, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+                                    |         |            -> '%m/%d/%y'
+                                    |         -> ''
+                                    -> <function _strptime at 0x000002671F6D2A60>
+  File "C:\Python37\lib\_strptime.py", line 359, in _strptime
+    (data_string, format))
+     |            -> '%m/%d/%y'
+     -> ''
+
+ValueError: time data '' does not match format '%m/%d/%y'
+2019-04-17 22:18:19.636 charges_calc.py:97 ERROR calculated_additional_fields
+Traceback (most recent call last):
+
+  File "charges_calc.py", line 110, in <module>
+    main()
+    -> <function main at 0x00000235C63DC2F0>
+
+  File "charges_calc.py", line 18, in main
+    new_data = calculate_additional_fields(data)
+               |                           -> {'RNT001': {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '3/22/17', 'rental_end': '6/12/17',...
+               -> <function calculate_additional_fields at 0x00000235C6E0BD90>
+
+> File "charges_calc.py", line 94, in calculate_additional_fields
+    value['unit_cost'] = value['total_price'] / value['units_rented']
+    |                    |                      -> {'product_code': 'PRD79', 'units_rented': 0, 'price_per_day': 34, 'rental_start': '6/26/16', 'rental_end': '11/7/17', 'total_day...
+    |                    -> {'product_code': 'PRD79', 'units_rented': 0, 'price_per_day': 34, 'rental_start': '6/26/16', 'rental_end': '11/7/17', 'total_day...
+    -> {'product_code': 'PRD79', 'units_rented': 0, 'price_per_day': 34, 'rental_start': '6/26/16', 'rental_end': '11/7/17', 'total_day...
+
+ZeroDivisionError: division by zero
+2019-04-17 22:23:02.430 charges_calc.py:85 WARNING the date format of RNT776 was wrong. remove this data.
+2019-04-17 22:23:02.432 charges_calc.py:98 ERROR Error happened
+Traceback (most recent call last):
+
+  File "charges_calc.py", line 111, in <module>
+    main()
+    -> <function main at 0x00000183835EC2F0>
+
+  File "charges_calc.py", line 18, in main
+    new_data = calculate_additional_fields(data)
+               |                           -> {'RNT001': {'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '3/22/17', 'rental_end': '6/12/17',...
+               -> <function calculate_additional_fields at 0x000001838402AD08>
+
+> File "charges_calc.py", line 95, in calculate_additional_fields
+    value['unit_cost'] = value['total_price'] / value['units_rented']
+    |                    |                      -> {'product_code': 'PRD79', 'units_rented': 0, 'price_per_day': 34, 'rental_start': '6/26/16', 'rental_end': '11/7/17', 'total_day...
+    |                    -> {'product_code': 'PRD79', 'units_rented': 0, 'price_per_day': 34, 'rental_start': '6/26/16', 'rental_end': '11/7/17', 'total_day...
+    -> {'product_code': 'PRD79', 'units_rented': 0, 'price_per_day': 34, 'rental_start': '6/26/16', 'rental_end': '11/7/17', 'total_day...
+
+ZeroDivisionError: division by zero
+2019-04-17 22:24:36.520 charges_calc.py:85 WARNING the date format of RNT776 was wrong. remove this data.
+2019-04-17 22:24:36.523 charges_calc.py:98 WARNING unit_rented of RNT843 was zero, cause zero division. remove this data.
+2019-04-17 22:27:23.195 charges_calc.py:85 WARNING the date format of RNT776 was wrong. remove this data.
+2019-04-17 22:27:23.198 charges_calc.py:98 WARNING unit_rented of RNT843 was zero, cause zero division. remove this data.
+2019-04-17 22:29:25.165 charges_calc.py:85 WARNING the date format of RNT776 was wrong. remove this data.
+2019-04-17 22:29:25.168 charges_calc.py:98 WARNING unit_rented of RNT843 was zero, cause zero division. remove this data.

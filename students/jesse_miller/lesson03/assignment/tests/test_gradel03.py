@@ -1,13 +1,12 @@
 """
     Autograde Lesson 3 assignment
     Run pytest
-    Run cobverage and linitng using standard batch file
+    Run coverage and linting using standard batch file
     Student should submit an empty database
 
 """
-
+# pylint: disable = E0401
 import pytest
-
 import basic_operations as l
 
 @pytest.fixture
@@ -69,7 +68,7 @@ def test_list_active_customers(_list_active_customers):
                        )
     actives = l.list_active_customers()
 
-    assert actives == 4
+    assert actives == 2
 
     for customer in _list_active_customers:
         l.delete_customer(customer[0])
