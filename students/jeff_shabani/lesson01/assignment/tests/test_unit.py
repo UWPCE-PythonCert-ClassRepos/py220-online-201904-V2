@@ -119,6 +119,19 @@ class MenuTests(TestCase):
         with self.assertRaises(SystemExit):
             main.exitprogram()
 
+    def test_electric_appliances(self):
+        testdict= {'productcode': '340',
+                   'description': 'Toaster',
+                   'marketprice': '24',
+                   'rentalprice': '15.00',
+                   'brand': 'frizi',
+                   'voltage': '220'}
+        electric_test = ElectricAppliances(*testdict.values())
+        electric_dict_test = electric_test.returnasdictionary()
+        self.assertDictEqual(testdict, electric_dict_test)
+
+
+
 
 if __name__ == '__main__':
     unittest.main()
