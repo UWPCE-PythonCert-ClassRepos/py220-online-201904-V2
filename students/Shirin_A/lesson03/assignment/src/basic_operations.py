@@ -2,7 +2,7 @@
 Program to manipulate customer database.
 
 """
-# pylint: disable=W1203, R0913, W0703, C0303
+# pylint: disable=W1203, R0913, W0703, C0303, C0121
 
 import logging
 import peewee 
@@ -48,7 +48,7 @@ def add_customer(customer_id, name, lastname, home_address, phone_number,
                     f' {customer_id}')
 
     except peewee.IntegrityError:
-        LOGGER.info('{customer_id} already exists in database%s', customer_id)
+        LOGGER.info(f'{customer_id} already exists in database')
         raise ValueError('Customer already exists in the database') from None
     except Exception as err:
         LOGGER.info(f'Error creating = {customer_id} - check all inputs.')
@@ -125,7 +125,7 @@ def list_active_customers():
     This function will return an integer with the number of
     customers whose status is currently active.
     """
-    LOGGER.info('Listing active customers')
-    query = Customer.select().where(Customer.customer_status == "active").count()
+    LOGGER.info('Listing active customers')    
+    query = Customer.select().where(Customer.customer_status == True).count()
     LOGGER.info(f'{query} customers are active')
     return query

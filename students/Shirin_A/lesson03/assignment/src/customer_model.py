@@ -4,7 +4,7 @@ Defining the schema for the Customer model.
 
 """
 
-# pylint: disable=W0614, W0401, C0103, R0903
+# pylint: disable=W0614, W0401, C0103, R0903, C0303
 import logging
 from peewee import *
 
@@ -12,7 +12,7 @@ from peewee import *
 logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
 
-database = SqliteDatabase('customer.db')
+database = SqliteDatabase('customers.db')
 LOGGER.info('Created database customer.db')
 
 database.connect()

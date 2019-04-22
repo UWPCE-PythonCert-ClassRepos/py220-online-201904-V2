@@ -9,8 +9,6 @@ logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
 
 
-LOGGER.info(
-
-    'One off program to build the classes from the model in the database')
+LOGGER.info('Creating a database using the customer model')
 cm.database.create_tables([cm.Customer])
 cm.database.close()
