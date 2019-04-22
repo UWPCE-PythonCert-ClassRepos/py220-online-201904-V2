@@ -5,7 +5,7 @@
     Student should submit an empty database
 
 """
-
+# pylint: disable= E0401
 import pytest
 
 import basic_operations as l
@@ -138,9 +138,7 @@ def test_delete_customer(_delete_customers):
                        customer[7]
                        )
 
-        response = l.delete_customer(customer[0])
-        assert response is True
-
+        l.delete_customer(customer[0])
         deleted = l.search_customer(customer[0])
         assert deleted == {}
 
