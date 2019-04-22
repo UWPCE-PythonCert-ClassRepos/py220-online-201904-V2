@@ -260,7 +260,7 @@ uncle_bob.save()
 
 # or
 
-grandma Person.create(name='Grandma', birthday=date(1925, 2, 15))
+grandma = Person.create(name='Grandma', birthday=date(1925, 2, 15))
 
 # update a row:
 grandma.name = "Grandma L."
