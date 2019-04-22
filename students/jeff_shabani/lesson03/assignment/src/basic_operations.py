@@ -7,104 +7,93 @@ import logging
 from peewee import *
 from customer_model import Customer
 
-
 logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
 
 DB = SqliteDatabase('customers.db')
 DB.connect()
 
-CUSTOMER_ID = 0
-NAME = 1
-LASTNAME = 2
-ADDRESS = 3
-PHONE_NUMBER = 4
-EMAIL = 5
-STATUS = 6
-CREDIT_LIMIT = 7
 
-CUSTOMERS = [
-    ("123", "Jurgen", "Muller", "337 Eichmann Locks", "1-615-598-8649 x975",
-     "Jurgen@muller.net", "Active", 237),
-    ("456", "Jens", "Blau", "765 Holstein Dr", "206.765.9087", "jb@mail.com",
-     "active", 0),
-    ("345", "Sven", "Kruse", "421 W. Galer", "206-908-2194", "svenk@wetten.de",
-     "active", -10),
-    ("0123", "Thor", "Weiss", "908 Howe St", "780-965-1243",
-     "niemann@nichts.com", "active", 999),
-    ("777", "Oskar", "Kratz", "67 Harald Dr", "905.987.3421",
-     "ingen@vivs.no", "active", 999)
-]
-
-
-def add_customers(*args):
+def add_customer(customer_id,
+                 name,
+                 lastname,
+                 home_address,
+                 phone_number,
+                 email,
+                 status,
+                 credit_limit):
     """
     Function to add customers to the customer table.
     :param args: an iterable of customer information
     :return: customer table is populated
     """
     # pylint: disable = W0703
-    for record in args:
-        for customer in record:
-            try:
-                with DB.transaction():
-                    new_customer = Customer.create(
-                        customerid=customer[CUSTOMER_ID],
-                        name=customer[NAME],
-                        lastname=customer[LASTNAME],
-                        home_address=customer[ADDRESS],
-                        phone_number=customer[PHONE_NUMBER],
-                        email=customer[EMAIL],
-                        status=customer[STATUS],
-                        credit_limit=customer[CREDIT_LIMIT])
-                    new_customer.save()
-                logging.info('Customer(s) successfully added')
+    try:
+        with DB.transaction():
+            new_customer = Customer.create(
+                customer_id=customer_id,
+                name=name,
+                lastname=lastname,
+                home_address=home_address,
+                phone_number=phone_number,
+                email=email,
+                status=status.lower(),
+                credit_limit=credit_limit)
+            new_customer.save()
+        logging.info('Customer(s) successfully added')
 
-            except Exception as error:
-                LOGGER.info(f'Error creating = {customer[NAME]}')
-                LOGGER.info(error)
+    except Exception as error:
+        LOGGER.info(f'Error creating = {name}')
+        LOGGER.info(error)
 
 
-def search_customers(cust_id):
+def search_customer(cust_id):
     """
     returns values of selected user
     :param cust_id:
     :return: name, lastname, email, phone number
     """
     query = (Customer
-             .select(Customer.name, Customer.lastname, Customer.email,
-                     Customer.phone_number, Customer.credit_limit)
-             .where(Customer.customerid == cust_id))
+             .select(Customer.customer_id, Customer.name, Customer.lastname,
+                     Customer.email, Customer.phone_number,
+                     Customer.home_address, Customer.status,
+                     Customer.credit_limit)
+             .where(Customer.customer_id == cust_id))
+    result = {}
+    for person in query:
+        result["customer_id"] = person.customer_id
+        result["name"] = person.name
+        result["lastname"] = person.lastname
+        result["email"] = person.email
+        result["phone_number"] = person.phone_number
+        result["home_address"] = person.home_address
+        result["status"] = person.status
+        result["credit_limit"] = person.credit_limit
+    return result
 
-    if [e.values() for e in query.dicts()] == []:
-        return dict()
 
-    return f'{[e.values() for e in query.dicts()]}'
-
-
-def del_customers(cust_id):
+def delete_customer(customer_id):
     """
     Deletes a customer specified by customer id
     :param cust_id:
     :return: record is deleted
     """
-    del_query = Customer.get(Customer.customerid == cust_id)
-    del_query.delete_instance()
+    del_query = Customer.get(Customer.customer_id == customer_id)
+    return bool(del_query.delete_instance())
 
 
-def update_customer_credit(cust_id, new_credit_limit):
+def update_customer_credit(cust_id, credit_limit):
     """
     Query that updates a specific customer's credit limit.
     :param cust_id:
     :param new_credit_limit:
     :return: Updated credit limit
     """
-    try:
-        update_query = Customer.update(credit_limit=new_credit_limit) \
-            .where(Customer.customerid == cust_id)
-        update_query.execute()
-    except ValueError:
-        print(f'Record record doe not exist')
+    update_query = Customer.update(credit_limit=credit_limit) \
+        .where(Customer.customer_id == cust_id)
+    if not update_query.execute():
+        raise ValueError("Record does not exist")
+    return True
 
 
 def list_active_customers():
@@ -115,9 +104,9 @@ def list_active_customers():
     count_query = (Customer
                    .select(Customer, fn.COUNT(Customer.name)
                            .alias('cust_count'))
-                   .where(Customer.status == str.lower('Active')))
+                   .where(Customer.status == 'active'))
     for count in count_query:
-        return f'There are {count.cust_count} active customers'
+        return count.cust_count
 
 
 def del_all_records():
@@ -130,15 +119,15 @@ def del_all_records():
 
 
 if __name__ == '__main__':
-    # _add_customers(CUSTOMERS)
-    # print(_search_customers(123))
-    # _del_customers(123)
-    # print(_search_customers(123))
-    # _update_customer_credit(456, 10000)
-    # _update_customer_credit(654, 10000)
-    # print(_search_customers(456))
-    # print(_list_active_customers())
-    # _del_all_records()
-    # print(_list_active_customers())
+    # add_customer(CUSTOMERS)
+    # print((123))
+    # del_customers(123)
+    # print(search_customers(123))
+    # update_customer_credit(456, 10000)
+    # update_customer_credit(654, 10000)
+    print(search_customer(997))
+    # print(list_active_customers())
+    # del_all_records()
+    print(list_active_customers())
 
     DB.close()

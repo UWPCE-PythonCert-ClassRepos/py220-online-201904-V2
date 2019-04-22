@@ -7,15 +7,20 @@ import logging
 from peewee import *
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+LOGGER = logging.getLogger('customers')
 
-database = SqliteDatabase('customers.db')
-database.connect()
-database.execute_sql('PRAGMA foreign_keys = ON;')
+DATABASE = SqliteDatabase('customers.db')
+DATABASE.connect()
+DATABASE.execute_sql('PRAGMA foreign_keys = ON;')
+
 
 class BaseModel(Model):
+    """
+    Creates basemodel object"""
     class Meta:
-        database = database
+        """
+        Creates basemodel object"""
+        database = DATABASE
 
 
 class Customer(BaseModel):
@@ -23,30 +28,28 @@ class Customer(BaseModel):
         This class defines customer, which maintains details of someone
         for whom we want to research career to date.
     """
-    customerid = CharField(primary_key=False)
+    customer_id = CharField(primary_key=False)
     name = CharField(max_length=30)
     lastname = CharField(max_length=30)
-    home_address = CharField(max_length=40)
+    home_address = CharField()
     phone_number = CharField()
-    email = CharField(max_length=40, null=True)
-    status = CharField(max_length=1, null=True)
+    email = CharField()
+    status = TextField()
     credit_limit = IntegerField(default=0)
     unique_id = AutoField()
+
 
 def create_table():
     """
     Create new customer table
     :return: New database table
     """
+    # pylint: disable=W0703
     try:
-        database.create_tables([Customer])
-        logger.info('Table added successfully')
-    except Exception as e:
-        logger.info(f'Table addition failed with error {e}')
+        DATABASE.create_tables([Customer])
+        LOGGER.info('Table added successfully')
+    except Exception as error:
+        LOGGER.info(f'Table addition failed with error {error}')
 
 
-
-if __name__ == '__main__':
-    create_table()
-    database.close()
-
+create_table()
