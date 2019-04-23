@@ -22,7 +22,7 @@ DATABASE = SqliteDatabase('customer.db')
 DATABASE.connect()
 DATABASE.execute_sql('PRAGMA foreign_keys = ON;') # needed for sqlite only
 
-with open('data/customer.csv', 'r') as f:
+with open('../data/customer.csv', 'r') as f:
     READCSV = csv.reader(f, delimiter=',')
     CUSTOMERS = []
     try:

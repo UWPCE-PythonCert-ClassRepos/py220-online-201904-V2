@@ -115,10 +115,10 @@ def list_active_customers():
 
 
 #test
-if __name__ == '__main__':
+#if __name__ == '__main__':
 #    add_customer('c11110', 'bill', 'smith', '11th st', '316-2342',
 #                 'etet@gmil', 'Active', 100)
-    print(search_customer('c11110'))
+#    print(search_customer('c11110'))
 #    update_customer_credit('c11110', 200)
 #    delete_customer('c11110')
 #    print(list_active_customers())
