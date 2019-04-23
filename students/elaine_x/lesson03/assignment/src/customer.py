@@ -1,6 +1,6 @@
 """
     Learning persistence with Peewee and sqlite
-    delete the database to start over
+    Add customers from csv
         (but running this program does not require it)
 
 
