@@ -44,3 +44,5 @@ class PersonNumKey(BaseModel):
     person_name = CharField(max_length = 30)
     lives_in_town = CharField(max_length = 40)
     nickname = CharField(max_length = 20, null = True)
+
+

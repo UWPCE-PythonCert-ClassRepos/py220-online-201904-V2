@@ -1,13 +1,12 @@
 """
     Autograde Lesson 3 assignment
     Run pytest
-    Run cobverage and linitng using standard batch file
+    Run coverage and linting using standard batch file
     Student should submit an empty database
 
 """
-
+# pylint: disable = E0401
 import pytest
-
 import basic_operations as l
 
 @pytest.fixture
