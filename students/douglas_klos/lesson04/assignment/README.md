@@ -1,7 +1,8 @@
 *** Lesson 04
 
-For lesson 04 I primarily altered the create_db.py file.  It now uses a
-generator to feed the csv file one line using a list comprehension into
+Again for lesson 04 we have a peewee and an sqlalchemy implementation of the
+assignment.  For this lesson I primarily altered the create_db.py file.  It now
+uses agenerator to feed the csv file one line using a list comprehension into
 the populate_database function.
 
 For the basic_operations.py there wasn't much that I could do, the majority of
@@ -9,7 +10,9 @@ the code in that file is peewee calls to the database - the iteration of
 records is done in the test file.
 
 Please note that since this is a continuation of lesson 03, a lot of the
-information below is still relevant, particularly the file layout.
+information below is still relevant, particularly the file layout and the way
+I run the code / tests.  I have made slight changes to reflect the lesson 04
+directory.
 
 *** Lesson 03
 
@@ -53,10 +56,6 @@ copy over a blank database, the reset.sh script can help with this.
 Tests are designed to cover basic_operations.py and dm_model.py.  The program
 create_db.py is a one off program to seed the database and as such I did not
 feel the need to spend time testing it.
-
-Note that if you try to run both tests by calling pytest on the directory, the
-second test often fails for reasons unknown to me.  Both tests can be run
-back to back without problem though as long as they're run separately.
 
 ```
 $ pwd

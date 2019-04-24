@@ -1,21 +1,19 @@
 #!/usr/bin/env python3
-# pylint: disable=E0401, W0106
+#pylint: disable=E0401, W0106
 """
-    Imports customer.csv to sqlite database
+    Imports customer.csv to sqlite database using SQLAlchemy
 """
 
-# Execution time for seeding the database: 293.8888795375824 seconds.
+# Execution time for seeding the database: 333.28548860549927 seconds.
 # System: Linux Mint 19, Core i7-6700k at 4.4GHz, 32GB DDR4, NVME2 Drive
 # CPU usage was only around 5-6% for the process.
-# I feel like it should have at least maxed one core and done this
-#   much more quickly, they're more than enough RAM / CPU power.
-#   Why is this bottlenecked so badly?
-# 76.34300780296326 on Manjaro 18, Core i7-8750h, 16GB DDR4, NVME2 Drive.
 
 import argparse
 import time
 from loguru import logger as LOGGER
-from peewee import IntegrityError
+from sqlalchemy import exc
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 import db_model as db
 
 # Replace 'from logurur...' with the following to switch to logging package.
@@ -28,29 +26,30 @@ def main():
     """Initializes HPNorton database
     """
     start = time.time()
-
-    LOGGER.info("Parsing command line arguments...")
     args = parse_cmd_arguments()
+    engine = create_engine("sqlite:///HPNorton.db")
 
     LOGGER.info("Initializes the HP Norton database from csv")
     LOGGER.info("Adding tables...")
-    add_tables()
+
+    add_tables(engine)
+    db_session = sessionmaker(bind=engine)
+    session = db_session()
 
     # My list comprehension to handle iteration through the csv file
     [
-        populate_database(line)
+        populate_database(line, session)
         for line in get_line(open_file(args.input))
         if not args.blank
     ]
 
-    LOGGER.info("Closing database")
-    db.database.close()
-
+    session.close()
     # The following line doesn't work properly with loguru.
     #   Using an f-string works with both logging and loguru,
     #   however f-strings throw a pylint error when used with logging.
     # LOGGER.info("Time to init: %s", time.time() - start)
     LOGGER.info(f"Time to init: {time.time() - start}",)
+
 
 
 def parse_cmd_arguments():
@@ -70,41 +69,41 @@ def parse_cmd_arguments():
         default=False,
     )
     parser.add_argument("-d", "--debug", help="debugger level", required=False)
-
     return parser.parse_args()
 
 
-def add_tables():
+def add_tables(engine):
     """Adds tables to database
     """
-    db.database.create_tables([db.Customer])
+    db.BASE.metadata.create_all(engine)
 
 
-def populate_database(line):
-    """Populates database from csv file
+def populate_database(line, session):
+    """Populates database from csv file"
 
     Arguments:
-        line {string} -- line from csv file to enter into database
+        filename {string} -- csv file to be read
     """
-
     customer = line.split(",")
     try:
-        with db.database.transaction():
-            db.Customer.create(
-                customer_id=customer[0],
-                name=customer[1],
-                last_name=customer[2],
-                home_address=customer[3],
-                phone_number=customer[4],
-                email_address=customer[5],
-                status=customer[6].lower(),
-                credit_limit=customer[7],
-            )
-            LOGGER.info("Adding record for %s", customer[0])
+        new_customer = db.Customer(
+            customer_id=customer[0],
+            name=customer[1],
+            last_name=customer[2],
+            home_address=customer[3],
+            phone_number=customer[4],
+            email_address=customer[5],
+            status=customer[6].lower(),
+            credit_limit=customer[7],
+        )
+        session.add(new_customer)
+        session.commit()
+        LOGGER.info("Adding record for %s", customer[0])
     except IndexError:
         LOGGER.info("End of file")
-    except IntegrityError:
+    except exc.IntegrityError:
         LOGGER.info("Records already in database. Skipping.")
+        session.rollback()
 
 
 def get_line(lines):

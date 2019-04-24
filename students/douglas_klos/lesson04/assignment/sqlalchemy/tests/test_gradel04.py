@@ -1,6 +1,6 @@
 # pylint: disable=C0111, R0801
 """
-    Autograde Lesson 4 assignment
+    Autograde Lesson 3 assignment
     Run pytest
     Run coverage and linitng using standard batch file
     Student should submit an empty database
@@ -66,14 +66,13 @@ def _list_active_customers():
 
 
 def test_list_active_customers(_list_active_customers):
-    """Tests list active customers
+    """Test list active customers
     """
     for customer in _list_active_customers:
         l.add_customer(customer[0], customer[1], customer[2],
                        customer[3], customer[4], customer[5],
                        customer[6], customer[7],
                        )
-
     actives = l.list_active_customers()
     assert actives == 4
 
@@ -82,12 +81,12 @@ def test_list_active_customers(_list_active_customers):
 
 
 def test_add_customer(_add_customers):
-    """Tests add customer
+    """Test add customer
     """
     for customer in _add_customers:
         l.add_customer(customer[0], customer[1], customer[2],
                        customer[3], customer[4], customer[5],
-                       customer[6], customer[7],
+                       customer[6], customer[7]
                        )
         added = l.search_customer(customer[0])
         assert added["name"] == customer[1]
@@ -100,14 +99,13 @@ def test_add_customer(_add_customers):
 
 
 def test_search_customer(_search_customers):
-    """Tests search
+    """Test search
     """
     for customer in _search_customers[0]:
         l.add_customer(customer[0], customer[1], customer[2],
                        customer[3], customer[4], customer[5],
                        customer[6], customer[7],
                        )
-
     result = l.search_customer(_search_customers[1][1])
     assert result == {}
 
@@ -123,14 +121,13 @@ def test_search_customer(_search_customers):
 
 
 def test_delete_customer(_delete_customers):
-    """Tests delete
+    """Test delete customer
     """
     for customer in _delete_customers:
         l.add_customer(customer[0], customer[1], customer[2],
                        customer[3], customer[4], customer[5],
                        customer[6], customer[7],
                        )
-
         response = l.delete_customer(customer[0])
         assert response is True
 
@@ -139,18 +136,18 @@ def test_delete_customer(_delete_customers):
 
 
 def test_update_customer_credit(_update_customer_credit):
-    """Tests update credit
+    """Test update credit limit
     """
     for customer in _update_customer_credit:
         l.add_customer(customer[0], customer[1], customer[2],
                        customer[3], customer[4], customer[5],
                        customer[6], customer[7],
                        )
-
     l.update_customer_credit("798", 0)
     l.update_customer_credit("797", 1000)
     l.update_customer_credit("797", -42)
     l.update_customer_credit("796", 500)
+
     with pytest.raises(ValueError) as excinfo:
         l.update_customer_credit("00100", 1000)  # error
         assert "NoCustomer" in str(excinfo.value)
