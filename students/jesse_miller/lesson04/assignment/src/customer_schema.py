@@ -5,13 +5,14 @@ Norton Furniture customer database schema
 '''
 import logging
 import peewee
+import config
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 logger.info('Connecting to a sqlite.')
 
-database = peewee.SqliteDatabase('customers.db')
+database = peewee.SqliteDatabase(config.database)
 database.connect()
 database.execute_sql('PRAGMA foreign_keys = ON;')
 

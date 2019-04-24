@@ -103,7 +103,8 @@ def update_customer_credit(customer_id, new_limit):
 def import_cust_file(filename):
     '''
     Importing the customer csv.  Had to add a way to skip the header to keep
-    everything in the DB sane and uniform
+    everything in the DB sane and uniform.  This currently does not work,
+    although I feel it should.
     '''
     with open(filename, newline='') as custcsv:
         cust_import = csv.reader(custcsv)
@@ -111,7 +112,23 @@ def import_cust_file(filename):
 
     with cs.database.atomic():
         cs.Customer.insert_many(cust_import, headers).execute()
+        '''
+        This seems to be the problem, but I'm not sure why.
+        '''
 
+
+def output_cust():
+    '''
+    Prints the customer information from the DB
+    '''
+    all_records = cs.Customer.select()
+
+    for person in all_records:
+        print(f'Customer ID: {person.customer_id}\nFirst Name: \
+        {person.first_name}\nLast Name: {person.last_name}\n'
+              f'Home Address: {person.home_address}\nPhone Number: \
+        {person.phone_number}\n' f'Email Address: {person.email_address}\n\
+        Status: {person.status}\nCredit Limit: ${person.credit_limit}\n')
 
 if __name__ == 'main':
     cc.main()

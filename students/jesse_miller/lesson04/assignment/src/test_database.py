@@ -205,6 +205,15 @@ def test_all():
     assert bops.list_active_customers() == 2
 
 
+@pytest.mark.paramaterize()
+def test_csv_db():
+    cs.database.create_tables([cs.Customer])
+    bops.import_cust_file('test_customer.csv')
+
+    assert csv_database
+    cs.database.drop_tables([cs.Customer])
+
+
     # def test_init():
         # '''
         # This, is because I'm curious and I have a few minutes
