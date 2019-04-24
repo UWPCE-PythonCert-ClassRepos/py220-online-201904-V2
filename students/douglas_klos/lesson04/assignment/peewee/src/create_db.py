@@ -10,7 +10,7 @@
 # I feel like it should have at least maxed one core and done this
 #   much more quickly, they're more than enough RAM / CPU power.
 #   Why is this bottlenecked so badly?
-
+# 76.34300780296326 on Manjaro 18, Core i7-8750h, 16GB DDR4, NVME2 Drive.
 
 
 import sys
@@ -38,16 +38,21 @@ def main():
     LOGGER.info("Adding tables...")
     add_tables()
 
+    # My list comprehension to handle iteration through the csv file
     [
         populate_database(line)
-        for line in open_file(args.input)
+        for line in get_line(open_file(args.input))
         if not args.blank
     ]
 
     LOGGER.info("Closing database")
     db.database.close()
 
-    LOGGER.info("Time to init: %s", time.time() - start)
+    # The following line doesn't work properly with loguru.
+    #   Using an f-string works with both logging and loguru,
+    #   however f-strings throw a pylint error when used with logging.
+    # LOGGER.info("Time to init: %s", time.time() - start) 
+    LOGGER.info(f"Time to init: {time.time() - start}",)
 
 
 def parse_cmd_arguments():
@@ -103,20 +108,33 @@ def populate_database(line):
         LOGGER.info("Records already in database. Skipping.")
 
 
+def get_line(lines):
+    """Generator for lines of content from csv file
+
+    Arguments:
+        lines {list} -- List of lines containing data from csv file
+
+    Yields:
+        string -- CSV string containing information for a single customer.
+    """
+    for line in lines:
+        yield line
+
+
 def open_file(filename):
     """Opens the file specified from the command line
 
     Arguments:
         filename {string} -- Name of CSV file to import
 
-    Yields:
-        line containing customer data from csv file
+    Returns:
+        list containing lines of customer data from csv file
     """
+    # I'm assuming pythons garbage collection takes care of closing the file.
     with open(filename, "rb") as content:
         next(content)  # Skip first line, it's the column names
-        lines = content.read().decode("utf-8", errors="ignore").split("\n")
-        for line in lines:
-            yield line
+        return content.read().decode("utf-8", errors="ignore").split("\n")
+
 
 
 if __name__ == "__main__":

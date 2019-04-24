@@ -1,6 +1,6 @@
 # pylint: disable=C0111, R0801
 """
-    Autograde Lesson 3 assignment
+    Autograde Lesson 4 assignment
     Run pytest
     Run coverage and linitng using standard batch file
     Student should submit an empty database
