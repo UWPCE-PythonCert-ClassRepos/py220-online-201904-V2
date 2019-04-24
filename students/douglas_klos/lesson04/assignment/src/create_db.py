@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-#pylint: disable=E0401
+# pylint: disable=E0401
 """
     Imports customer.csv to sqlite database
 """
@@ -13,28 +13,39 @@
 
 
 import sys
-import logging
+from loguru import logger as LOGGER
 import argparse
 import time
 from peewee import IntegrityError
 import db_model as db
 
-logging.basicConfig(level=logging.INFO)
-LOGGER = logging.getLogger(__name__)
+# Replace from logurur... with the following to switch to logging package.
+# import logging
+# logging.basicConfig(level=logging.INFO)
+# LOGGER = logging.getLogger(__name__)
 
 
 def main():
     """Initializes HPNorton database
     """
     start = time.time()
+
+    LOGGER.info("Parsing command line arguments...")
     args = parse_cmd_arguments()
+
     LOGGER.info("Initializes the HP Norton database from csv")
     LOGGER.info("Adding tables...")
     add_tables()
-    if not args.blank:
-        populate_database(args.input)
+
+    [
+        populate_database(line)
+        for line in open_file(args.input)
+        if not args.blank
+    ]
+
     LOGGER.info("Closing database")
     db.database.close()
+
     LOGGER.info("Time to init: %s", time.time() - start)
 
 
@@ -64,35 +75,47 @@ def add_tables():
     db.database.create_tables([db.Customer])
 
 
-def populate_database(filename):
+def populate_database(line):
     """Populates database from csv file"
 
     Arguments:
-        filename {string} -- csv file to be read
+        line {string} -- line from csv file to enter into database
+    """
+
+    customer = line.split(",")
+    try:
+        with db.database.transaction():
+            db.Customer.create(
+                customer_id=customer[0],
+                name=customer[1],
+                last_name=customer[2],
+                home_address=customer[3],
+                phone_number=customer[4],
+                email_address=customer[5],
+                status=customer[6].lower(),
+                credit_limit=customer[7],
+            )
+            LOGGER.info("Adding record for %s", customer[0])
+    except IndexError:
+        LOGGER.info("End of file")
+    except IntegrityError:
+        LOGGER.info("Records already in database. Skipping.")
+
+
+def open_file(filename):
+    """Opens the file specified from the command line
+
+    Arguments:
+        filename {string} -- Name of CSV file to import
+
+    Yields:
+        line containing customer data from csv file
     """
     with open(filename, "rb") as content:
         next(content)  # Skip first line, it's the column names
         lines = content.read().decode("utf-8", errors="ignore").split("\n")
         for line in lines:
-            customer = line.split(",")
-            try:
-                with db.database.transaction():
-                    db.Customer.create(
-                        customer_id=customer[0],
-                        name=customer[1],
-                        last_name=customer[2],
-                        home_address=customer[3],
-                        phone_number=customer[4],
-                        email_address=customer[5],
-                        status=customer[6].lower(),
-                        credit_limit=customer[7],
-                    )
-                    LOGGER.info("Adding record for %s", customer[0])
-            except IndexError:
-                LOGGER.info("End of file")
-            except IntegrityError:
-                LOGGER.info("Records already in database. Exiting.")
-                sys.exit(0)
+            yield line
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-# pylint: disable=E0401, R0913, W0401, E0602
+# pylint: disable=E0401, R0913, W0401, E0602, W0703
 """
     Basic operations for HP Norton database
 """
@@ -68,11 +68,10 @@ def search_customer(customer_id):
                             for specified customer_id.  Returns empty dict
                             if customer not found.
     """
-    query = db.Customer.select(db.Customer).where(
-        db.Customer.customer_id == customer_id
-    )
     cust = {}
-    for item in query:
+
+    try:
+        item = db.Customer.get(db.Customer.customer_id == customer_id)
         cust["customer_id"] = item.customer_id
         cust["name"] = item.name
         cust["lastname"] = item.last_name
@@ -81,7 +80,12 @@ def search_customer(customer_id):
         cust["home_address"] = item.home_address
         cust["status"] = item.status
         cust["credit_limit"] = item.credit_limit
-    return cust
+        return cust
+    # This is what is thrown, but when I try to catch it comes back not defined.
+    # except CustomerDoesNotExist as ex:
+    except Exception: # as ex:
+        # print(f"{type(ex).__name__}")
+        return cust
 
 
 def delete_customer(customer_id):
