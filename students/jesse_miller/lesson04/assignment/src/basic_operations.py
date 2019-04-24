@@ -17,7 +17,7 @@ log_file = logging.FileHandler('db.log')
 log_file.setLevel(logging.DEBUG)
 
 log_format = logging.Formatter('%(asctime)s %(filename)s:%(lineno)-3d\
-                                %(levelname)s %(message)s')
+%(levelname)s %(message)s')
 
 log_file.setFormatter(log_format)
 
@@ -114,7 +114,7 @@ def update_customer_credit(customer_id, new_limit):
         raise peewee.DoesNotExist
 
 
-def import_cust_file(filename):
+def import_cust_file():
     '''
     Importing the customer csv.  Had to add a way to skip the header to keep
     everything in the DB sane and uniform.  This currently does not work,
@@ -171,3 +171,5 @@ def output_cust():
 
 if __name__ == 'main':
     cc.main()
+    import_cust_file()
+    output_cust()

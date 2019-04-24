@@ -13,7 +13,7 @@ log_file = logging.FileHandler('db.log')
 log_file.setLevel(logging.DEBUG)
 
 log_format = logging.Formatter('%(asctime)s %(filename)s:%(lineno)-3d\
-                                %(levelname)s %(message)s')
+%(levelname)s %(message)s')
 
 log_file.setFormatter(log_format)
 
