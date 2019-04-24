@@ -160,6 +160,23 @@ def test_list_customers_none():
     clear_database()
 
 
+def test_csv_db():
+    cs.database.create_tables([cs.Customer])
+    bops.import_cust_file('test_customer.csv')
+
+    assert test_csv_db
+    cs.database.drop_tables([cs.Customer])
+
+
+def test_output_cust():
+    cs.database.create_tables([cs.Customer])
+    bops.import_cust_file('test_customer.csv')
+    bops.output_cust()
+    assert 'Bashirian'
+    cs.database.drop_tables([cs.Customer])
+
+
+
 def test_all():
     '''
     Okay, this one I'm commenting.  I will be populating a DB and testing all
@@ -203,15 +220,6 @@ def test_all():
     Last, we list the active customers
     '''
     assert bops.list_active_customers() == 2
-
-
-@pytest.mark.paramaterize()
-def test_csv_db():
-    cs.database.create_tables([cs.Customer])
-    bops.import_cust_file('test_customer.csv')
-
-    assert csv_database
-    cs.database.drop_tables([cs.Customer])
 
 
     # def test_init():

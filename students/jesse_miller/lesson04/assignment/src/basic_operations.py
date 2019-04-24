@@ -2,12 +2,12 @@
 '''
 Creating customer database for Norton Furniture
 '''
+import sqlite3
 import logging
 import csv
 import peewee
 import customer_schema as cs
 import customer_creation as cc
-
 
 logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
@@ -106,16 +106,40 @@ def import_cust_file(filename):
     everything in the DB sane and uniform.  This currently does not work,
     although I feel it should.
     '''
-    with open(filename, newline='') as custcsv:
-        cust_import = csv.reader(custcsv)
-        headers = next(cust_import, None)
+    # pylint: disable=C0103
+    filename = 'customer.csv'
+    with open(filename, 'r', encoding="ISO-8859-1") as f:
+        next(f, None)  # skip the header row
+        reader = csv.reader(f)
 
-    with cs.database.atomic():
-        cs.Customer.insert_many(cust_import, headers).execute()
-        '''
-        This seems to be the problem, but I'm not sure why.
-        '''
+        sql = sqlite3.connect('customers.db')
+        logging.info('Opening database')
+        cursor = sql.cursor()
 
+        try:
+            cursor.execute('''CREATE TABLE IF NOT EXISTS Customer
+                        (customer_id,
+                        first_name,
+                        last_name,
+                        home_address,
+                        phone_number,
+                        email_address,
+                        status,
+                        credit_limit)''')
+
+            for row in reader:
+                cursor.execute('INSERT INTO customer VALUES ?, ?, ?, ?, ?, ?, \
+                               ?, ?)', row)
+            logging.info('Import successful')
+            sql.commit()
+            logging.info('Import committed')
+            sql.close()
+        # pylint: disable=W0703
+        except Exception as error:
+            logging.error('Unable to load customer data')
+            logging.error(error)
+
+        logging.info('Import transaction complete')
 
 def output_cust():
     '''
