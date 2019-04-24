@@ -100,5 +100,18 @@ def update_customer_credit(customer_id, new_limit):
         raise peewee.DoesNotExist
 
 
+def import_cust_file(filename):
+    '''
+    Importing the customer csv.  Had to add a way to skip the header to keep
+    everything in the DB sane and uniform
+    '''
+    with open(filename, newline='') as custcsv:
+        cust_import = csv.reader(custcsv)
+        headers = next(cust_import, None)
+
+    with cs.database.atomic():
+        cs.Customer.insert_many(cust_import, headers).execute()
+
+
 if __name__ == 'main':
     cc.main()
