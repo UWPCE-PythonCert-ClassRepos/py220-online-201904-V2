@@ -163,7 +163,7 @@ def test_list_customers_none():
 def test_csv_db():
     cs.database.create_tables([cs.Customer])
     bops.import_cust_file('test_customer.csv')
-
+    assert 'Import committed'
     assert test_csv_db
     cs.database.drop_tables([cs.Customer])
 
@@ -174,7 +174,6 @@ def test_output_cust():
     bops.output_cust()
     assert 'Bashirian'
     cs.database.drop_tables([cs.Customer])
-
 
 
 def test_all():
