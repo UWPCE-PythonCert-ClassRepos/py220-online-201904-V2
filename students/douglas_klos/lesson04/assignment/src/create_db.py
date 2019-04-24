@@ -12,6 +12,7 @@
 #   Why is this bottlenecked so badly?
 
 
+
 import sys
 from loguru import logger as LOGGER
 import argparse
