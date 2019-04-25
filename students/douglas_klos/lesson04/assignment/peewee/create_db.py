@@ -12,11 +12,12 @@
 #   Why is this bottlenecked so badly?
 # 76.34300780296326 on Manjaro 18, Core i7-8750h, 16GB DDR4, NVME2 Drive.
 
+import sys
 import argparse
 import time
 from loguru import logger as LOGGER
 from peewee import IntegrityError
-import db_model as db
+import src.db_model as db
 
 # Replace 'from logurur...' with the following to switch to logging package.
 # import logging
@@ -30,7 +31,8 @@ def main():
     start = time.time()
 
     LOGGER.info("Parsing command line arguments...")
-    args = parse_cmd_arguments()
+    print(sys.argv[1:])
+    args = parse_cmd_arguments(sys.argv[1:])
 
     LOGGER.info("Initializes the HP Norton database from csv")
     LOGGER.info("Adding tables...")
@@ -53,7 +55,7 @@ def main():
     LOGGER.info(f"Time to init: {time.time() - start}",)
 
 
-def parse_cmd_arguments():
+def parse_cmd_arguments(args):
     """Parses the command line arguments
 
     Returns:
@@ -69,9 +71,7 @@ def parse_cmd_arguments():
         required=False,
         default=False,
     )
-    parser.add_argument("-d", "--debug", help="debugger level", required=False)
-
-    return parser.parse_args()
+    return parser.parse_args(args)
 
 
 def add_tables():
@@ -104,7 +104,7 @@ def populate_database(line):
     except IndexError:
         LOGGER.info("End of file")
     except IntegrityError:
-        LOGGER.info("Records already in database. Skipping.")
+        LOGGER.warning("Records already in database. Skipping.")
 
 
 def get_line(lines):

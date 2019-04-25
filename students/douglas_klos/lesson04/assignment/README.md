@@ -1,28 +1,20 @@
 *** Lesson 04
 
 Again for lesson 04 we have a peewee and an sqlalchemy implementation of the
-assignment.  For this lesson I primarily altered the create_db.py file.  It now
-uses agenerator to feed the csv file one line using a list comprehension into
-the populate_database function.
+assignment, each running separately.  For this lesson I primarily altered the 
+create_db.py file.  It now uses a generator to feed the csv file one line using
+a list comprehension into the populate_database function.  I have also added
+some test cases for create_db.py that weren't present in the l03 version.
 
 For the basic_operations.py there wasn't much that I could do, the majority of
-the code in that file is peewee calls to the database - the iteration of
-records is done in the test file.
+the code in that file is peewee/sqlalchemy calls to the database - the
+iteration of records is done in the test file.
 
-Please note that since this is a continuation of lesson 03, a lot of the
-information below is still relevant, particularly the file layout and the way
-I run the code / tests.  I have made slight changes to reflect the lesson 04
-directory.
-
-*** Lesson 03
-
-For this assignment we have completed two separate implementations
-of the requested functions, one using Peewee and the other using
-SQLAlchemy.  Each implementation function independently of each other.
-
+Following is a layout of the assignment files:
 ```
 assignment
-├── peewee
+├create_db.py
+├───peewee
 │    ├─── data - databases and csv files
 │    ├─── src - main python code
 │    └─── tests - pytest files
@@ -32,8 +24,8 @@ assignment
      └─── tests - pytest files
 ```
 
-The data folder contains the following files, these allowed me to 
-quickly reset the database to different states with a cp.
+The data folder contains the following files, these allowed me to quickly reset 
+the database to different states with a copy (cp) command.
 ```
 customer.csv - Full HP Norton database in CSV format.
 head-cust.csv - Top ten lines, or head, or customer.csv.
@@ -42,20 +34,21 @@ HPHead.db - Database containing the top ten lines from the customer.csv.
 HPNorton.dp - Full csv database imported into SQLite3.
 ```
 
+The root folder contains:
+```
+create_db.py - One off program to seed the customer.csv file into HPNorton.dp.
+```
 
 The src folder contains the following files:
 ```
 basic_operation.py - The functions required by the assignment.
 db_model.py - The class definition for the sql table.
-create_db.py - One off program to seed the customer.csv file into HPNorton.dp.
 ```
 
 Tests were run from the root of the project, example below.  Tests are designed
 to cleanup after themselves, but if failures happen it is a good idea to
 copy over a blank database, the reset.sh script can help with this.
-Tests are designed to cover basic_operations.py and dm_model.py.  The program
-create_db.py is a one off program to seed the database and as such I did not
-feel the need to spend time testing it.
+Tests are designed to cover basic_operations.py and dm_model.py.
 
 ```
 $ pwd
@@ -63,16 +56,17 @@ $ pwd
 $ ./reset.sh
 $ pytest --cov=src --cov-report html ./tests/test_basic_operations.py
 $ pytest --cov=src --cov-report html ./tests/test_gradel04.py
+$ pytest --cov=create_db --cov-report html ./tests/test_create_db.py
 ```
 
 A new copy of the HPNorton database can be generated as following.
 ```
-$ ./src/create_db.py -i data/customer.csv
+$ ./create_db.py -i data/customer.csv
 ```
 
 A new blank database can be created with:
 ```
-$ ./src/create_db.py -i data/customer.csv -b
+$ ./create_db.py -i data/customer.csv -b
 ```
 
 My conclusion after doing both of these, Peewee is certainly easier to use, 

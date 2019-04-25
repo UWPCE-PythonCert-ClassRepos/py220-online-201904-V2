@@ -83,7 +83,7 @@ def search_customer(customer_id):
         return cust
     # This is what is thrown, but when I try to catch it comes back not defined.
     # except CustomerDoesNotExist as ex:
-    except Exception:  # as ex:
+    except Exception: # as ex:
         # print(f"{type(ex).__name__}")
         return cust
 
