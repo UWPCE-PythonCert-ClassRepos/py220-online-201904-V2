@@ -44,7 +44,8 @@ def main(argv=None):
 
     LOGGER.info("Closing database")
     db.database.close()
-    LOGGER.info("Time to init: %s", time.time() - start)
+    # LOGGER.info("Time to init: %s", time.time() - start)
+    LOGGER.info(f"Time to init: {time.time() - start}",)
 
 
 def parse_cmd_arguments(args):
@@ -94,12 +95,14 @@ def populate_database(line):
             )
             # If this is passed using % notation pytest caplog won't get the
             #   value of customer[0], instead just shows as %s.
-            LOGGER.info(f"Adding record for {customer[0]}")
+        LOGGER.info(f"Adding record for {customer[0]}")
+        return f"Adding record for {customer[0]}"
     except IndexError:
         LOGGER.info("End of file")
+        return f"End of file"
     except IntegrityError:
         LOGGER.warning("Records already in database. Skipping.")
-        # raise IntegrityError
+        return f"Records already in database. Skipping. {customer[0]}"
 
 
 def get_line(lines):

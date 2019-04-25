@@ -1,19 +1,35 @@
-# pylint: disable=E0401, W0401
+# pylint: disable=E0401
 """
     Tests for create_db.py
 """
 
-
 import logging
-from peewee import *
+from sqlalchemy import exc
+from sqlalchemy import Table
+from sqlalchemy import MetaData
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 import create_db as cdb
 
 
 def test_add_tables():
     """Test add_tables function
     """
-    cdb.add_tables()
-    fields = str(cdb.db.database.get_columns("Customer"))
+    engine = create_engine("sqlite:///HPNorton.db")
+    db_session = sessionmaker(bind=engine)
+    session = db_session()
+    metadata = MetaData(bind=engine)
+    cdb.add_tables(engine)
+
+    # Verifies that table is created in database
+    try:
+        customers = Table("Customer", metadata, autoload=True)
+    except exc.NoSuchTableError:
+        raise exc.NoSuchTableError
+
+    fields = str(session.query(customers))
+
+    # Verifies that all expected columns are present.
     assert "customer_id" in fields
     assert "name" in fields
     assert "last_name" in fields
@@ -58,21 +74,25 @@ def test_parse_cmd_arguments():
 def test_populate_database():
     """Test populate_database function
     """
-    # Seed database
+    engine = create_engine("sqlite:///HPNorton.db")
+    db_session = sessionmaker(bind=engine)
+    session = db_session()
+    metadata = MetaData(bind=engine)
+    customers = Table("Customer", metadata, autoload=True)
+
     with open("./data/head-cust.csv", "rb") as content:
         next(content)
         lines = content.read().decode("utf-8", errors="ignore").split("\n")
         for line in lines:
-            cdb.populate_database(line)
+            cdb.populate_database(line, session)
 
-    # Make sure we cover the code for IntegriteError exception.
+    # Make sure we cover code for IntegriteError, assert records are skipped.
     with open("./data/head-cust.csv", "rb") as content:
         next(content)
         lines = content.read().decode("utf-8", errors="ignore").split("\n")
         for line in lines[:-1]:
             customer = line.split(",")
-            record = str(cdb.populate_database(line))
-            print(f"record = {record}")
+            record = str(cdb.populate_database(line, session))
             assert (
                 f"Records already in database. Skipping. {customer[0]}"
                 in record
@@ -84,18 +104,20 @@ def test_populate_database():
         lines = content.read().decode("utf-8", errors="ignore").split("\n")
         for line in lines[:-1]:
             customer = line.split(",")
-            item = cdb.db.Customer.get(
-                cdb.db.Customer.customer_id == customer[0]
+            select_st = customers.select().where(
+                customers.c.customer_id == customer[0]
             )
-            print(item.customer_id)
-            assert item.customer_id == customer[0]
-            assert item.name == customer[1]
-            assert item.last_name == customer[2]
-            assert item.home_address == customer[3]
-            assert item.phone_number == customer[4]
-            assert item.email_address == customer[5]
-            assert item.status.lower() == customer[6].lower()
-            assert int(item.credit_limit) == int(customer[7])
+            query = session.execute(select_st)
+            for item in query:
+                # print(item.customer_id)
+                assert item.customer_id == customer[0]
+                assert item.name == customer[1]
+                assert item.last_name == customer[2]
+                assert item.home_address == customer[3]
+                assert item.phone_number == customer[4]
+                assert item.email_address == customer[5]
+                assert item.status.lower() == customer[6].lower()
+                assert int(item.credit_limit) == int(customer[7])
 
     # Cleanup database.
     with open("./data/head-cust.csv", "rb") as content:
@@ -103,8 +125,8 @@ def test_populate_database():
         lines = content.read().decode("utf-8", errors="ignore").split("\n")
         for line in lines[:-1]:
             customer = line.split(",")
-            query = cdb.db.Customer.delete().where(
-                cdb.db.Customer.customer_id == customer[0]
+            query = customers.delete().where(
+                customers.c.customer_id == customer[0]
             )
             assert bool(query.execute()) is True
 
@@ -112,6 +134,12 @@ def test_populate_database():
 def test_main(caplog):
     """Test main function
     """
+    engine = create_engine("sqlite:///HPNorton.db")
+    db_session = sessionmaker(bind=engine)
+    session = db_session()
+    metadata = MetaData(bind=engine)
+    customers = Table("Customer", metadata, autoload=True)
+
     caplog.set_level(logging.INFO)
     cdb.main(["-i", "./data/head-cust.csv"])
     output = [record for record in caplog.records]
@@ -135,26 +163,27 @@ def test_main(caplog):
         lines = content.read().decode("utf-8", errors="ignore").split("\n")
         for line in lines[:-1]:
             customer = line.split(",")
-            item = cdb.db.Customer.get(
-                cdb.db.Customer.customer_id == customer[0]
+            select_st = customers.select().where(
+                customers.c.customer_id == customer[0]
             )
-            assert item.customer_id == customer[0]
-            assert item.name == customer[1]
-            assert item.last_name == customer[2]
-            assert item.home_address == customer[3]
-            assert item.phone_number == customer[4]
-            assert item.email_address == customer[5]
-            assert item.status.lower() == customer[6].lower()
-            assert int(item.credit_limit) == int(customer[7])
+            query = session.execute(select_st)
+            for item in query:
+                assert item.customer_id == customer[0]
+                assert item.name == customer[1]
+                assert item.last_name == customer[2]
+                assert item.home_address == customer[3]
+                assert item.phone_number == customer[4]
+                assert item.email_address == customer[5]
+                assert item.status.lower() == customer[6].lower()
+                assert int(item.credit_limit) == int(customer[7])
 
-    # Cleanup database
+    # Cleanup database.
     with open("./data/head-cust.csv", "rb") as content:
         next(content)
         lines = content.read().decode("utf-8", errors="ignore").split("\n")
         for line in lines[:-1]:
             customer = line.split(",")
-            query = cdb.db.Customer.delete().where(
-                cdb.db.Customer.customer_id == customer[0]
+            query = customers.delete().where(
+                customers.c.customer_id == customer[0]
             )
             assert bool(query.execute()) is True
-        # assert False

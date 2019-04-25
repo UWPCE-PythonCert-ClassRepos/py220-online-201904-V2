@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-#pylint: disable=E0401, W0106
+#pylint: disable=E0401, W0106, W1203
 """
     Imports customer.csv to sqlite database using SQLAlchemy
 """
@@ -10,23 +10,23 @@
 
 import argparse
 import time
-from loguru import logger as LOGGER
+import logging
 from sqlalchemy import exc
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-import db_model as db
-
-# Replace 'from logurur...' with the following to switch to logging package.
-# import logging
-# logging.basicConfig(level=logging.INFO)
-# LOGGER = logging.getLogger(__name__)
+import src.db_model as db
 
 
-def main():
+logging.basicConfig(level=logging.INFO)
+LOGGER = logging.getLogger(__name__)
+
+
+def main(argv=None):
     """Initializes HPNorton database
     """
     start = time.time()
-    args = parse_cmd_arguments()
+    LOGGER.info("Parsing command line arguments...")
+    args = parse_cmd_arguments(argv)
     engine = create_engine("sqlite:///HPNorton.db")
 
     LOGGER.info("Initializes the HP Norton database from csv")
@@ -43,16 +43,13 @@ def main():
         if not args.blank
     ]
 
+    LOGGER.info("Closing database")
     session.close()
-    # The following line doesn't work properly with loguru.
-    #   Using an f-string works with both logging and loguru,
-    #   however f-strings throw a pylint error when used with logging.
-    # LOGGER.info("Time to init: %s", time.time() - start)
-    LOGGER.info(f"Time to init: {time.time() - start}",)
+    LOGGER.info("Time to init: %s", time.time() - start)
+    # LOGGER.info(f"Time to init: {time.time() - start}",)
 
 
-
-def parse_cmd_arguments():
+def parse_cmd_arguments(args):
     """Parses the command line arguments
 
     Returns:
@@ -68,8 +65,7 @@ def parse_cmd_arguments():
         required=False,
         default=False,
     )
-    parser.add_argument("-d", "--debug", help="debugger level", required=False)
-    return parser.parse_args()
+    return parser.parse_args(args)
 
 
 def add_tables(engine):
@@ -98,12 +94,15 @@ def populate_database(line, session):
         )
         session.add(new_customer)
         session.commit()
-        LOGGER.info("Adding record for %s", customer[0])
+        LOGGER.info(f"Adding record for {customer[0]}")
+        return f"Adding record for {customer[0]}"
     except IndexError:
         LOGGER.info("End of file")
+        return f"End of file"
     except exc.IntegrityError:
         LOGGER.info("Records already in database. Skipping.")
         session.rollback()
+        return f"Records already in database. Skipping. {customer[0]}"
 
 
 def get_line(lines):

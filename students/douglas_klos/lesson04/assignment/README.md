@@ -8,20 +8,29 @@ some test cases for create_db.py that weren't present in the l03 version.
 
 For the basic_operations.py there wasn't much that I could do, the majority of
 the code in that file is peewee/sqlalchemy calls to the database - the
-iteration of records is done in the test file.
+iteration of records is done in the test file.  No changes were made to the
+db_model.py file.
 
 Following is a layout of the assignment files:
 ```
 assignment
-├create_db.py
 ├───peewee
-│    ├─── data - databases and csv files
-│    ├─── src - main python code
-│    └─── tests - pytest files
+│    ├─── create_db.py - main program for seeding database.
+│    ├─── data/ - databases and csv files
+│    ├─── src/ - main python code
+│    └─── tests/ - pytest files
 └─── sqlalchemy
-     ├─── data - databases and csv files
-     ├─── src - main python code
-     └─── tests - pytest files
+     ├─── create_db.py - main program for seeding database.
+     ├─── data/ - databases and csv files
+     ├─── src/ - main python code
+     └─── tests/ - pytest files
+```
+
+The root folder contains:
+```
+create_db.py - One off program to seed the customer.csv file into HPNorton.db.
+HPNorton.db - Database the program operates off of.
+reset.sh - Script to reset database state.
 ```
 
 The data folder contains the following files, these allowed me to quickly reset 
@@ -34,21 +43,25 @@ HPHead.db - Database containing the top ten lines from the customer.csv.
 HPNorton.dp - Full csv database imported into SQLite3.
 ```
 
-The root folder contains:
-```
-create_db.py - One off program to seed the customer.csv file into HPNorton.dp.
-```
-
 The src folder contains the following files:
 ```
 basic_operation.py - The functions required by the assignment.
 db_model.py - The class definition for the sql table.
 ```
 
+The test folder contains the following files:
+```
+test_gradel04.py - Grading tests given by instructor
+test_basic_operations.py - Test file for basic operations
+test_create_db.py - Test file for create_db.py (main program test)
+```
+
 Tests were run from the root of the project, example below.  Tests are designed
 to cleanup after themselves, but if failures happen it is a good idea to
 copy over a blank database, the reset.sh script can help with this.
-Tests are designed to cover basic_operations.py and dm_model.py.
+Tests are designed to cover create_db.py, basic_operations.py, and dm_model.py
+The following is an example from the peewee folder, commands are the same under
+sqlalchemy.
 
 ```
 $ pwd
