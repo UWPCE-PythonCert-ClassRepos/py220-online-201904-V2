@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# pylint: disable=E0401, W0106
+# pylint: disable=E0401, W0106, W1203
 """
     Imports customer.csv to sqlite database
 """
@@ -12,27 +12,24 @@
 #   Why is this bottlenecked so badly?
 # 76.34300780296326 on Manjaro 18, Core i7-8750h, 16GB DDR4, NVME2 Drive.
 
-import sys
+
+import logging
 import argparse
 import time
-from loguru import logger as LOGGER
 from peewee import IntegrityError
 import src.db_model as db
 
-# Replace 'from logurur...' with the following to switch to logging package.
-# import logging
-# logging.basicConfig(level=logging.INFO)
-# LOGGER = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
+LOGGER = logging.getLogger(__name__)
 
 
-def main():
+def main(argv=None):
     """Initializes HPNorton database
     """
     start = time.time()
 
     LOGGER.info("Parsing command line arguments...")
-    print(sys.argv[1:])
-    args = parse_cmd_arguments(sys.argv[1:])
+    args = parse_cmd_arguments(argv)
 
     LOGGER.info("Initializes the HP Norton database from csv")
     LOGGER.info("Adding tables...")
@@ -47,12 +44,7 @@ def main():
 
     LOGGER.info("Closing database")
     db.database.close()
-
-    # The following line doesn't work properly with loguru.
-    #   Using an f-string works with both logging and loguru,
-    #   however f-strings throw a pylint error when used with logging.
-    # LOGGER.info("Time to init: %s", time.time() - start)
-    LOGGER.info(f"Time to init: {time.time() - start}",)
+    LOGGER.info("Time to init: %s", time.time() - start)
 
 
 def parse_cmd_arguments(args):
@@ -100,11 +92,14 @@ def populate_database(line):
                 status=customer[6].lower(),
                 credit_limit=customer[7],
             )
-            LOGGER.info("Adding record for %s", customer[0])
+            # If this is passed using % notation pytest caplog won't get the
+            #   value of customer[0], instead just shows as %s.
+            LOGGER.info(f"Adding record for {customer[0]}")
     except IndexError:
         LOGGER.info("End of file")
     except IntegrityError:
         LOGGER.warning("Records already in database. Skipping.")
+        # raise IntegrityError
 
 
 def get_line(lines):
