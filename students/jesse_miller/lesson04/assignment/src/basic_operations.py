@@ -158,7 +158,8 @@ def import_cust_file():
 
 def output_cust():
     '''
-    Prints the customer information from the DB
+    Prints the customer information from the DB (Okay, I see what the problem is
+    here.  I just have to figure out how to do what I need)
     '''
     all_records = cs.Customer.select()
 
@@ -168,6 +169,7 @@ def output_cust():
               f'Home Address: {person.home_address}\nPhone Number: \
         {person.phone_number}\n' f'Email Address: {person.email_address}\n\
         Status: {person.status}\nCredit Limit: ${person.credit_limit}\n')
+
 
 if __name__ == 'main':
     cc.main()
