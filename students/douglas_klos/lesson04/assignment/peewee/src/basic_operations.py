@@ -1,4 +1,4 @@
-# pylint: disable=E0401, R0913, W0401, E0602, W0703
+# pylint: disable=E0401, R0913, W0401, E0602, W0703, E1101
 """
     Basic operations for HP Norton database
 """
@@ -81,10 +81,7 @@ def search_customer(customer_id):
         cust["status"] = item.status
         cust["credit_limit"] = item.credit_limit
         return cust
-    # This is what is thrown, but when I try to catch it comes back not defined.
-    # except CustomerDoesNotExist as ex:
-    except Exception: # as ex:
-        # print(f"{type(ex).__name__}")
+    except db.DoesNotExist:
         return cust
 
 

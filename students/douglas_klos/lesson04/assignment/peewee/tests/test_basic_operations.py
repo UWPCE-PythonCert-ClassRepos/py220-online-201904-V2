@@ -177,6 +177,8 @@ def test_search_customer(_customers):
         )
         query.execute()
 
+    # assert False
+
 
 def test_delete_customer(_customers):
     """test delete customer

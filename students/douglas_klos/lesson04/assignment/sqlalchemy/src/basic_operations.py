@@ -83,7 +83,8 @@ def search_customer(customer_id):
     cust = {}
     select_st = CUSTOMERS.select().where(CUSTOMERS.c.customer_id == customer_id)
     query = SESSION.execute(select_st)
-    for item in query:
+    try:
+        item = next(query)
         cust["customer_id"] = item.customer_id
         cust["name"] = item.name
         cust["lastname"] = item.last_name
@@ -92,8 +93,10 @@ def search_customer(customer_id):
         cust["home_address"] = item.home_address
         cust["status"] = item.status
         cust["credit_limit"] = item.credit_limit
-
-    return cust
+        return cust
+    except StopIteration:  # as ex:
+        # print(f"Exception: {type(ex)}")
+        return cust
 
 
 def delete_customer(customer_id):
