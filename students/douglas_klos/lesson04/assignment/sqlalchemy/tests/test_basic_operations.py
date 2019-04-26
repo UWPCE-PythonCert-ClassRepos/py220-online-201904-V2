@@ -224,7 +224,7 @@ def test_delete_customer(_customers):
     for customer in _customers:
         assert l.delete_customer(customer[0]) is True
 
-        # Verify that the database is again empty.
+    # Verify that the database is again empty.
     for customer in _customers:
         with pytest.raises(NoResultFound):
             query = l.SESSION.query(l.db.Customer).filter(

@@ -8,21 +8,20 @@ some test cases for create_db.py that weren't present in the l03 version.
 
 For the basic_operations.py there wasn't much that I could do, the majority of
 the code in that file is peewee/sqlalchemy calls to the database - the
-iteration of records is done in the test file.  No changes were made to the
+iteration of records is done in the test file, however some slight changes to
+logic were made in the search_customers function.  No changes were made to the
 db_model.py file.
 
-Following is a layout of the assignment files:
+Following is a layout and description of the assignment directories:
 ```
-assignment
-├───peewee
-│    ├─── create_db.py - main program for seeding database.
+assignment/
+├───peewee/ - root program folder
 │    ├─── data/ - databases and csv files
-│    ├─── src/ - main python code
+│    ├─── src/ - module code
 │    └─── tests/ - pytest files
-└─── sqlalchemy
-     ├─── create_db.py - main program for seeding database.
+└─── sqlalchemy/ - root program folder
      ├─── data/ - databases and csv files
-     ├─── src/ - main python code
+     ├─── src/ - module code
      └─── tests/ - pytest files
 ```
 
@@ -34,7 +33,7 @@ reset.sh - Script to reset database state.
 ```
 
 The data folder contains the following files, these allowed me to quickly reset 
-the database to different states with a copy (cp) command.
+the database to different states with a copy command.
 ```
 customer.csv - Full HP Norton database in CSV format.
 head-cust.csv - Top ten lines, or head, or customer.csv.
@@ -59,17 +58,18 @@ test_create_db.py - Test file for create_db.py (main program test)
 Tests were run from the root of the project, example below.  Tests are designed
 to cleanup after themselves, but if failures happen it is a good idea to
 copy over a blank database, the reset.sh script can help with this.
-Tests are designed to cover create_db.py, basic_operations.py, and dm_model.py
-The following is an example from the peewee folder, commands are the same under
-sqlalchemy.
+Tests are designed to cover create_db.py, basic_operations.py, and db_model.py. 
+The following is an example of execution commands used from the peewee folder,
+commands are the same under sqlalchemy.
 
 ```
 $ pwd
-./py220-online-201904-V2/students/douglas-klos/lesson04/assignment/peewee/
+~/git/py220-online-201904-V2/students/douglas-klos/lesson04/assignment/peewee/
 $ ./reset.sh
 $ pytest --cov=src --cov-report html ./tests/test_basic_operations.py
 $ pytest --cov=src --cov-report html ./tests/test_gradel04.py
 $ pytest --cov=create_db --cov-report html ./tests/test_create_db.py
+$ ./reset.sh; pytest ./tests/
 ```
 
 A new copy of the HPNorton database can be generated as following.

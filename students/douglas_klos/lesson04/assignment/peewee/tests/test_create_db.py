@@ -97,16 +97,7 @@ def test_populate_database():
             assert item.status.lower() == customer[6].lower()
             assert int(item.credit_limit) == int(customer[7])
 
-    # Cleanup database.
-    with open("./data/head-cust.csv", "rb") as content:
-        next(content)
-        lines = content.read().decode("utf-8", errors="ignore").split("\n")
-        for line in lines[:-1]:
-            customer = line.split(",")
-            query = cdb.db.Customer.delete().where(
-                cdb.db.Customer.customer_id == customer[0]
-            )
-            assert bool(query.execute()) is True
+    cleanup_database()
 
 
 def test_main(caplog):
@@ -118,15 +109,8 @@ def test_main(caplog):
     assert "Parsing command line arguments..." in str(output)
     assert "Initializes the HP Norton database from csv" in str(output)
     assert "Adding tables..." in str(output)
-    assert "Adding record for C000000" in str(output)
-    assert "Adding record for C000001" in str(output)
-    assert "Adding record for C000002" in str(output)
-    assert "Adding record for C000003" in str(output)
-    assert "Adding record for C000004" in str(output)
-    assert "Adding record for C000005" in str(output)
-    assert "Adding record for C000006" in str(output)
-    assert "Adding record for C000007" in str(output)
-    assert "Adding record for C000008" in str(output)
+    for record in range(9):
+        assert f"Adding record for C00000{record}" in str(output)
     assert "End of file" in str(output)
     assert "Closing database" in str(output)
 
@@ -147,7 +131,12 @@ def test_main(caplog):
             assert item.status.lower() == customer[6].lower()
             assert int(item.credit_limit) == int(customer[7])
 
-    # Cleanup database
+    cleanup_database()
+
+
+def cleanup_database():
+    """Remove records from database to prepare for next test
+    """
     with open("./data/head-cust.csv", "rb") as content:
         next(content)
         lines = content.read().decode("utf-8", errors="ignore").split("\n")
@@ -157,4 +146,5 @@ def test_main(caplog):
                 cdb.db.Customer.customer_id == customer[0]
             )
             assert bool(query.execute()) is True
-        # assert False
+        
+    # assert False
