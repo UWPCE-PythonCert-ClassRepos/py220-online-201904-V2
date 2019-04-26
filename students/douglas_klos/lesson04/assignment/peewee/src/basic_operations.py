@@ -39,8 +39,8 @@ def add_customer(
     Raises:
         IntegrityError -- Raised when trying to insert a duplicate primary key.
     """
-    try:
-        with db.database.transaction():
+    with db.database.atomic() as transaction:
+        try:
             db.Customer.create(
                 customer_id=customer_id,
                 name=name,
@@ -52,9 +52,10 @@ def add_customer(
                 credit_limit=credit_limit,
             )
             LOGGER.info("Adding record for %s", customer_id)
-    except IntegrityError as ex:
-        LOGGER.info(ex)
-        raise IntegrityError
+        except IntegrityError as ex:
+            LOGGER.info(ex)
+            transaction.rollback()
+            raise IntegrityError
 
 
 def search_customer(customer_id):
@@ -69,20 +70,21 @@ def search_customer(customer_id):
                             if customer not found.
     """
     cust = {}
-
-    try:
-        item = db.Customer.get(db.Customer.customer_id == customer_id)
-        cust["customer_id"] = item.customer_id
-        cust["name"] = item.name
-        cust["lastname"] = item.last_name
-        cust["email"] = item.email_address
-        cust["phone_number"] = item.phone_number
-        cust["home_address"] = item.home_address
-        cust["status"] = item.status
-        cust["credit_limit"] = item.credit_limit
-        return cust
-    except db.DoesNotExist:
-        return cust
+    with db.database.atomic() as transaction:
+        try:
+            item = db.Customer.get(db.Customer.customer_id == customer_id)
+            cust["customer_id"] = item.customer_id
+            cust["name"] = item.name
+            cust["lastname"] = item.last_name
+            cust["email"] = item.email_address
+            cust["phone_number"] = item.phone_number
+            cust["home_address"] = item.home_address
+            cust["status"] = item.status
+            cust["credit_limit"] = item.credit_limit
+            return cust
+        except db.DoesNotExist:
+            transaction.rollback()  # Probably unnecessary for a select
+            return cust
 
 
 def delete_customer(customer_id):
@@ -94,7 +96,10 @@ def delete_customer(customer_id):
     Returns:
         bool -- Ture if successful, False if not.
     """
-    query = db.Customer.delete().where(db.Customer.customer_id == customer_id)
+    # I could transaction this, but I'm not trying to catch any exceptions...
+    query = db.Customer.delete().where(
+        db.Customer.customer_id == customer_id
+    )
     return bool(query.execute())
 
 
@@ -111,12 +116,14 @@ def update_customer_credit(customer_id, credit_limit):
     Returns:
         bool -- Ture if successful, False if not.
     """
-    query = db.Customer.update(credit_limit=credit_limit).where(
-        db.Customer.customer_id == customer_id
-    )
-    if not query.execute():
-        raise ValueError("NoCustomer")
-    return True
+    with db.database.atomic() as transaction:
+        query = db.Customer.update(credit_limit=credit_limit).where(
+            db.Customer.customer_id == customer_id
+        )
+        if not query.execute():
+            transaction.rollback()
+            raise ValueError("NoCustomer")
+        return True
 
 
 def list_active_customers():

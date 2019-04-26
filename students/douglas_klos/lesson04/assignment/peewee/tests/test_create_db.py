@@ -146,5 +146,4 @@ def cleanup_database():
                 cdb.db.Customer.customer_id == customer[0]
             )
             assert bool(query.execute()) is True
-        
     # assert False

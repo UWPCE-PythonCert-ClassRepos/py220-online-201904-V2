@@ -79,10 +79,9 @@ def populate_database(line):
     Arguments:
         line {string} -- line from csv file to enter into database
     """
-
     customer = line.split(",")
-    try:
-        with db.database.transaction():
+    with db.database.atomic() as transaction:
+        try:
             db.Customer.create(
                 customer_id=customer[0],
                 name=customer[1],
@@ -95,14 +94,15 @@ def populate_database(line):
             )
             # If this is passed using % notation pytest caplog won't get the
             #   value of customer[0], instead just shows as %s.
-        LOGGER.info(f"Adding record for {customer[0]}")
-        return f"Adding record for {customer[0]}"
-    except IndexError:
-        LOGGER.info("End of file")
-        return f"End of file"
-    except IntegrityError:
-        LOGGER.warning("Records already in database. Skipping.")
-        return f"Records already in database. Skipping. {customer[0]}"
+            LOGGER.info(f"Adding record for {customer[0]}")
+            return f"Adding record for {customer[0]}"
+        except IndexError:
+            LOGGER.info("End of file")
+            return f"End of file"
+        except IntegrityError:
+            LOGGER.warning("Records already in database. Skipping.")
+            transaction.rollback()
+            return f"Records already in database. Skipping. {customer[0]}"
 
 
 def get_line(lines):

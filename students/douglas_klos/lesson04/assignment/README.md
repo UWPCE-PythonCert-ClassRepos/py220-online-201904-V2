@@ -6,11 +6,11 @@ create_db.py file.  It now uses a generator to feed the csv file one line using
 a list comprehension into the populate_database function.  I have also added
 some test cases for create_db.py that weren't present in the l03 version.
 
-For the basic_operations.py there wasn't much that I could do, the majority of
-the code in that file is peewee/sqlalchemy calls to the database - the
-iteration of records is done in the test file, however some slight changes to
-logic were made in the search_customers function.  No changes were made to the
-db_model.py file.
+For the basic_operations.py some changes to logic were made in the
+search_customers function.  Further, I added transactions to several different
+functions, primarily those that might fail a try/except.  It worked fine without
+these, however I suspect it's a more clean implementation to use them.  No
+changes were made to the db_model.py file.
 
 Following is a layout and description of the assignment directories:
 ```
