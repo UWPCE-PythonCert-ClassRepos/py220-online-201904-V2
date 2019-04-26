@@ -22,16 +22,24 @@ DATABASE = SqliteDatabase('customer.db')
 DATABASE.connect()
 DATABASE.execute_sql('PRAGMA foreign_keys = ON;') # needed for sqlite only
 
-with open('../data/customer.csv', 'r') as f:
-    READCSV = csv.reader(f, delimiter=',')
-    CUSTOMERS = []
-    try:
-        for i, row in enumerate(READCSV):
-            #LOGGER.info(f'print {row}')
-            CUSTOMERS.append(row)
-    except UnicodeDecodeError as error_message:
-        LOGGER.info('Error reading = %sth row', i)
-        LOGGER.info(error_message)
+
+def read_csv(path):
+    with open(path, 'r') as f:
+        READCSV = csv.reader(f, delimiter=',')
+        CUSTOMERS = []
+        iterator = iter(READCSV)
+        while True:
+            try:
+                row = next(iterator)
+                #LOGGER.info(f'print {row}')
+                CUSTOMERS.append(row)
+            except StopIteration:
+                LOGGER.info('Stop Iteration')
+                break
+            except UnicodeDecodeError as error_message:
+                LOGGER.info('Error reading')
+                LOGGER.info(error_message)
+    return CUSTOMERS
 
 
 CUSTOMER_ID = 0
@@ -48,7 +56,23 @@ LOGGER.info('Creating Customer records: iterate through the list of tuples')
 LOGGER.info('Prepare to explain any errors with exceptions')
 LOGGER.info('and the transaction tells the database to rollback on error')
 
-for customer in CUSTOMERS:
+
+def customer_iterator(an_iterable):
+    """
+    Emulation of a for loop.
+    func() will be called with each item in an_iterable
+    """
+    customer_iterator = iter(an_iterable)
+    while True:
+        try:
+            customer = next(customer_iterator)
+            LOGGER.info(customer)
+        except StopIteration:
+            break
+        add_customer_list(customer)
+
+
+def add_customer_list(customer):
     try:
         with DATABASE.transaction():
             new_customer = Customer.create(
@@ -63,12 +87,16 @@ for customer in CUSTOMERS:
                 )
             new_customer.save()
             #LOGGER.info('Database add successful')
-
     # it was giving me model based error type,
     # not sure what error type would work here?
     except Exception as error_message:
         LOGGER.info('Error creating = %s', customer[CUSTOMER_ID])
         LOGGER.info(error_message)
         LOGGER.info('See how the database protects our data')
+
+
+if __name__ == '__main__':
+    CUSTOMERS = read_csv('../data/customer.csv')
+    customer_iterator(CUSTOMERS)
 
 DATABASE.close()
