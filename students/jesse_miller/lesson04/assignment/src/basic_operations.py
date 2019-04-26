@@ -159,7 +159,9 @@ def import_cust_file():
 def output_cust():
     '''
     Prints the customer information from the DB (Okay, I see what the problem is
-    here.  I just have to figure out how to do what I need)
+    here.  I just have to figure out how to do what I need.  Or at least I think
+    I do.  I think that, there's not a database currently to test at this point.
+    But I may also be misinterpreting what's happening by this stage.)
     '''
     all_records = cs.Customer.select()
 
