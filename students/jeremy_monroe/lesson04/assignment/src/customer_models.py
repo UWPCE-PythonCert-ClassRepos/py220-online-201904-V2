@@ -1,12 +1,29 @@
 """ This is where my Customer model is defined. """
 
 import logging
+from datetime import datetime
 # from peewee import *
 from peewee import SqliteDatabase, Model, CharField, IntegerField
 from peewee import ForeignKeyField
 
-logging.basicConfig(level=logging.INFO)
+
+log_format = ("\n%(asctime)s %(filename)s:%(lineno)-3d %(levelname)s"
+        "\n%(message)s")
+formatter = logging.Formatter(log_format)
+log_file = datetime.now().strftime("%Y-%m-%d")+'.log'
+
+file_handler = logging.FileHandler(log_file)
+file_handler.setLevel(logging.INFO)
+file_handler.setFormatter(formatter)
+
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.INFO)
+console_handler.setFormatter(formatter)
+
 LOGGER = logging.getLogger(__name__)
+LOGGER.setLevel(logging.INFO)
+LOGGER.addHandler(console_handler)
+LOGGER.addHandler(file_handler)
 
 LOGGER.info("Ok, defining my base model and customer model")
 
