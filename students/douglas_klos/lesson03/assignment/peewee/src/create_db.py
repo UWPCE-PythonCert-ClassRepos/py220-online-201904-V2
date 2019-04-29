@@ -10,6 +10,7 @@
 # I feel like it should have at least maxed one core and done this
 #   much more quickly, they're more than enough RAM / CPU power.
 #   Why is this bottlenecked so badly?
+# 76.34300780296326 on Manjaro 18, Core i7-8750h, 16GB DDR4, NVME2 Drive.
 
 
 import sys
