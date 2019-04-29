@@ -31,10 +31,9 @@ class Job(BaseModel):
     person_employed = ForeignKeyField(Person, related_name='was_filled_by', null = False)
 
 new_person = Person.create(
-    person_name = 'Fred',
-    lives_in_town = 'Seattle',
-    nickname = 'Fearless')
+    person_name="Fred", lives_in_town="Seattle", nickname="Fearless"
+)
 
-    new_person.save()
+new_person.save()
 
 aperson = Person.get(Person.person_name == 'Fred')
