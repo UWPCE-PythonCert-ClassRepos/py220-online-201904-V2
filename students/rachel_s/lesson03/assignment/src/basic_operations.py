@@ -42,17 +42,22 @@ def add_customer(
     credit_limit: Credit limit (numeric)
     '''
     connect_db('customer.db')
-    temp_customer = model.Customer.create(
-        Customer_id=customer_id,
-        Name=name,
-        Lastname=lastname,
-        Home_address=home_address,
-        Phone_number=phone_number,
-        Email_address=email_address,
-        Status=status,
-        Credit_limit=credit_limit
-    )
-    temp_customer.save()
+    try:
+        temp_customer = model.Customer.create(
+            Customer_id=customer_id,
+            Name=name,
+            Lastname=lastname,
+            Home_address=home_address,
+            Phone_number=phone_number,
+            Email_address=email_address,
+            Status=status,
+            Credit_limit=int(credit_limit)
+        )
+        temp_customer.save()
+        return True
+    except IntegrityError as err:
+        logger.warning(err)
+        return False
 
 
 def load_data(filename):
@@ -92,7 +97,7 @@ def customer_db_import(cust_dicts):
             cust['Phone_number'],
             cust['Email_address'],
             cust['Status'].lower(),
-            cust['Credit_limit']
+            int(cust['Credit_limit'])
         )
 
 
@@ -105,7 +110,7 @@ def search_customer(customer_id):
     logger.debug('Finding record for {}'.format(customer_id))
     try:
         cust = model.Customer.get(model.Customer.Customer_id == customer_id)
-    except IndexError:
+    except Exception:
         logger.debug('Record {} not found, returning empty '
                      'dict.'.format(customer_id))
         return {}
@@ -121,19 +126,33 @@ def search_customer(customer_id):
 def delete_customer(customer_id):
     '''
     Deletes the customer with the given ID from the database.
+    Returns True if the customer was successfully deleted, and
+    False if not.
     '''
     cust = get_customer(customer_id)
-    cust.delete_instance()
-
+    try:
+        cust.delete_instance()
+        cust.save()
+    except Exception as err:
+        logger.error(err)
+        return False
+    return True
 
 
 def update_customer_credit(customer_id, credit_limit):
     '''
     Alters the given customer's numeric credit limit
     '''
-    cust = get_customer(customer_id)
-    cust.Credit_limit = int(credit_limit)
-    cust.save()
+    # cust = get_customer(customer_id)
+    try:
+        cust = model.Customer.get(model.Customer.Customer_id == customer_id)
+    except IndexError:
+        logger.warning('Customer {} not found'.format(customer_id))
+    try:
+        cust.Credit_limit = int(credit_limit)
+        cust.save()
+    except Exception as err:
+        logger.warning(err)
 
 
 def list_active_customers():
@@ -154,6 +173,8 @@ def get_customer(customer_id):
     '''
     try:
         cust = model.Customer.get(model.Customer.Customer_id == customer_id)
-    except IndexError:
+        return cust
+    except(IndexError):
         logger.error('Record {} not found.'.format(customer_id))
-    return cust
+        raise(IndexError)
+
