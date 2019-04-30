@@ -10,7 +10,6 @@ import pprint
 from pymongo import MongoClient
 from loguru import logger as log
 from bson import json_util
-import bson
 
 cd_ip_one = {"artist": "The Who", "Title": "By Numbers"}
 

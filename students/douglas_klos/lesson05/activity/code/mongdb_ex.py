@@ -59,7 +59,7 @@ def main():
             {"artist": "Nilsson", "Title": "Without You", "name": "Sam"},
         ]
 
-        result = cd.insert_many(cd_ip)zzzz
+        result = cd.insert_many(cd_ip)
 
         print_mdb_collection(cd)
 
