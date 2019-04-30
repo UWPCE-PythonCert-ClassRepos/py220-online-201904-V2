@@ -8,6 +8,7 @@ from bson import json_util
 import src.mongodb_conn as mdb
 from src.database_operations import drop_databases
 import pymongo
+import csv
 
 mongo = mdb.MongoDBConnection()
 
@@ -69,7 +70,23 @@ def insert_to_mongo(directory_name, filename):
 
 
 def show_available_products():
-    pass
+    available_products = {}
+
+    with mongo:
+        db = mongo.connection.media
+
+        products = db['product']
+        for doc in products.find():
+            # print(f'{doc}')
+            del(doc['_id'])
+            if int(doc['quantity_available']) > 0:
+                _doc = doc.copy()
+                del(_doc['product_id'])
+                available_products[doc['product_id']] =_doc
+                # print(doc['product_id'])
+    
+    return available_products
+    
 
 
 def show_rentals(product_id):
@@ -101,14 +118,14 @@ def open_file(filename):
     # I'm assuming pythons garbage collection takes care of closing the file.
     with open(filename, "rb") as content:
         # next(content)  # Skip first line, it's the column names
-        return content.read().decode("utf-8", errors="ignore").split("\n")
+        return content.read().decode("utf-8-sig", errors="ignore").split("\n")
 
 
 def main(argv=None):
     """ database main function
     """
-    import_data('./data/', 'product.csv', 'customers.csv', 'rental.csv')
-
+    # import_data('./data/', 'product.csv', 'customers.csv', 'rental.csv')
+    print(show_available_products())
 
 if __name__ == "__main__":
     main()
