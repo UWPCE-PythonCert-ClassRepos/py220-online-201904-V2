@@ -6,6 +6,7 @@ from loguru import logger as log
 # This allows me to execute the file directly via ./src/database_operations.py,
 #   or import it into the main database.py or test files.
 #   I'm not sure if this is considered pythonic or proper, however it works.
+#   Feedback on this would be appreciated.
 try:
     import mongodb_conn as mdb
 except ModuleNotFoundError:
@@ -32,6 +33,8 @@ def drop_databases():
         product.drop()
 
     log.warning("Purge complete!")
+
+    return "All ur base are belong to us"
 
 
 if __name__ == '__main__':

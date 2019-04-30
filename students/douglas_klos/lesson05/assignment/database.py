@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 import json
-import pprint
+from pprint import pprint
 import os
-from loguru import logger as log
+from loguru import logger
 from bson import json_util
 import src.mongodb_conn as mdb
 from src.database_operations import drop_databases
@@ -28,7 +28,6 @@ def import_data(directory_name, *files):
         _success = _success + (success, )
         _fail = _fail + (fail, )
 
-    print((_success, _fail))
     return (_success, _fail)
 
     # Cheese mode to test the silly test
@@ -42,7 +41,7 @@ def insert_to_mongo(directory_name, filename):
 
     with mongo:
         db = mongo.connection.media
-        log.info(f"filename = {filename[:-4]}")
+        logger.info(f"Inserting {filename[:-4]} into Mongo")
         database_name = db[filename[:-4]]
 
         iter_lines = get_line(open_file(f"{directory_name}{filename}"))
@@ -70,6 +69,7 @@ def insert_to_mongo(directory_name, filename):
 
 
 def show_available_products():
+    logger.info(f"Preparing dict of available prodcuts...")
     available_products = {}
 
     with mongo:
@@ -77,20 +77,38 @@ def show_available_products():
 
         products = db['product']
         for doc in products.find():
-            # print(f'{doc}')
             del(doc['_id'])
             if int(doc['quantity_available']) > 0:
                 _doc = doc.copy()
                 del(_doc['product_id'])
                 available_products[doc['product_id']] =_doc
-                # print(doc['product_id'])
-    
+
     return available_products
-    
 
 
 def show_rentals(product_id):
-    pass
+    logger.info(f"Perparing rental dict for product_id: {product_id}...")
+    current_user_rentals = {}
+
+    with mongo:
+        db = mongo.connection.media
+
+        # products = db['product']
+        rentals = db['rental']
+        customers = db['customers']
+
+        # First we get a list of users that have the specified rental
+        query = {"product_id": product_id}
+        for rental in rentals.find(query):
+            # Now we query customers user_id specified for the rental item.
+            query = {"user_id": rental['user_id']}
+            for customer in customers.find(query):
+                _customer = customer.copy()
+                del(_customer['_id'])
+                del(_customer['user_id'])
+                current_user_rentals[customer['user_id']] = _customer
+
+    return current_user_rentals
 
 
 def get_line(lines):
@@ -124,8 +142,11 @@ def open_file(filename):
 def main(argv=None):
     """ database main function
     """
-    # import_data('./data/', 'product.csv', 'customers.csv', 'rental.csv')
-    print(show_available_products())
+    pprint(drop_databases())
+    pprint(import_data('./data/', 'product.csv', 'customers.csv', 'rental.csv'))
+    pprint(show_available_products())
+    pprint(show_rentals('prd002'))
+
 
 if __name__ == "__main__":
     main()

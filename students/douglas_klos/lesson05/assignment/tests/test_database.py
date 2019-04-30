@@ -8,8 +8,7 @@ import database as l
 from src.database_operations import drop_databases
 
 
-
-# Default fixture for the program.  Remarkably wrong.
+# Default fixtures for the test.  Remarkably wrong.
 # @pytest.fixture
 # def _show_available_products():
 #     return {
@@ -24,15 +23,18 @@ from src.database_operations import drop_databases
 #         'P000005': {'description': 'Stool Black ash', 'product_type': 'Kitchen',
 #                     'quantity_available': '12'}
 #         }
-
-
-
-
-
+#
+# @pytest.fixture
+# def _show_rentals():
+#     return {
+#         'C000001': {'name': 'Shea Boehm', 'address': '3343 Sallie Gateway',
+#                     'phone_number': '508.104.0644', 'email': 'Alexander.Weber@monroe.com'},
+#         'C000003': {'name': 'Elfrieda Skiles', 'address': '3180 Mose Row',
+#                     'phone_number': '839)825-0058', 'email': 'Mylene_Smitham@hannah.co.uk'}
+#         }
 
 @pytest.fixture
 def _show_available_products():
-
     return {
         'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 
         'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'},
@@ -44,15 +46,12 @@ def _show_available_products():
     }
 
 
-
 @pytest.fixture
 def _show_rentals():
     return {
-        'C000001': {'name': 'Shea Boehm', 'address': '3343 Sallie Gateway',
-                    'phone_number': '508.104.0644', 'email': 'Alexander.Weber@monroe.com'},
-        'C000003': {'name': 'Elfrieda Skiles', 'address': '3180 Mose Row',
-                    'phone_number': '839)825-0058', 'email': 'Mylene_Smitham@hannah.co.uk'}
-        }
+        'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'zip_code': '98244', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}, 
+        'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'zip_code': '98055', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}
+    }
 
 
 def test_import_data():
@@ -72,14 +71,13 @@ def test_import_data():
     assert errors == (0, 0, 0)
 
 
-# def test_show_available_products(_show_available_products):
-#     """ available products """
-#     students_response = l.show_available_products()
-#     assert students_response == _show_available_products
+def test_show_available_products(_show_available_products):
+    """ available products """
+    students_response = l.show_available_products()
+    assert students_response == _show_available_products
 
 
-# def test_show_rentals(_show_rentals):
-#     """ rentals """
-#     students_response = l.show_rentals("P000003")
-#     assert students_response == _show_rentals
-
+def test_show_rentals(_show_rentals):
+    """ rentals """
+    students_response = l.show_rentals("prd002")
+    assert students_response == _show_rentals

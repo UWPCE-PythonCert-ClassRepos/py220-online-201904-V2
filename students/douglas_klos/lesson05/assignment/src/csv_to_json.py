@@ -2,10 +2,9 @@
 
 import csv
 import json
-# import pprint
 
-
-# This writes the header row into the csv, just editing them manually cause lazy
+# After making this, I realize I have no use for it.
+#   C'est la vie, was still fun to code.
 
 def customers_csv_to_json():
     f = open('./data/customers.csv', 'r')
@@ -41,8 +40,6 @@ if __name__ == "__main__":
     customers = customers_csv_to_json()
     product = product_csv_to_json()
     rental = rental_csv_to_json()
-
-    # print(customers)
 
     for customer in customers.split('},'):
         print(customer + "},")
