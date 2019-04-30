@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 '''
 Mongo DB assignment for Python 220
 '''
@@ -43,6 +44,9 @@ def _import_csv(filename):
 
         headers = next(csv_data, None)
 
+    if headers[0].startswith("ï»¿"):  # Check for weird formatting
+        headers[0] = headers[0][3:]
+
     for row in csv_data:
         row_dict = {}
 
@@ -51,3 +55,19 @@ def _import_csv(filename):
 
         dict_list.append(row_dict)
     return dict_list
+
+
+def _add_bulk_data(collection, directory_name, filename):
+    '''
+    This, if it works properly, will handle the bulk imports from the csv
+    files.
+    '''
+    file_path = os.path.join(directory_name, filename)
+
+    try:
+        collection.insert_many(_import_csv(file_path), ordered=False)
+        return 0
+
+    except pymongo.errors.BulkWriteError as bwe:
+        print(bwe.details)
+        return len(bwe.details["writeErrors"])
