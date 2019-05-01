@@ -1,16 +1,21 @@
 #!/usr/bin/env python3
 
+""" Converts specific csv files to json, not general case """
+
 import csv
 import json
+
 
 # After making this, I realize I have no use for it.
 #   C'est la vie, was still fun to code.
 
 
 def customers_csv_to_json():
-    _f = open("./data/customers.csv", "r")
+    """Converts customer.csv to customer.json
+    """
+    _file = open("./data/customers.csv", "r")
     reader = csv.DictReader(
-        f,
+        _file,
         fieldnames=(
             "user_id",
             "name",
@@ -22,15 +27,17 @@ def customers_csv_to_json():
     )
     next(reader)
     out = json.dumps([row for row in reader])
-    _f = open("./data/customers.json", "w")
-    f.write(out)
+    _file = open("./data/customers.json", "w")
+    _file.write(out)
     return out
 
 
 def product_csv_to_json():
+    """Converts product.csv to product.json
+    """
     _file = open("./data/product.csv", "r")
     reader = csv.DictReader(
-        f,
+        _file,
         fieldnames=(
             "product_id",
             "description",
@@ -40,22 +47,26 @@ def product_csv_to_json():
     )
     next(reader)
     out = json.dumps([row for row in reader])
-    _f = open("./data/product.json", "w")
-    f.write(out)
+    _file = open("./data/product.json", "w")
+    _file.write(out)
     return out
 
 
 def rental_csv_to_json():
-    _f = open("./data/rental.csv", "r")
-    reader = csv.DictReader(f, fieldnames=("product_id", "user_id"))
+    """Converts rental.csv to rental.json
+    """
+    _file = open("./data/rental.csv", "r")
+    reader = csv.DictReader(_file, fieldnames=("product_id", "user_id"))
     next(reader)
     out = json.dumps([row for row in reader])
-    _f = open("./data/rental.json", "w")
-    f.write(out)
+    _file = open("./data/rental.json", "w")
+    _file.write(out)
     return out
 
 
 def main():
+    """Main function for csv json conversion
+    """
     customers = customers_csv_to_json()
     product = product_csv_to_json()
     rental = rental_csv_to_json()

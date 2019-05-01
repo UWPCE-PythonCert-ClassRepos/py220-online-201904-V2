@@ -1,3 +1,5 @@
+"""MondoDB Connection"""
+
 from pymongo import MongoClient
 
 

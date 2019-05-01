@@ -1,14 +1,13 @@
 """grade lesson 5
 """
 
-import os
 import pytest
-import database as l
-from src.database_operations import drop_databases
+import src.database_operations as l
 
 
 @pytest.fixture
 def _show_available_products():
+    """ Expected output for show available products call """
     return {
         "prd001": {
             "description": "60-inch TV stand",
@@ -50,6 +49,7 @@ def _show_available_products():
 
 @pytest.fixture
 def _show_rentals():
+    """ Expected output for show rentals call """
     return {
         "user005": {
             "name": "Dan Sounders",
@@ -70,7 +70,7 @@ def _show_rentals():
 
 def test_import_data():
     """ import """
-    drop_databases()
+    l.drop_databases()
 
     data_dir = "./data/"
     added, errors = l.import_data(
