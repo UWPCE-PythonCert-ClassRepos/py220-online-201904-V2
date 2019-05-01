@@ -102,6 +102,38 @@ def show_available_products():
     return available_products
 
 
+def rentals_for_customer(user_id):
+    """Prepares a dict of products rented by user_id
+
+    Arguments:
+        user_id {string} -- user_id reference into product collection
+
+    Returns:
+        dict -- Dictionary of products rented by specified user_id
+    """
+    logger.info(f"Perparing customer dict for user_id: {user_id}...")
+    rentals_for_user = {}
+
+    with MONGO:
+        mdb = MONGO.connection.media
+
+        products = mdb["product"]
+        rentals = mdb["rental"]
+
+        # First we get a list of rentals for the specified user_id
+        query = {"user_id": user_id}
+        for rental in rentals.find(query):
+
+            # Now we get product details from products via the product_id
+            query = {"product_id": rental["product_id"]}
+            for product in products.find(query):
+                product_id = product["product_id"]
+                del product["_id"]
+                rentals_for_user[product_id] = product
+
+    return rentals_for_user
+
+
 def show_rentals(product_id):
     """Prepares a dict of customers renting product_id
 
@@ -112,7 +144,7 @@ def show_rentals(product_id):
         dict -- Dictionary of rental customers for specified product_id
     """
     logger.info(f"Perparing rental dict for product_id: {product_id}...")
-    current_user_rentals = {}
+    users_renting_product = {}
 
     with MONGO:
         mdb = MONGO.connection.media
@@ -131,9 +163,51 @@ def show_rentals(product_id):
                 user_id = customer["user_id"]
                 del customer["_id"]
                 del customer["user_id"]
-                current_user_rentals[user_id] = customer
+                users_renting_product[user_id] = customer
 
-    return current_user_rentals
+    return users_renting_product
+
+
+def list_all_products():
+    """Prepares a dictionary of all products
+
+    Returns:
+        dict -- Dictionary containing all products
+    """
+    logger.info(f"Perparing dict of all products...")
+    all_products_dict = {}
+
+    with MONGO:
+        mdb = MONGO.connection.media
+        products = mdb["product"]
+        all_products = products.find({})
+        for product in all_products:
+            product_id = product["product_id"]
+            del product["_id"]
+            del product["product_id"]
+            all_products_dict[product_id] = product
+    return all_products_dict
+
+
+def list_all_customers():
+    """Prepares a dictionary of all customers
+
+    Returns:
+        dict -- Dictionary containing all customers
+    """
+    logger.info(f"Perparing dict of all products...")
+    all_customers_dict = {}
+
+    with MONGO:
+        mdb = MONGO.connection.media
+        customers = mdb["customers"]
+        all_customers = customers.find({})
+        for customer in all_customers:
+            user_id = customer["user_id"]
+            del customer["_id"]
+            del customer["user_id"]
+            all_customers_dict[user_id] = customer
+    return all_customers_dict
 
 
 def get_line(lines):
@@ -171,18 +245,18 @@ def drop_databases():
     with MONGO:
         mdb = MONGO.connection.media
 
-        customers = mdb['customers']
+        customers = mdb["customers"]
         logger.warning('Dropping "Cusomters"')
         customers.drop()
 
-        rental = mdb['rental']
+        rental = mdb["rental"]
         logger.warning('Dropping "Rental"')
         rental.drop()
 
-        product = mdb['product']
+        product = mdb["product"]
         logger.warning('Dropping "Product"')
         product.drop()
 
     logger.warning("Purge complete!")
 
-    return base64.b64decode('QWxsIHVyIGJhc2UgYXJlIGJlbG9uZyB0byB1cw==')
+    return base64.b64decode("QWxsIHVyIGJhc2UgYXJlIGJlbG9uZyB0byB1cw==")

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# pylint: disable=E0401
 """ Main functions to interface with MongoDB """
 
 import argparse
@@ -13,21 +12,30 @@ def main(argv=None):
     """
     args = parse_cmd_arguments(argv)
 
-    if args.log:
+    if args.disable_log:
         logger.disable("__main__")
         logger.disable("src.database_operations")
 
-    if args.drop:
+    if args.all_products:
+        pprint(db.list_all_products())
+
+    if args.available_products:
+        pprint(db.show_available_products())
+
+    if args.all_customers:
+        pprint(db.list_all_customers())
+
+    if args.drop_collections:
         db.drop_databases()
 
-    if args.rental:
-        pprint(db.show_rentals(args.rental))
+    if args.rentals_for_customer:
+        pprint(db.rentals_for_customer(args.rentals_for_customer))
+
+    if args.customers_renting_product:
+        pprint(db.show_rentals(args.customers_renting_product))
 
     if args.insert:
         pprint(db.import_data(*args.insert))
-
-    if args.product:
-        pprint(db.show_available_products())
 
 
 def parse_cmd_arguments(args):
@@ -41,45 +49,64 @@ def parse_cmd_arguments(args):
     """
     parser = argparse.ArgumentParser(description="HPNorton Database Operations")
     parser.add_argument(
-        "-d",
-        "--drop",
-        help="Drop customers, product, and rental collections",
+        "--all-products",
+        help="Show list of all products",
         action="store_true",
         required=False,
         default=False,
     )
     parser.add_argument(
-        "-p",
-        "--product",
+        "--all-customers",
+        help="Show list of all customers",
+        action="store_true",
+        required=False,
+        default=False,
+    )
+    parser.add_argument(
+        "--available-products",
         help="Show list of available products",
         action="store_true",
         required=False,
         default=False,
     )
     parser.add_argument(
-        "-l",
-        "--log",
+        "--drop-collections",
+        help="Drop customers, product, and rental collections",
+        action="store_true",
+        required=False,
+        default=False,
+    )
+    parser.add_argument(
+        "--disable-log",
         help="Disable logging",
         action="store_true",
         required=False,
         default=False,
     )
     parser.add_argument(
-        "-i",
+        "--rentals-for-customer",
+        metavar="USER_ID",
+        help="Show rentals for specified user_id",
+        action="store",
+        required=False,
+        default=False,
+    )
+    parser.add_argument(
+        "--customers-renting-product",
+        help="Show customers renting the specified product_id",
+        metavar="PRODUCT_ID",
+        action="store",
+        required=False,
+        default=False,
+    )
+    parser.add_argument(
         "--insert",
-        help="datadir file1 file2 file3",
+        help="Loads csv files from specified data directory",
+        metavar=("data_dir", "file1 file2"),
         action="store",
         required=False,
         default=False,
         nargs="*",
-    )
-    parser.add_argument(
-        "-r",
-        "--rental",
-        help="Show rentals for specified product_id",
-        action="store",
-        required=False,
-        default=False,
     )
     return parser.parse_args(args)
 
