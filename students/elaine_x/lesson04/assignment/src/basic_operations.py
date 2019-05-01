@@ -9,8 +9,7 @@ import logging
 from customer_model import *
 
 
-logging.basicConfig(level=logging.INFO)
-LOGGER = logging.getLogger(__name__)
+LOGGER = logging.getLogger()
 
 
 def add_customer(customer_id, name, lastname, home_address,
