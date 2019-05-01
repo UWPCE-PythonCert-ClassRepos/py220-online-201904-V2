@@ -57,7 +57,9 @@ def read_in_data(path, file_name):
 
 def create_collection(database, coll_name, sp, fn):
     """
-    Function to create a collection"""
+    Function to create a collection.
+    Uses the read_in_data function above.
+    """
     coll = database[coll_name]
     source = read_in_data(sp, fn)
     coll.insert_one(source)
