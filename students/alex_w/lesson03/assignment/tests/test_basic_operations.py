@@ -1,247 +1,88 @@
-"""
-Testing operations for basic_operations.py
+import basic_operations
+import os
+import unittest
 
-"""
-
-import pytest
-import basic_operations as l 
-from peewee import *
+TEST_DATABASE_FILENAME = 'testing.db'
 
 
+class TestCustomer(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        """"
+        Create database connection.
+        """
+        basic_operations.initialize_database(TEST_DATABASE_FILENAME)
+
+    @classmethod
+    def tearDownClass(cls):
+        """
+        Delete database file after all TestCustomer tests are finished.
+        """
+        try:
+            os.remove(TEST_DATABASE_FILENAME)
+        except FileNotFoundError:
+            pass
+
+    def setUp(self):
+        """
+        Populate database as a fixture prior to each TestCustomer test.
+        """
+        basic_operations.Customer.drop_table()
+        basic_operations.Customer.create_table()
+        customers = [('C000001', 'Shea', 'Boehm', '3343 Sallie Gateway', '508.363.0253 x4976',
+                      'Alexander.Weber@monroe.com', 'Inactive',
+                      461),
+                     ('C000002', 'Abe', 'Anderson', '2324 Jefferson Dr.', '804.747.1181',
+                      'antipathize@zgu5la23tngr2molii.cf', 'Active',
+                      200),
+                     ('C000003', 'Ben', 'Baker', '55 Opal Ave', '584.287.5797',
+                      'reziac@yahoo.ca', 'Active',
+                      343),
+                     ('C000004', 'Cary', 'Crews', '78 Davis Dr', '689.270.5294',
+                      'esokullu@mac.com', 'Inactive',
+                      400),
+                     ('C000005', 'Dan', 'Daniels', '3443 Brick Way', '515.526.1882',
+                      'loscar@gmail.com', 'Active',
+                      303),
+                     ('C000006', 'Ed', 'Egerhdal', '11 Wood Trail', '788.465.7515',
+                      'roesch@att.net', 'Inactive',
+                      549),
+                     ('C000007', 'Fred', 'Franks', '98 Lake Ave', '719.660.5746',
+                      'tbusch@live.com', 'Active',
+                      600),
+                     ('C000008', 'Guy', 'Gundersen', '575 Sun Park Dr', '258.687.2964',
+                      'skythe@live.com', 'Inactive',
+                      280),
+                     ]
+        for (customer_id, first_name, last_name, home_address, phone_number, email_address, status, credit_limit)\
+                in customers:
+            db_record = basic_operations.Customer.create(customer_id=customer_id, first_name=first_name,
+                                                         last_name=last_name, home_address=home_address,
+                                                         phone_number=phone_number, email_address=email_address,
+                                                         status=status, credit_limit=credit_limit)
+            db_record.save()
+
+    def tearDown(self):
+        pass
+
+    def test_add_customer(self):
+        num_before = len(basic_operations.list_active_customers())
+        basic_operations.add_customer('C000055', 'John', 'Doe', '100 Campus Dr', '555.343.1009', 'johndoe@myemail.com',
+                                      'Active', 535)
+        num_after = len(basic_operations.list_active_customers())
+        self.assertEqual(num_after-num_before, 1)
+
+    def test_delete_customer(self):
+        delete_customer = 'C000005'
+        basic_operations.delete_customer('C000005')
+        self.assertEqual(delete_customer, 'C000005')
+
+    def test_search_customer(self):
+        search_customer = 'C000001'
+        basic_operations.search_customer('C000001')
+        self.assertEqual(search_customer, 'C000001')
 
 
-@pytest.fixture
-def _customers():
-    """ Customer list for testing """
-    return [
-        (
-            "C000000",
-            "Rickey",
-            "Shanahan",
-            "337 Eichmann Locks",
-            "1-615-598-8649 x975",
-            "Jessy@myra.net",
-            "Active",
-            237,
-        ),
-        
-        (
-            "C000001",
-            "Shea",
-            "Boehm",
-            "3343 Sallie Gateway",
-            "508.104.0644 x4976",
-            "Alexander.Weber@monroe.com",
-            "Inactive",
-            461,
-        ),
-        
-        (
-            "C000002",
-            "Blanca",
-            "Bashirian",
-            "0193 Malvina Lake",
-            "(240)014-9496 x08349",
-            "Joana_Nienow@guy.org",
-            "Active",
-            689,
-        ),
-        
-        (
-            "C000003",
-            "Elfrieda",
-            "Skiles",
-            "3180 Mose Row",
-            "(839)825-0058",
-            "Mylene_Smitham@hannah.co.uk",
-            "Active",
-            90,
-        ),
-        
-        (
-            "C000004",
-            "Mittie",
-            "Turner",
-            "996 Lorenza Points",
-            "1-324-023-8861 x025",
-            "Clair_Bergstrom@rylan.io",
-            "Active",
-            565,
-        ),
-        
-        (
-            "C000005",
-            "Nicole",
-            "Wisozk",
-            "0170 Kuphal Knoll",
-            "(731)775-3683 x45318",
-            "Hudson.Witting@mia.us",
-            "Active",
-            244,
-        ),
-        
-        (
-            "C000006",
-            "Danika",
-            "Bechtelar",
-            "5067 Goyette Place",
-            "503-011-7566 x19729",
-            "Wyatt.Hodkiewicz@wyatt.net",
-            "Inactive",
-            663,
-        ),
-        
-        (
-            "C000007",
-            "Elbert",
-            "Abbott",
-            "36531 Bergstrom Circle",
-            "(223)402-1096",
-            "Isabelle_Rogahn@isac.biz",
-            "Inactive",
-            480,
-            
-            
-        ),
-        
-        (
-            "C000008",
-            "Faye",
-            "Gusikowski",
-            "329 Maye Wall",
-            "201.358.6143",
-            "Lelia_Wunsch@maximo.biz",
-            "active",
-            222,
-        ),
-    ]
-
-
-
-
-def test_add_customer(_customers):
-    """test add customer
-    """
-    for customer in _customers:
-
-        with pytest.raises(DoesNotExist):
-            query = l.db_models.Customer.get(l.db_models.Customer.customer_id == customer[0])
-
-        l.add_customer(
-            customer[0],
-            customer[1],
-            customer[2],
-            customer[3],
-            customer[4],
-            customer[5],
-            customer[6],
-            customer[7],
-        )
-
-        query = l.db_models.Customer.get(l.db_models.Customer.customer_id == customer[0])
-        assert query.customer_id == customer[0]
-        assert query.name == customer[1]
-        assert query.last_name == customer[2]
-        assert query.home_address == customer[3]
-        assert query.phone_number == customer[4]
-        assert query.email_address == customer[5]
-        assert query.status == customer[6].lower()
-        assert query.credit_limit == customer[7]
-
-    for customer in _customers:
-        query = l.db.Customer.delete().where(
-            l.db.Customer.customer_id == customer[0]
-        )
-        query.execute()
-
-
-def test_search_customer(_customers):
-    """test search customer
-    """
-    for customer in _customers:
-        assert l.search_customer(customer[0]) == {}
-
-    for customer in _customers:
-
-        l.add_customer(
-            customer[0],
-            customer[1],
-            customer[2],
-            customer[3],
-            customer[4],
-            customer[5],
-            customer[6],
-            customer[7],
-        )
-
-        result = l.search_customer(customer[0])
-        assert result["customer_id"] == customer[0]
-        assert result["name"] == customer[1]
-        assert result["lastname"] == customer[2]
-        assert result["home_address"] == customer[3]
-        assert result["phone_number"] == customer[4]
-        assert result["email"] == customer[5]
-        assert result["status"] == customer[6].lower()
-        assert result["credit_limit"] == customer[7]
-
-    for customer in _customers:
-        query = l.db.Customer.delete().where(
-            l.db.Customer.customer_id == customer[0]
-        )
-        query.execute()
-
-
-def test_delete_customer(_customers):
-    """test delete customer
-    """
-    for customer in _customers:
-        assert l.delete_customer(customer[0]) is False
-
-    for customer in _customers:
-        l.add_customer(
-            customer[0],
-            customer[1],
-            customer[2],
-            customer[3],
-            customer[4],
-            customer[5],
-            customer[6],
-            customer[7],
-        )
-
-    for customer in _customers:
-        assert l.delete_customer(customer[0]) is True
-        
-
-
-def test_update_customer(_customers):
-    """test update customer
-    """
-    for customer in _customers:
-        with pytest.raises(ValueError):
-            l.update_customer_credit(customer[0], 500)
-
-    for customer in _customers:
-        l.add_customer(
-            customer[0],
-            customer[1],
-            customer[2],
-            customer[3],
-            customer[4],
-            customer[5],
-            customer[6],
-            customer[7],
-        )
-
-    for customer in _customers:
-        query = l.db.Customer.get(l.db.Customer.customer_id == customer[0])
-        assert query.credit_limit != 500
-        l.update_customer_credit(customer[0], 500)
-        query = l.db.Customer.get(l.db.Customer.customer_id == customer[0])
-        assert query.credit_limit == 500
-
-    for customer in _customers:
-        query = l.db.Customer.delete().where(
-            l.db.Customer.customer_id == customer[0]
-        )
-        query.execute()
+if __name__ == '__main__':
+    unittest.main()
