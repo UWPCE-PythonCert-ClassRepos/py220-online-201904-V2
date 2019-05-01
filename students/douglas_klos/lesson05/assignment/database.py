@@ -1,32 +1,29 @@
 #!/usr/bin/env python3
+#pylint: disable=E0401
+""" Main functions to interface with MongoDB """
 
-import json
+# import csv
+# import json
+
 from pprint import pprint
-import os
+import pymongo
 from loguru import logger
-from bson import json_util
 import src.mongodb_conn as mdb
 from src.database_operations import drop_databases
-import pymongo
-import csv
 
-mongo = mdb.MongoDBConnection()
-
-
-def print_mdb_collection(collection_name):
-    for doc in collection_name.find():
-        print(doc)
+MONGO = mdb.MongoDBConnection()
 
 
 def import_data(directory_name, *files):
-
+    """Main call to import multiple csv files
+    """
     _success = ()
     _fail = ()
 
     for csv_file in files:
         success, fail = insert_to_mongo(directory_name, csv_file)
-        _success = _success + (success, )
-        _fail = _fail + (fail, )
+        _success = _success + (success,)
+        _fail = _fail + (fail,)
 
     return (_success, _fail)
 
@@ -35,27 +32,33 @@ def import_data(directory_name, *files):
 
 
 def insert_to_mongo(directory_name, filename):
+    """Inserts given csv file into mongo
+    """
 
     success = 0
     fail = 0
 
-    with mongo:
-        db = mongo.connection.media
-        logger.info(f"Inserting {filename[:-4]} into Mongo")
+    with MONGO:
+        db = MONGO.connection.media
+        logger.info(f"Inserting {filename[:-4]} into Mongo...")
         database_name = db[filename[:-4]]
 
         iter_lines = get_line(open_file(f"{directory_name}{filename}"))
-        header = next(iter_lines).split(',')
+        header = next(iter_lines).split(",")
 
-        if filename[:-4] != 'rental':
+        if filename[:-4] != "rental":
             database_name.create_index(header[0], unique=True)
         else:
-            database_name.create_index([(header[0], pymongo.ASCENDING),
-                                        (header[1], pymongo.ASCENDING)],
-                                        unique=True)
+            database_name.create_index(
+                [
+                    (header[0], pymongo.ASCENDING),
+                    (header[1], pymongo.ASCENDING),
+                ],
+                unique=True,
+            )
 
         for line in iter_lines:
-            line = line.split(',')
+            line = line.split(",")
             new_addition = {}
             for num, field in enumerate(header):
                 new_addition[field] = line[num]
@@ -69,44 +72,49 @@ def insert_to_mongo(directory_name, filename):
 
 
 def show_available_products():
+    """Returns dict of available products
+    """
     logger.info(f"Preparing dict of available prodcuts...")
     available_products = {}
 
-    with mongo:
-        db = mongo.connection.media
+    with MONGO:
+        db = MONGO.connection.media
 
-        products = db['product']
+        products = db["product"]
         for doc in products.find():
-            del(doc['_id'])
-            if int(doc['quantity_available']) > 0:
-                _doc = doc.copy()
-                del(_doc['product_id'])
-                available_products[doc['product_id']] =_doc
+            del doc["_id"]
+            if int(doc["quantity_available"]) > 0:
+                product_id = doc["product_id"]
+                del doc["product_id"]
+                available_products[product_id] = doc
 
     return available_products
 
 
 def show_rentals(product_id):
+    """Returns dict of customers renting product_id
+    """
     logger.info(f"Perparing rental dict for product_id: {product_id}...")
     current_user_rentals = {}
 
-    with mongo:
-        db = mongo.connection.media
+    with MONGO:
+        db = MONGO.connection.media
 
         # products = db['product']
-        rentals = db['rental']
-        customers = db['customers']
+        rentals = db["rental"]
+        customers = db["customers"]
 
         # First we get a list of users that have the specified rental
         query = {"product_id": product_id}
         for rental in rentals.find(query):
-            # Now we query customers user_id specified for the rental item.
-            query = {"user_id": rental['user_id']}
+
+            # Now we query customers for user_id specified from the rental item.
+            query = {"user_id": rental["user_id"]}
             for customer in customers.find(query):
-                _customer = customer.copy()
-                del(_customer['_id'])
-                del(_customer['user_id'])
-                current_user_rentals[customer['user_id']] = _customer
+                user_id = customer["user_id"]
+                del customer["_id"]
+                del customer["user_id"]
+                current_user_rentals[user_id] = customer
 
     return current_user_rentals
 
@@ -140,12 +148,12 @@ def open_file(filename):
 
 
 def main(argv=None):
-    """ database main function
+    """Database main function, ultimately useless outside of testing.
     """
     pprint(drop_databases())
-    pprint(import_data('./data/', 'product.csv', 'customers.csv', 'rental.csv'))
+    pprint(import_data("./data/", "product.csv", "customers.csv", "rental.csv"))
     pprint(show_available_products())
-    pprint(show_rentals('prd002'))
+    pprint(show_rentals("prd002"))
 
 
 if __name__ == "__main__":
