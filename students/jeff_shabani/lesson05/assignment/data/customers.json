@@ -1,1 +1,82 @@
-{"user_id":{"0":"user001","1":"user002","2":"user003","3":"user004","4":"user005","5":"user006","6":"user007","7":"user008","8":"user009","9":"user010"},"name":{"0":"Elisa Miles","1":"Maya Data","2":"Andy Norris","3":"Flor Matatena","4":"Dan Sounders","5":"Leo Dembele","6":"Pete Nicholas","7":"Shirlene Harris","8":"Nick Rather","9":"Jose Garza"},"address":{"0":"4490 Union Street","1":"4936 Elliot Avenue","2":"348 Terra Street","3":"885 Boone Crockett Lane","4":"861 Honeysuckle Lane","5":"2725 Mutton Town Road","6":"668 Elliot Avenue","7":"4329 Honeysuckle Lane","8":"4679 Goodwin Avenue","9":"2717 Raccoon Run"},"zip_code":{"0":98109,"1":98115,"2":98501,"3":97209,"4":98244,"5":98368,"6":98115,"7":98055,"8":98619,"9":98116},"phone_number":{"0":"206-922-0882","1":"206-777-1927","2":"206-309-2533","3":"206-414-2629","4":"206-279-1723","5":"206-203-1294","6":"206-279-8759","7":"206-279-5340","8":"206-777-1965","9":"206-946-8200"},"email":{"0":"elisa.miles@yahoo.com","1":"mdata@uw.edu","2":"andy.norris@gmail.com","3":"matseattle@pge.com","4":"soundersoccer@mls.com","5":"leo.dembele@comcast.com","6":"nicholasp@amazon.com","7":"harrisfamily@gmail.com","8":"nick.rather@microsoft.com","9":"joegarza@boeing.com"}}
+{
+  "0": {
+    "user_id": "user001",
+    "name": "Elisa Miles",
+    "address": "4490 Union Street",
+    "zip_code": 98109,
+    "phone_number": "206-922-0882",
+    "email": "elisa.miles@yahoo.com"
+  },
+  "1": {
+    "user_id": "user002",
+    "name": "Maya Data",
+    "address": "4936 Elliot Avenue",
+    "zip_code": 98115,
+    "phone_number": "206-777-1927",
+    "email": "mdata@uw.edu"
+  },
+  "2": {
+    "user_id": "user003",
+    "name": "Andy Norris",
+    "address": "348 Terra Street",
+    "zip_code": 98501,
+    "phone_number": "206-309-2533",
+    "email": "andy.norris@gmail.com"
+  },
+  "3": {
+    "user_id": "user004",
+    "name": "Flor Matatena",
+    "address": "885 Boone Crockett Lane",
+    "zip_code": 97209,
+    "phone_number": "206-414-2629",
+    "email": "matseattle@pge.com"
+  },
+  "4": {
+    "user_id": "user005",
+    "name": "Dan Sounders",
+    "address": "861 Honeysuckle Lane",
+    "zip_code": 98244,
+    "phone_number": "206-279-1723",
+    "email": "soundersoccer@mls.com"
+  },
+  "5": {
+    "user_id": "user006",
+    "name": "Leo Dembele",
+    "address": "2725 Mutton Town Road",
+    "zip_code": 98368,
+    "phone_number": "206-203-1294",
+    "email": "leo.dembele@comcast.com"
+  },
+  "6": {
+    "user_id": "user007",
+    "name": "Pete Nicholas",
+    "address": "668 Elliot Avenue",
+    "zip_code": 98115,
+    "phone_number": "206-279-8759",
+    "email": "nicholasp@amazon.com"
+  },
+  "7": {
+    "user_id": "user008",
+    "name": "Shirlene Harris",
+    "address": "4329 Honeysuckle Lane",
+    "zip_code": 98055,
+    "phone_number": "206-279-5340",
+    "email": "harrisfamily@gmail.com"
+  },
+  "8": {
+    "user_id": "user009",
+    "name": "Nick Rather",
+    "address": "4679 Goodwin Avenue",
+    "zip_code": 98619,
+    "phone_number": "206-777-1965",
+    "email": "nick.rather@microsoft.com"
+  },
+  "9": {
+    "user_id": "user010",
+    "name": "Jose Garza",
+    "address": "2717 Raccoon Run",
+    "zip_code": 98116,
+    "phone_number": "206-946-8200",
+    "email": "joegarza@boeing.com"
+  }
+}

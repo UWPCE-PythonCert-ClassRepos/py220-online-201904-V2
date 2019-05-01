@@ -2,10 +2,10 @@
 This module utilizes MongoDB to build a product database for
 HP Norton.
 """
-import csv
 import json
-import pandas as pd
+from loguru import logger
 from pathlib import Path
+import pandas as pd
 from pymongo import MongoClient
 import pysnooper
 
@@ -32,6 +32,11 @@ class MongoDBConnection():
 
 
 def print_mdb_collection(collection_name):
+    """
+    Prints items in a collection
+    :param collection_name:
+    :return:
+    """
     for doc in collection_name.find():
         print(doc)
 
@@ -42,8 +47,9 @@ def read_in_data(path, file_name):
     :param file_name:
     :return: json file
     """
+    logger.info(f"Reading in the data...")
     customer_csv = pd.read_csv(path, encoding='ISO-8859-1')
-    customer_csv.to_json(Path.cwd().with_name('data') / file_name)
+    customer_csv.to_json(Path.cwd().with_name('data') / file_name, orient='index')
     cust_json = open(Path.cwd().with_name('data') / file_name).read()
     cust_json = json.loads(cust_json)
     return cust_json
@@ -58,6 +64,12 @@ def create_collection(database, coll_name, sp, fn):
     return coll
 
 def remove_a_collection(database, collection_name):
+    """
+    Removes a collection from the database
+    :param database:
+    :param collection_name:
+    :return: deleted collection
+    """
     remove = database[collection_name]
     remove.drop()
 
@@ -109,11 +121,9 @@ def main():
             Returns items based on quantity available >0
             :return:
             """
-            available = db.products.find({"quantity_available":{"$ne":0}})
+            available = db.products.find()
             for item in available:
                 print(item)
-
-
 
         show_available_products()
 
