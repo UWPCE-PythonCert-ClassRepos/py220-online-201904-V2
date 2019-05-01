@@ -37,6 +37,12 @@ Show the help menu for main.py:
 $ ./main.py -h
 ```
 
+Testing of the src files was done with the following syntax.  Note all test should be passing.  Currently main.py is not being tested, it only parses command line arguments and makes basic function calls.  If there's time it's something I'll implement.
+```
+$ pytest --cov=src ./tests/
+$ pytest --cov=src --cov-report html ./tests/
+```
+
 Discovered the source of my constant E0401 pylint error.  Pylint is apparently
 being run from outside of the virtual environment, even though 'which pylint'
 specifies that it correctly running the pylint in the venv.  If I though

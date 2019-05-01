@@ -97,3 +97,23 @@ def test_show_rentals(_show_rentals):
     """ rentals """
     students_response = l.show_rentals("prd002")
     assert students_response == _show_rentals
+
+
+def test_get_line():
+    """Test get_line function
+    """
+    lines = [x for x in range(10)]
+    for num, line in enumerate(l.get_line(lines)):
+        assert line == lines[num]
+
+
+def test_open_file():
+    """Test open file function
+    """
+    file = l.open_file("./data/customers.csv")
+
+    with open("./data/customers.csv", "rb") as content:
+        next(content)
+        lines = content.read().decode("utf-8-sig", errors="ignore").split("\n")
+        for line in lines:
+            assert line in file
