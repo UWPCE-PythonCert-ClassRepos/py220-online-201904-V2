@@ -5,10 +5,28 @@
 
 """
 import logging
+import datetime
 from peewee import *
 
-logging.basicConfig(level=logging.INFO)
-LOGGER = logging.getLogger(__name__)
+LOG_FILE = datetime.datetime.now().strftime('%Y-%m-%d')+'.log'
+LOG_FORMAT = "%(asctime)s %(filename)s:%(lineno)-3d %(levelname)s %(message)s"
+FORMATTER = logging.Formatter(LOG_FORMAT)
+
+#info and above to log file
+FILE_HANDLER = logging.FileHandler('db.log')
+FILE_HANDLER.setLevel(logging.INFO)
+FILE_HANDLER.setFormatter(FORMATTER)
+
+#info and above message at console
+CONSOLE_HANDLER = logging.StreamHandler()
+CONSOLE_HANDLER.setLevel(logging.INFO)
+CONSOLE_HANDLER.setFormatter(FORMATTER)
+
+LOGGER = logging.getLogger()
+LOGGER.setLevel(logging.INFO)
+LOGGER.addHandler(FILE_HANDLER)
+LOGGER.addHandler(CONSOLE_HANDLER)
+
 
 LOGGER.info('Here we define our data (the schema)')
 LOGGER.info('First name and connect to a database (sqlite here)')

@@ -11,12 +11,7 @@ import logging
 from peewee import *
 from customer_model import Customer
 
-logging.basicConfig(level=logging.INFO)
-LOGGER = logging.getLogger(__name__)
-
-LOGGER.info('Working with Person class')
-LOGGER.info('Note how I use constants and a list of tuples as a simple schema')
-LOGGER.info('Normally you probably will have prompted for this from a user')
+LOGGER = logging.getLogger()
 
 DATABASE = SqliteDatabase('customer.db')
 DATABASE.connect()
@@ -92,7 +87,7 @@ def add_customer_list(customer):
                 credit_limit=customer[CREDIT_LIMIT]
                 )
             new_customer.save()
-            #LOGGER.info('Database add successful')
+            LOGGER.info('%s Database add successful', customer[CUSTOMER_ID])
 
     # it was giving me model based error type,
     # not sure what error type would work here?
