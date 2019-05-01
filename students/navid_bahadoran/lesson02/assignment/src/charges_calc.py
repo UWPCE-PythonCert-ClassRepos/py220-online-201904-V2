@@ -50,7 +50,7 @@ def set_the_level(debug_choice):
         logger.disable(__name__)
         con_level, file_level = None, None
     elif debug_choice == 1:
-        logger.remove()
+        logger.remove()   # remove all handler for logger
         con_level, file_level = "ERROR", "ERROR"
     elif debug_choice == 2:
         logger.remove()

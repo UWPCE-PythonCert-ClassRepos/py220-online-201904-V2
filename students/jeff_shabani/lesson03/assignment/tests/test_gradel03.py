@@ -126,7 +126,7 @@ def test_search_customer(_search_customers):
     assert result["email"] == _search_customers[0][1][5]
     assert result["phone_number"] == _search_customers[0][1][4]
 
-    for customer in _search_customers:
+    for customer in _search_customers[0]:
         l.delete_customer(customer[0])
 
 

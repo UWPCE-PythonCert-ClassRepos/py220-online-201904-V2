@@ -1,0 +1,133 @@
+
+2019-04-14 14:26:29,866 charges_calc.py:119 WARNING
+Error in input file: source_single_test.json
+Program will continue and process all unaffected data. Affected data will not be included.
+Item Number: RNT001
+Item Info:
+{'product_code': 'PRD80', 'units_rented': 8, 'price_per_day': 31, 'rental_start': '6/12/17', 'rental_end': '3/22/17', 'total_days': -82, 'total_price': -2542}
+
+2019-04-14 14:28:24,051 charges_calc.py:119 WARNING
+Error in input file: source_single_test_fixed.json
+Program will continue and process all unaffected data. Affected data will not be included.
+Item Number: RNT003
+Item Info:
+{'product_code': 'PRD40', 'units_rented': 3, 'price_per_day': 114, 'rental_start': '9/22/17', 'rental_end': '6/12/17', 'total_days': -102, 'total_price': -11628}
+
+2019-04-14 14:30:40,980 charges_calc.py:119 WARNING
+Error in input file: source_single_test_fixed.json
+Program will continue and process all unaffected data. Affected data will not be included.
+Item Number: RNT003
+Item Info:
+{'product_code': 'PRD40', 'units_rented': 3, 'price_per_day': 114, 'rental_start': '9/22/17', 'rental_end': '6/12/17', 'total_days': -102, 'total_price': -11628}
+
+2019-04-14 14:30:40,981 charges_calc.py:119 WARNING
+Error in input file: source_single_test_fixed.json
+Program will continue and process all unaffected data. Affected data will not be included.
+Item Number: RNT004
+Item Info:
+{'product_code': 'PRD90', 'units_rented': 9, 'price_per_day': 14, 'rental_start': '9/22/14', 'rental_end': '6/12/13', 'total_days': -467, 'total_price': -6538}
+
+2019-04-14 14:30:40,982 charges_calc.py:119 WARNING
+Error in input file: source_single_test_fixed.json
+Program will continue and process all unaffected data. Affected data will not be included.
+Item Number: RNT005
+Item Info:
+{'product_code': 'PRD910', 'units_rented': 20, 'price_per_day': 140, 'rental_start': '9/22/14', 'rental_end': '6/12/12', 'total_days': -832, 'total_price': -116480}
+
+2019-04-14 14:31:32,373 charges_calc.py:119 WARNING
+Error in input file: source_single_test_fixed.json
+Program will continue and process all unaffected data. Affected data will not be included.
+Item Number: RNT003
+Item Info:
+{'product_code': 'PRD40', 'units_rented': 3, 'price_per_day': 114, 'rental_start': '9/22/17', 'rental_end': '6/12/17', 'total_days': -102, 'total_price': -11628}
+
+2019-04-14 14:31:32,374 charges_calc.py:119 WARNING
+Error in input file: source_single_test_fixed.json
+Program will continue and process all unaffected data. Affected data will not be included.
+Item Number: RNT004
+Item Info:
+{'product_code': 'PRD90', 'units_rented': 9, 'price_per_day': 14, 'rental_start': '9/22/14', 'rental_end': '6/12/13', 'total_days': -467, 'total_price': -6538}
+
+2019-04-14 14:31:32,375 charges_calc.py:119 WARNING
+Error in input file: source_single_test_fixed.json
+Program will continue and process all unaffected data. Affected data will not be included.
+Item Number: RNT005
+Item Info:
+{'product_code': 'PRD910', 'units_rented': 20, 'price_per_day': 140, 'rental_start': '9/22/14', 'rental_end': '6/12/12', 'total_days': -832, 'total_price': -116480}
+
+2019-04-14 14:32:12,508 charges_calc.py:119 WARNING
+Error in input file: source_single_test_fixed.json
+Program will continue and process all unaffected data. Affected data will not be included.
+Item Number: RNT003
+Item Info:
+{'product_code': 'PRD40', 'units_rented': 3, 'price_per_day': 114, 'rental_start': '9/22/17', 'rental_end': '6/12/17', 'total_days': -102, 'total_price': -11628}
+
+2019-04-14 14:32:12,508 charges_calc.py:119 WARNING
+Error in input file: source_single_test_fixed.json
+Program will continue and process all unaffected data. Affected data will not be included.
+Item Number: RNT005
+Item Info:
+{'product_code': 'PRD910', 'units_rented': 20, 'price_per_day': 140, 'rental_start': '9/22/14', 'rental_end': '6/12/12', 'total_days': -832, 'total_price': -116480}
+
+2019-04-14 14:33:44,267 charges_calc.py:119 WARNING
+Error in input file: source_single_test_fixed.json
+Program will continue and process all unaffected data. Affected data will not be included.
+Item Number: RNT003
+Item Info:
+{'product_code': 'PRD40', 'units_rented': 3, 'price_per_day': 114, 'rental_start': '9/22/17', 'rental_end': '6/12/17', 'total_days': -102, 'total_price': -11628}
+
+2019-04-14 14:33:44,267 charges_calc.py:119 WARNING
+Error in input file: source_single_test_fixed.json
+Program will continue and process all unaffected data. Affected data will not be included.
+Item Number: RNT005
+Item Info:
+{'product_code': 'PRD910', 'units_rented': 20, 'price_per_day': 140, 'rental_start': '9/22/14', 'rental_end': '6/12/12', 'total_days': -832, 'total_price': -116480}
+
+2019-04-14 14:42:40,887 charges_calc.py:119 WARNING
+Error in input file: source_small_test.json
+Program will continue and process all unaffected data. Affected data will not be included.
+Item Number: RNT003
+Item Info:
+{'product_code': 'PRD40', 'units_rented': 3, 'price_per_day': 114, 'rental_start': '9/22/17', 'rental_end': '6/12/17', 'total_days': -102, 'total_price': -11628}
+
+2019-04-14 14:42:40,887 charges_calc.py:119 WARNING
+Error in input file: source_small_test.json
+Program will continue and process all unaffected data. Affected data will not be included.
+Item Number: RNT005
+Item Info:
+{'product_code': 'PRD910', 'units_rented': 20, 'price_per_day': 140, 'rental_start': '9/22/14', 'rental_end': '6/12/12', 'total_days': -832, 'total_price': -116480}
+
+2019-04-14 14:49:03,916 charges_calc.py:84  ERROR
+Critical error unable to load file: source.json
+This error needs to be fixed before any data can be processed.
+Json error message: Expecting property name enclosed in double quotes
+Line Number: 5884
+Column Number: 23
+
+2019-04-14 14:49:17,344 charges_calc.py:119 WARNING
+Error in input file: source_small_test.json
+Program will continue and process all unaffected data. Affected data will not be included.
+Item Number: RNT003
+Item Info:
+{'product_code': 'PRD40', 'units_rented': 3, 'price_per_day': 114, 'rental_start': '9/22/17', 'rental_end': '6/12/17', 'total_days': -102, 'total_price': -11628}
+
+2019-04-14 14:49:17,345 charges_calc.py:119 WARNING
+Error in input file: source_small_test.json
+Program will continue and process all unaffected data. Affected data will not be included.
+Item Number: RNT005
+Item Info:
+{'product_code': 'PRD910', 'units_rented': 20, 'price_per_day': 140, 'rental_start': '9/22/14', 'rental_end': '6/12/12', 'total_days': -832, 'total_price': -116480}
+
+2019-04-14 14:55:00,783 charges_calc.py:123 WARNING
+Error in input file: source_small_test.json
+Program will continue and process all unaffected data. Affected data will not be included.
+Item Number: RNT003
+Item Info:
+{'product_code': 'PRD40', 'units_rented': 3, 'price_per_day': 114, 'rental_start': '9/22/17', 'rental_end': '6/12/17', 'total_days': -102, 'total_price': -11628}
+
+2019-04-14 14:55:00,784 charges_calc.py:123 WARNING
+Error in input file: source_small_test.json
+Program will continue and process all unaffected data. Affected data will not be included.
+Item Number: RNT005
+Item Info:
+{'product_code': 'PRD910', 'units_rented': 20, 'price_per_day': 140, 'rental_start': '9/22/14', 'rental_end': '6/12/12', 'total_days': -832, 'total_price': -116480}
