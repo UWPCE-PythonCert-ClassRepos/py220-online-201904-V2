@@ -1,13 +1,28 @@
 #!/usr/bin/env python3
-# pylint: disable = E1101, W0212
+# pylint: disable = E1101, W0212, C0103, C0111, W0621
 '''
 grade lesson 5
 '''
 
-import os
 import pytest
 
 import database as l
+
+
+@pytest.fixture(scope='function')
+def mongo_database():
+    '''
+    Creating the MongoDB for testing.
+    '''
+    mongo = l.MongoDBConnection()
+
+    with mongo:
+        db = mongo.connection.media
+
+        yield db
+
+        l.clear_data(db)
+
 
 @pytest.fixture
 def _show_available_products():
@@ -35,32 +50,40 @@ def _show_rentals():
 
 
 def test_import_csv():
-    rentals_list = l._import_csv("rental.csv")
+    rentals_list = l._import_csv('rental.csv')
 
     assert {'product_id': 'prd002', 'user_id': 'user008'} in rentals_list
     assert len(rentals_list) == 9
 
 
-def test_import_data():
+def test_import_data(mongo_database):
     ''' import '''
-    data_dir = os.path.dirname(os.path.abspath(__file__))
-    added, errors = l.import_data(db, data_dir, 'product.csv', 'customers.csv', 'rental.csv')
+    result = l.import_data(mongo_database, '', 'product.csv', 'customers.csv', 'rental.csv')
 
-    for add in added:
-        assert isinstance(add, int)
+    assert result == ((10, 10, 9), (0, 0, 0))
 
-    for error in errors:
-        assert isinstance(error, int)
-
-    assert added == (5, 11, 9)
-    assert errors == (0, 0, 0)
 
 def test_show_available_products(_show_available_products):
     ''' available products '''
-    students_response = l.show_available_products()
+    students_response = l.show_available_products(db)
     assert students_response == _show_available_products
+
 
 def test_show_rentals(_show_rentals):
     ''' rentals '''
     students_response = l.show_rentals('P000003')
     assert students_response == _show_rentals
+
+
+def test_clear_data(mongo_database):
+    '''
+    Testing database clearing.
+    '''
+    l.import_data(mongo_database, '', 'product.csv', 'customers.csv', 'rental.csv')
+
+    result = mongo_database.list_collection_names()
+    assert result == ['products', 'rentals', 'customers']
+
+    l.clear_data(mongo_database)
+    result2 = mongo_database.list_collection_names()
+    assert result2 == []
