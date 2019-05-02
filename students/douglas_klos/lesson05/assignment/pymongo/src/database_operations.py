@@ -7,6 +7,8 @@ import pymongo
 from loguru import logger
 import src.mongodb_conn as mdb_conn
 
+# from pymongo import MongoClient
+
 MONGO = mdb_conn.MongoDBConnection()
 
 
@@ -48,7 +50,7 @@ def insert_to_mongo(directory_name, filename):
     fail = 0
 
     with MONGO:
-        mdb = MONGO.connection.media
+        mdb = MONGO.connection.HPNorton_PyMongo
         logger.info(f"Inserting {filename[:-4]} into Mongo...")
         database_name = mdb[filename[:-4]]
 
@@ -90,7 +92,7 @@ def show_available_products():
     available_products = {}
 
     with MONGO:
-        mdb = MONGO.connection.media
+        mdb = MONGO.connection.HPNorton_PyMongo
         products = mdb["product"]
         for doc in products.find():
             del doc["_id"]
@@ -115,7 +117,7 @@ def rentals_for_customer(user_id):
     rentals_for_user = {}
 
     with MONGO:
-        mdb = MONGO.connection.media
+        mdb = MONGO.connection.HPNorton_PyMongo
 
         products = mdb["product"]
         rentals = mdb["rental"]
@@ -129,6 +131,7 @@ def rentals_for_customer(user_id):
             for product in products.find(query):
                 product_id = product["product_id"]
                 del product["_id"]
+                del product["product_id"]
                 rentals_for_user[product_id] = product
 
     return rentals_for_user
@@ -147,7 +150,7 @@ def show_rentals(product_id):
     users_renting_product = {}
 
     with MONGO:
-        mdb = MONGO.connection.media
+        mdb = MONGO.connection.HPNorton_PyMongo
 
         # products = mdb['product']
         rentals = mdb["rental"]
@@ -178,7 +181,7 @@ def list_all_products():
     all_products_dict = {}
 
     with MONGO:
-        mdb = MONGO.connection.media
+        mdb = MONGO.connection.HPNorton_PyMongo
         products = mdb["product"]
         all_products = products.find({})
         for product in all_products:
@@ -199,7 +202,7 @@ def list_all_customers():
     all_customers_dict = {}
 
     with MONGO:
-        mdb = MONGO.connection.media
+        mdb = MONGO.connection.HPNorton_PyMongo
         customers = mdb["customers"]
         all_customers = customers.find({})
         for customer in all_customers:
@@ -237,13 +240,21 @@ def open_file(filename):
         return content.read().decode("utf-8-sig", errors="ignore").split("\n")
 
 
-def drop_databases():
+def drop_database():
+    """Drops HPNorton_PyMongo database
+    """
+
+    logger.warning("Dropping HPNorton_PyMongo database")
+    mdb = mdb_conn.MongoClient()
+    mdb.drop_database("HPNorton_PyMongo")
+
+
+def drop_collections():
     """Drops collections from Mongo that are used for this program
     """
-    logger.warning("Dropping databases, lol!")
 
     with MONGO:
-        mdb = MONGO.connection.media
+        mdb = MONGO.connection.HPNorton_PyMongo
 
         customers = mdb["customers"]
         logger.warning('Dropping "Cusomters"')

@@ -1,27 +1,22 @@
-## Lesson 05
+# Lesson 05
 
-The main version of this program is under pymongo.  After I finished and expanded on that, I was a bit bored so I started playing with MongoEngine.  The plan is to implement full functionality in each, but there's some issues.  We'll see.
+Once again, for lesson five, we have ended up with two completely separate implementations of the assignment, one using PyMongo and the other using MongoEngine.  Both implementations exceed the assignment requirements, and further pytest functions have been written to ensure 100% test coverage of the database code, in addition to instructor supplied tests.
 
 
 Following is the directory layout for the assignment
 ```
 assignment/
-├───pymongo/ - root program folder
-│    ├─── data/ - databases and csv files
-│    ├─── src/ - module code
-│    └─── tests/ - pytest files
-└───mongoengine/ - root program folder
-     ├─── data/ - databases and csv files
-     ├─── src/ - module code
-     └─── tests/ - pytest files
+   ├───pymongo/ - root program folder
+   │      ├─── data/ - csv and json files
+   │      ├─── src/ - module code
+   │      └─── tests/ - pytest files
+   └───mongoengine/ - root program folder
+          ├─── data/ - csv and json files
+          ├─── src/ - module code
+          └─── tests/ - pytest files
 ```
-
-### PyMongo
-
-
-Include in the pymongo root folder is main.py, a CLI argument based front end for database operations to be used outside of the testing environment.  
-
-Following are examples of syntax used for executing main.py from the assignment folder.  Please note that at a minimum you must first specify the data directory, followed by n number of csv files to be imported, where n > 1.  I could not find a clean way to use argparser to require n > 2 arguments for this, only n > 1 or n = 2.
+## main.py
+Inside of each implementation is the exact same main.py file.  As both implementations are coded using the same function declarations, this cli based front-end is able to interact with both without any changes being made.  As such, all the following instructions are applicable to both implementations of the assignment.
 
 Show the help menu for main.py:
 ```
@@ -44,6 +39,10 @@ To delete the three collections (customers, product, rental) from MongoDB:
 ```
 $ ./main.py --drop-collections
 ```
+To delete the entire HPNorton database:
+```
+$ ./main.py --drop-database
+```
 Logging is enabled be default for all functions but can be disabled:
 ```
 $ ./main.py --disable-log
@@ -64,22 +63,33 @@ To load multiple csv files into the MongoDB:
 ```
 $ ./main.py --insert ./data/ customers.csv product.csv rental.csv
 ```
-Please note that when inserting csv files, you must at a minimum specify the data directory, followed by N number of csv files to be imported, where N > 1.  I could not find a clean way to make argparser require N > 2 arguments, only N > 1 or N = X for X > 1.  I did however find an open issue on bugs.python.org relating to this lack of feature, issue11354. (https://bugs.python.org/issue11354)
+Please note that when inserting csv files, you must at a minimum specify the data directory, followed by N number of csv files to be imported, where N > 1.  I could not find a clean way to make argparser require N > 2 arguments, only N > 1 or N = X for X >= 1.  I did however find an open issue on bugs.python.org relating to this lack of feature, issue11354. (https://bugs.python.org/issue11354)
 
-Testing of the src files was done with the following syntax.  Note all test should be passing.  Currently main.py is not being tested, it only parses command line arguments and makes basic function calls.  If there's time it's something I'll implement.
+Testing of the src files was done with the following syntax.  Note all test should be passing.  Currently main.py is not being tested, it only parses command line arguments and makes basic function calls.  If there's time and I'm super bored it's something I'll consider.
 ```
 $ pytest --cov=src ./tests/
 $ pytest --cov=src --cov-report html ./tests/
 ```
-Discovered the source of my constant E0401 pylint error.  Pylint is apparently being run from outside of the virtual environment, even though 'which pylint' specifies that it correctly running the pylint in the venv.  If I though call it as a python module, no more E0401 issues.  Following are the various commands I used for linting the assignment:
+Finally discovered the source of my constant E0401 pylint error.  Pylint is apparently being run from outside of the virtual environment, even though 'which pylint' specifies that it's correctly running the pylint from the venv.  If though I call it as a python module, no more E0401 issues.  Following are the various commands I used for linting the assignment:
 ```
 $ pwd
 ~/git/py220-online-201904-V2/students/douglas_klos/lesson05/pymongo/assignment
+~/git/py220-online-201904-V2/students/douglas_klos/lesson05/mongoengine/assignment
 $ python -m pylint ./main.py
 $ python -m pylint ./src/database_operations.py
 $ python -m pylint ./src
 ```
 
+### PyMongo
+
+PyMongo feels like the sqlite3 package of MongoDB, it's sorta clunky, and there's better solutions available.
+
 ### MongoEngine
 
-MongoEngine appears to be based off of PyMongo but is suppose to be easier to use, or so I read.  Thing is, early on while running pytest against the fucntions I had written using MongoEngine, I was getting deprecation warnings for PyMongo calls MongoEngine was masking.  There's even a two year old open issue for it https://github.com/MongoEngine/mongoengine/issues/1491.
+Enter MongoEngine, a peewee equivalent in my above comparison.
+
+MongoEngine appears to be based off of PyMongo and provides a sort of object-relational-mapping to MongoDB.
+
+MongoEnging makes deprecated function calls into PyMongo, and as such pytest returns warnings each time these functions are called.  There's even a two year old open issue for it https://github.com/MongoEngine/mongoengine/issues/1491.  I got around this by dropping the entire database instead of individual collections.x
+
+As a whole, I found coding the assignment using MongoEngine and it's mapper to be easier and more enjoyable than with PyMongo.

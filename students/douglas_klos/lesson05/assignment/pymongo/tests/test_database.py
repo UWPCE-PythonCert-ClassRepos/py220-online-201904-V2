@@ -208,13 +208,11 @@ def _list_rentals_for_customer():
     return {
         "prd007": {
             "description": "Ballerina painting",
-            "product_id": "prd007",
             "product_type": "livingroom",
             "quantity_available": "0",
         },
         "prd010": {
             "description": "60-inch TV",
-            "product_id": "prd010",
             "product_type": "livingroom",
             "quantity_available": "3",
         },
@@ -223,7 +221,7 @@ def _list_rentals_for_customer():
 
 def test_import_data():
     """ import """
-    l.drop_databases()
+    l.drop_collections()
 
     data_dir = "./data/"
     added, errors = l.import_data(
@@ -250,7 +248,7 @@ def test_import_data():
 def test_insert_to_mongo():
     """ import given csv file into mongo """
 
-    l.drop_databases()
+    l.drop_collections()
 
     data_dir = "./data/"
     added, errors = l.insert_to_mongo(data_dir, "product.csv")
@@ -332,3 +330,49 @@ def test_open_file():
         lines = content.read().decode("utf-8-sig", errors="ignore").split("\n")
         for line in lines:
             assert line in file
+
+
+def test_drop_databases():
+    """Test drop HPNorton database
+    """
+    l.drop_database()
+
+    data_dir = "./data/"
+    added, errors = l.import_data(
+        data_dir, "product.csv", "customers.csv", "rental.csv"
+    )
+
+    assert added == (10, 10, 9)
+    assert errors == (0, 0, 0)
+
+    l.drop_database()
+
+    added, errors = l.import_data(
+        data_dir, "product.csv", "customers.csv", "rental.csv"
+    )
+
+    assert added == (10, 10, 9)
+    assert errors == (0, 0, 0)
+
+
+def test_drop_collections():
+    """Test drop HPNorton collections
+    """
+    l.drop_collections()
+
+    data_dir = "./data/"
+    added, errors = l.import_data(
+        data_dir, "product.csv", "customers.csv", "rental.csv"
+    )
+
+    assert added == (10, 10, 9)
+    assert errors == (0, 0, 0)
+
+    l.drop_collections()
+
+    added, errors = l.import_data(
+        data_dir, "product.csv", "customers.csv", "rental.csv"
+    )
+
+    assert added == (10, 10, 9)
+    assert errors == (0, 0, 0)
