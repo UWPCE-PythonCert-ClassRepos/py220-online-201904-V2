@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-# pylint: disable = E1101
-"""
+# pylint: disable = E1101, W0212
+'''
 grade lesson 5
-"""
+'''
 
 import os
 import pytest
@@ -33,10 +33,18 @@ def _show_rentals():
                     'phone_number': '839)825-0058', 'email': 'Mylene_Smitham@hannah.co.uk'}
         }
 
+
+def test_import_csv():
+    rentals_list = l._import_csv("rental.csv")
+
+    assert {'product_id': 'prd002', 'user_id': 'user008'} in rentals_list
+    assert len(rentals_list) == 9
+
+
 def test_import_data():
-    """ import """
+    ''' import '''
     data_dir = os.path.dirname(os.path.abspath(__file__))
-    added, errors = l.import_data(data_dir, "products.csv", "customers.csv", "rentals.csv")
+    added, errors = l.import_data(db, data_dir, 'product.csv', 'customers.csv', 'rental.csv')
 
     for add in added:
         assert isinstance(add, int)
@@ -48,11 +56,11 @@ def test_import_data():
     assert errors == (0, 0, 0)
 
 def test_show_available_products(_show_available_products):
-    """ available products """
+    ''' available products '''
     students_response = l.show_available_products()
     assert students_response == _show_available_products
 
 def test_show_rentals(_show_rentals):
-    """ rentals """
-    students_response = l.show_rentals("P000003")
+    ''' rentals '''
+    students_response = l.show_rentals('P000003')
     assert students_response == _show_rentals

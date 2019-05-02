@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 '''
-Mongo DB assignment for Python 220
+Mongo DB assignment for Python 220.  This one I get a bit better than the last
+Actually, turns out that's a lie.  This is a giant rabbit hole.
 '''
 import csv
 import os
+import logging
+import logging_config
 import pymongo
 
 class MongoDBConnection:
@@ -121,7 +124,28 @@ def show_available_products(d_base):
     return available_products
 
 
+def show_rentals(d_base, product_id):
+    '''
+    Returns a dictionary with renter information from users who have products
+    that match the product_id.
+    '''
 
+    customer_info = {}
+
+    for rental in d_base.rentals.find():
+        if rental['product_id'] == product_id:
+            customer_id = rental['user_id']
+
+            customer_record = d_base.customers.find_one({'user_id': customer_id})
+
+            customer_dict = {'name': customer_record['name'],
+                             'address': customer_record['address'],
+                             'phone_number': customer_record['phone_number'],
+                             'email': customer_record['email']}
+
+            customer_info[customer_id] = customer_dict
+
+    return customer_info
 
 
 def clear_data(d_base):
