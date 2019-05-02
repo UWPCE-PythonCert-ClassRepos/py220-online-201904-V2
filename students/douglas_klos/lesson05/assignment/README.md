@@ -1,14 +1,25 @@
 ## Lesson 05
 
-For this assignment functions have been written that satisfy the test cases included with the assignment, these are included in src/database_operations.py.  Include in the assignment folder is main.py, a CLI argument based front end for database operations to be used outside of the testing environment.  
+The main version of this program is under pymongo.  After I finished and expanded on that, I was a bit bored so I started playing with MongoEngine.  The plan is to implement full functionality in each, but there's some issues.  We'll see.
+
 
 Following is the directory layout for the assignment
 ```
-assignment/ - root program folder
-├─── data/ - databases and csv files
-├─── src/ - module code
-└─── tests/ - pytest files
+assignment/
+├───pymongo/ - root program folder
+│    ├─── data/ - databases and csv files
+│    ├─── src/ - module code
+│    └─── tests/ - pytest files
+└───mongoengine/ - root program folder
+     ├─── data/ - databases and csv files
+     ├─── src/ - module code
+     └─── tests/ - pytest files
 ```
+
+### PyMongo
+
+
+Include in the pymongo root folder is main.py, a CLI argument based front end for database operations to be used outside of the testing environment.  
 
 Following are examples of syntax used for executing main.py from the assignment folder.  Please note that at a minimum you must first specify the data directory, followed by n number of csv files to be imported, where n > 1.  I could not find a clean way to use argparser to require n > 2 arguments for this, only n > 1 or n = 2.
 
@@ -60,14 +71,15 @@ Testing of the src files was done with the following syntax.  Note all test shou
 $ pytest --cov=src ./tests/
 $ pytest --cov=src --cov-report html ./tests/
 ```
-Discovered the source of my constant E0401 pylint error.  Pylint is apparently
-being run from outside of the virtual environment, even though 'which pylint'
-specifies that it correctly running the pylint in the venv.  If I though
-call it as a python module, no more E0401 issues.  Following are the various commands I used for linting the assignment:
+Discovered the source of my constant E0401 pylint error.  Pylint is apparently being run from outside of the virtual environment, even though 'which pylint' specifies that it correctly running the pylint in the venv.  If I though call it as a python module, no more E0401 issues.  Following are the various commands I used for linting the assignment:
 ```
 $ pwd
-~/git/py220-online-201904-V2/students/douglas_klos/lesson05/assignment
+~/git/py220-online-201904-V2/students/douglas_klos/lesson05/pymongo/assignment
 $ python -m pylint ./main.py
 $ python -m pylint ./src/database_operations.py
 $ python -m pylint ./src
 ```
+
+### MongoEngine
+
+MongoEngine appears to be based off of PyMongo but is suppose to be easier to use, or so I read.  Thing is, early on while running pytest against the fucntions I had written using MongoEngine, I was getting deprecation warnings for PyMongo calls MongoEngine was masking.  There's even a two year old open issue for it https://github.com/MongoEngine/mongoengine/issues/1491.

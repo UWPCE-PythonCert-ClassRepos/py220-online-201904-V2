@@ -147,6 +147,7 @@ def _list_all_customers():
 
 @pytest.fixture
 def _list_all_products():
+    """ Expected output for list_all_products() """
     return {
         "prd001": {
             "description": "60-inch TV stand",
@@ -201,9 +202,43 @@ def _list_all_products():
     }
 
 
+@pytest.fixture
+def _list_rentals_for_customer():
+    """ Expected output for list_rentals_for_customers """
+    return {
+        "prd007": {
+            "description": "Ballerina painting",
+            "product_id": "prd007",
+            "product_type": "livingroom",
+            "quantity_available": "0",
+        },
+        "prd010": {
+            "description": "60-inch TV",
+            "product_id": "prd010",
+            "product_type": "livingroom",
+            "quantity_available": "3",
+        },
+    }
+
+
+def drop_collections():
+    """This call generates a Pytest warning.  Doing some research on this
+       warning led me to an issue on github.com/MongoEngine.
+       MongoEngine is dependant on PyMongo and is coded using deprecated
+       functions, hence the error.  There's little I can do about this
+       in regards to my program here.  To use MongoEngine for this, it's
+       going to throw a warning.
+
+       https://github.com/MongoEngine/mongoengine/issues/1491
+    """
+    l.Customers.objects.delete()
+    l.Product.objects.delete()
+    l.Rental.objects.delete()
+
+
 def test_import_data():
     """ import """
-    l.drop_databases()
+    drop_collections()
 
     data_dir = "./data/"
     added, errors = l.import_data(
@@ -219,29 +254,79 @@ def test_import_data():
     assert added == (10, 10, 9)
     assert errors == (0, 0, 0)
 
+    added, errors = l.import_data(
+        data_dir, "product.csv", "customers.csv", "rental.csv"
+    )
 
-def test_show_available_products(_show_available_products):
-    """ available products """
-    students_response = l.show_available_products()
-    assert students_response == _show_available_products
-
-
-def test_show_rentals(_show_rentals):
-    """ rentals """
-    students_response = l.show_rentals("prd002")
-    assert students_response == _show_rentals
+    assert added == (0, 0, 0)
+    assert errors == (10, 10, 9)
 
 
-def test_list_all_customers(_list_all_customers):
-    """ customers """
-    my_response = l.list_all_customers()
-    assert my_response == _list_all_customers
+def test_insert_to_mongo():
+    """ import given csv file into mongo """
+
+    drop_collections()
+    data_dir = "./data/"
+
+    added, errors = l.insert_to_mongo(data_dir, "product.csv")
+    assert isinstance(added, int)
+    assert isinstance(errors, int)
+    assert added == 10
+    assert errors == 0
+
+    added, errors = l.insert_to_mongo(data_dir, "product.csv")
+    assert added == 0
+    assert errors == 10
+
+    added, errors = l.insert_to_mongo(data_dir, "customers.csv")
+    assert isinstance(added, int)
+    assert isinstance(errors, int)
+    assert added == 10
+    assert errors == 0
+
+    added, errors = l.insert_to_mongo(data_dir, "customers.csv")
+    assert added == 0
+    assert errors == 10
+
+    added, errors = l.insert_to_mongo(data_dir, "rental.csv")
+    assert isinstance(added, int)
+    assert isinstance(errors, int)
+    assert added == 9
+    assert errors == 0
+
+    added, errors = l.insert_to_mongo(data_dir, "rental.csv")
+    assert added == 0
+    assert errors == 9
 
 
-def test_list_all_products(_list_all_products):
-    """ customers """
-    my_response = l.list_all_products()
-    assert my_response == _list_all_products
+# def test_show_available_products(_show_available_products):
+#     """ available products """
+#     students_response = l.show_available_products()
+#     assert students_response == _show_available_products
+
+
+# def test_show_rentals(_show_rentals):
+#     """ rentals """
+#     students_response = l.show_rentals("prd002")
+#     assert students_response == _show_rentals
+
+
+# def test_list_all_customers(_list_all_customers):
+#     """ customers """
+#     my_response = l.list_all_customers()
+#     assert my_response == _list_all_customers
+
+
+# def test_list_all_products(_list_all_products):
+#     """ customers """
+#     my_response = l.list_all_products()
+#     assert my_response == _list_all_products
+
+
+# def test_rentals_for_customer(_list_rentals_for_customer):
+#     """ rentals for customers """
+#     my_response = l.rentals_for_customer("user002")
+#     assert my_response == _list_rentals_for_customer
 
 
 def test_get_line():

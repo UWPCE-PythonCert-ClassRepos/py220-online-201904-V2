@@ -19,22 +19,22 @@ def main(argv=None):
     if args.all_products:
         pprint(db.list_all_products())
 
-    if args.available_products:
+    elif args.available_products:
         pprint(db.show_available_products())
 
-    if args.all_customers:
+    elif args.all_customers:
         pprint(db.list_all_customers())
 
-    if args.drop_collections:
+    elif args.drop_collections:
         db.drop_databases()
 
-    if args.rentals_for_customer:
+    elif args.rentals_for_customer:
         pprint(db.rentals_for_customer(args.rentals_for_customer))
 
-    if args.customers_renting_product:
+    elif args.customers_renting_product:
         pprint(db.show_rentals(args.customers_renting_product))
 
-    if args.insert:
+    elif args.insert:
         pprint(db.import_data(*args.insert))
 
 
