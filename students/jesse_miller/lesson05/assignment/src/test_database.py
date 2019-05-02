@@ -65,13 +65,15 @@ def test_import_data(mongo_database):
 
 def test_show_available_products(_show_available_products):
     ''' available products '''
-    students_response = l.show_available_products(db)
+    result = l.import_data(mongo_database, '', 'product.csv', 'customers.csv', 'rental.csv')
+    students_response = l.show_available_products(result)
     assert students_response == _show_available_products
 
 
 def test_show_rentals(_show_rentals):
     ''' rentals '''
-    students_response = l.show_rentals('P000003')
+    result = l.import_data(mongo_database, '', 'product.csv', 'customers.csv', 'rental.csv')
+    students_response = l.show_rentals(result, 'P000003')
     assert students_response == _show_rentals
 
 
