@@ -44,7 +44,7 @@ def _import_csv(filename):
 
         headers = next(csv_data, None)
 
-    if headers[0].startswith("ï»¿"):  # Check for weird formatting
+    if headers[0].startswith('ï»¿'):  # Check for weird formatting
         headers[0] = headers[0][3:]
 
     for row in csv_data:
@@ -70,4 +70,64 @@ def _add_bulk_data(collection, directory_name, filename):
 
     except pymongo.errors.BulkWriteError as bwe:
         print(bwe.details)
-        return len(bwe.details["writeErrors"])
+        return len(bwe.details['writeErrors'])
+
+
+def import_data(d_base, directory_name, products_file, customers_file,
+                rentals_file):
+    '''
+    This takes the three files and the src directory, and loads said files in
+    the database.
+     db: self explanatory
+     directory_name: directory name for files
+     products_file: csv file for product data
+     customers_file: csv file for customer data
+     rentals_file: csv file for rentals data
+    '''
+
+    products = d_base['products']
+    products_errors = _add_bulk_data(products, directory_name, products_file)
+
+    customers = d_base['customers']
+    customers_errors = _add_bulk_data(customers, directory_name, customers_file)
+
+    rentals = d_base['rentals']
+    rentals_errors = _add_bulk_data(rentals, directory_name, rentals_file)
+
+    record_count = (d_base.products.count_documents({}), \
+                    d_base.customers.count_documents({}), \
+                    d_base.rentals.count_documents({}))
+
+    error_count = (products_errors, customers_errors, rentals_errors)
+
+    return record_count, error_count
+
+
+def show_available_products(d_base):
+    '''
+    Returns a dictionary showing available product.
+    '''
+
+    available_products = {}
+
+    for product in d_base.products.find():
+        if int(product['quantity_available']) > 0:
+            products_list = {'description': product['description'],
+                             'product_type': product['product_type'],
+                             'quantity_available': product['quantity_available']}
+
+            available_products[product['product_id']] = products_list
+
+    return available_products
+
+
+
+
+
+def clear_data(d_base):
+    '''
+    Delete data in the database.
+    '''
+    d_base.products.drop()
+    d_base.customers.drop()
+    d_base.rentals.drop()
