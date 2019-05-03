@@ -348,6 +348,11 @@ def test_drop_databases():
 
     l.drop_database()
 
+    # If drop_database() wasn't working, the following assertions would fail.
+    #   This is a sloppy test and I don't like it, works though...
+    #   It's something I'd improve upon in a production environment.
+    #   But time is limitied, so I choose to move on to new things to learn.
+
     added, errors = l.import_data(
         data_dir, "product.csv", "customers.csv", "rental.csv"
     )
@@ -370,6 +375,8 @@ def test_drop_collections():
     assert errors == (0, 0, 0)
 
     l.drop_collections()
+
+    # If drop_collections() wasn't working, the following assertions would fail.
 
     added, errors = l.import_data(
         data_dir, "product.csv", "customers.csv", "rental.csv"
