@@ -106,7 +106,7 @@ def test_show_available_products(_show_available_products, mongo_database):
 def test_show_rentals(_show_rentals, mongo_database):
     ''' rentals '''
     l.import_data(mongo_database, '', 'product.csv', 'customers.csv', 'rental.csv')
-    students_response = l.show_rentals(mongo_database, 'P000003')
+    students_response = l.show_rentals(mongo_database, 'prd002')
     assert students_response == _show_rentals
 
 
