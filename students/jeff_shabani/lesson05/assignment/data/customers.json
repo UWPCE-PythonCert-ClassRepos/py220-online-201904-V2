@@ -1,5 +1,5 @@
-{
-  "0": {
+[
+  {
     "user_id": "user001",
     "name": "Elisa Miles",
     "address": "4490 Union Street",
@@ -7,7 +7,7 @@
     "phone_number": "206-922-0882",
     "email": "elisa.miles@yahoo.com"
   },
-  "1": {
+  {
     "user_id": "user002",
     "name": "Maya Data",
     "address": "4936 Elliot Avenue",
@@ -15,7 +15,7 @@
     "phone_number": "206-777-1927",
     "email": "mdata@uw.edu"
   },
-  "2": {
+  {
     "user_id": "user003",
     "name": "Andy Norris",
     "address": "348 Terra Street",
@@ -23,7 +23,7 @@
     "phone_number": "206-309-2533",
     "email": "andy.norris@gmail.com"
   },
-  "3": {
+  {
     "user_id": "user004",
     "name": "Flor Matatena",
     "address": "885 Boone Crockett Lane",
@@ -31,7 +31,7 @@
     "phone_number": "206-414-2629",
     "email": "matseattle@pge.com"
   },
-  "4": {
+  {
     "user_id": "user005",
     "name": "Dan Sounders",
     "address": "861 Honeysuckle Lane",
@@ -39,7 +39,7 @@
     "phone_number": "206-279-1723",
     "email": "soundersoccer@mls.com"
   },
-  "5": {
+  {
     "user_id": "user006",
     "name": "Leo Dembele",
     "address": "2725 Mutton Town Road",
@@ -47,7 +47,7 @@
     "phone_number": "206-203-1294",
     "email": "leo.dembele@comcast.com"
   },
-  "6": {
+  {
     "user_id": "user007",
     "name": "Pete Nicholas",
     "address": "668 Elliot Avenue",
@@ -55,7 +55,7 @@
     "phone_number": "206-279-8759",
     "email": "nicholasp@amazon.com"
   },
-  "7": {
+  {
     "user_id": "user008",
     "name": "Shirlene Harris",
     "address": "4329 Honeysuckle Lane",
@@ -63,7 +63,7 @@
     "phone_number": "206-279-5340",
     "email": "harrisfamily@gmail.com"
   },
-  "8": {
+  {
     "user_id": "user009",
     "name": "Nick Rather",
     "address": "4679 Goodwin Avenue",
@@ -71,7 +71,7 @@
     "phone_number": "206-777-1965",
     "email": "nick.rather@microsoft.com"
   },
-  "9": {
+  {
     "user_id": "user010",
     "name": "Jose Garza",
     "address": "2717 Raccoon Run",
@@ -79,4 +79,4 @@
     "phone_number": "206-946-8200",
     "email": "joegarza@boeing.com"
   }
-}
+]
