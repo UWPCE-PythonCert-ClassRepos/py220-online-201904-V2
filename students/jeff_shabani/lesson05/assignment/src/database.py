@@ -64,19 +64,19 @@ def import_data(*args):
     customer_count = db.customers.count_documents({})
     rental_count = db.rental.count_documents({})
     count = (prod_count, customer_count, rental_count)
-    if 'product' in view_collections():
+    if prod_count == 10:
         prod_error = 0
     else:
         prod_error = 1
-    if 'rental' in view_collections():
-        rent_error = 0
-    else:
-        rent_error = 1
-
-    if 'customers' in view_collections():
+    if customer_count == 10:
         cust_error = 0
     else:
         cust_error = 1
+
+    if rental_count == 9:
+        rent_error = 0
+    else:
+        rent_error = 1
     errors = (prod_error, rent_error, cust_error)
     return count, errors
 
@@ -146,11 +146,10 @@ def show_rentals(product_id):
 
 if __name__ == "__main__":
     remove_a_collection()
-    src_path = \
-        r'C:\JRS\Python\Advanced_Klass_Sandbox\lesson05\assignment\data'
+    src_path = Path.cwd().with_name('data')
     print(import_data(src_path,
                       'product.csv', 'customers.csv', 'rental.csv'))
     print(show_available_products())
-    show_rentals('prd001')
+    print(show_rentals('prd001'))
 
     gc.collect()
