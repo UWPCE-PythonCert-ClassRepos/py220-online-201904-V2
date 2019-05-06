@@ -1,12 +1,11 @@
 """
 grade lesson 5
 """
-
+# pylint: disable=redefined-outer-name,W0212,E0401 
 import os
 import pytest
 import database as l
 
-# pylint: disable=redefined-outer-name
 
 @pytest.fixture(scope="function")
 def mongo_database():
@@ -56,7 +55,7 @@ def test_import_csv():
 def test_import_data(mongo_database):
     ''' import '''
     data_dir = os.path.dirname(os.path.abspath(__file__))
-    added, errors = l.import_data(data_dir, "../data/product.csv",
+    added, errors = l.import_data(mongo_database, data_dir, "../data/product.csv",
                                   "../data/customers.csv", "../data/rental.csv")
     for add in added:
         assert isinstance(add, int)
@@ -67,7 +66,7 @@ def test_import_data(mongo_database):
 
 def test_show_available_products(mongo_database, _show_available_products):
     """ available products """
-    l.import_data('../data', '../data/product.csv',
+    l.import_data(mongo_database, '../data', '../data/product.csv',
                   '../data/customers.csv', '../data/rental.csv')
     students_response = l.show_available_products(mongo_database)
     assert students_response == _show_available_products
