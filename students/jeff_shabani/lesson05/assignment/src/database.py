@@ -60,6 +60,8 @@ def import_data(*args):
         coll = db[arg[:-4]]
         source = coll_json
         result = coll.insert_many(source)
+    set_prod_index = db.product.create_index('product_id', unique=True)
+    set_cust_index = db.customers.create_index('user_id', unique=True)
     prod_count = db.product.count_documents({})
     customer_count = db.customers.count_documents({})
     rental_count = db.rental.count_documents({})
@@ -145,11 +147,14 @@ def show_rentals(product_id):
 
 
 if __name__ == "__main__":
-    remove_a_collection()
-    src_path = Path.cwd().with_name('data')
-    print(import_data(src_path,
-                      'product.csv', 'customers.csv', 'rental.csv'))
-    print(show_available_products())
-    print(show_rentals('prd001'))
+
+    run = 1
+    if run == 1:
+        remove_a_collection()
+        src_path = Path.cwd().with_name('data')
+        print(import_data(src_path,
+                          'product.csv', 'customers.csv', 'rental.csv'))
+        print(show_available_products())
+        print(show_rentals('prd001'))
 
     gc.collect()
