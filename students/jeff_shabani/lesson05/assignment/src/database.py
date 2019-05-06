@@ -5,12 +5,11 @@ HP Norton.
 import gc
 import json
 from pathlib import Path
-import pandas as pd
-import pip
-from pymongo import MongoClient
-#import PySimpleGUI as sg
 import subprocess
 import sys
+import pandas as pd
+from pymongo import MongoClient
+
 
 mongo = MongoClient("mongodb://localhost:27017/")
 db = mongo['HP_Norton']
