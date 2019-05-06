@@ -164,7 +164,7 @@ if __name__ == "__main__":
 
     form = sg.FlexForm('Script runner')
     layout = [
-        [sg.Text("Do you want to run the script", size=(35, 1))],
+        [sg.Text("Do you want to run the script?", size=(35, 1))],
         [sg.Yes(), sg.No()]
     ]
 
