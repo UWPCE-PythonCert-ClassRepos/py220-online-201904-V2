@@ -1,8 +1,9 @@
-#  Function with C type defs
+#  Straight forward Python
 
 import math
 
-def great_circle(double lon1, double lat1, double lon2, double lat2):
+
+def great_circle(double lon1, double lat1, double  lon2, double lat2):
     cdef double a, b, theta, c, x, radius
 
     radius = 3956  # miles

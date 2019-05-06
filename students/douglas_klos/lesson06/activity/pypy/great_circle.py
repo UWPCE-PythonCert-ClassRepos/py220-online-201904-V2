@@ -84,6 +84,6 @@ if __name__ == "__main__":
     #    $ /usr/bin/time -p pypy great_circle.py
 
     for i in range(10000000):
-        # great_circle_raw(lon1, lat1, lon2, lat2)
+        great_circle_raw(lon1, lat1, lon2, lat2)
         # great_circle_acos(lon1, lat1, lon2, lat2)
         # great_circle_factored(lon1, lat1, lon2, lat2)

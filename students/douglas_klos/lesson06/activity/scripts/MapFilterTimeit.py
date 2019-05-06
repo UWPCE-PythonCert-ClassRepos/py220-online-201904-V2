@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Timeit tutorial
 # rriehle
 
@@ -27,6 +28,17 @@ print(timer(
     number=my_repititions
 ))
 
+
+print("\n\nmap_list_filter_with_functions")
+# map_filter_with_functions = map(multiply_by_two, filter(greater_than_lower_limit, my_list))
+# print(*map_filter_with_functions)
+print(timer(
+    'map_filter_with_functions = list(map(multiply_by_two, filter(greater_than_lower_limit, my_list)))',
+    globals=globals(),
+    number=my_repititions
+))
+
+
 print("\n\nmap_filter_with_lambdas")
 # map_filter_with_lambdas = map(lambda x: x * 2, filter(lambda x: x > my_lower_limit, my_list))
 # print(*map_filter_with_lambdas)
@@ -35,6 +47,17 @@ print(timer(
     globals=globals(),
     number=my_repititions
 ))
+
+
+print("\n\nmap_list_filter_with_lambdas")
+# map_filter_with_lambdas = map(lambda x: x * 2, filter(lambda x: x > my_lower_limit, my_list))
+# print(*map_filter_with_lambdas)
+print(timer(
+    'map_filter_with_lambdas = list(map(lambda x: x * 2, filter(lambda x: x > my_lower_limit, my_list)))',
+    globals=globals(),
+    number=my_repititions
+))
+
 
 print("\n\ncomprehension")
 # comprehension = [x * 2 for x in my_list if x > my_lower_limit]
@@ -45,6 +68,7 @@ print(timer(
     number=my_repititions
 ))
 
+
 print("\n\ncomprehension_with_functions")
 # comprehension_with_functions = [multiply_by_two(x) for x in my_list if greater_than_lower_limit(x)]
 # print(*comprehension_with_functions)
@@ -53,6 +77,7 @@ print(timer(
     globals=globals(),
     number=my_repititions
 ))
+
 
 print("\n\ncomprehension_with_lambdas")
 # comprehension_with_lambdas = [lambda x: x * 2 for x in my_list if lambda x: x > my_lower_limit]
