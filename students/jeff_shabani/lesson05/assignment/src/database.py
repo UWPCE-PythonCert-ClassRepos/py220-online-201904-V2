@@ -148,7 +148,8 @@ def show_rentals(product_id):
 
 if __name__ == "__main__":
 
-    run = 1
+    # use for simple runs outside of testing
+    run = 0
     if run == 1:
         remove_a_collection()
         src_path = Path.cwd().with_name('data')
