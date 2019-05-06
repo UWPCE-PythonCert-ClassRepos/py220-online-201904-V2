@@ -6,8 +6,10 @@
 # May 4, 2019
 # Python 220 Lesson 05
 
+import os
 import csv
-from pymongo import MongoClient
+from pymongo import MongoClient, InsertOne
+from pymongo.errors import BulkWriteError
 from loguru import logger
 
 
@@ -56,6 +58,45 @@ def import_csv(path):
     return file_dicts
 
 
+def bulk_writer(data, database, table):
+    '''
+    Accepts a dictionary of data, a database, and a table name. Bulk
+    inserts the contents of the data set into the database in a table
+    with the given name.
+    Returns a tuple with the number of successful insertions and the
+    number of insertion errors.
+    '''
+    logger.debug('Creating {} table'.format(table))
+    my_db = database[table]
+    logger.debug('Inserting data to {} table'.format(table))
+    requests = []
+    for item in data:
+        requests.append(InsertOne(item))
+    result = my_db.bulk_write(requests)
+    try:
+        result = my_db.bulk_write(requests)
+    except BulkWriteError as err:
+        logger.warning(err)
+    logger.debug('{} records inserted to {} table'.format(
+        result.bulk_api_result['nInserted'],
+        table
+    ))
+    if len(result.bulk_api_result['writeErrors']) > 0:
+        logger.warning('{} errors occurred on insertion to {} table'.format(
+            len(result.bulk_api_result['writeErrors']),
+            table
+        ))
+    else:
+        logger.debug('{} errors occurred on insertion to {} table'.format(
+            len(result.bulk_api_result['writeErrors']),
+            table
+        ))
+    return (
+        result.bulk_api_result['nInserted'],
+        len(result.bulk_api_result['writeErrors'])
+        )
+
+
 def import_data(directory_name, product_file, customer_file, rentals_file):
     '''
     Takes a directory name and three CSV files and creates and populates
@@ -68,28 +109,26 @@ def import_data(directory_name, product_file, customer_file, rentals_file):
     records = {'customer': 0,
                'product': 0,
                'rentals': 0}
-    errors = {'customer': 0,
-              'product': 0,
-              'rentals': 0}
-
-    path = '{directory}\\{file}'
+    error_count = {'customer': 0,
+                   'product': 0,
+                   'rentals': 0}
 
     logger.debug('Converting products file to dictionary')
-    product_dict = import_csv(path.format(
-        directory=directory_name,
-        file=product_file
+    product_dict = import_csv(os.path.join(
+        directory_name,
+        product_file
         ))
 
     logger.debug('Converting customers file to dictionary')
-    customer_dict = import_csv(path.format(
-        directory=directory_name,
-        file=customer_file
+    customer_dict = import_csv(os.path.join(
+        directory_name,
+        customer_file
         ))
 
     logger.debug('Converting rentals file to dictionary')
-    rentals_dict = import_csv(path.format(
-        directory=directory_name,
-        file=rentals_file
+    rentals_dict = import_csv(os.path.join(
+        directory_name,
+        rentals_file
         ))
 
     mongo = MongoDBConnection()
@@ -97,21 +136,70 @@ def import_data(directory_name, product_file, customer_file, rentals_file):
     with mongo:
         logger.debug('Connecting to hpnorton database')
         db = mongo.connection.hpnorton
-        logger.debug('Creating customer table')
-        custs = db['customer']
-        logger.debug('Inserting data to customer table')
-        result = custs.insert_many(customer_dict)
-        records['customer'] = len(result.inserted_ids)
 
-        logger.debug('Creating product table')
-        prods = db['product']
-        logger.debug('Inserting data to product table')
-        result = prods.insert_many(product_dict)
+        # Create product data collection
+        try:
+            prod_result = bulk_writer(product_dict, db, 'product')
+            records['product'] = prod_result[0]
+            error_count['product'] = prod_result[1]
+        except BulkWriteError as err:
+            logger.error(err)
+            records['product'] = err.details['nInserted']
+            error_count['product'] = len(err.details['writeErrors'])
 
-        logger.debug('Creating rentals table')
-        rents = db['rentals']
-        logger.debug('Inserting data to rentals table')
-        result = rents.insert_many(rentals_dict)
+        # Create customer data collection
+        try:
+            cust_result = bulk_writer(customer_dict, db, 'customer')
+            records['customer'] = cust_result[0]
+            error_count['customer'] = cust_result[1]
+        except BulkWriteError as err:
+            logger.error(err)
+            records['customer'] = err.details['nInserted']
+            error_count['customer'] = len(err.details['writeErrors'])
+
+        # Create rentals data collection
+        try:
+            rent_result = bulk_writer(rentals_dict, db, 'rentals')
+            records['rentals'] = rent_result[0]
+            error_count['rentals'] = rent_result[1]
+        except BulkWriteError as err:
+            logger.error(err)
+            records['rentals'] = err.details['nInserted']
+            error_count['rentals'] = len(err.details['writeErrors'])
+
+    return ((records['product'], records['customer'], records['rentals']),
+            (error_count['product'], error_count['customer'],
+             error_count['rentals']))
+
+
+def show_available_products():
+    '''
+    Returns a python dictionary of products listed as available in the
+    'product' collection. Contains the following fields:
+
+    product_id
+    description
+    product_type
+    quantity_available
+    '''
+    mongo = MongoDBConnection()
+    logger.debug('Connecting to MongoDB')
+    avail = []
+    with mongo:
+        logger.debug('Connecting to hpnorton database')
+        db = mongo.connection.hpnorton
+        records = db.product.find()
+    for record in records:
+        if int(record['quantity_available']) > 0:
+            avail.append(
+                {
+                    'product_id': record['product_id'],
+                    'description': record['description'],
+                    'product_type': record['product_type'],
+                    'quantity_available': record['quantity_available']
+                }
+            )
+    return avail
 
 
 '''
@@ -135,6 +223,19 @@ For example:
     ’quantity_available’:‘1’}
     }
 '''
+
+def show_rentals(product_id):
+    '''
+    Takes a product ID.
+    Returns a dictionary containing all customers who have rented that
+    item, with the following fields:
+
+    user_id
+    name
+    address
+    phone number
+    email
+    '''
 
 
 '''
