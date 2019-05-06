@@ -6,8 +6,11 @@ import gc
 import json
 from pathlib import Path
 import pandas as pd
+import pip
 from pymongo import MongoClient
-import PySimpleGUI as sg
+#import PySimpleGUI as sg
+import subprocess
+import sys
 
 mongo = MongoClient("mongodb://localhost:27017/")
 db = mongo['HP_Norton']
@@ -149,6 +152,20 @@ def show_rentals(product_id):
 
 if __name__ == "__main__":
 
+    def install(package):
+        """
+        installs PySimpleGui"""
+        subprocess.call([sys.executable, "-m", "pip", "install", package])
+
+
+    try:
+        import PySimpleGUI as sg
+    except ImportError:
+        install('PySimpleGui')
+        import PySimpleGUI as sg
+
+
+
     def run():
         """
         Simple script runner for on the fly testing
@@ -168,7 +185,8 @@ if __name__ == "__main__":
         [sg.Yes(), sg.No()]
     ]
 
-    button, values = form.LayoutAndRead(layout)
+    button, values = sg.Window('Script runner', layout, auto_close=True,
+                               auto_close_duration=4).Read()
 
     if button == 'Yes':
         run()
@@ -177,6 +195,6 @@ if __name__ == "__main__":
         ha_det = [
             [sg.Text(f"OK. Bye!", size=(17, 1))]
         ]
-        form3.LayoutAndRead(ha_det)
+        sg.Window("Bye", ha_det, auto_close=True, auto_close_duration=2).Read()
 
     gc.collect()
