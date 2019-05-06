@@ -178,22 +178,30 @@ if __name__ == "__main__":
         print(show_rentals('prd001'))
 
 
-    form = sg.FlexForm('Script runner')
-    layout = [
-        [sg.Text("Do you want to run the script?", size=(35, 1))],
-        [sg.Yes(), sg.No()]
-    ]
+    def build_gui():
+        """
+        Builds a GUI switch. Asks user if they want to run the scripts.
+        :return: An interactive GUI.
+        """
 
-    button, values = sg.Window('Script runner', layout, auto_close=True,
-                               auto_close_duration=4).Read()
-
-    if button == 'Yes':
-        run()
-    else:
-        form3 = sg.FlexForm("Bye")
-        ha_det = [
-            [sg.Text(f"OK. Bye!", size=(17, 1))]
+        form = sg.FlexForm('Script runner')
+        layout = [
+            [sg.Text("Do you want to run the script?", size=(35, 1))],
+            [sg.Yes(), sg.No()]
         ]
-        sg.Window("Bye", ha_det, auto_close=True, auto_close_duration=2).Read()
 
+        button, values = sg.Window('Script runner', layout, auto_close=True,
+                                   auto_close_duration=4).Read()
+
+        if button == 'Yes':
+            run()
+        else:
+            form3 = sg.FlexForm("Bye")
+            ha_det = [
+                [sg.Text(f"OK. Bye!", size=(17, 1))]
+            ]
+            sg.Window("Bye", ha_det, auto_close=True, auto_close_duration=2).Read()
+
+
+    build_gui()
     gc.collect()
