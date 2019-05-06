@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 import pandas as pd
 from pymongo import MongoClient
+import PySimpleGUI as sg
 
 mongo = MongoClient("mongodb://localhost:27017/")
 db = mongo['HP_Norton']
@@ -148,14 +149,34 @@ def show_rentals(product_id):
 
 if __name__ == "__main__":
 
-    # use for simple runs outside of testing
-    run = 0
-    if run == 1:
+    def run():
+        """
+        Simple script runner for on the fly testing
+        :return: funtions called
+        """
         remove_a_collection()
         src_path = Path.cwd().with_name('data')
         print(import_data(src_path,
                           'product.csv', 'customers.csv', 'rental.csv'))
         print(show_available_products())
         print(show_rentals('prd001'))
+
+
+    form = sg.FlexForm('Script runner')
+    layout = [
+        [sg.Text("Do you want to run the script", size=(35, 1))],
+        [sg.Yes(), sg.No()]
+    ]
+
+    button, values = form.LayoutAndRead(layout)
+
+    if button == 'Yes':
+        run()
+    else:
+        form3 = sg.FlexForm("Bye")
+        ha_det = [
+            [sg.Text(f"OK. Bye!", size=(17, 1))]
+        ]
+        form3.LayoutAndRead(ha_det)
 
     gc.collect()
