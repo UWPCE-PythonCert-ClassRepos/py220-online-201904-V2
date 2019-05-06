@@ -42,7 +42,7 @@ def print_mdb_collection(collection_name):
 
 def _import_csv(filename):
     """
-    Returns a list of dictionaries.  One dictionary for each row of data in a csv file.
+    Returns a list of dictionaries.One dictionary for each row of data in a csv file.
     :return: list of dictionaries
 
     """
@@ -73,7 +73,7 @@ def _add_bulk_data(collection, directory_name, filename):
         return len(bwe.details["writeErrors"])
 
 
-def import_data(directory_name, products_file, customers_file, rentals_file):
+def import_data(database, directory_name, products_file, customers_file, rentals_file):
     """
     Takes a directory name and three csv files as input.  Creates and populates a new MongoDB.    
     :return: Tuple with record count for products, customers, rentals added (in that order) and
@@ -100,7 +100,7 @@ def import_data(directory_name, products_file, customers_file, rentals_file):
     return record_count, error_count
 
 
-def show_available_products():
+def show_available_products(database):
     """
     Returns a dictionary for each product listed as available.    
     :return: Dictionary with product_id, description, product_type, quantity_available.
@@ -118,7 +118,7 @@ def show_available_products():
     return available_products
 
 
-def show_rentals(product_id):
+def show_rentals(database, product_id):
     """
     Returns a dictionary with user information from users who
     have rented products matching the product_id.    
@@ -163,11 +163,11 @@ if __name__ == "__main__":
         print("Opening a MongoDB.\n")
         DATABASE = MONGO.connection.media
         print("Importing data for products, customers, and rentals.\n")
-        import_data( "../data", "../data/product.csv", "../data/customers.csv",
+        import_data(DATABASE, "../data", "../data/product.csv", "../data/customers.csv",
                     "../data/rental.csv")
         print("Showing available products:")
-        print(show_available_products())
+        print(show_available_products(DATABASE))
         print("\nShowing rental information for prd005:")
-        print(show_rentals( "prd005"))
+        print(show_rentals(DATABASE, "prd005"))
         print("\nClearing data from database.")
         clear_data(DATABASE)
