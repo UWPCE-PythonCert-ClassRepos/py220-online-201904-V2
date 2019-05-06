@@ -236,6 +236,20 @@ def show_rentals(product_id):
     phone number
     email
     '''
+    mongo = MongoDBConnection()
+    logger.debug('Connecting to MongoDB')
+    with mongo:
+        logger.debug('Connecting to hpnorton database')
+        db = mongo.connection.hpnorton
+        renters = set()
+        for item in db.rentals.find({'product_id': product_id}):
+            renters.add(item['user_id'])
+        records = {}
+        for item in renters:
+            renter = db.customer.find_one({'user_id': item})
+            del renter['_id']
+            records[item] = renter
+    return records
 
 
 '''
