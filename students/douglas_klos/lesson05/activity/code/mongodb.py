@@ -6,10 +6,10 @@ pip install pymongo
 from pymongo import MongoClient
 
 
-class MongoDBConnection():
+class MongoDBConnection:
     """MongoDB Connection"""
 
-    def __init__(self, host='127.0.0.1', port=27017):
+    def __init__(self, host="127.0.0.1", port=27017):
         """ be sure to use the ip address not name for local windows"""
         self.host = host
         self.port = port
@@ -45,29 +45,13 @@ def main():
         cd_ip = {"artist": "The Who", "Title": "By Numbers"}
         result = cd.insert_one(cd_ip)
 
-        cd_ip = [{
-            "artist": "Deep Purple",
-            "Title": "Made In Japan",
-            "name": "Andy"
-        },
-            {
-            "artist": "Led Zeppelin",
-            "Title": "House of the Holy",
-                     "name": "Andy"
-        }, {
-            "artist": "Pink Floyd",
-            "Title": "DSOM",
-                     "name": "Andy"
-        },
-            {
-            "artist": "Albert Hammond",
-            "Title": "Free Electric Band",
-                     "name": "Sam"
-        }, {
-            "artist": "Nilsson",
-            "Title": "Without You",
-                     "name": "Sam"
-        }]
+        cd_ip = [
+            {"artist": "Deep Purple", "Title": "Made In Japan", "name": "Andy"},
+            {"artist": "Led Zeppelin", "Title": "House of the Holy", "name": "Andy"},
+            {"artist": "Pink Floyd", "Title": "DSOM", "name": "Andy"},
+            {"artist": "Albert Hammond", "Title": "Free Electric Band", "name": "Sam"},
+            {"artist": "Nilsson", "Title": "Without You", "name": "Sam"},
+        ]
 
         result = cd.insert_many(cd_ip)
 
@@ -76,13 +60,10 @@ def main():
         # another collection
         collector = db["collector"]
 
-        collector_ip = [{
-            "name": "Andy",
-            "preference": "Rock"
-        }, {
-            "name": "Sam",
-            "preference": "Pop"
-        }]
+        collector_ip = [
+            {"name": "Andy", "preference": "Rock"},
+            {"name": "Sam", "preference": "Pop"},
+        ]
         result = collector.insert_many(collector_ip)
 
         print_mdb_collection(collector)
@@ -96,7 +77,7 @@ def main():
 
         # start afresh next time?
         yorn = input("Drop data?")
-        if yorn.upper() == 'Y':
+        if yorn.upper() == "Y":
             cd.drop()
             collector.drop()
 
