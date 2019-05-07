@@ -22,7 +22,7 @@ void main()
     double lon2 = -61.823;
     double lat2 = 54.826;
 
-    for (int i; i <= 10000000; i++)
+    for (int i = 0; i <= 10000000; i++)
     {
         great_circle(lon1, lat1, lon2, lat2);
     }
