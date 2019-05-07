@@ -3,5 +3,5 @@ from Cython.Build import cythonize
 
 setup(
     name='good_performance',
-    ext_modules=cythonize("poor_perf_v8.pyx"),
+    ext_modules=cythonize("poor_perf_v08.pyx"),
 )
