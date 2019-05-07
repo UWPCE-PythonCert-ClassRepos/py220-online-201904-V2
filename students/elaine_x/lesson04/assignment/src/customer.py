@@ -11,12 +11,7 @@ import logging
 from peewee import *
 from customer_model import Customer
 
-logging.basicConfig(level=logging.INFO)
-LOGGER = logging.getLogger(__name__)
-
-LOGGER.info('Working with Person class')
-LOGGER.info('Note how I use constants and a list of tuples as a simple schema')
-LOGGER.info('Normally you probably will have prompted for this from a user')
+LOGGER = logging.getLogger()
 
 DATABASE = SqliteDatabase('customer.db')
 DATABASE.connect()
@@ -24,22 +19,25 @@ DATABASE.execute_sql('PRAGMA foreign_keys = ON;') # needed for sqlite only
 
 
 def read_csv(path):
-    with open(path, 'r') as f:
-        READCSV = csv.reader(f, delimiter=',')
-        CUSTOMERS = []
-        iterator = iter(READCSV)
+    '''
+    read in csv as a list
+    '''
+    with open(path, 'r') as file:
+        readcsv = csv.reader(file, delimiter=',')
+        customers = []
+        iterator = iter(readcsv)
         while True:
             try:
                 row = next(iterator)
                 #LOGGER.info(f'print {row}')
-                CUSTOMERS.append(row)
+                customers.append(row)
             except StopIteration:
                 LOGGER.info('Stop Iteration')
                 break
             except UnicodeDecodeError as error_message:
                 LOGGER.info('Error reading')
                 LOGGER.info(error_message)
-    return CUSTOMERS
+    return customers
 
 
 CUSTOMER_ID = 0
@@ -62,17 +60,20 @@ def customer_iterator(an_iterable):
     Emulation of a for loop.
     func() will be called with each item in an_iterable
     """
-    customer_iterator = iter(an_iterable)
+    customer_iter = iter(an_iterable)
     while True:
         try:
-            customer = next(customer_iterator)
-            LOGGER.info(customer)
+            customer = next(customer_iter)
+            #LOGGER.info(customer)
         except StopIteration:
             break
         add_customer_list(customer)
 
 
 def add_customer_list(customer):
+    '''
+    add a new customer to the database
+    '''
     try:
         with DATABASE.transaction():
             new_customer = Customer.create(
@@ -86,7 +87,8 @@ def add_customer_list(customer):
                 credit_limit=customer[CREDIT_LIMIT]
                 )
             new_customer.save()
-            #LOGGER.info('Database add successful')
+            LOGGER.info('%s Database add successful', customer[CUSTOMER_ID])
+
     # it was giving me model based error type,
     # not sure what error type would work here?
     except Exception as error_message:
