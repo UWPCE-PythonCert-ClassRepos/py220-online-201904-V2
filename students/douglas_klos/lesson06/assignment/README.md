@@ -345,4 +345,37 @@ $ python -m cProfile --sort time ./src/poor_perf_v8.py
 We're under a second now, but we're not really just using python anymore are we.
 I mean, at what point do you just recode the entire thing in C?
 
+## Rabbit Hole
+
+I haven't coded much java in months, so I just did this off the cuff with a bit
+of google-fu mixed in.  But I wanted a comparison against another language.
+We're not profiling here like we did on Python, but we can still time it.  I
+tried to structure the Java in the same way as the Python code, for better
+or for worse.
+
+```
+$ time java ./poor_perf_v9.java
+
+2013:8362    2014:8332    2015:8055    2016:8532    2017:8363    2018:8305
+
+'ao' was found 35966 times
+
+real	0m0.939s
+user	0m1.831s
+sys	0m0.161s
+```
+Not great, although I haven't spent time in Java for a while.  What about
+if we compile it first?
+```
+$ javac ./poor_perf_v9.java
+$ java JavaPerf
+
+2013:8362    2014:8332    2015:8055    2016:8532    2017:8363    2018:8305
+
+'ao' was found 35966 times
+
+real	0m0.621s
+user	0m0.995s
+sys	0m0.088s
+```
 What are these calls to codecs.utf_8_decode anyways?
