@@ -1,6 +1,7 @@
 # Great Circle Comparison
 
-The four comparisons provided, plus an additional run against a full c implementation I wrote.
+The four python comparisons provided, plus Java and C implementations I wrote.
+Times generated from a Dell XPS 9750, i7-8750H, 16GB DDR4, running Arch Linux.
 
 ## Great Circle 0
 
