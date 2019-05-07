@@ -14,7 +14,8 @@ from pymongo import MongoClient
 
 class MongoDBConnection(object):
     """MongoDB Connection"""
-    def __init__(self, host='127.0.0.1', port=27017):
+
+    def __init__(self, host="127.0.0.1", port=27017):
         """ be sure to use the ip address not name for local windows"""
         self.host = host
         self.port = port
@@ -55,7 +56,7 @@ def main():
             {"artist": "Led Zeppelin", "Title": "House of the Holy", "name": "Andy"},
             {"artist": "Pink Floyd", "Title": "DSOM", "name": "Andy"},
             {"artist": "Albert Hammond", "Title": "Free Electric Band", "name": "Sam"},
-            {"artist": "Nilsson", "Title": "Without You", "name": "Sam"}
+            {"artist": "Nilsson", "Title": "Without You", "name": "Sam"},
         ]
 
         result = cd.insert_many(cd_ip)
@@ -67,7 +68,7 @@ def main():
 
         collector_ip = [
             {"name": "Andy", "preference": "Rock"},
-            {"name": "Sam", "preference": "Pop"}
+            {"name": "Sam", "preference": "Pop"},
         ]
         result = collector.insert_many(collector_ip)
 
@@ -80,14 +81,12 @@ def main():
             for a_cd in cd.find(query):
                 print(f'{name["name"]} has collected {a_cd}')
 
-
         # start afresh next time?
         yorn = input("Drop data?")
-        if yorn.upper() == 'Y':
+        if yorn.upper() == "Y":
             cd.drop()
             collector.drop()
 
 
-if __name__== "__main__":
+if __name__ == "__main__":
     main()
-
