@@ -827,3 +827,29 @@ Now we're spending a lot more time on that first if, but significantly less time
 cascading down the remaining if-else-if chain.
 
 From 2.422 to .469 is a 80.64% reduction in execution time, before cython.
+
+Now we'll cythonize this bad boy...
+```
+$ python -m cProfile --sort time ./src/poor_perf_v15.py
+'ao' was found 35966 times
+2013:8362	2014:8332	2015:8055	2016:8532	2017:8363	2018:8305
+
+         28654 function calls (28639 primitive calls) in 0.354 seconds
+
+   Ordered by: internal time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.340    0.340    0.353    0.353 {src.poor_perf_v15.analyze}
+    13875    0.008    0.000    0.008    0.000 {built-in method _codecs.utf_8_decode}
+    13875    0.005    0.000    0.013    0.000 codecs.py:319(decode)
+        1    0.000    0.000    0.000    0.000 {built-in method marshal.loads}
+        2    0.000    0.000    0.000    0.000 {built-in method _imp.create_builtin}
+        6    0.000    0.000    0.000    0.000 {built-in method builtins.__build_class__}
+        1    0.000    0.000    0.000    0.000 {built-in method _imp.create_dynamic}
+        9    0.000    0.000    0.000    0.000 datetime.py:473(__new__)
+.........................abbreviated for length.................................
+```
+
+.354 seconds.  That's an 85.38% reduction in execution time.
+
+I think we're just about done.

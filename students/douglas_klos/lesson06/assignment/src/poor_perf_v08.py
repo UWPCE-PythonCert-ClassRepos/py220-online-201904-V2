@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from poor_perf_v8 import analyze
+from poor_perf_v08 import analyze
 
 
 if __name__ == "__main__":
