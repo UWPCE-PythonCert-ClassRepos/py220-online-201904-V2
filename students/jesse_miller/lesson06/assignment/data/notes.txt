@@ -1,0 +1,26 @@
+'''
+Notes on my changes
+'''
+
+# Typo in original file.
+
+In poor_perf.py there's a typo on lines 39-40:
+
+if new[0][6:] == '2018':
+    year_count['2017'] += 1
+
+Changing it to:
+
+if new[0][6:] == '2018':
+    year_count['2018'] += 1
+
+# Added a print statement to get a better handle on what's happening.
+'''
+Unfortunately, the method I used for creating my csv is a little big to put
+here, it will be attached in my pull request however as csv_generator.py
+'''
+eve:data jmiller$ python -m cProfile ../src/csv_generator.py exercise.csv
+         405894332 function calls (405894140 primitive calls) in 745.387 seconds
+
+# Took about 12.5 minutes.  I know I can do better, but I want to get to the
+# assignment first.
