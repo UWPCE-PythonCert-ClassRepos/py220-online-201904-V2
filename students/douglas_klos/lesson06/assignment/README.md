@@ -4,10 +4,56 @@ These tests are being run on the following hardware:
 
 Core i7-6700k @ 4.3GHz, 32GB DDR4, Linux Mint 19 (4.15), fairly old SSD drive.
 
-This README is massive but it's the process I underwent to optimize this code.
-Please see CONCLUSION.md if you want the final results.
+### General commands used
 
-## Python
+First, there is no good\_perf.py file.  The current good_perf is poor_perf_v15.pyx
+which is a cython build, or v14 for Python. (Not including the C builds)
+
+```
+$ pwd
+~/git/py220-online-201904-V2/students/douglas_klos/lesson06/assignment/submission/
+$
+$ python ./src/good_perf_setup.py build_ext --inplace
+$ python -m cProfile --sort time ./src/poor_perf_v14.py
+$ python -m cProfile --sort time ./src/poor_perf_v15.py
+$
+$ pylint ./src/
+$ pytest ./tests/
+$ 
+```
+
+## Conclusion
+
+I'm surprised by the amount I was able to improve the performance.
+The first program given to us was pretty bad, had extra loops
+and assignments that didn't work, plus lots of extra if's.  It 
+clocked in at 2.422.  Following is a list of notable times:
+
+```
+poor_pref_v00.py     =  2.422 # Original time
+poor_pref_v01.py     = 19.159 # Parsing the dates correctly for comparison
+poor_pref_v02.py     =  2.226 # Removed broken unnecessary append
+poor_pref_v03.py     =  2.173 # Replaced if's with else if's
+poor_pref_v04.py     =  1.253 # Removed the extra loop
+poor_pref_v05.py     =  2.148 # Using a generator for file content
+poor_pref_v06.py     =  1.248 # Replaced dictionary with int's
+poor_pref_v07.pyx    =  0.992 # Cython int's
+poor_pref_v08.pyx    =  0.975 # Cython int's and str filename
+poor_pref_v09.java   =  1.831 # Sloppy Java
+poor_pref_v09.class  =  0.995 # Sloppy Java compiled
+poor_pref_v10.java   =  1.838 # Sloppy Java with switch
+poor_pref_v10.class  =  0.938 # Sloppy Java compiled with switch
+poor_pref_v11.py     =  4.643 # Pandas
+poor_pref_v12.py     =  4.797 # Pandas with less assignment
+poor_pref_v13.py     =  0.751 # Changed CSV reader for line in file split(',')
+poor_pref_v14.py     =  0.469 # Added if to filter other if's
+poor_pref_v15.pyx    =  0.354 # Cythonized int's and str from #14
+poor_pref_v16.c      =  0.193 # Sloppy C
+poor_perf_v17.c      =  0.171 # Slightly better C?
+```
+I have linted the ones for submission - the ones during the trial phases are not linted.
+
+## Staring Out
 
 Jumping right in, we run from the command line:
 ```
@@ -853,3 +899,40 @@ $ python -m cProfile --sort time ./src/poor_perf_v15.py
 .354 seconds.  That's an 85.38% reduction in execution time.
 
 I think we're just about done.
+
+## C
+
+Nevermind, not quite done, decided to code it again, in C.  I haven't coded C
+in a probably a decade, so forgive the code if it's terrible.  That said,
+since this is performance hour, I just wanted to see what I could come up with.
+I have no clue how / if you can profile C, but again I can time it.
+
+```
+$ pwd
+~/git/py220-online-201904-V2/students/douglas_klos/lesson06/assignment/submission/src
+$ gcc ./poor_perf_v16.c
+$ time ./a.out
+ao found 35966 times
+2013:8362	2014:8332	2015:8055	2016:8532	2017:8363	2018:8305
+
+real    0m0.193s
+user    0m0.177s
+sys     0m0.016s
+```
+
+I hear atoi is bad to use, let's try strtol instead...
+```
+$ gcc ./poor_perf_v17.c
+$ time ./a.out
+ao found 35966 times
+2013:8362	2014:8332	2015:8055	2016:8532	2017:8363	2018:8305
+
+real	0m0.171s
+user	0m0.163s
+sys     0m0.008s
+```
+
+Maybe some improvement, at this point though, without looping the entire program
+thousands of times it's really difficult to make a fair comparison.  Running
+this one results in 0.16 - 0.21s times, but the average seemed slightly higher
+than v16.
