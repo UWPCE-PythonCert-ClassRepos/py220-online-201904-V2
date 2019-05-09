@@ -1,7 +1,9 @@
 '''
 Better performing, and hopefully better module.
 '''
+# pylint: disable=C0103, W0621
 
+import sys
 import datetime
 import csv
 # from timeit import timeit
@@ -34,10 +36,15 @@ def analyze(filename):
 
 
 if __name__ == "__main__":
-    analyze('../data/exercise.csv')
+    try:
+        filename = sys.argv[1]
+    except IndexError:
+        print('You must pass in a filename')
+        sys.exit(1)
+    analyze(filename)
 
 
-    # print(timeit("analyze('exercise.csv')", globals=globals(), number=10))
+    # print(timeit("analyze(filename)", globals=globals(), number=10))
 
     # lp = LineProfiler()
     # lp_wrapper = lp(analyze)
