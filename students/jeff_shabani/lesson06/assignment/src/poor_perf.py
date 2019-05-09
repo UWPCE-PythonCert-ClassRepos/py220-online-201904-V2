@@ -2,9 +2,28 @@
 poorly performing, poorly written module
 
 """
-
-import datetime
 import csv
+from datetime import datetime
+from pathlib import Path
+import uuid
+
+startTime = datetime.now()
+
+def make_large_file(infilename, filename):
+    is_first, count = True, 1
+    with open (infilename, 'r', newline='\n') as infile:
+        with open(filename, 'w',newline='\n') as outfile:
+            writer = csv.writer(outfile)
+            reader = csv.reader(infile)
+            header = next(reader)
+            header.insert(0,'ID')
+            rest = [row for row in reader]
+            writer.writerow(header)
+            for i in range(100000):
+                for row in rest:
+                    row.insert(0, uuid.uuid4())
+                    writer.writerow(row)
+
 
 def analyze(filename):
     start = datetime.datetime.now()
@@ -14,7 +33,8 @@ def analyze(filename):
         for row in reader:
             lrow = list(row)
             if lrow[5] > '00/00/2012':
-                new_ones.append((lrow[5], lrow[0]))
+                for i in range(100000):
+                    new_ones.append((lrow[5], lrow[0]))
 
         year_count = {
             "2013": 0,
@@ -44,22 +64,35 @@ def analyze(filename):
     with open(filename) as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
 
+
         found = 0
 
         for line in reader:
             lrow = list(line)
             if "ao" in line[6]:
                 found += 1
+        print(len(lrow))
+
 
         print(f"'ao' was found {found} times")
         end = datetime.datetime.now()
 
-    return (start, end, year_count, found)
+
+        print( start, end, year_count, found)
+
+runtime = datetime.now() - startTime
+
 
 def main():
-    filename = "data/exercise.csv"
+    infilename = Path.cwd().with_name('data')/"exercise.csv"
+    filename = Path.cwd().with_name('data')/"mega_poor.csv"
+    make_large_file(infilename, filename)
     analyze(filename)
+    print(runtime)
+
 
 
 if __name__ == "__main__":
+    # import timeit
+    # print(timeit.timeit("main()", number=10))
     main()
