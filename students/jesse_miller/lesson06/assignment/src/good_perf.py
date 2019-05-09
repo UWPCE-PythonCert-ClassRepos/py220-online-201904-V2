@@ -6,7 +6,10 @@ poorly performing, poorly written module
 import datetime
 import csv
 from timeit import timeit
-
+# import cProfile
+# import pstats
+# import io
+from line_profiler import LineProfiler
 
 def analyze(filename):
     '''
@@ -74,5 +77,20 @@ def main():
 
 
 if __name__ == "__main__":
+    # pr = cProfile.Profile()
+    # s = io.StringIO()
+    # sortby = 'cumulative'
+    # ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
+    # pr.enable()
+
     main()
+
     print(timeit("analyze('exercise.csv')", globals=globals(), number=10))
+
+    # pr.disable()
+    # pstats.Stats(pr).print_stats()
+
+    lp = LineProfiler()
+    lp_wrapper = lp(analyze)
+    lp_wrapper("exercise.csv")
+    lp.print_stats()
