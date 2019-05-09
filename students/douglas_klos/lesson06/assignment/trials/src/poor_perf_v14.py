@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
+""" Better performing module #14 """
 
 import datetime
 
 
 def analyze(filename):
-    found = 0
+    """ Analyze input filename for some arbitray, but consistent, data """
 
+    found = 0
     _2013 = 0
     _2014 = 0
     _2015 = 0
@@ -22,6 +24,8 @@ def analyze(filename):
             if "ao" in lrow[6]:
                 found += 1
 
+            # pylint: disable=C0122
+            # Less than should be the default comparison operation
             if "2012" < lrow[5][6:]:
                 if lrow[5][6:] == "2013":
                     _2013 += 1
@@ -61,10 +65,7 @@ def analyze(filename):
     )
 
 
-def main():
-    filename = "data/dataset.csv"
-    analyze(filename)
-
-
 if __name__ == "__main__":
-    main()
+    for loop in range(100):
+        print(f"loop : {loop}")
+        analyze("data/dataset.csv")

@@ -6,7 +6,7 @@
 /* I haven't written C in quite some time,
     forgive this code if it's a disaster */
 
-int main ( void )
+int analyze (void)
 {
     static const char delim[] = ",";
     static const char filename[] = "../data/dataset.csv";
@@ -66,13 +66,13 @@ int main ( void )
                 ptr = strtok(NULL, delim);
             }
         }
-        printf("ao found %d times\n", found);
-        printf("2013:%d\t", _2013);
-        printf("2014:%d\t", _2014);
-        printf("2015:%d\t", _2015);
-        printf("2016:%d\t", _2016);
-        printf("2017:%d\t", _2017);
-        printf("2018:%d\n", _2018);
+        // printf("ao found %d times\n", found);
+        // printf("2013:%d\t", _2013);
+        // printf("2014:%d\t", _2014);
+        // printf("2015:%d\t", _2015);
+        // printf("2016:%d\t", _2016);
+        // printf("2017:%d\t", _2017);
+        // printf("2018:%d\n", _2018);
         // printf("total:%d\n", total);
         fclose ( file );
     }
@@ -81,4 +81,13 @@ int main ( void )
         perror ( filename ); /* why didn't the file open? */
     }
     return 0;
+}
+
+void main (void)
+{
+    for (int i = 0; i <= 100; i++)
+    {
+        printf("loop : %d\n", i);
+        analyze();
+    }
 }

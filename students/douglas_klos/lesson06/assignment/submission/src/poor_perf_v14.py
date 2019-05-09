@@ -66,4 +66,6 @@ def analyze(filename):
 
 
 if __name__ == "__main__":
-    analyze("data/dataset.csv")
+    for loop in range(100):
+        print(f"loop : {loop}")
+        analyze("data/dataset.csv")

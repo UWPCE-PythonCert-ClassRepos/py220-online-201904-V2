@@ -21,6 +21,7 @@ def generate_rows():
     range_start = 10 ** (16 - 1)
     range_end = (10 ** 16) - 1
 
+    # These give different text albeit at a slower speed.
     # gen = DocumentGenerator(
     #     text_generator=MarkovTextGenerator(),
     #     word_generator=MarkovWordGenerator(),
@@ -45,15 +46,23 @@ def generate_rows():
 def rand_date(start, end, _format, seed):
     """ Generates a random date between start and end """
     start_time = time.mktime(time.strptime(start, _format))
-    end_time = time.mktime(time.strptime(end, _format))
-    rand_time = start_time + seed * (end_time - start_time)
-    return time.strftime(_format, time.localtime(rand_time))
+    # end_time = time.mktime(time.strptime(end, _format))
+    # rand_time = start_time + seed * (end_time - start_time)
+    # return time.strftime(_format, time.localtime(rand_time))
+    return time.strftime(
+        _format, time.localtime(
+            start_time + seed * (
+                (time.mktime(time.strptime(end, _format)) - start_time)
+            )
+        )
+    )
 
 
 def write_csv_file():
     """ Writes our new CSV file """
-    with open("./data/dataset.csv", "w", newline="\n") as csv_file:
+    with open("./data/dataset2.csv", "w", newline="\n") as csv_file:
         csv_file.writelines(generate_rows())
+
 
 
 if __name__ == "__main__":
