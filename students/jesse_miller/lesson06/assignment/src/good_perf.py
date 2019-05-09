@@ -19,11 +19,15 @@ def analyze(filename):
 
     with open(filename) as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
-        new_ones = []
-        for row in reader:
-            lrow = list(row)
-            if lrow[5] > '00/00/2012':
-                new_ones.append((lrow[5], lrow[0]))
+        # new_ones = []
+        # for row in reader:
+            # lrow = list(row)
+            # if lrow[5] > '00/00/2012':
+                # new_ones.append((lrow[5], lrow[0]))
+
+        next(reader, None)  # Skipping the header row.
+
+        new_ones = [row[5][-4:] for row in reader if '2012' < row[5][-4:] < '2019']
 
         year_count = {
             "2013": 0,
