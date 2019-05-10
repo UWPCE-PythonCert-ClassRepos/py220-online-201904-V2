@@ -2,162 +2,206 @@
 This module utilizes MongoDB to build a product database for
 HP Norton.
 """
+import gc
 import json
-from loguru import logger
 from pathlib import Path
+import subprocess
+import sys
 import pandas as pd
 from pymongo import MongoClient
-import pysnooper
-
-CUST_SRC_PATH = Path.cwd().with_name('data') / 'customers.csv'
-PROD_SRC_PATH = Path.cwd().with_name('data') / 'product.csv'
-RENT_SRC_PATH = Path.cwd().with_name('data') / 'rental.csv'
 
 
-class MongoDBConnection():
-    """MongoDB Connection"""
-
-    def __init__(self, host='127.0.0.1', port=27017):
-        """ be sure to use the ip address not name for local windows"""
-        self.host = host
-        self.port = port
-        self.connection = None
-
-    def __enter__(self):
-        self.connection = MongoClient(self.host, self.port)
-        return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        self.connection.close()
+mongo = MongoClient("mongodb://localhost:27017/")
+db = mongo['HP_Norton']
 
 
-def print_mdb_collection(collection_name):
+def view_collections():
     """
-    Prints items in a collection
-    :param collection_name:
-    :return:
+    Function that return existing collections.
+    :return: Collection names.
     """
-    for doc in collection_name.find():
-        print(doc)
+    collections_list = []
+    for i in db.list_collection_names():
+        collections_list.append(i)
+    return collections_list
 
 
-def read_in_data(path, file_name):
+def remove_a_collection():
     """
-    Reads in csv and converts the data to json file.
-    :param file_name:
-    :return: json file
-    """
-    logger.info(f"Reading in the data...")
-    customer_csv = pd.read_csv(path, encoding='ISO-8859-1')
-    customer_csv.to_json(Path.cwd().with_name('data') / file_name, orient='index')
-    cust_json = open(Path.cwd().with_name('data') / file_name).read()
-    cust_json = json.loads(cust_json)
-    return cust_json
-
-
-def create_collection(database, coll_name, sp, fn):
-    """
-    Function to create a collection.
-    Uses the read_in_data function above.
-    """
-    coll = database[coll_name]
-    source = read_in_data(sp, fn)
-    coll.insert_one(source)
-    return coll
-
-def remove_a_collection(database, collection_name):
-    """
-    Removes a collection from the database
+    Cleanup utility that clears out pre-existing collections
     :param database:
     :param collection_name:
     :return: deleted collection
     """
-    remove = database[collection_name]
-    remove.drop()
+    collection_names = ["customers", "product", "rental"]
+    for name in collection_names:
+        remove = db[name]
+        remove.drop()
 
 
-def main():
-    mongo = MongoDBConnection()
+def import_data(*args):
+    """
+    Imports csv files, creates jsons with the csv file data, then
+    creates collections with the jsons. Args are user supplied
+    :param args: data source path, customer, product, and rental
+    data source names
+    :return: collections with same name as data sources
+    """
 
-    with mongo:
-        db = mongo.connection.media
+    DATA_PATH = Path(args[0])
+    colls = [i for i in args[1:]]
+    remove_a_collection()
+    for arg in colls:
+        src_csv = DATA_PATH / arg
+        src_json = str(DATA_PATH / arg).replace(".csv", '.json')
+        coll_csv = pd.read_csv(src_csv, encoding='ISO-8859-1')
+        coll_csv.to_json(src_json,
+                         orient='records')
+        coll_json = open(src_json).read()
+        coll_json = json.loads(coll_json)
 
-        def view_collections():
-            """
-            Function that return existing collections.
-            :return: Collection names.
-            """
-            for i in db.list_collection_names():
-                print(i)
+        coll = db[arg[:-4]]
+        source = coll_json
+        result = coll.insert_many(source)
+    set_prod_index = db.product.create_index('product_id', unique=True)
+    set_cust_index = db.customers.create_index('user_id', unique=True)
+    prod_count = db.product.count_documents({})
+    customer_count = db.customers.count_documents({})
+    rental_count = db.rental.count_documents({})
+    count = (prod_count, customer_count, rental_count)
+    if prod_count == 10:
+        prod_error = 0
+    else:
+        prod_error = 1
+    if customer_count == 10:
+        cust_error = 0
+    else:
+        cust_error = 1
 
-        def create_customers():
-            """
-            Function to create the customers collection"""
-            customers = create_collection(db, "customers", CUST_SRC_PATH, 'customers.json')
-            return customers
+    if rental_count == 9:
+        rent_error = 0
+    else:
+        rent_error = 1
+    errors = (prod_error, rent_error, cust_error)
+    return count, errors
 
-        def create_products():
-            """
-            Function to create the products collection
-            :return: products collection
-            """
-            products = create_collection(db, "products", PROD_SRC_PATH, 'products.json')
-            return products
 
-        def create_rentals():
-            """
-            Function to create rentals collection
-            :return: rentals collection
-            """
-            rentals = create_collection(db, "rentals", PROD_SRC_PATH, 'rentals.json')
-            return rentals
+def show_available_products():
+    """
+    Returns items based on quantity available >0
+    :return: listing of available rentals
+    """
+    return_fields = {'_id': False,
+                     'product_id': True,
+                     'description': True,
+                     'product_type': True,
+                     'quantity_available': True}
+    available = [i for i in db.product.find({'quantity_available': {'$ne': 0}},
+                                            projection=return_fields)]
+    return available
 
-        def dictionary_switch(selection):
-            functions = {'customers': create_customers,
-                         'products': create_products,
-                         'rentals': create_rentals}
-            functions[selection]()
 
-        def show_available_products():
-            """
-            Returns items based on quantity available >0
-            :return:
-            """
-            available = db.products.find()
-            for item in available:
-                print(item)
+def get_all_product_ids():
+    """
+    creates list of product ids
+    :return: list
+    """
+    product_id_list = []
+    products = db.product.find()
+    for prod_id in products:
+        product_id_list.append(prod_id['product_id'])
+    return product_id_list
 
-        show_available_products()
 
-        def create_collections_switch():
-            """
-            This function checks if a collection exists. If it does it removes it and
-            creates a new one.
-            :return: New collections
-            """
-            collections_list = {'customers', 'products', 'rentals'}
+def get_rental_user_id(product_id):
+    """
+    returns a set of user_id's of customers who have rented
+    a specific product
+    :param product_id:
+    :return: set of user_id's
+    """
+    user_id_set = set()
+    renters = db.rental.find({'product_id': product_id})
+    for item in renters:
+        user_id_set.add(item['user_id'])
+    return user_id_set
 
-            for item in collections_list:
-                if item in db.list_collection_names():
-                    remove_a_collection(db, item)
-                    dictionary_switch(item)
-                else:
-                    dictionary_switch(item)
 
-        def decisions():
-            """
-            Function that collects user input and runs functions related to
-            that input
-            """
-            add_new_collections = input("Do you want to add collections?")
-            if add_new_collections.upper() == 'Y':
-                create_collections_switch()
+def show_rentals(product_id):
+    """
+    returns customers who have rented specific products
+    :param product_id:
+    :return: dictionary of renters
+    """
+    return_fields = {'_id': False,
+                     'user_id': True,
+                     'name': True,
+                     'address': True,
+                     'phone_number': True,
+                     'email': True}
+    if product_id in get_all_product_ids():
+        for i in get_rental_user_id(product_id):
+            renters = db.customers.find({'user_id': i}
+                                        , projection=return_fields)
+            for renter in renters:
+                return renter
+    else:
+        print('Invalid product code')
 
-            view_colls = input("Do you want to see database collections?")
-            if view_colls.upper() == "Y":
-                view_collections()
-
-        decisions()
 
 if __name__ == "__main__":
-    main()
+
+    def install(package):
+        """
+        installs PySimpleGui"""
+        subprocess.call([sys.executable, "-m", "pip", "install", package])
+
+
+    try:
+        import PySimpleGUI as sg
+    except ImportError:
+        install('PySimpleGui')
+        import PySimpleGUI as sg
+
+
+
+    def run():
+        """
+        Simple script runner for on the fly testing
+        :return: funtions called
+        """
+        remove_a_collection()
+        src_path = Path.cwd().with_name('data')
+        print(import_data(src_path,
+                          'product.csv', 'customers.csv', 'rental.csv'))
+        print(show_available_products())
+        print(show_rentals('prd001'))
+
+
+    def build_gui():
+        """
+        Builds a GUI switch. Asks user if they want to run the scripts.
+        :return: An interactive GUI.
+        """
+
+        form = sg.FlexForm('Script runner')
+        layout = [
+            [sg.Text("Do you want to run the script?", size=(35, 1))],
+            [sg.Yes(), sg.No()]
+        ]
+
+        button, values = sg.Window('Script runner', layout, auto_close=True,
+                                   auto_close_duration=4).Read()
+
+        if button == 'Yes':
+            run()
+        else:
+            form3 = sg.FlexForm("Bye")
+            ha_det = [
+                [sg.Text(f"OK. Bye!", size=(17, 1))]
+            ]
+            sg.Window("Bye", ha_det, auto_close=True, auto_close_duration=2).Read()
+
+
+    build_gui()
+    gc.collect()
