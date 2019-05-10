@@ -1,0 +1,18 @@
+Ok, this is good_perf copied straight from poor_perf all I've added is logging
+up to this point so I'll base improvements off these initial numbers.
+
+2019-05-09 18:07:33,517 good_perf.py:53  INFO
+Time to generate csv reader: 0:00:00
+
+2019-05-09 18:07:37,631 good_perf.py:64  INFO
+Time to generate new_ones list: 0:00:04.113965
+
+2019-05-09 18:07:38,822 good_perf.py:90  INFO
+Time to populate year_count dict: 0:00:01.190815
+
+2019-05-09 18:07:42,473 good_perf.py:107 INFO
+Time taken: 0:00:08.956013
+
+########################################################
+--------------------------------------------------
+########################################################
