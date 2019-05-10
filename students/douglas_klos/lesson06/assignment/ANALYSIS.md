@@ -1273,3 +1273,19 @@ user    0m5.444s
 sys     0m0.620s
 ```
 
+
+v8 we're spawning three process, 10 loops.
+```
+real    0m2.811s
+user    0m6.459s
+sys     0m1.041s
+```
+
+That's .2811s / loop, not bad, but you must have the cores.
+ 
+parallel_v8-2 we're using python2, it's faster 10 loops again here
+```
+real    0m2.369s = .2369s / loop!
+user    0m5.479s
+sys     0m1.034s
+```

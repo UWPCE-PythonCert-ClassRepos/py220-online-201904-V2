@@ -19,7 +19,7 @@ def analyze(filename):
 
     with open(filename) as csvfile:
         for line in csvfile:
-            lrow = line.split(',')
+            lrow = line.split(",")
 
             if "ao" in lrow[6]:
                 found += 1
@@ -66,6 +66,6 @@ def analyze(filename):
 
 
 if __name__ == "__main__":
-    for loop in range(100):
+    for loop in range(10):
         print(f"loop : {loop}")
         analyze("data/dataset.csv")

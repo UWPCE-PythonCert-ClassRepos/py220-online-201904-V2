@@ -28,7 +28,7 @@ dataset analyze (struct dataset *record);
 int main (void)
 {
     dataset *record = (dataset*) malloc(sizeof(dataset));
-    for (int i = 0; i <= 100; i++)
+    for (int i = 0; i <= 10; i++)
     {
         printf("loop : %d\n", i);
         reset_dataset(record);

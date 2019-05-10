@@ -12,13 +12,13 @@ typedef struct dataset
 {
     clock_t start;
     clock_t end;
-    int _2013;
-    int _2014;
-    int _2015;
-    int _2016;
-    int _2017;
-    int _2018;
-    int found;
+    unsigned long int _2013;
+    unsigned long int _2014;
+    unsigned long int _2015;
+    unsigned long int _2016;
+    unsigned long int _2017;
+    unsigned long int _2018;
+    unsigned long int found;
 } dataset;
 
 void reset_dataset (struct dataset *record);
@@ -27,15 +27,15 @@ dataset analyze (struct dataset *record);
 
 int main (void)
 {
+    dataset *record = (dataset*) malloc(sizeof(dataset));
     for (int i = 0; i <= 10; i++)
     {
-        dataset *record = (dataset*) malloc(sizeof(dataset));
+        printf("loop : %d\n", i);
         reset_dataset(record);
         analyze(record);
-        printf("loop : %d\n", i);
         print_dataset(record);
-        free(record);
     }
+    free(record);
     return 0;
 }
 
@@ -48,13 +48,13 @@ void reset_dataset (struct dataset *record)
 
 void print_dataset (struct dataset *record)
 {
-    printf("'ao' found %d times\n", record->found);
-    printf("2013:%d\t", record->_2013);
-    printf("2014:%d\t", record->_2014);
-    printf("2015:%d\t", record->_2015);
-    printf("2016:%d\t", record->_2016);
-    printf("2017:%d\t", record->_2017);
-    printf("2018:%d\n\n", record->_2018);
+    printf("'ao' found %lu times\n", record->found);
+    printf("2013:%lu\t", record->_2013);
+    printf("2014:%lu\t", record->_2014);
+    printf("2015:%lu\t", record->_2015);
+    printf("2016:%lu\t", record->_2016);
+    printf("2017:%lu\t", record->_2017);
+    printf("2018:%lu\n\n", record->_2018);
     // printf("Start time %ld\n", record->start);
     // printf("End time %ld\n", record->end);
 }
@@ -64,7 +64,7 @@ dataset analyze (struct dataset *record)
     record->start = clock();
 
     static const char delim[] = ",";
-    static const char filename[] = "./data/dataset2.csv";
+    static const char filename[] = "./data/dataset.csv";
     static const char *ao = "ao";
 
     int counter = 0;
@@ -104,5 +104,6 @@ dataset analyze (struct dataset *record)
         fclose (file);
     }
     record->end = clock();
+    // Unused, here becuase the original python returned similar data.
     return *record;
 }

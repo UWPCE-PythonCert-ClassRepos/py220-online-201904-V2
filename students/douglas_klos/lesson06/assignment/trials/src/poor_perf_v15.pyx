@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+""" Better performing module #15 cythonized """
+
 import datetime
 
 
@@ -59,10 +61,5 @@ def analyze(str filename):
     )
 
 
-def main():
-    filename = "data/dataset.csv"
-    analyze(filename)
-
-
 if __name__ == "__main__":
-    main()
+    analyze("data/dataset.csv")

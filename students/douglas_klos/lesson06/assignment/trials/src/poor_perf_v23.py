@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
+# pylint: disable = W0603
 """ Better performing module #14 """
 
 import datetime
 
-found = 0
+FOUND = 0
 _2013 = 0
 _2014 = 0
 _2015 = 0
@@ -13,16 +14,18 @@ _2018 = 0
 
 
 def analyze(lrow):
-    global found
-    global _2013 
-    global _2014 
-    global _2015 
-    global _2016 
-    global _2017 
-    global _2018 
+    """ Analyze input filename for some arbitray, but consistent, data """
+    # pylint: disable=W0603
+    global FOUND
+    global _2013
+    global _2014
+    global _2015
+    global _2016
+    global _2017
+    global _2018
 
     if "ao" in lrow[6]:
-        found += 1
+        FOUND += 1
 
     # pylint: disable=C0122
     # Less than should be the default comparison operation
@@ -42,14 +45,24 @@ def analyze(lrow):
 
 
 def wrapper(filename):
-    """ Analyze input filename for some arbitray, but consistent, data """
+    """ Perpare data for analysis """
+
+    global FOUND
+    global _2013
+    global _2014
+    global _2015
+    global _2016
+    global _2017
+    global _2018
+
+    FOUND = _2013 = _2014 = _2015 = _2016 = _2017 = _2018 = 0
 
     start = datetime.datetime.now()
 
     with open(filename) as csvfile:
-        list(map(analyze, map(lambda x: x.split(','), csvfile)))
+        list(map(analyze, map(lambda x: x.split(","), csvfile)))
 
-    print(f"'ao' was found {found} times")
+    print(f"'ao' was FOUND {FOUND} times")
     print(
         f"2013:{_2013}\t"
         f"2014:{_2014}\t"
@@ -70,9 +83,11 @@ def wrapper(filename):
             "2017": _2017,
             "2018": _2018,
         },
-        found,
+        FOUND,
     )
 
 
 if __name__ == "__main__":
-    wrapper("data/dataset.csv")
+    for loop in range(10):
+        print(f"loop : {loop}")
+        wrapper("data/dataset.csv")

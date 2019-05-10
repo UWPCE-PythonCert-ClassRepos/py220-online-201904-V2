@@ -19,7 +19,7 @@ def analyze(filename):
 
     with open(filename) as csvfile:
         for line in csvfile:
-            lrow = line.split(',')
+            lrow = line.split(",")
 
             if "ao" in lrow[6]:
                 found += 1

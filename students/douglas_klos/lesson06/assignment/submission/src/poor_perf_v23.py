@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-#pylint: disable = W0603
+# pylint: disable = W0603
 """ Better performing module #14 """
 
 import datetime
@@ -15,7 +15,7 @@ _2018 = 0
 
 def analyze(lrow):
     """ Analyze input filename for some arbitray, but consistent, data """
-    #pylint: disable=W0603
+    # pylint: disable=W0603
     global FOUND
     global _2013
     global _2014
@@ -60,7 +60,7 @@ def wrapper(filename):
     start = datetime.datetime.now()
 
     with open(filename) as csvfile:
-        list(map(analyze, map(lambda x: x.split(','), csvfile)))
+        list(map(analyze, map(lambda x: x.split(","), csvfile)))
 
     print(f"'ao' was FOUND {FOUND} times")
     print(
@@ -88,6 +88,6 @@ def wrapper(filename):
 
 
 if __name__ == "__main__":
-    for loop in range(100):
+    for loop in range(10):
         print(f"loop : {loop}")
         wrapper("data/dataset.csv")

@@ -5,10 +5,10 @@ These tests are being run on the following hardware:
 Core i7-6700k @ 4.3GHz, 32GB DDR4, Linux Mint 19 (4.15), fairly worn SSD drive.
 
 First, the good\_perf.py file simple loads the analyze function from the best
-performing version.
+performing, single threaded version.
 
 I am submitting this with the pytest file pointing to the original poor_perf.py
-delivered to us and the fastest Cython build for the best python-based
+delivered to us and the fastest Python build for the best python-based
 comparison.
 
 As far as linting goes, I have linted my program to generate the dataset, and
@@ -16,18 +16,10 @@ the python files in the submission/src folder.  I am not linting all the trials.
 This means if you run pylint ./src/ from inside submission it _should_ be all
 10's, if you do this in trials it will fail miserably.
 
-I'd like to take this opportunity to explain some of my objectives of this
-Python class.  I have a B.S. Comp Sci but outside of this class have done very
-little programming for that past decade.  I wanted to bring my knowledge back up
-to speed a bit and make myself employable again, part of this self improvement
-process is playing with other lanaguges, such as Java and C.  So for part of
-this assignment I coded things in Java and C for speed comparisons.  Please note
-that all assignment requirements are met from a strictly Python perspective,
-this just turned into a bigger journey into coding, which has been a very
-positive learning experience.
-
 The included <span>ANALYSIS.md</span> file in this same folder is the record
 I kept of progress and test results as I progressed through the assignment.
+Towards the end, especially with the multiprocesing stuff, I started doing
+less logging, but tried to get the important stuff.
 
 pprofile was a useful package found on Pypi that profiled based on time spent
 on each line of code vs time spent in each function, this let me determine I
@@ -38,6 +30,12 @@ As a further note, when you look at the code you might wonder why I am using
 ints instead of a dictionary.  Well, ints are comfirmed through testing to be
 faster access time than dictionary - that hashing produces overhead not found
 with a variable type closer to a C int.
+
+After getting the single thread performance as quick as I could, I decided to
+give multiprocessing a try, and was able to shave off another 40% or so.
+The multiprocess is quicker for me, and should be faster on a system with multiple
+cores, but if you're running on a ten year old potato of a computer it'll be
+slower than the single thread.
 
 ## General commands used
 
@@ -92,16 +90,24 @@ at the time they were run.  They are not to be used for cross machine or cross
 dataset comparison.  They are only valid relative to each other using the same
 dataset.
 
+With parallel processes, getting all the return results collected back together
+was tricky.  I needed to define shared memory for each variable for each process.
+This resulted in lots of lines of variable declarations, but it worked, and looping
+to create variables would add extra clock cyclese.
+
 % Decrease = ((Original Number - New Number) ÷ Original Number) × 100
 
 ### Noteable times
 <pre>
-poor_pref_v00.py     =  2.422 # Original time
-poor_pref_v14.py     =  0.411 # 83.03% reduction in execution time (Python 3)
-poor_pref_v15.pyx    =  0.347 # 85.67% reduction in execution time (Cython)
-poor_perf_v27.c      =  0.155 # 93.6% reduction in execution time (C)
-poor_perf_v28.py     =  0.366 # 84.89% reduction in execution time (Python 2)
-parallel_v7.py       =  0.348 # Nailed it, consistent answers, great time.(Python 3)
+File                    Time    % Reduction    Interpreter
+poor_pref_v00.py     =  2.422   Original
+poor_pref_v14.py     =  0.411   83.03%        (Python 3.7.1)
+poor_pref_v15.pyx    =  0.347   85.67%        (Cython on Python 3)
+poor_perf_v23.py     =  0.470   80.59%        (Python 3.7.1 using map)
+poor_perf_v27.c      =  0.155   93.6%         (C)
+poor_perf_v28.py     =  0.366   84.89%        (v14 on Python 2.7.15)
+parallel_v8.py       =  0.281   88.4%         (Python 3.7.1)
+parallel_v8-2.py     =  0.237   90.21%        (Python 2.7.15)
 </pre>
 
 ### All times
@@ -146,4 +152,5 @@ parallel_v4-2.py     =  0.297 # v4 under python2 (INCONSISTENT)
 parallel_v5.py       =  3.212 # Dicionary hash killing me? (INCONSISTENT)
 parallel_v6.py       =  0.522 # Generators (INCONSISTENT)
 parallel_v7.py       =  0.348 # Nailed it, consistent answers, great time.
+parallel_v8.py       =  0.281 # Spawning three children process.
 </pre>

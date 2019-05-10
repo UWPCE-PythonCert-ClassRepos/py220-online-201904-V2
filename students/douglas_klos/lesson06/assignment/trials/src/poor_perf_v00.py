@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
-"""
-poorly performing, poorly written module
-
-"""
+""" poorly performing, poorly written module """
 
 import datetime
 import csv
 
 
 def analyze(filename):
+    """ Analyze input filename for some arbitray, but consistent, data """
     start = datetime.datetime.now()
     with open(filename) as csvfile:
         reader = csv.reader(csvfile, delimiter=",", quotechar='"')
@@ -60,6 +58,7 @@ def analyze(filename):
 
 
 def main():
+    """ main function, completely unnecessary """
     # filename = "data/exercise.csv"
     filename = "data/dataset.csv"
     analyze(filename)
