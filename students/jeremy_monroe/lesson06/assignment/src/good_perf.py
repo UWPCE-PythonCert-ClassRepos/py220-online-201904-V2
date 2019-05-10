@@ -22,12 +22,12 @@ def parse_cmd_arguments():
     code.
     """
     parser = argparse.ArgumentParser(description='Process some integers.')
-    parser.add_argument('-lf', '--log_file', nargs='?',
+    parser.add_argument('-lf', '--logfile', nargs='?',
                         const=False, help='Log file on or off (true || false)')
 
     log_file_onoff = parser.parse_args()
 
-    if log_file_onoff:
+    if log_file_onoff.logfile:
         formatter = logging.Formatter(("\n%(asctime)s %(filename)s:%(lineno)-3d"
                                        " %(levelname)s\n%(message)s"))
 
@@ -48,20 +48,14 @@ def analyze(filename):
     with open(filename) as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
 
+        reader_gen = (row for row in reader)
+        next(reader_gen)
+
         reader_gen_end = datetime.now()
         LOGGER.info('Time to generate csv reader: %s',
                     (reader_gen_end - start))
 
-        new_ones = []
-
-        for row in reader:
-            lrow = list(row)
-
-            if lrow[5] > '00/00/2012':
-                new_ones.append((lrow[5], lrow[0]))
-        new_ones_gen_end = datetime.now()
-        LOGGER.info('Time to generate new_ones list: %s',
-                    (new_ones_gen_end - reader_gen_end))
+        # new_ones = []
 
         year_count = {
             "2013": 0,
@@ -72,22 +66,36 @@ def analyze(filename):
             "2018": 0
         }
 
-        for new in new_ones:
-            if new[0][6:] == '2013':
-                year_count["2013"] += 1
-            if new[0][6:] == '2014':
-                year_count["2014"] += 1
-            if new[0][6:] == '2015':
-                year_count["2015"] += 1
-            if new[0][6:] == '2016':
-                year_count["2016"] += 1
-            if new[0][6:] == '2017':
-                year_count["2017"] += 1
-            if new[0][6:] == '2018':
-                year_count["2018"] += 1
+        # for row in reader:
+        for row in reader_gen:
+            lrow = list(row)
+        #     print(lrow[5])
+
+        #     if lrow[5] > '00/00/2012':
+        #         new_ones.append((lrow[5], lrow[0]))
+        # new_ones_gen_end = datetime.now()
+        # LOGGER.info('Time to generate new_ones list: %s',
+        #             (new_ones_gen_end - reader_gen_end))
+
+            if lrow[5][6:] in year_count:
+                year_count[lrow[5][6:]] += 1
+
+        # for new in new_ones:
+        #     if new[0][6:] == '2013':
+        #         year_count["2013"] += 1
+        #     if new[0][6:] == '2014':
+        #         year_count["2014"] += 1
+        #     if new[0][6:] == '2015':
+        #         year_count["2015"] += 1
+        #     if new[0][6:] == '2016':
+        #         year_count["2016"] += 1
+        #     if new[0][6:] == '2017':
+        #         year_count["2017"] += 1
+        #     if new[0][6:] == '2018':
+        #         year_count["2018"] += 1
         time_for_year_count = datetime.now()
         LOGGER.info("Time to populate year_count dict: %s",
-                    (time_for_year_count - new_ones_gen_end))
+                    (time_for_year_count - reader_gen_end))
 
         print(year_count)
 
@@ -106,6 +114,11 @@ def analyze(filename):
 
     LOGGER.info('Total time taken: %s', (end-start))
     return (start, end, year_count, found)
+
+# def check_year(year_to_check, year_count):
+#     """ Checks if a provided year is in the year_count dict. """
+#     if year_to_check in year_count:
+#         return True
 
 
 def main():
