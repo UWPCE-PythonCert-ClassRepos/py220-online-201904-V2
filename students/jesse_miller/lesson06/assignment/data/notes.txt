@@ -229,7 +229,7 @@ good = 17.487733999994816
 # I'm imagining if I didn't have old or underpowered laptops this would be better.
 # No matter how I slice it though, at least I cut the time in half.
 
-# Correction.  good_perf is counting 2017 and 2018 correctly.  It's poor_perf 
+# Correction.  good_perf is counting 2017 and 2018 correctly.  It's poor_perf
 # that is the problem.
 
 # In other news:
@@ -264,6 +264,46 @@ TOTAL                 148    124    16%
 
 # Question though, is it supposed to loop a bunch?
 
-'''
-Next up, figure I'll try to streamline my csv generator
-'''
+# This makes me happy, although I'm unsure if print is required or return is okay,
+# I have both:
+{'2015': 8268, '2017': 8343, '2016': 8337, '2013': 8245, '2014': 8147, '2018': 8385}
+'ao' was found 82515 times
+0:00:07.700890
+
+Timer unit: 1e-06 s
+
+Total time: 14.6884 s
+File: good_perf.py
+Function: analyze at line 13
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    13                                           def analyze(filename):
+    14                                               '''
+    15                                               This analyzes the file for parsing via the below rules.
+    16                                               '''
+    17         1         26.0     26.0      0.0      start = datetime.datetime.now()
+    18
+    19         1        176.0    176.0      0.0      with open(filename) as csvfile:
+    20         1         15.0     15.0      0.0          reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+    21         1         90.0     90.0      0.0          next(reader, None)  # Skipping the header row.
+    22
+    23         1          2.0      2.0      0.0          new_ones = {}
+    24         1          1.0      1.0      0.0          ao_total = 0
+    25
+    26
+    27   1000001    9327724.0      9.3     63.5          for row in reader:
+    28   1000000    2795680.0      2.8     19.0              if '2012' < row[5][-4:] < '2019':
+    29     49725     252099.0      5.1      1.7                  new_ones[row[5][-4:]] = new_ones.get(row[5][-4:], 0) + 1
+    30
+    31   1000000    2147124.0      2.1     14.6              if 'ao' in row[6]:
+    32     82515     165261.0      2.0      1.1                  ao_total += 1
+    33
+    34         1         70.0     70.0      0.0          end = datetime.datetime.now()
+    35                                               #return start, end, new_ones, ao_total
+    36         1         88.0     88.0      0.0      print(new_ones)
+    37         1         29.0     29.0      0.0      print(f"'ao' was found {ao_total} times")
+    38         1         36.0     36.0      0.0      print(end - start)
+
+[master]
+eve:src j

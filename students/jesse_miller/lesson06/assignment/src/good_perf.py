@@ -6,8 +6,8 @@ Better performing, and hopefully better module.
 import sys
 import datetime
 import csv
-# from timeit import timeit
-# from line_profiler import LineProfiler
+from timeit import timeit
+from line_profiler import LineProfiler
 
 
 def analyze(filename):
@@ -32,7 +32,10 @@ def analyze(filename):
                 ao_total += 1
 
         end = datetime.datetime.now()
-    return start, end, new_ones, ao_total
+    #return start, end, new_ones, ao_total
+    print(new_ones)
+    print(f"'ao' was found {ao_total} times")
+    print(end - start)
 
 
 if __name__ == "__main__":
@@ -44,9 +47,9 @@ if __name__ == "__main__":
     analyze(filename)
 
 
-    # print(timeit("analyze(filename)", globals=globals(), number=10))
+    print(timeit("analyze(filename)", globals=globals(), number=10))
 
-    # lp = LineProfiler()
-    # lp_wrapper = lp(analyze)
-    # lp_wrapper("exercise.csv")
-    # lp.print_stats()
+    lp = LineProfiler()
+    lp_wrapper = lp(analyze)
+    lp_wrapper("exercise.csv")
+    lp.print_stats()
