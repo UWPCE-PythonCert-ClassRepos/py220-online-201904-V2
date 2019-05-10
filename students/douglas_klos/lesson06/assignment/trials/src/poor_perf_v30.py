@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" Better performing module #14 """
+""" 14 with added < "2019 """
 
 import datetime
 
@@ -26,7 +26,7 @@ def analyze(filename):
 
             # pylint: disable=C0122
             # Less than should be the default comparison operation
-            if "2012" < lrow[5][6:]:
+            if "2012" < lrow[5][6:] < "2019":
                 if lrow[5][6:] == "2013":
                     _2013 += 1
                 elif lrow[5][6:] == "2014":
@@ -66,6 +66,6 @@ def analyze(filename):
 
 
 if __name__ == "__main__":
-    for loop in range(10):
+    for loop in range(100):
         print(f"loop : {loop}")
         analyze("data/dataset.csv")

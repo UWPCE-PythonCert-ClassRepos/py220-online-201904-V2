@@ -1131,3 +1131,145 @@ sys     0m1.544s
 ```
 I also tried v27 on 10 million records looping 10 times on a ramdisk, no
 noticeable improvement from running from RAM at this size file.
+
+One more test, v28, it's v14 converted to python2 :D
+
+```
+$ time /usr/bin/python2 ./src/poor_perf_v28.py
+
+
+real    0m36.610s = .36610s per loop
+user    0m35.239s = .35239s per loop
+sys     0m1.340s  = .01340s per loop
+```
+lol, that's our best pure python time so far!
+
+v29 a single if and a dictionary again
+```
+$ ./src/poor_pref_v29.py
+
+
+real    0m42.966s
+user    0m41.562s
+sys     0m1.404s
+```
+
+Ran 14 again for comparison, int's still faster
+```
+$ ./src/poor_pref_v14.py
+
+real    0m40.586s
+user    0m39.346s
+sys     0m1.240s
+```
+
+Remember these are loops of 100 throught the million records.  
+Those dictionary hash calls take up time!
+
+v30 we added an extra if.
+```
+if "2012" < lrow[5][6:] < "2019":
+```
+the < 2019 part
+
+It didn't seem to make an improvement in my dataset, but if there were a 
+significant number of dates above the 2018 cutoff point it would begin to
+be an improvement.
+
+## Parallel
+
+Decided to try coding a multiprocess version of this.  Haven't recorded the
+first few times, they weren't exciting, worse than the single thread.
+But we're making progress!
+
+As a baseline for the day, I'm rerunning specimen 14 in loops of 10
+```
+real    0m4.068s
+user    0m3.948s
+sys     0m0.120s
+```
+
+As of now, 'real' time is what we're concerned with, as the other two will
+related to CPU time and kernel time used, but we want a wall-clock 
+comparison, and that's real time.
+
+Currently for parallel_v3
+```
+real    0m4.093s
+user    0m4.828s
+sys     0m1.533s
+```
+
+Yes, it's a tad slower in real time than the single thread, but I think we
+can improve upon this.
+
+Too funny, as it turns out, my very first parallel implementation is the
+fastest so far!
+
+parallel_v1
+```
+real    0m3.524s
+user    0m5.254s
+sys     0m0.727s
+```
+so .352 seconds per loop!  I had been reading user time before and saw that
+it was much higher.  So what's different in version one, well, i'm not using
+slicing, and it's actually reading the file twice instead of just once, but only
+going half way through each time.
+
+v5
+```
+real    0m32.128s
+user    0m53.133s
+sys     0m19.929s
+```
+
+v6 - trying generators to feed consume... not so much.  Apparently
+profiling multiprocess is problematic, this gave me not much.
+```
+$ python -m cProfile --sort time ./src/parallel_v6.py 
+'ao' was found 35233 times
+2013:8326	2014:8289	2015:8013	2016:8497	2017:8326	2018:8258
+
+         50882 function calls (50470 primitive calls) in 0.671 seconds
+
+   Ordered by: internal time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        3    0.493    0.164    0.493    0.164 {built-in method posix.waitpid}
+        1    0.098    0.098    0.615    0.615 parallel_v6.py:91(main)
+        1    0.044    0.044    0.671    0.671 parallel_v6.py:2(<module>)
+    13875    0.008    0.000    0.008    0.000 {built-in method _codecs.utf_8_decode}
+    13875    0.004    0.000    0.012    0.000 codecs.py:319(decode)
+        2    0.003    0.001    0.003    0.001 {built-in method posix.fork}
+       34    0.002    0.000    0.002    0.000 {built-in method marshal.loads}
+        6    0.001    0.000    0.001    0.000 {built-in method _imp.create_dynamic}
+      132    0.001    0.000    0.002    0.000 {built-in method builtins.__build_class__}
+      149    0.001    0.000    0.001    0.000 enum.py:375(__setattr__)
+      111    0.001    0.000    0.002    0.000 <frozen importlib._bootstrap_external>:1356(find_spec)
+      195    0.001    0.000    0.001    0.000 {built-in method posix.stat}
+        7    0.001    0.000    0.002    0.000 enum.py:134(__new__)
+```
+pprofile just tells me I'm waiting for a thread.
+```
+   125|         1|  2.69413e-05|  2.69413e-05|  0.00%|        process1.join()
+(call)|         1|      10.7872|      10.7872| 94.05%|# /usr/lib/python3.7/multiprocessing/process.py:133 join
+   126|         1|  1.23978e-05|  1.23978e-05|  0.00%|        process2.join()
+(call)|         1|     0.274074|     0.274074|  2.39%|# /usr/lib/python3.7/multiprocessing/process.py:133 join
+```
+```
+real    0m0.522s
+user    0m0.641s
+sys     0m0.147s
+```
+I'm not getting consistent results with multiprocessing anyways.
+
+EUREKA!
+
+parallel_v7 is the first multithread to post correct answers and great times!
+```
+real    0m3.483s
+user    0m5.444s
+sys     0m0.620s
+```
+

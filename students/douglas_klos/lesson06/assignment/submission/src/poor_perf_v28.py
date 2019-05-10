@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
-""" Better performing module #14 """
 
+""" Version 14 redone for python2 """
+#!/usr/bin/env python2
 import datetime
 
 
@@ -40,15 +40,10 @@ def analyze(filename):
                 elif lrow[5][6:] == "2018":
                     _2018 += 1
 
-    print(f"'ao' was found {found} times")
-    print(
-        f"2013:{_2013}\t"
-        f"2014:{_2014}\t"
-        f"2015:{_2015}\t"
-        f"2016:{_2016}\t"
-        f"2017:{_2017}\t"
-        f"2018:{_2018}\n"
-    )
+    print("'ao' was found %d times" % found)
+    print("2013:%d\t 2014:%d\t 2015: %d\t 2016:%d\t 2017:%d\t 2018:%d\n" %
+          (_2013, _2014, _2015, _2016, _2017, _2018))
+
     end = datetime.datetime.now()
     return (
         start,
@@ -66,6 +61,6 @@ def analyze(filename):
 
 
 if __name__ == "__main__":
-    for loop in range(10):
-        print(f"loop : {loop}")
+    for loop in range(100):
+        print("loop : %d" % loop)
         analyze("data/dataset.csv")

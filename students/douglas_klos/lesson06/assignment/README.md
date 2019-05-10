@@ -34,6 +34,11 @@ on each line of code vs time spent in each function, this let me determine I
 was wasting time on if's, and that an additional if to rule them all would
 speed things up.
 
+As a further note, when you look at the code you might wonder why I am using
+ints instead of a dictionary.  Well, ints are comfirmed through testing to be
+faster access time than dictionary - that hashing produces overhead not found
+with a variable type closer to a C int.
+
 ## General commands used
 
 Makefile is a work in progress, I have little experience creating them, but am
@@ -92,9 +97,11 @@ dataset.
 ### Noteable times
 <pre>
 poor_pref_v00.py     =  2.422 # Original time
-poor_pref_v14.py     =  0.411 # 83.03% reduction in execution time
-poor_pref_v15.pyx    =  0.347 # 85.67% reduction in execution time
-poor_perf_v27.c      =  0.155 # 93.6% reduction in execution time
+poor_pref_v14.py     =  0.411 # 83.03% reduction in execution time (Python 3)
+poor_pref_v15.pyx    =  0.347 # 85.67% reduction in execution time (Cython)
+poor_perf_v27.c      =  0.155 # 93.6% reduction in execution time (C)
+poor_perf_v28.py     =  0.366 # 84.89% reduction in execution time (Python 2)
+parallel_v7.py       =  0.348 # Nailed it, consistent answers, great time.(Python 3)
 </pre>
 
 ### All times
@@ -129,4 +136,14 @@ poor_perf_v24.py     =  5.138 # Tried a JIT compiler called numba.
 poor_perf_v25.py     =  1.570 # Replaced if's with regex
 poor_perf_v26.c      =  0.160 # Replaced if's with else if<
 <b>poor_perf_v27.c      =  0.155 # Added proper struct</b>
+poor_perf_v28.py     =  0.366 # v14 running on python2
+poor_perf_v29.py     =  0.429 # Single if and dictionary again. Slower.
+parallel_v1.py       =  0.352 # Multiprocess (INCONSISTENT)
+parallel_v2.py       =  0.409 # Multiprocess, only read file once. (INCONSISTENT)
+parallel_v3.py       =  0.407 # Multiprocess combine function, slicing. (INCONSISTENT)
+parallel_v4.py       =  0.336 # The best yet! (INCONSISTENT)
+parallel_v4-2.py     =  0.297 # v4 under python2 (INCONSISTENT)
+parallel_v5.py       =  3.212 # Dicionary hash killing me? (INCONSISTENT)
+parallel_v6.py       =  0.522 # Generators (INCONSISTENT)
+parallel_v7.py       =  0.348 # Nailed it, consistent answers, great time.
 </pre>
