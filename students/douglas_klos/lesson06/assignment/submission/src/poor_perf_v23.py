@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # pylint: disable = W0603
-""" Better performing module #14 """
+""" Specimen 14 with map and lambda."""
 
 import datetime
 
