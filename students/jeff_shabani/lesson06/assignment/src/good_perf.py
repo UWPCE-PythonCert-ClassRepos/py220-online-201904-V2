@@ -9,6 +9,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+
 startTime = datetime.now()
 
 
@@ -36,11 +37,11 @@ FILE = FILE[FILE['date'].str[-4:].isin(YEARS)]
 # applies year count function to the date column
 FILE['2013'] = np.vectorize(year_count)(FILE['date'].str[-2:], '13')
 
-# sums number of records with 2013 in the date
+#sums number of records with 2013 in the date
 thirteen_count = FILE['2013'].sum()
 
 # deletes all records with 2013 in the date to reduce number of
-# records and speed future searches
+#records and speed future searches
 FILE = FILE[FILE['date'] != '2013']
 
 FILE['2014'] = np.vectorize(year_count)(FILE['date'].str[-2:], '14')
@@ -62,7 +63,6 @@ FILE = FILE[FILE['date'] != '2017']
 FILE['2018'] = np.vectorize(year_count)(FILE['date'].str[-2:], '18')
 eighteen_count = FILE['2018'].sum()
 FILE = FILE[FILE['date'] != '2018']
-
 
 def print_results():
     """
