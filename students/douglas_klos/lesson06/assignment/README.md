@@ -1,11 +1,18 @@
 # Lesson 06 - Profiling and performance
 
+I put way too much time into this and there's entirely too many files to keep
+track of at this point, if something goes goofy during grading let me know and
+I'm certain I can help sort it out.
+
+The dataset.csv file used for this was too large to push to github.  A zipped
+version can be found in the data folder.
+
 These tests are being run on the following hardware:
 
 Core i7-6700k @ 4.3GHz, 32GB DDR4, Linux Mint 19 (4.15), fairly worn SSD drive.
 
 First, the good\_perf.py file simple loads the analyze function from the best
-performing, single threaded version.
+performing, single threaded, Python only version.
 
 I am submitting this with the pytest file pointing to the original poor_perf.py
 delivered to us and the fastest Python build for the best python-based
@@ -61,6 +68,7 @@ $
 $ pprofile --exclude-syspath ./src/poor_perf_v14.py > output14.txt
 $
 $ pylint ./src/
+$ pylint ./tests/
 $ pytest ./tests/
 $
 $ make clean
@@ -78,8 +86,8 @@ I'm surprised by the amount I was able to improve the performance.
 The first program given to us was pretty bad, had extra loops
 and assignments that didn't work, plus lots of extra if's.  It
 clocked in at 2.422 seconds.  Following is a list of times, notable ones
-in bold are included in the submission folder, the others are relegated to
-the trials folder.
+are in bold and are included in the submission folder, the others are relegated
+to the trials folder.
 
 21 & 23 are also interesting since I made use of map and lambda in them, they
 were however a tad slower, I still like them.
@@ -93,14 +101,21 @@ dataset.
 With parallel processes, getting all the return results collected back together
 was tricky.  I needed to define shared memory for each variable for each process.
 This resulted in lots of lines of variable declarations, but it worked, and looping
-to create variables would add extra clock cyclese.
+to create variables would add extra clock cycles.
+
+There's a lot of random data generation going on in the generate_data.py file.
+On my fairly quick machine it took about 45 seconds to run, if the grading
+machine is slow it might take much longer.  I didn't spend much time trying to
+optimize it, it doesn't need to be run often, and the algorithms for random
+data generation can only be made so good and still be 'random'.
 
 % Decrease = ((Original Number - New Number) ÷ Original Number) × 100
 
 ### Noteable times
 <pre>
 File                    Time    % Reduction    Interpreter
-poor_pref_v00.py     =  2.422   Original
+generate_data.py     = 44.287   -----------   (Python 3.7.1)
+poor_pref_v00.py     =  2.422   Original      (Python 3.7.1)
 poor_pref_v14.py     =  0.411   83.03%        (Python 3.7.1)
 poor_pref_v15.pyx    =  0.347   85.67%        (Cython on Python 3)
 poor_perf_v23.py     =  0.470   80.59%        (Python 3.7.1 using map)
@@ -153,4 +168,6 @@ parallel_v5.py       =  3.212 # Dicionary hash killing me? (INCONSISTENT)
 parallel_v6.py       =  0.522 # Generators (INCONSISTENT)
 parallel_v7.py       =  0.348 # Nailed it, consistent answers, great time.
 parallel_v8.py       =  0.281 # Spawning three children process.
+<b>parallel_v9.py       =  0.281 # Python 3.7.1</b>
+<b>parallel_v9.py       =  0.237 # Python 2.7.15</b>
 </pre>

@@ -27,15 +27,21 @@ dataset analyze (struct dataset *record);
 
 int main (void)
 {
+    unsigned short int loop;
     dataset *record = (dataset*) malloc(sizeof(dataset));
-    for (int i = 0; i <= 10; i++)
+    // Loop was used to run the program multiple times for better results on
+    //   a higher-performing system.  A single test of say .5 sec was less
+    //   reliable than 10 tests at 4.95 seconds.  Left at 10 for submission
+    //   because C is just too quick.
+    for (loop = 0; loop < 10; loop++)
     {
-        printf("loop : %d\n", i);
+        printf("loop : %d\n", loop);
         reset_dataset(record);
         analyze(record);
         print_dataset(record);
     }
     free(record);
+    printf("Reminder to divide your time by %d", loop);
     return 0;
 }
 

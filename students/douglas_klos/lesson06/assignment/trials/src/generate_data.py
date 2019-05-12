@@ -43,7 +43,11 @@ def generate_rows():
 
 
 def rand_date(start, end, _format, seed):
-    """ Generates a random date between start and end """
+    """
+    Generates a random date between start and end.
+    
+    Lifted from Stackoverflow. Yes I've read and understand the code.
+    """
     start_time = time.mktime(time.strptime(start, _format))
     # end_time = time.mktime(time.strptime(end, _format))
     # rand_time = start_time + seed * (end_time - start_time)
