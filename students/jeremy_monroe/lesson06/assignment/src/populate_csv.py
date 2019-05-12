@@ -12,9 +12,10 @@ from faker import Faker
 
 FAKE = Faker()
 
-# Just kidding. It will only add 100 records unless you uncomment the other
+# Just kidding. It will only add 1000 records unless you uncomment the other
 # repetitions variable.
 REPETITIONS = 1000
+# REPETITIONS = 500000
 # REPETITIONS = 1000000
 
 
