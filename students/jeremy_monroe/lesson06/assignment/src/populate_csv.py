@@ -1,6 +1,8 @@
 """
 When run this module will populate a csv file with 1,000,000 additional records
 using randomly generated data.
+
+Requires Faker as a dependency to genereate random data.
 """
 
 import csv
@@ -15,18 +17,16 @@ FAKE = Faker()
 REPETITIONS = 1000
 # REPETITIONS = 1000000
 
+
 def add_records(filename):
     """
-    Populates a newly created csv file expanding on the data already stored in
+    Populates a csv file with random information following the structure of
     exercise.csv.
     """
     uuid_generator = (str(uuid.uuid4()) for new_uuid in range(REPETITIONS))
     random_date = (generate_random_date() for date in range(REPETITIONS))
-    random_cc_number = (FAKE.credit_card_number(card_type=None) for number
-                        in range(REPETITIONS))
-    random_sentence = (FAKE.sentence(nb_words=10, variable_nb_words=True,
-                                     ext_word_list=None) for
-                       sentence in range(REPETITIONS))
+    random_cc_number = (generate_random_cc_number() for _ in range(REPETITIONS))
+    random_sentence = (generate_random_sentence() for _ in range(REPETITIONS))
     new_record_gen = ([index+10, next(uuid_generator), index+10, index+10,
                        next(random_cc_number), next(random_date),
                        next(random_sentence)] for index in range(REPETITIONS))
@@ -40,6 +40,16 @@ def add_records(filename):
     # for i in range(10):
     #    print(next(new_record_gen))
 
+
+def generate_random_sentence():
+    """ Returns a random sentence """
+    return FAKE.sentence(nb_words=10, variable_nb_words=True,
+                         ext_word_list=None)
+
+
+def generate_random_cc_number():
+    """ Returns a random cc number """
+    return FAKE.credit_card_number(card_type=None)
 
 def generate_random_date():
     """ Generates and returns a random date between the years 1700 and 2300 """
