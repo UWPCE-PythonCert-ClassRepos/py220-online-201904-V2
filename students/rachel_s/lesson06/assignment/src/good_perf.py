@@ -1,7 +1,7 @@
 import uuid
 import timeit
 import cProfile
-import pandas as pd
+import csv
 from loguru import logger
 
 
@@ -26,25 +26,42 @@ from loguru import logger
 #         ]))
 
 def get_data_to_repro(path):
-    pass
+    '''
+    Takes a path to an existing data set in CSV format.
+    Returns a list of lists with the items from that data set.
+    '''
+    data = []
+    with open(path, newline='') as file:
+        reader = csv.reader(file, delimiter=',')
+        for line in reader:
+            data.append(line)
+    # Remove the headers, we do not want them.
+    del data[0]
+    return data
 
 
 def records_csv(num_records, path):
     '''
-    Makes a CSV file with the specified number of records using the 
-    make_record function. Saves it to the specified path.
+    Duplicates the data found in get_data_to_repro() and saves it to a
+    file. You can specify how many duplicate records to create.
     '''
     with open(path, 'w') as file:
         file.write('seq,guid,seq,seq,ccnumber,date,sentence\n')
-        seq = 1
-        while seq <= num_records:
-            my_seq = str(seq)
-            my_record = ([
-                my_seq,
+        seq = 0
+        record_count = 0
+        records = get_data_to_repro('../data/exercise.csv')
+        max_seq = len(records) - 1
+        while record_count < num_records:
+            my_record = records[seq]
+            my_record[1] = str(uuid.uuid4())
+            file.write(','.join(my_record) + '\n')
+            record_count += 1
+            if seq < max_seq:
+                seq += 1
+            else:
+                seq = 0
 
-            ])
-            file.write(my_record + '\n')
-            seq += 1
+
 
 # Okay how long does it take though?
 if __name__ == "__main__":
