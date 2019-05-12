@@ -1,69 +1,84 @@
-import uuid
-import timeit
-import cProfile
+#!/usr/bin/env python3
+
+'''
+Better performing, still probably poorly written module
+
+'''
+
+# Rachel Schirra
+# May 12, 2019
+# Python 220 Lesson 06
+
+import datetime
 import csv
-from loguru import logger
 
+def analyze(filename):
+    start = datetime.datetime.now()
+    with open(filename) as csvfile:
+        reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+        # new_ones = []
+        # We are reading each row in the reader and appending it to a 
+        # list. Why aren't we just looking at the row, checking the 
+        # info we need, updating counts as necessary, and then
+        # discarding the row?
 
-# This is cool but also takes way too long because Faker is slow so
-# we're not gonna do it but I am saving it for posterity.
-#
-# def make_record(seq):
-#     '''
-#     Makes a single record with fake data in the following format:
-#     seq, guid, seq, seq, ccnumber, date, sentence
-#     '''
-#     seq = str(seq)
-#     fake = faker.Faker()
-#     return(','.join([
-#         seq,
-#         str(uuid.uuid4()),
-#         seq,
-#         seq,
-#         str(random.randint(1000000000000000, 9999999999999999)),
-#         fake.date(pattern="%m/%d/%Y", end_datetime=None),
-#         fake.sentence(nb_words=random.randint(10,20))
-#         ]))
+        # Let's set up the year count before we start reading the CSV.
+        year_count = {
+            "2013": 0,
+            "2014": 0,
+            "2015": 0,
+            "2016": 0,
+            "2017": 0,
+            "2018": 0
+        }
 
-def get_data_to_repro(path):
-    '''
-    Takes a path to an existing data set in CSV format.
-    Returns a list of lists with the items from that data set.
-    '''
-    data = []
-    with open(path, newline='') as file:
-        reader = csv.reader(file, delimiter=',')
+        for row in reader:
+            lrow = list(row)
+            year = lrow[5][6:]
+            # if lrow[5] > '00/00/2012':
+                # Instead of appending the row to a list, let's check
+                # the year in place.
+                # new_ones.append((lrow[5], lrow[0]))
+            if year in year_count.keys():
+                year_count[year] += 1
+
+        # for new in new_ones:
+        #     if new[0][6:] == '2013':
+        #         year_count["2013"] += 1
+        #     if new[0][6:] == '2014':
+        #         year_count["2014"] += 1
+        #     if new[0][6:] == '2015':
+        #         year_count["2015"] += 1
+        #     if new[0][6:] == '2016':
+        #         year_count["2016"] += 1
+        #     if new[0][6:] == '2017':
+        #         year_count["2017"] += 1
+        #     if new[0][6:] == '2018':
+        #         year_count["2017"] += 1
+
+        print(year_count)
+
+    # Now we're opening the CSV again and reading it again even though
+    # we've already iterated over it one time.
+    with open(filename) as csvfile:
+        reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+
+        found = 0
+
         for line in reader:
-            data.append(line)
-    # Remove the headers, we do not want them.
-    del data[0]
-    return data
+            lrow = list(line)
+            if "ao" in line[6]:
+                found += 1
+
+        print(f"'ao' was found {found} times")
+        end = datetime.datetime.now()
+
+    return (start, end, year_count, found)
+
+def main():
+    filename = "data/out.csv"
+    analyze(filename)
 
 
-def records_csv(num_records, path):
-    '''
-    Duplicates the data found in get_data_to_repro() and saves it to a
-    file. You can specify how many duplicate records to create.
-    '''
-    with open(path, 'w') as file:
-        file.write('seq,guid,seq,seq,ccnumber,date,sentence\n')
-        seq = 0
-        record_count = 0
-        records = get_data_to_repro('../data/exercise.csv')
-        max_seq = len(records) - 1
-        while record_count < num_records:
-            my_record = records[seq]
-            my_record[1] = str(uuid.uuid4())
-            file.write(','.join(my_record) + '\n')
-            record_count += 1
-            if seq < max_seq:
-                seq += 1
-            else:
-                seq = 0
-
-
-
-# Okay how long does it take though?
 if __name__ == "__main__":
-    records_csv(2000, 'twothousand.csv')
-
+    main()
