@@ -32,6 +32,9 @@ def analyze(filename):
             "2018": 0
         }
 
+        # Move the 'ao found' counter up here so we can loop once.
+        found = 0
+
         for row in reader:
             lrow = list(row)
             year = lrow[5][6:]
@@ -39,8 +42,10 @@ def analyze(filename):
                 # Instead of appending the row to a list, let's check
                 # the year in place.
                 # new_ones.append((lrow[5], lrow[0]))
-            if year in year_count.keys():
+            if year in year_count:
                 year_count[year] += 1
+            if 'ao' in lrow[6]:
+                found += 1
 
         # for new in new_ones:
         #     if new[0][6:] == '2013':
@@ -60,15 +65,15 @@ def analyze(filename):
 
     # Now we're opening the CSV again and reading it again even though
     # we've already iterated over it one time.
-    with open(filename) as csvfile:
-        reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+    # with open(filename) as csvfile:
+    #     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
 
-        found = 0
+    #     found = 0
 
-        for line in reader:
-            lrow = list(line)
-            if "ao" in line[6]:
-                found += 1
+    #     for line in reader:
+    #         lrow = list(line)
+    #         if "ao" in line[6]:
+    #             found += 1
 
         print(f"'ao' was found {found} times")
         end = datetime.datetime.now()
