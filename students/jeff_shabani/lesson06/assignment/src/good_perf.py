@@ -9,75 +9,39 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-
 startTime = datetime.now()
 
-
-def year_count(x, yr):
-    """
-    Returns 1 if year is in the rerocrd
-    :param x:
-    :param yr:
-    :return: 1 or nothing
-    """
-    if x == yr:
-        return 1
-
-
 YEARS = ['2013', '2014', '2015', '2016', '2017', '2018']
+
+# read in file
 FILE = pd.DataFrame(pd.read_csv(Path.cwd().with_name('data') /
                                 "mega.csv", usecols=['date', 'sentence'],
                                 engine='c', quotechar='"', header=0))
 
+# column mark sentences containing 'ao' with a 1
 FILE['ao'] = np.where(FILE['sentence'].str.contains("ao", case=False,
                                                     regex=True), 1, 0)
+
+# sum of 'ao' columns
 ao_count = FILE['ao'].sum()
-FILE = FILE[FILE['date'].str[-4:].isin(YEARS)]
 
-# applies year count function to the date column
-FILE['2013'] = np.vectorize(year_count)(FILE['date'].str[-2:], '13')
+# FILE = FILE[FILE['date'].str[-4:].isin(YEARS)]
 
-#sums number of records with 2013 in the date
-thirteen_count = FILE['2013'].sum()
+# get year only from data
+FILE['year'] = FILE['date'].str[-4:]
 
-# deletes all records with 2013 in the date to reduce number of
-#records and speed future searches
-FILE = FILE[FILE['date'] != '2013']
+# create dictionary of year counts
+year_count_one = dict(FILE.groupby(['year'])['year'].count())
 
-FILE['2014'] = np.vectorize(year_count)(FILE['date'].str[-2:], '14')
-fourteen_count = FILE['2014'].sum()
-FILE = FILE[FILE['date'] != '2014']
+# filter dictionary for only years 2013 - 2018
+year_count_two = {k: v
+                  for k, v in year_count_one.items()
+                  if k in YEARS}
 
-FILE['2015'] = np.vectorize(year_count)(FILE['date'].str[-2:], '15')
-fifteen_count = FILE['2015'].sum()
-FILE = FILE[FILE['date'] != '2015']
-
-FILE['2016'] = np.vectorize(year_count)(FILE['date'].str[-2:], '16')
-sixteen_count = FILE['2016'].sum()
-FILE = FILE[FILE['date'] != '2016']
-
-FILE['2017'] = np.vectorize(year_count)(FILE['date'].str[-2:], '17')
-seventeen_count = FILE['2017'].sum()
-FILE = FILE[FILE['date'] != '2017']
-
-FILE['2018'] = np.vectorize(year_count)(FILE['date'].str[-2:], '18')
-eighteen_count = FILE['2018'].sum()
-FILE = FILE[FILE['date'] != '2018']
-
-def print_results():
-    """
-    Prints the record counts per year
-    :return: Dictionary keys and values
-    """
-
-    results = {'2013': thirteen_count,
-               '2014': fourteen_count,
-               '2015': fifteen_count,
-               '2016': sixteen_count,
-               '2017': seventeen_count,
-               '2018': eighteen_count}
-    print(results)
-
+# add missing years to dictionary with value of 0
+for i in YEARS:
+    if i not in year_count_two.keys():
+        year_count_two[i] = 0
 
 runtime = datetime.now() - startTime
 
@@ -86,7 +50,7 @@ def main():
     """
     Runs the program
     """
-    print_results()
+    print(year_count_two)
     print(f'"ao" was fount {ao_count} times')
     print(f'Runtime is: {runtime}')
 

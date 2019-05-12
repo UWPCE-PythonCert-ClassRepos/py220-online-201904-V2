@@ -1,4 +1,4 @@
-Achieved a 46% increase on performance from poor_perf to good_perf.
+Achieved a 50% increase on performance from poor_perf to good_perf.
 
 Typical run-time for poor_perf was 5.53 seconds. Typical good_perf runtime
 is 2.99 seconds.
