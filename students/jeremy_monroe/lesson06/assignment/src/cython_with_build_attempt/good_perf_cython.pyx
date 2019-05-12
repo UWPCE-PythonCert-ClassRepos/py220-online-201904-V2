@@ -1,4 +1,5 @@
-""" Slightly better written faster module.
+"""
+Slightly better written faster module.
 """
 
 from datetime import datetime
@@ -27,8 +28,7 @@ def parse_cmd_arguments():# {{{
     log_file_onoff = parser.parse_args()
 
     if log_file_onoff.logfile:
-        formatter = logging.Formatter(("\n%(asctime)s"
-                                       " %(filename)s:%(lineno)-3d"
+        formatter = logging.Formatter(("\n%(asctime)s %(filename)s:%(lineno)-3d"
                                        " %(levelname)s\n%(message)s"))
 
         log_file = "good_perf" + '.log'
@@ -50,12 +50,8 @@ def analyze(filename):
 
         year_str = "2013 2014 2015 2016 2017 2018"
 
-        year_generator_reduced = (row[5][6:] for row in reader
-                                  if row[5][6:] in year_str)
-        next(year_generator_reduced)
-
+        year_generator_reduced = (row[5][6:] for row in reader if row[5][6:] in year_str)
         year_count = Counter(year_generator_reduced)
-        print("Year_count:\n{}".format(year_count))
 
         year_count_timer = datetime.now()
         LOGGER.info('Time to count years: %s',
@@ -85,3 +81,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
