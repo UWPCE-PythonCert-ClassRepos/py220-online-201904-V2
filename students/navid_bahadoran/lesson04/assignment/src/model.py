@@ -25,3 +25,11 @@ class Customer(BaseModel):
     email_address = CharField(max_length=30)
     status = CharField(max_length=8)
     credit_limit = IntegerField()
+
+
+def create_table():
+    """create table"""
+    DB.create_tables([Customer])
+
+
+create_table()

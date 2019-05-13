@@ -1,0 +1,11 @@
+Issues with poor_perf.py
+1- It reads csv files twice for a 1,000,000 entry
+Solution: Just one iteration is enough
+
+2- It creates list of each line of csv file
+Solution: no need to a list of each line, the open command make a iterable object
+that we can iterate over for each line.
+
+3- It uses if for each year to check. Code check one line for each year,.
+Solution: instead we can use elif, because when the year is 2012, definitely
+it cannot be any other years.
