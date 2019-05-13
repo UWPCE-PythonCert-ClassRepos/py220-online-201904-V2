@@ -24,13 +24,9 @@ def add_records(filename):
     Populates a csv file with random information following the structure of
     exercise.csv.
     """
-    uuid_generator = (str(uuid.uuid4()) for new_uuid in range(REPETITIONS))
-    random_date = (generate_random_date() for date in range(REPETITIONS))
-    random_cc_number = (generate_random_cc_number() for _ in range(REPETITIONS))
-    random_sentence = (generate_random_sentence() for _ in range(REPETITIONS))
-    new_record_gen = ([index+10, next(uuid_generator), index+10, index+10,
-                       next(random_cc_number), next(random_date),
-                       next(random_sentence)] for index in range(REPETITIONS))
+    new_record_gen = ([index+10, str(uuid.uuid4()), index+10, index+10,
+                       generate_random_cc_number(), generate_random_date(),
+                       generate_random_sentence()] for index in range(REPETITIONS))
 
     with open(filename, 'a', newline='') as csvfile:
         writer = csv.writer(csvfile)
@@ -51,6 +47,7 @@ def generate_random_sentence():
 def generate_random_cc_number():
     """ Returns a random cc number """
     return FAKE.credit_card_number(card_type=None)
+
 
 def generate_random_date():
     """ Generates and returns a random date between the years 1700 and 2300 """
