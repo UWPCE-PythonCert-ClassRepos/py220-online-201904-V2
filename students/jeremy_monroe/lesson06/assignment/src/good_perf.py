@@ -55,6 +55,9 @@ def analyze(filename):
         next(year_generator_reduced)
 
         year_count = Counter(year_generator_reduced)
+        for year in year_str.split():
+            if year not in year_count:
+                year_count[year] = 0
         print("Year_count:\n{}".format(year_count))
 
         year_count_timer = datetime.now()
