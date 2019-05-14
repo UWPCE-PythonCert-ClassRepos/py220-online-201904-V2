@@ -7,15 +7,15 @@ import datetime
 import csv
 
 def analyze(filename):
+    '''analyze data'''
     start = datetime.datetime.now()
     with open(filename) as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
         new_ones = []
         for row in reader:
             lrow = list(row)
-            if lrow[5] > '00/00/2012':
+            if lrow[5] != ' date' and int(lrow[5][-4:]) >= 2012:
                 new_ones.append((lrow[5], lrow[0]))
-
         year_count = {
             "2013": 0,
             "2014": 0,
@@ -57,7 +57,8 @@ def analyze(filename):
     return (start, end, year_count, found)
 
 def main():
-    filename = "data/exercise.csv"
+    '''main function'''
+    filename = "../data/exercise.csv"
     analyze(filename)
 
 
