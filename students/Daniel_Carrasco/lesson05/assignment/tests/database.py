@@ -1,3 +1,14 @@
+""""
+Lesson 5. Create DB using mongodb api
+"""
+
+# pylint: disable= W1203, R0914, C0103, W0703, W0612
+import logging
+import csv
+import os
+from pymongo import MongoClient  # high level api
+
+
 LOG_FORMAT = "%(asctime)s %(filename)s:%(lineno)-3d %(levelname)s %(message)s"
 FORMATTER = logging.Formatter(LOG_FORMAT)
 
@@ -189,12 +200,13 @@ def main():
     """
     main used to call other methods
     """
-    
-    import_count, error_count = import_data("../data/", "product.csv", "customers.csv", "rental.csv")
+    cwd = os.path.abspath(os.path.join(os.path.dirname(__file__)))
+    import_count, error_count = import_data(
+        cwd, "product.csv", "customers.csv", "rental.csv")
     show_available_products()
     show_rentals("prd002")
     drop_data()
 
-if __name__== "__main__":
-    main()
 
+if __name__ == "__main__":
+    main()
