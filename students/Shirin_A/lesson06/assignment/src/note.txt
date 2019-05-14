@@ -1,0 +1,99 @@
+
+(1) Updated program to increment count for year using dict capabilities.
+
+    REMOVED:
+    for row in reader:
+                lrow = list(row)
+
+                if lrow[5] > '00/00/2012':
+                    new_ones.append((lrow[5], lrow[0]))
+
+
+(2) Updated code to only open csv once for manipulation, rather than 2 times - which was unnecessary.
+
+(3) Refactored the way the code filters and increments years_count dict. See below.
+
+    OLD:
+
+    for new in new_ones:
+
+                if new[0][6:] == '2013':
+
+                    year_count["2013"] += 1
+
+                if new[0][6:] == '2014':
+
+                    year_count["2014"] += 1
+
+                if new[0][6:] == '2015':
+
+                    year_count["2015"] += 1
+
+                if new[0][6:] == '2016':
+
+                    year_count["2016"] += 1
+
+                if new[0][6:] == '2017':
+
+                    year_count["2017"] += 1
+
+                if new[0][6:] == '2018':
+
+                    year_count["2017"] += 1
+
+    NEW:
+    try:
+      year_count[row[5]] += 1
+
+    except KeyError:
+
+      continue
+
+  (4) No change of code for filtering for 'ao' so there shouldn't be any change in performance.
+
+  (5) Comparison of results:
+
+      poor_perf.py results/outputs:
+
+      -----------------------------
+      {'2013': 0, '2014': 0, '2015': 1, '2016': 0, '2017': 0, '2018': 0}
+
+      'ao' was found 0 times
+
+
+      good_perf.py results/outputs:
+      -----------------------------
+
+      {'2013': 0, '2014': 0, '2015': 1, '2016': 0, '2017': 0, '2018': 0}
+
+      'ao' was found 0 times
+
+       Even though both sets of code are different, they produce the same results.
+
+
+  (6) Raw data
+
+      poor_perf.py run times:
+
+      -----------------------
+      INFO:__main__:Run time for row reader and filter for > 00/00/2012: 7.920000000000149e-05 sec
+
+      INFO:__main__:Sorting and counting matching years run time: 1.289999999998237e-05 sec
+
+      INFO:__main__:Run time for reading and filtering for "ao": 7.479999999998599e-05 sec
+      INFO:__main__:Program run time: 0.01616259999999997 sec  
+      INFO:__main__:main() run time:  0.015104300000000015 sec
+
+
+      good_perf.py - run times:
+
+      -------------------------
+      INFO:__main__:Run time for counting years and filtering for "ao": 7.51999999999e-05 sec
+
+      INFO:__main__:Program run time:0.010357000000000005 sec - 35% faster
+
+      INFO:__main__:main() run time: 0.009497699999999998 sec- 37% faster
+
+
+
+      In conclusion, based on the results of run times above, the good_perf.py code was roughly 37% faster than the poor_perf.py code.
