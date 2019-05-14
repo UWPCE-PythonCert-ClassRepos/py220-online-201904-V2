@@ -1,72 +1,56 @@
+"""
+This module uses pandas to speed up the reading and summarizing of
+a million record data set
+"""
+
 from datetime import datetime
-import functools
 import gc
+from pathlib import Path
 import numpy as np
 import pandas as pd
-from pathlib import Path
-
-pd.set_option('display.max.columns', 25)
-desired_width = 400
-pd.set_option('display.width', desired_width)
 
 startTime = datetime.now()
 
+YEARS = ['2013', '2014', '2015', '2016', '2017', '2018']
 
-def year_count(x, yr):
-    if x == yr:
-        return 1
-    else:
-        return 0
+# read in file
+FILE = pd.DataFrame(pd.read_csv(Path.cwd().with_name('data') /
+                                "mega.csv", usecols=['date', 'sentence'],
+                                engine='c', quotechar='"', header=0))
 
-
-years = ['2013', '2014', '2015', '2016', '2017', '2018']
-file = pd.DataFrame(pd.read_csv(Path.cwd().with_name('data') /
-                                "exercise.csv", usecols=[0, 4, 5, 6],
-                                engine='c', quotechar='"', header=0)) \
-    .rename(columns={'guid                                ': 'guid',
-                     'date      ': 'date'})
-for i in range(17):
-    new = file.copy(deep=True)
-    file = file.append(new, ignore_index=True)
-file = file[:1000000]
-# file['guid'] = range(len(file))
-file['guid'] = file.index
-file['ao'] = np.where(file['sentence'].str.contains("ao", case=False,
+# column mark sentences containing 'ao' with a 1
+FILE['ao'] = np.where(FILE['sentence'].str.contains("ao", case=False,
                                                     regex=True), 1, 0)
-ao_count = file['ao'].sum()
-file = file[file['date'].str[-4:].isin(years)]
 
-file['2013'] = np.vectorize(year_count)(file['date'].str[-4:], '2013')
-file['2014'] = np.vectorize(year_count)(file['date'].str[-4:], '2014')
-file['2015'] = np.vectorize(year_count)(file['date'].str[-4:], '2015')
-file['2016'] = np.vectorize(year_count)(file['date'].str[-4:], '2016')
-file['2017'] = np.vectorize(year_count)(file['date'].str[-4:], '2017')
-file['2018'] = np.vectorize(year_count)(file['date'].str[-4:], '2018')
-thirt_count = file['2013'].sum()
-fourt_count = file['2014'].sum()
-fift_count = file['2015'].sum()
-sixt_count = file['2016'].sum()
-sevent_count = file['2017'].sum()
-eight_count = file['2018'].sum()
+# sum of 'ao' columns
+ao_count = FILE['ao'].sum()
 
+# FILE = FILE[FILE['date'].str[-4:].isin(YEARS)]
 
-def print_results():
-    results = {'2013': thirt_count,
-               '2014': fourt_count,
-               '2015': fift_count,
-               '2016': sixt_count,
-               '2017': sevent_count,
-               '2018': eight_count}
-    print(results)
+# get year only from data
+FILE['year'] = FILE['date'].str[-4:]
 
+# create dictionary of year counts
+year_count_one = dict(FILE.groupby(['year'])['year'].count())
 
-mega = file.to_csv(Path.cwd().with_name('data') / "mega.csv")
+# filter dictionary for only years 2013 - 2018
+year_count_two = {k: v
+                  for k, v in year_count_one.items()
+                  if k in YEARS}
+
+# add missing years to dictionary with value of 0
+for i in YEARS:
+    if i not in year_count_two.keys():
+        year_count_two[i] = 0
 
 runtime = datetime.now() - startTime
 
 
 def main():
-    print_results()
+    """
+    Runs the program
+    """
+    print(year_count_two)
     print(f'"ao" was fount {ao_count} times')
     print(f'Runtime is: {runtime}')
 
