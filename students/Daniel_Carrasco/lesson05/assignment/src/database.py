@@ -10,19 +10,20 @@ import csv
 log_format = "%(asctime)s %(filename)s:%(lineno)-3d %(levelname)s %(message)s"
 formatter = logging.Formatter(log_format)
 
-file_handler = logging.FileHandler('db.log')
-file_handler.setLevel(logging.INFO)
-file_handler.setFormatter(formatter)
+FILE_HANDLER = logging.FileHandler('db.log')
+FILE_HANDLER.setLevel(logging.INFO)
+FILE_HANDLER.setFormatter(formatter)
 
-
-
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
-logger.addHandler(file_handler)
+LOGGER = logging.getLogger()
+LOGGER.setLevel(logging.INFO)
+LOGGER.addHandler(FILE_HANDLER)
 
 
 class MongoDBConnection(object):
-    """MongoDB Connection"""
+    """
+    Class to start MongoDB Connection
+    """
+
     def __init__(self, host='127.0.0.1', port=27017):
         """ be sure to use the ip address not name for local windows"""
         self.host = host
@@ -36,9 +37,59 @@ class MongoDBConnection(object):
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.connection.close()
 
+def import_data(directory_name, product_file, customer_file, rentals_file):
+    """
+    method to import the csv files that will be added to the db
+    """
+    LOGGER.info("starting MongoDBConnection")
+    mongo = MongoDBConnection()
+
+    with mongo:
+
+        # mongodb database; it all starts here
+        db = mongo.connection.HPNorton
+
+        # collection in database
+        products = db["products"]
+        customers = db["customers"]
+        rentals = db["rentals"]
+
+        LOGGER.info("importing data")
+        product_ip = read_data(directory_name,product_file)
+        customer_ip = read_data(directory_name,customer_file)
+        rentals_ip = read_data(directory_name,rentals_file)
+
+        product_results = add_many_ip(products, product_ip)
+        customer_results = add_many_ip(customers, customer_ip)
+        rental_results = add_many_ip(rentals, rentals_ip)
+
+
+    import_count = (product_results[0], customer_results[0], rental_results[0])
+    LOGGER.info(f'succesful product imports = {import_count[0]} to db')
+    LOGGER.info(f'succesful customer imports = {import_count[1]} to db')
+    LOGGER.info(f'succesful rental imports = {import_count[2]} to db')
+
+    error_count = (product_results[1], customer_results[1], rental_results[1])
+    LOGGER.info(f'product import errors = {error_count[0]} to db')
+    LOGGER.info(f'customer import errors = {error_count[1]} to db')
+    LOGGER.info(f'rental import errors = {error_count[2]} to db')
+
+    return import_count, error_count
+
+
+
+
+
+
+
+
 def read_data(directory_name,file_name):
-    logger.info(f'reading {file_name} data from {directory_name}')
-    data_list = []
+    """
+    method to read in the csv files
+    """
+    LOGGER.info(f'reading {file_name} data from {directory_name}')
+    ip_list = []
+
     try:
         with open(directory_name+file_name) as csv_file:
             reader = csv.reader(csv_file)
@@ -49,66 +100,76 @@ def read_data(directory_name,file_name):
                 temp_dict={}
                 for index, value in enumerate(header):
                     temp_dict[value] = row[index]
-                data_list.append(temp_dict)
+                ip_list.append(temp_dict)
+        LOGGER.info("successfully read in data")
+
     except Exception as error:
-        logger.info(f'could not read data due to {error}')
-    return data_list
+        LOGGER.info(f'could not read data due to {error}')
 
+    return ip_list
 
-def import_data(directory_name, product_file, customer_file, rentals_file):
-    logger.info("importing data")
-    product_ip = read_data(directory_name,product_file)
-    customer_ip = read_data(directory_name,customer_file)
-    rentals_ip = read_data(directory_name,rentals_file)
+def add_many_ip(collection_name,collection_ip):
+    """
+    method to add the data to the collection
+    """
 
-    return product_ip, customer_ip, rentals_ip
+    try:
+        collection_name.insert_many(collection_ip)
+        LOGGER.info(f'no errors importing to {collection_name} ')
+        insert = 1
+        error = 0
+        return [insert,error]
+    except Exception as error:
+        LOGGER.info(f'add_many_ip error of {error} for to {collection_name}')
+        insert = 0
+        error = 1
+        return [insert,error]
+
 
 def print_mdb_collection(collection_name):
     for doc in collection_name.find():
         print(doc)
 
+def show_available_products():
+    """
+    Method to show available products
+    """
+    mongo = MongoDBConnection()
+    LOGGER.info("starting show_available_products method")
+    with mongo:
+        # mongodb database; it all starts here
+        db = mongo.connection.HPNorton
+        query = {'quantity_available': {'$gt': '1'}}
+        avail_products_dict = {}
+        for query_results in db.products.find(query):
+            key = query_results["product_id"]
+            values = {
+                "description" : query_results["description"],
+                "product_type" : query_results["product_type"],
+                "quantity_available" : query_results["quantity_available"]
+                }
+            temp_dict = {key:values}
+            avail_products_dict.update(temp_dict)
+        print(avail_products_dict)
+
+def drop_data():
+    mongo = MongoDBConnection()
+    LOGGER.info("starting drop data method")
+    with mongo:
+        # mongodb database; it all starts here
+        db = mongo.connection.HPNorton
+        db.products.drop()
+        db.customers.drop()
+        db.rentals.drop()
+
 
 
 
 def main():
-    logger.info("starting MongoDBConnection")
-    mongo = MongoDBConnection()
 
-    with mongo:
-
-        # mongodb database; it all starts here
-        db = mongo.connection.HPNorton
-        product_ip, customer_ip, rentals_ip = import_data("../data/", "product.csv", "customers.csv", "rental.csv")
-
-        # collection in database
-        products = db["product"]
-        customers = db["customers"]
-        rentals = db["rental"]
-
-        product_results = products.insert_many(product_ip)
-        print_mdb_collection(products)
-        customer_results = customers.insert_many(customer_ip)
-        print_mdb_collection(customers)
-        rental_results = rentals.insert_many(rentals_ip)
-        print_mdb_collection(rentals)
-        """
-
-
-        # related data
-        for name in collector.find():
-            print(f'List for {name["name"]}')
-            query = {"name": name["name"]}
-            for a_cd in cd.find(query):
-                print(f'{name["name"]} has collected {a_cd}')
-
-
-        # start afresh next time?
-        yorn = input("Drop data?")
-        if yorn.upper() == 'Y':
-            cd.drop()
-            collector.drop()
-            """
-
+    import_count, error_count = import_data("../data/", "product.csv", "customers.csv", "rental.csv")
+    show_available_products()
+    drop_data()
 
 if __name__== "__main__":
     main()
