@@ -40,6 +40,7 @@ def _import_csv(filename):
     Returns a list of dictionaries.  One dictionary for each row of data in a
     csv file.
     '''
+
     with open(filename, newline='') as csvfile:
         dict_list = []
 
@@ -81,6 +82,7 @@ def import_data(d_base, directory_name, products_file, customers_file, rentals_f
     Takes a directory name and three csv files as input.  Creates and populates
     three collections in MongoDB.
     '''
+
     products = d_base['products']
     products_results = _add_bulk_data(products, directory_name, products_file)
 
@@ -97,6 +99,7 @@ def show_available_products(d_base):
     '''
     Returns a dictionary for each product listed as available.
     '''
+
     available_products = {}
 
     for product in d_base.products.find():
@@ -104,6 +107,7 @@ def show_available_products(d_base):
             short_dict = {key: value for key, value in product.items() if key \
             not in ('_id', 'product_id')}
             available_products[product['product_id']] = short_dict
+
     return available_products
 
 
@@ -112,15 +116,18 @@ def show_rentals(d_base, product_id):
     Returns a dictionary with user information from users who have rented
     products matching the product_id.
     '''
+
     customer_info = {}
 
     for rental in d_base.rentals.find():
         if rental['product_id'] == product_id:
             customer_id = rental['user_id']
             customer_record = d_base.customers.find_one({'user_id': customer_id})
+
             short_dict = {key: value for key, value in customer_record.items() \
             if key not in ('_id', 'user_id')}
             customer_info[customer_id] = short_dict
+
     return customer_info
 
 
@@ -143,8 +150,6 @@ def main():
         d_base = mongo.connection.media
 
         results = import_data(d_base, '', 'product.csv', 'customer.csv', 'rental.csv')
-        show_available_products(d_base)
-        show_rentals(d_base, 'P000004')
 
         clear_data(d_base)
 
@@ -153,10 +158,10 @@ def main():
 
 if __name__ == '__main__':
     main()
-    # print(timeit('main()', globals=globals(), number=1))
-    # print(timeit('main()', globals=globals(), number=10))
+    print(timeit('main()', globals=globals(), number=1))
+    print(timeit('main()', globals=globals(), number=10))
 
-    # lp = LineProfiler()
-    # lp_wrapper = lp(main)
-    # lp_wrapper()
-    # lp.print_stats()
+    lp = LineProfiler()
+    lp_wrapper = lp(main)
+    lp_wrapper()
+    lp.print_stats()

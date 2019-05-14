@@ -6,9 +6,7 @@ Actually, turns out that's a lie.  This is a giant rabbit hole.
 '''
 import csv
 import logging
-from timeit import timeit
 import pymongo
-from line_profiler import LineProfiler
 
 
 class MongoDBConnection:
@@ -145,18 +143,11 @@ if __name__ == '__main__':
         import_data(db, '', 'product.csv', 'customer.csv', 'rental.csv')
 
         logging.info('Showing available products')
-        print(show_available_products(db))
+        # print(show_available_products(db))
 
         logging.info('\nShowing rental information for prd005')
         logging.info(show_rentals(db, 'prd005'))
+        print(show_rentals(db, 'prd005'))
 
         logging.info('\nClearing data from database.')
         clear_data(db)
-
-        print(timeit("import_data()", globals=globals(), number=1))
-        print(timeit("import_data()", globals=globals(), number=10))
-
-        lp = LineProfiler()
-        lp_wrapper = lp(import_data)
-        lp_wrapper('customer.csv')
-        lp.print_stats()
