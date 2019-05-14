@@ -1,0 +1,114 @@
+Ok, this is good_perf copied straight from poor_perf all I've added is logging
+up to this point so I'll base improvements off these initial numbers.
+
+2019-05-09 18:07:33,517 good_perf.py:53  INFO
+Time to generate csv reader: 0:00:00
+
+2019-05-09 18:07:37,631 good_perf.py:64  INFO
+Time to generate new_ones list: 0:00:04.113965
+
+2019-05-09 18:07:38,822 good_perf.py:90  INFO
+Time to populate year_count dict: 0:00:01.190815
+
+2019-05-09 18:07:42,473 good_perf.py:107 INFO
+Time taken: 0:00:08.956013
+
+########################################################
+--------------------------------------------------
+########################################################
+
+First modification was to remove new_ones list creation and populate year_count
+
+dict all in one go. I shaved around 1.5 seconds off with this.
+
+2019-05-09 18:24:28,127 good_perf.py:56  INFO
+Time to generate csv reader: 0:00:00
+
+2019-05-09 18:24:32,008 good_perf.py:98  INFO
+Time to populate year_count dict: 0:00:03.880643
+
+2019-05-09 18:24:35,626 good_perf.py:115 INFO
+Total time taken: 0:00:07.498962
+
+########################################################
+--------------------------------------------------
+########################################################
+
+I tried running good_perf using pypy3. Interestingly enough it took
+significantly longer. I believe this is because none of my code is factored out
+into functions.
+
+2019-05-09 18:43:11,992 good_perf.py:56  INFO
+Time to generate csv reader: 0:00:00.001995
+
+2019-05-09 18:43:29,664 good_perf.py:98  INFO
+Time to populate year_count dict: 0:00:17.671807
+
+2019-05-09 18:43:47,369 good_perf.py:115 INFO
+Total time taken: 0:00:35.378375
+
+########################################################
+--------------------------------------------------
+########################################################
+
+I've changed my tune with this. I discovered collections.Counter and have
+utilized it to drop my year_count time further. I'm now off to do the same with
+'ao' count.
+
+2019-05-10 20:13:01,058 good_perf.py:59  INFO
+Time to count years: 0:00:02.760621
+
+2019-05-10 20:13:03,922 good_perf.py:74  INFO
+Time to search for 'ao': 0:00:02.864615
+
+2019-05-10 20:13:03,922 good_perf.py:75  INFO
+Total time taken: 0:00:05.625236
+
+########################################################
+--------------------------------------------------
+########################################################
+
+I was expecting a bit more of a drop in time there. I'll run it with pypy now
+just to see if there's any difference.
+
+2019-05-10 20:23:55,378 good_perf.py:59  INFO
+Time to count years: 0:00:02.684815
+
+2019-05-10 20:23:58,047 good_perf.py:70  INFO
+Time to search for 'ao': 0:00:02.669560
+
+2019-05-10 20:23:58,047 good_perf.py:71  INFO
+Total time taken: 0:00:05.354375
+
+########################################################
+--------------------------------------------------
+########################################################
+
+Wow. I don't really understand why pypy is slower in this case. Good to know
+anyways.
+
+2019-05-10 20:26:27,379 good_perf.py:59  INFO
+Time to count years: 0:00:13.891869
+
+2019-05-10 20:26:41,277 good_perf.py:70  INFO
+Time to search for 'ao': 0:00:13.897816
+
+2019-05-10 20:26:41,278 good_perf.py:71  INFO
+Total time taken: 0:00:27.789685
+
+########################################################
+--------------------------------------------------
+########################################################
+
+I've been trying to get a cython implementation working but have not been able
+to make it go. The logs below are from a good_perf implementation that is run
+as an import by imports_good_perf_cython. It appears to run at the same speed.
+
+2019-05-12 12:18:44,717 good_perf_cython.py:59  INFO
+Time to count years: 0:00:02.535218
+
+2019-05-12 12:18:47,225 good_perf_cython.py:70  INFO
+Time to search for 'ao': 0:00:02.508335
+
+2019-05-12 12:18:47,225 good_perf_cython.py:71  INFO
+Total time taken: 0:00:05.043553

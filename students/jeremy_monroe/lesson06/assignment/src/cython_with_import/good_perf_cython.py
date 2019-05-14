@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
 
 
-def parse_cmd_arguments():# {{{
+def parse_cmd_arguments():
     """
     Parses the optional argument passed in at the command line to turn on
     logging to a file.
@@ -36,7 +36,7 @@ def parse_cmd_arguments():# {{{
         file_handler.setLevel(logging.INFO)
         file_handler.setFormatter(formatter)
 
-        LOGGER.addHandler(file_handler)# }}}
+        LOGGER.addHandler(file_handler)
 
 
 def analyze(filename):
@@ -52,13 +52,7 @@ def analyze(filename):
 
         year_generator_reduced = (row[5][6:] for row in reader
                                   if row[5][6:] in year_str)
-        next(year_generator_reduced)
-
         year_count = Counter(year_generator_reduced)
-        for year in year_str.split():
-            if year not in year_count:
-                year_count[year] = 0
-        print("Year_count:\n{}".format(year_count))
 
         year_count_timer = datetime.now()
         LOGGER.info('Time to count years: %s',
@@ -78,13 +72,11 @@ def analyze(filename):
     return (start, end, year_count, found)
 
 
-def main():
+def main(filename):
     """ To be run if __name__ == __main__ """
     parse_cmd_arguments()
-    filename = "data/exercise.csv"
-    # filename = 'data/test.csv'
-    analyze(filename)
+    return analyze(filename)
 
 
 if __name__ == "__main__":
-    main()
+    main('data/exercise.csv')
