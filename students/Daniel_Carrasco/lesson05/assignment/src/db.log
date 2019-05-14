@@ -1,0 +1,5 @@
+2019-05-13 17:18:53,883 database.py:74  INFO starting MongoDBConnection
+2019-05-13 17:18:53,884 database.py:59  INFO importing data
+2019-05-13 17:18:53,885 database.py:40  INFO reading product.csv data from ../data/
+2019-05-13 17:18:53,886 database.py:40  INFO reading customers.csv data from ../data/
+2019-05-13 17:18:53,886 database.py:40  INFO reading rental.csv data from ../data/
