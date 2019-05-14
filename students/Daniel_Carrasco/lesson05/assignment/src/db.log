@@ -1,0 +1,22 @@
+2019-05-13 19:47:48,691 database.py:44  INFO starting MongoDBConnection
+2019-05-13 19:47:48,693 database.py:57  INFO importing data
+2019-05-13 19:47:48,693 database.py:90  INFO reading product.csv data from ../data/
+2019-05-13 19:47:48,694 database.py:104 INFO successfully read in data
+2019-05-13 19:47:48,694 database.py:90  INFO reading customers.csv data from ../data/
+2019-05-13 19:47:48,695 database.py:104 INFO successfully read in data
+2019-05-13 19:47:48,695 database.py:90  INFO reading rental.csv data from ../data/
+2019-05-13 19:47:48,695 database.py:104 INFO successfully read in data
+2019-05-13 19:47:48,755 database.py:118 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-05-13 19:47:48,805 database.py:118 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-05-13 19:47:48,858 database.py:118 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-05-13 19:47:48,861 database.py:68  INFO succesful product imports = 1 to db
+2019-05-13 19:47:48,861 database.py:69  INFO succesful customer imports = 1 to db
+2019-05-13 19:47:48,861 database.py:70  INFO succesful rental imports = 1 to db
+2019-05-13 19:47:48,861 database.py:73  INFO product import errors = 0 to db
+2019-05-13 19:47:48,861 database.py:74  INFO customer import errors = 0 to db
+2019-05-13 19:47:48,861 database.py:75  INFO rental import errors = 0 to db
+2019-05-13 19:47:48,861 database.py:134 INFO starting show_available_products method
+2019-05-13 19:47:48,874 database.py:149 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-05-13 19:47:48,874 database.py:157 INFO starting show_rentals method
+2019-05-13 19:47:48,884 database.py:175 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-05-13 19:47:48,885 database.py:181 INFO starting drop data method
