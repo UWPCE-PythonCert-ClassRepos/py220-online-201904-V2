@@ -1,0 +1,1 @@
+I quit.  I've spent four hours trying to build my great_circle.c into something python can use.  I recoded it in plain C and it's over twice as fast as the fastest python implementation.  If you're going to start splicing C into python, why not just rewrite the entire thing in C.  Perhaps later I'll come back to this, but there's other work to be done.

@@ -1,0 +1,12 @@
+CC = gcc
+
+default: libgreatcircle.a
+
+libgreatcircle.a: great_circle.o
+	ar rcs $@ $^
+    
+great_circle.o: great_circle.c great_circle.h
+	$(CC) $< -lm 
+
+clean:
+	rm *.o *.a
