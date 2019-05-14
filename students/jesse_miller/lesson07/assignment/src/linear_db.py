@@ -1,3 +1,6 @@
+'''
+Lesson 07:  Linear DB loading
+'''
 import csv
 import os
 import time
@@ -72,32 +75,32 @@ def _add_bulk_data(collection, directory_name, filename):
     return records_processed, initial_records, final_records, run_time
 
 
-def import_data(db, directory_name, products_file, customers_file, rentals_file):
+def import_data(d_base, directory_name, products_file, customers_file, rentals_file):
     '''
     Takes a directory name and three csv files as input.  Creates and populates
     three collections in MongoDB.
     '''
 
-    products = db['products']
+    products = d_base['products']
     products_results = _add_bulk_data(products, directory_name, products_file)
 
-    customers = db['customers']
+    customers = d_base['customers']
     customers_results = _add_bulk_data(customers, directory_name, customers_file)
 
-    rentals = db['rentals']
+    rentals = d_base['rentals']
     _add_bulk_data(rentals, directory_name, rentals_file)
 
     return [customers_results, products_results]
 
 
-def show_available_products(db):
+def show_available_products(d_base):
     '''
     Returns a dictionary for each product listed as available.
     '''
 
     available_products = {}
 
-    for product in db.products.find():
+    for product in d_base.products.find():
         if product['quantity_available'] != '0':
             short_dict = {key: value for key, value in product.items() if key \
             not in ('_id', 'product_id')}
@@ -106,7 +109,7 @@ def show_available_products(db):
     return available_products
 
 
-def show_rentals(db, product_id):
+def show_rentals(d_base, product_id):
     '''
     Returns a dictionary with user information from users who have rented
     products matching the product_id.
@@ -114,10 +117,10 @@ def show_rentals(db, product_id):
 
     customer_info = {}
 
-    for rental in db.rentals.find():
+    for rental in d_base.rentals.find():
         if rental['product_id'] == product_id:
             customer_id = rental['user_id']
-            customer_record = db.customers.find_one({'user_id': customer_id})
+            customer_record = d_base.customers.find_one({'user_id': customer_id})
 
             short_dict = {key: value for key, value in customer_record.items() \
             if key not in ('_id', 'user_id')}
@@ -126,13 +129,13 @@ def show_rentals(db, product_id):
     return customer_info
 
 
-def clear_data(db):
+def clear_data(d_base):
     '''
     Delete data in MongoDB.
     '''
-    db.products.drop()
-    db.customers.drop()
-    db.rentals.drop()
+    d_base.products.drop()
+    d_base.customers.drop()
+    d_base.rentals.drop()
 
 
 def main():
@@ -142,11 +145,11 @@ def main():
     mongo = MongoDBConnection()
 
     with mongo:
-        db = mongo.connection.media
+        d_base = mongo.connection.media
 
-        results = import_data(db, '', 'product.csv', 'customer.csv', 'rental.csv')
+        results = import_data(d_base, '', 'product.csv', 'customer.csv', 'rental.csv')
 
-        clear_data(db)
+        clear_data(d_base)
 
     return results
 
