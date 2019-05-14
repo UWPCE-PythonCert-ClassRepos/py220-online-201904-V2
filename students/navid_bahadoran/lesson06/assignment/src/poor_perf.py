@@ -5,6 +5,12 @@ poorly performing, poorly written module
 
 import datetime
 import csv
+import pathlib
+import os
+
+ASSIGNMENT_FOLDER = pathlib.Path(os.getcwd()).parent
+CSV_FILE = ASSIGNMENT_FOLDER / "data/exercise.csv"
+
 
 def analyze(filename):
     start = datetime.datetime.now()
@@ -37,7 +43,7 @@ def analyze(filename):
             if new[0][6:] == '2017':
                 year_count["2017"] += 1
             if new[0][6:] == '2018':
-                year_count["2017"] += 1
+                year_count["2018"] += 1
 
         print(year_count)
 
@@ -56,8 +62,9 @@ def analyze(filename):
 
     return (start, end, year_count, found)
 
+
 def main():
-    filename = "data/exercise.csv"
+    filename = CSV_FILE
     analyze(filename)
 
 
