@@ -1,19 +1,23 @@
+#!/usr/bin/env python3
+# pylint: disable=C0103, W0621
 '''
-Lesson 07:  Linear DB loading
+Mongo DB assignment for Python 220.  This one I get a bit better than the last
+Actually, turns out that's a lie.  This is a giant rabbit hole.
 '''
-# pylint: disable=C0103
 import csv
-import os
-import time
-from timeit import timeit
-from line_profiler import LineProfiler
+import logging
 import pymongo
+# from timeit import timeit
+# from line_profiler import LineProfiler
+
+logging.basicConfig(filename='example.log', level=logging.DEBUG)
 
 
 class MongoDBConnection:
     '''
-    Creates a MongoDB Connection
+    Creating the connection to the Mongo daemon
     '''
+
     def __init__(self, host='127.0.0.1', port=27017):
         self.host = host
         self.port = port
@@ -25,134 +29,140 @@ class MongoDBConnection:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.connection.close()
-
-
-def print_mdb_collection(collection_name):
-    '''
-    Prints all documents in a collection.
-    '''
-    for doc in collection_name.find():
-        print(doc)
+    logging.info('Database connected')
 
 
 def _import_csv(filename):
     '''
-    Returns a list of dictionaries.  One dictionary for each row of data in a
-    csv file.
+    This function imports the .csv files containing our data.
     '''
-    with open(filename, newline='') as csvfile:
+    with open(filename, newline='', encoding='utf-8') as file:
         dict_list = []
-
-        csv_data = csv.reader(csvfile)
-
-        headers = next(csv_data, None)  # Save the first line as the headers
-
-        if headers[0].startswith('ï»¿'):  # Check for weird formatting
-            headers[0] = headers[0][3:]
+        csv_data = csv.reader(file)
+        headers = next(csv_data, None)
+        if headers[0].startswith('\ufeff'):
+            headers[0] = headers[0][1:]
 
         for row in csv_data:
-            row_dict = {column: row[index] for index, column in enumerate(headers)}
+            row_dict = {}
+            for index, column in enumerate(headers):
+                row_dict[column] = row[index]
 
             dict_list.append(row_dict)
-
+        logging.info('.csv imported')
         return dict_list
 
 
-def _add_bulk_data(collection, directory_name, filename):
+def import_data(db, directory_name, product_file, customers_file, rental_file):
     '''
-    Adds data in bulk to database.
+    Function to import data into three MongoDB tables
     '''
-    file_path = os.path.join(directory_name, filename)
+    product_errors = 0
+    customer_errors = 0
+    rental_errors = 0
+    directory_name = directory_name
+    try:
+        products = db['products']
+        products.insert_many(_import_csv(product_file))
+    except ImportError:
+        product_errors += 1
+    try:
+        customers = db['customers']
+        customers.insert_many(_import_csv(customers_file))
+    except ImportError:
+        customer_errors += 1
+    try:
+        rentals = db['rentals']
+        rentals.insert_many(_import_csv(rental_file))
+    except ImportError:
+        rental_errors += 1
 
-    start_time = time.time()
-    initial_records = collection.count_documents({})
+    record_count = (db.products.count_documents({}),
+                    db.customers.count_documents({}),
+                    db.rentals.count_documents({}))
 
-    collection.insert_many(_import_csv(file_path), ordered=False)
-
-    final_records = collection.count_documents({})
-    records_processed = final_records - initial_records
-    run_time = time.time() - start_time
-
-    return records_processed, initial_records, final_records, run_time
+    error_count = (product_errors, customer_errors, rental_errors)
+    logging.info('Database Populated')
+    return record_count, error_count
 
 
-def import_data(d_base, directory_name, products_file, customers_file, rentals_file):
+def show_available_products(db):
     '''
-    Takes a directory name and three csv files as input.  Creates and populates
-    three collections in MongoDB.
-    '''
-    products = d_base['products']
-    products_results = _add_bulk_data(products, directory_name, products_file)
-
-    customers = d_base['customers']
-    customers_results = _add_bulk_data(customers, directory_name, customers_file)
-
-    rentals = d_base['rentals']
-    _add_bulk_data(rentals, directory_name, rentals_file)
-
-    return [customers_results, products_results]
-
-
-def show_available_products(d_base):
-    '''
-    Returns a dictionary for each product listed as available.
+    Returns a dictionary for each product that is available for rent (quantity > 0).
     '''
     available_products = {}
+    for product_id in db.products.find():
+        product_dict = {'description': product_id['description'],
+                        'product_type': product_id['product_type'],
+                        'quantity_available': product_id['quantity_available']}
+        if product_id['quantity_available'] != '0':
+            available_products[product_id['product_id']] = product_dict
+            continue
+        else:
+            continue
 
-    for product in d_base.products.find():
-        if product['quantity_available'] != '0':
-            short_dict = {key: value for key, value in product.items() if key \
-            not in ('_id', 'product_id')}
-            available_products[product['product_id']] = short_dict
     return available_products
 
 
-def show_rentals(d_base, product_id):
+def show_rentals(db, product_id):
     '''
-    Returns a dictionary with user information from users who have rented
-    products matching the product_id.
+    Function to look up customers who have rented a specific product.
     '''
-    customer_info = {}
-
-    for rental in d_base.rentals.find():
+    rental_users_dict = {}
+    for rental in db.rentals.find():
         if rental['product_id'] == product_id:
             customer_id = rental['user_id']
-            customer_record = d_base.customers.find_one({'user_id': customer_id})
-            short_dict = {key: value for key, value in customer_record.items() \
-            if key not in ('_id', 'user_id')}
-            customer_info[customer_id] = short_dict
-    return customer_info
+
+            customer_record = db.customers.find_one({'user_id': customer_id})
+
+            rental_users = {'name': customer_record['name'],
+                            'address': customer_record['address'],
+                            'phone_number': customer_record['phone_number'],
+                            'email': customer_record['email']}
+            rental_users_dict[customer_id] = rental_users
+            continue
+        else:
+            continue
+
+    return rental_users_dict
 
 
-def clear_data(d_base):
+def clear_data(db):
     '''
-    Delete data in MongoDB.
+    Clear database
     '''
-    d_base.products.drop()
-    d_base.customers.drop()
-    d_base.rentals.drop()
+    db.products.drop()
+    db.customers.drop()
+    db.rentals.drop()
 
 
 def main():
     '''
-    Main function
+    Main execution
     '''
     mongo = MongoDBConnection()
 
     with mongo:
-        d_base = mongo.connection.media
+        logging.info('Opening MongoDB')
+        db = mongo.connection.media
 
-        results = import_data(d_base, '', 'product.csv', 'customer.csv', 'rental.csv')
-        show_available_products(d_base)
-        show_rentals(d_base, 'P000004')
+        logging.info('Importing csv files')
+        import_data(db, '', 'product.csv', 'customer.csv', 'rental.csv')
 
-        clear_data(d_base)
+        logging.info('Showing available products')
+        # print(show_available_products(db))
 
-    return results
+        logging.info('\nShowing rental information for prd005')
+        logging.info(show_rentals(db, 'prd005'))
+        print(show_rentals(db, 'prd005'))
+
+        logging.info('\nClearing data from database.')
+        clear_data(db)
 
 
 if __name__ == '__main__':
     main()
+
     # print(timeit('main()', globals=globals(), number=1))
     # print(timeit('main()', globals=globals(), number=10))
 

@@ -1,68 +1,113 @@
+#!/usr/bin/env python3
+# pylint: disable = E1101, W0212, C0103, C0111, W0621
 '''
-Tests for linear_db
+grade lesson 5
 '''
-# pylint: disable=W0621,C0103,C0111,W0212
+
 import pytest
-import linear_db as d
+import linear_db as l
 
 
 @pytest.fixture(scope='function')
 def mongo_database():
     '''
-    Creates a MongoDB.
+    Creating the MongoDB for testing.
     '''
-    mongo = d.MongoDBConnection()
+    mongo = l.MongoDBConnection()
 
     with mongo:
         db = mongo.connection.media
 
         yield db
 
-        d.clear_data(db)
+        l.clear_data(db)
+
+
+@pytest.fixture
+def _show_available_products():
+    return {
+        'prd001': {
+            'description': '60-inch TV stand',
+            'product_type': 'livingroom',
+            'quantity_available': '3',
+        },
+        'prd003': {
+            'description': 'Acacia kitchen table',
+            'product_type': 'kitchen',
+            'quantity_available': '7',
+        },
+        'prd004': {
+            'description': 'Queen bed',
+            'product_type': 'bedroom',
+            'quantity_available': '10',
+        },
+        'prd005': {
+            'description': 'Reading lamp',
+            'product_type': 'bedroom',
+            'quantity_available': '20',
+        },
+        'prd006': {
+            'description': 'Portable heater',
+            'product_type': 'bathroom',
+            'quantity_available': '14',
+        },
+        'prd008': {
+            'description': 'Smart microwave',
+            'product_type': 'kitchen',
+            'quantity_available': '30',
+        },
+        'prd010': {
+            'description': '60-inch TV',
+            'product_type': 'livingroom',
+            'quantity_available': '3',
+        },
+    }
+
+@pytest.fixture
+def _show_rentals():
+    ''' Expected output for show rentals call '''
+    return {
+        'user005': {
+            'name': 'Dan Sounders',
+            'address': '861 Honeysuckle Lane',
+            'phone_number': '206-279-1723',
+            'email': 'soundersoccer@mls.com',
+        },
+        'user008': {
+            'name': 'Shirlene Harris',
+            'address': '4329 Honeysuckle Lane',
+            'phone_number': '206-279-5340',
+            'email': 'harrisfamily@gmail.com',
+        },
+    }
 
 
 def test_import_csv():
-    products_list = d._import_csv('product.csv')
-
-    assert len(products_list) == 9999
-
-
-def test_add_bulk_data(mongo_database):
-    result = d._add_bulk_data(mongo_database.rentals, '', 'rental.csv')
-
-    assert result[0] == 9999
-    assert result[1] == 0
-    assert result[2] == 9999
-    assert isinstance(result[3], float)
+    rentals_list = l._import_csv('rental.csv')
+    assert len(rentals_list) == 9999
 
 
 def test_import_data(mongo_database):
-    result = d.import_data(mongo_database, '', 'product.csv', 'customer.csv', 'rental.csv')
+    ''' import '''
+    result = l.import_data(mongo_database, '', 'product.csv', 'customer.csv', 'rental.csv')
 
-    assert result[0][0] == 9999
-    assert result[0][1] == 0
-    assert result[0][2] == 9999
-    assert isinstance(result[0][3], float)
-
-    assert result[1][0] == 9999
-    assert result[1][1] == 0
-    assert result[1][2] == 9999
-    assert isinstance(result[1][3], float)
+    assert result == ((9999, 9999, 9999), (0, 0, 0))
 
 
-def test_show_available_products(mongo_database):
-    d.import_data(mongo_database, '', 'product.csv', 'customer.csv', 'rental.csv')
-    result = d.show_available_products(mongo_database)
+def test_show_available_products(_show_available_products, mongo_database):
+    ''' available products '''
+    l.import_data(mongo_database, '', 'product.csv', 'customer.csv', 'rental.csv')
+    students_response = l.show_available_products(mongo_database)
+    assert len(students_response) == 9999
+    assert "P000001" in students_response
+    assert "P010999" not in students_response
 
-    assert len(result) == 9999
-    assert 'P000001' in result
-    assert 'P010999' not in result
 
 
-def test_show_rentals(mongo_database):
-    d.import_data(mongo_database, '', 'product.csv', 'customer.csv', 'rental.csv')
-    result = d.show_rentals(mongo_database, 'P000004')
-
+def test_show_rentals(_show_rentals, mongo_database):
+    ''' rentals '''
+    l.import_data(mongo_database, '', 'product.csv', 'customer.csv', 'rental.csv')
+    students_response = l.show_rentals(mongo_database, 'prd002')
     expected = {'C000002': {'first_name': 'Blanca',
                             'last_name': 'Bashirian',
                             'address': '0193 Malvina Lake',
@@ -78,16 +123,20 @@ def test_show_rentals(mongo_database):
                             'status': 'Active',
                             'credit_limit': '565'}}
 
-    assert len(result) == 2
-    assert list(result.keys()) == ['C000002', 'C000004']
-    assert result == expected
+    # assert len(students_response) == 0
+    assert list(students_response.keys()) == ["C000002", "C000004"]
+    assert students_response == expected
 
 
 def test_clear_data(mongo_database):
-    d.import_data(mongo_database, '', 'product.csv', 'customer.csv', 'rental.csv')
-    result = sorted(mongo_database.list_collection_names())
-    assert result == ['customers', 'products', 'rentals']
+    '''
+    Testing database clearing.
+    '''
+    l.import_data(mongo_database, '', 'product.csv', 'customer.csv', 'rental.csv')
 
-    d.clear_data(mongo_database)
+    result = mongo_database.list_collection_names()
+    assert result == ['products', 'rentals', 'customers']
+
+    l.clear_data(mongo_database)
     result2 = mongo_database.list_collection_names()
     assert result2 == []
