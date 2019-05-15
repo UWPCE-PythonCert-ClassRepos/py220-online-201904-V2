@@ -35,6 +35,7 @@ def main(argv=None):
         ],
         [args.parallel, db.parallel, args.parallel],
         [args.linear, db.linear, args.linear],
+        [args.test_connection, db.test_connection, None]
     ]
 
     for function in func_struct:
@@ -124,6 +125,13 @@ def parse_cmd_arguments(args):
         help="Show customers renting the specified product_id",
         metavar="PRODUCT_ID",
         action="store",
+        required=False,
+        default=False,
+    )
+    parser.add_argument(
+        "--test-connection",
+        help="test connection function - debug use",
+        action="store_true",
         required=False,
         default=False,
     )

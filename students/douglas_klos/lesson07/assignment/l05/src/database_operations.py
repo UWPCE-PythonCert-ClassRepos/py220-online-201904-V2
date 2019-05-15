@@ -8,7 +8,7 @@ from time import time
 import pymongo
 from loguru import logger
 import src.mongodb_conn as mdb_conn
-
+from src.settings import Settings
 
 MONGO = mdb_conn.MongoDBConnection()
 
@@ -88,14 +88,15 @@ def insert_to_mongo(filename, results=None):
     collection_name, _ = path.splitext(path.basename(filename))
 
     with MONGO:
-        mdb = MONGO.connection.HPNorton_PyMongo_L07
+        mdb = eval(Settings.connect_string)
+        logger.info(mdb)
         logger.info(f"Inserting {collection_name} into Mongo...")
         collection = mdb[collection_name]
         iter_lines = get_line(open_file(filename))
         header = next(iter_lines).split(",")
 
         # Create the indicies for the collection
-        if collection.name != "rental":
+        if collection.name[:6] != "rental":
             logger.info("rental collection")
             collection.create_index(header[0], unique=True)
         else:
@@ -126,7 +127,7 @@ def insert_to_mongo(filename, results=None):
         collection_name: {
             "success": success,
             "fail": fail,
-            "total_records": collection.count(),
+            "total_records": collection.count_documents({}),
             "elapsed": time() - start,
         }
     }
@@ -150,7 +151,7 @@ def show_available_products():
     available_products = {}
 
     with MONGO:
-        mdb = MONGO.connection.HPNorton_PyMongo_L07
+        mdb = eval(Settings.connect_string)
         products = mdb["product"]
         for doc in products.find():
             del doc["_id"]
@@ -172,7 +173,7 @@ def list_all_products():
     all_products_dict = {}
 
     with MONGO:
-        mdb = MONGO.connection.HPNorton_PyMongo_L07
+        mdb = eval(Settings.connect_string)
         products = mdb["product"]
         all_products = products.find({})
         for product in all_products:
@@ -193,7 +194,7 @@ def list_all_rentals():
     all_rentals_dict = {}
 
     with MONGO:
-        mdb = MONGO.connection.HPNorton_PyMongo_L07
+        mdb = eval(Settings.connect_string)
         rentals = mdb["rental"]
         all_rentals = rentals.find({})
         for rental in all_rentals:
@@ -214,7 +215,7 @@ def list_all_customers():
     all_customers_dict = {}
 
     with MONGO:
-        mdb = MONGO.connection.HPNorton_PyMongo_L07
+        mdb = eval(Settings.connect_string)
         customers = mdb["customers"]
         all_customers = customers.find({})
         for customer in all_customers:
@@ -238,7 +239,7 @@ def rentals_for_customer(user_id):
     rentals_for_user = []
 
     with MONGO:
-        mdb = MONGO.connection.HPNorton_PyMongo_L07
+        mdb = eval(Settings.connect_string)
 
         rentals = mdb["rental"]
         products = mdb["product"]
@@ -270,7 +271,7 @@ def customers_renting_product(product_id):
     users_renting_product = []
 
     with MONGO:
-        mdb = MONGO.connection.HPNorton_PyMongo_L07
+        mdb = eval(Settings.connect_string)
 
         rentals = mdb["rental"]
         customers = mdb["customers"]
@@ -318,20 +319,20 @@ def open_file(filename):
 
 
 def drop_database():
-    """ Drops HPNorton_PyMongo_L07 database """
+    """ Drops database """
 
-    logger.warning("Dropping HPNorton_PyMongo_L07 database")
+    logger.warning(f"Dropping {Settings.database_name} database")
     mdb = mdb_conn.MongoClient()
-    mdb.drop_database("HPNorton_PyMongo_L07")
+    mdb.drop_database(Settings.database_name)
 
 
 def drop_collections():
     """ Drops collections from Mongo that are used for this program """
 
     with MONGO:
-        mdb = MONGO.connection.HPNorton_PyMongo_L07
+        mdb = eval(Settings.connect_string)
 
-        customers = mdb["customer"]
+        customers = mdb["customers"]
         logger.warning('Dropping "Cusomters"')
         customers.drop()
 
@@ -344,3 +345,12 @@ def drop_collections():
         product.drop()
 
     logger.warning("Purge complete!")
+
+
+def test_connection():
+    # dbname = MONGO.DB_NAME
+    # logger.info(MONGO.DB_NAME)
+    with MONGO:
+        mdb = eval(Settings.connect_string)
+        # logger.info(MONGO.connection.mdb_conn.DB_NAME)
+        logger.info(mdb.list_collection_names())
