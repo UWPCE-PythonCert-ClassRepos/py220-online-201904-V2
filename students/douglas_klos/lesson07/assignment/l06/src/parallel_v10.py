@@ -1,13 +1,9 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 # pylint: disable=R0914, R0915
 """
 Parallel processing with three children process.
 
-I've written this to work with both Python 2 and Python 3.
-If I were writing it for just Python 3 I'd use f-strings instead
-of % notation.  However, since this was performance week, Python 2
-executes the code more quickly, so it's been written to be legacy
-compliant.
+Compatible with both Python 2 and Python 3.
 """
 
 import datetime
@@ -18,7 +14,16 @@ RECORDS = 1000000
 
 
 def consume(start_point, consume_range, results, filename="data/dataset.csv"):
-    """ CONSUME """
+    """ Consume CSV file
+
+    Arguments:
+        start_point {int} -- Starting index into csv file
+        consume_range {int} -- Range in csv file to consume
+        results {multiprocessing.Queue} -- Returns values to parent process
+
+    Keyword Arguments:
+        filename {str} -- File to consume. (default: {"data/dataset.csv"})
+    """
     search_results = {
         "2013": 0,
         "2014": 0,
@@ -55,7 +60,11 @@ def consume(start_point, consume_range, results, filename="data/dataset.csv"):
 
 
 def display_results(search_results):
-    """ Display results """
+    """ Displays results of consume
+
+    Arguments:
+        search_results {dict} -- Dictionary of results
+    """
 
     # Using % notation to maintain python2 compatibility
     print("'ao' was found %d times" % search_results["found"])
@@ -70,7 +79,7 @@ def display_results(search_results):
 
 
 def analyze():
-    """ Analyze setup process to create children """
+    """ Analyze setup process to create children (basically main) """
 
     start = datetime.datetime.now()
     filename = "data/dataset.csv"
@@ -90,8 +99,8 @@ def analyze():
         process = Process(
             target=consume,
             args=(
-                ((RECORDS / PROCESSES) * process_num),
-                RECORDS / PROCESSES,
+                int(((RECORDS / PROCESSES) * process_num)),
+                int(RECORDS / PROCESSES),
                 results,
                 filename,
             ),
