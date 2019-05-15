@@ -1,0 +1,41 @@
+Notes on Findings for Lesson 06 Performance Improvements and Notes on Approach
+  
+1. original poor_perf
+Takes 13.4sec to run.
+
+2. iterator - using "iterator" instead of "for loops" to go through each item in the 
+reader, create the new_ones list and search for keyword "ao".
+Takes 8.6 sec to run.
+
+3. comprehension - wrapping the original "for loops" in a one line "comprehension".
+Then look for items that contain keyword "ao" and make a found_list. Count the
+length of the found_list to get number of occurrence of keyword "ao".
+Takes 8.8 sec to run.
+
+4. generator - by changing the "[]" from "comprehension" to "()", you get a "generator". 
+Then look for items that contain keyword "ao" and make a found_list. Count the
+length of the found_list to get number of occurrence of keyword "ao".
+Takes 8.1 sec to run.
+
+5. map/filter - using filter combined with map function to create new_ones list, using
+filter again to look for items that contain keyword "ao" and make a found_list. Count
+the length of the found_list to get number of occurrence of keyword "ao".
+Takes 9.1 sec to run.
+
+____________________________________________________________________________________
+Time log:
+{'2013': 0, '2014': 0, '2015': 125393, '2016': 0, '2017': 0, '2018': 0}
+'ao' was found 0 times
+INFO:__main__:The original "poor_perf" takes 0:00:13.371819
+{'2013': 0, '2014': 0, '2015': 125393, '2016': 0, '2017': 0, '2018': 0}
+'ao' was found 0 times
+INFO:__main__:The "iterator" version takes 0:00:08.588281
+{'2013': 0, '2014': 0, '2015': 125393, '2016': 0, '2017': 0, '2018': 0}
+'ao' was found 0 times
+INFO:__main__:The "comprehension" version takes 0:00:08.754583
+{'2013': 0, '2014': 0, '2015': 125393, '2016': 0, '2017': 0, '2018': 0}
+'ao' was found 0 times
+INFO:__main__:The "generator" version takes 0:00:08.137630
+{'2013': 0, '2014': 0, '2015': 125393, '2016': 0, '2017': 0, '2018': 0}
+'ao' was found 0 times
+INFO:__main__:The "filter" version takes 0:00:09.132531
