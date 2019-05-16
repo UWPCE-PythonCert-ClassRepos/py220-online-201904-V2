@@ -11,19 +11,19 @@ def main(argv=None):
     """ Database main function """
     args = parse_cmd_arguments(argv)
 
-    func_struct = [
-        [args.disable_log, disable_log],
-        [args.all_products, db.list_all_products],
-        [args.available_products, db.show_available_products],
-        [args.all_customers, db.list_all_customers],
-        [args.all_rentals, db.list_all_rentals],
-        [args.drop_collections, db.drop_collections],
-        [args.drop_database, db.drop_database],
-        [args.rentals_for_customer, db.rentals_for_customer],
-        [args.customers_renting_product, db.customers_renting_product],
-        [args.parallel, db.parallel],
-        [args.linear, db.linear],
-    ]
+    func_struct = (
+        (args.disable_log, disable_log),
+        (args.all_products, db.list_all_products),
+        (args.available_products, db.show_available_products),
+        (args.all_customers, db.list_all_customers),
+        (args.all_rentals, db.list_all_rentals),
+        (args.drop_collections, db.drop_collections),
+        (args.drop_database, db.drop_database),
+        (args.rentals_for_customer, db.rentals_for_customer),
+        (args.customers_renting_product, db.customers_renting_product),
+        (args.parallel, db.parallel),
+        (args.linear, db.linear),
+    )
 
     pprint(
         list(
@@ -40,7 +40,7 @@ def main(argv=None):
     #     elif function[0] is not False:
     #         pprint(function[1](function[0]))
 
-
+#pylint: disable=W0613
 def disable_log(*args):
     """ Disables logging for the system """
     logger.critical("Disabling Logging LOL")

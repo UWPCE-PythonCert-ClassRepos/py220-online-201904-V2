@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
-#pylint: disable=eval-used
+#pylint: disable=eval-used, unused-argument
 """ HPNorton API for accessing MongoDB collections """
 
-from os import path
 from multiprocessing import Process, Queue
+from os.path import splitext, basename
 from time import time
-import pymongo
 from loguru import logger
-import src.mongodb_conn as mdb_conn
+from pymongo import ASCENDING
+from pymongo.errors import DuplicateKeyError
 from src.settings import Settings
+import src.mongodb_conn as mdb_conn
+
 
 MONGO = mdb_conn.MongoDBConnection()
 
@@ -17,13 +19,11 @@ def linear(files):
     """ Import csv files into mongodatabase.
 
     Arguments:
-        directory_name {string} -- directory data files are stored in
-        *files {list} -- *args list of csv files to import
+        files {list} -- *args list of csv files to import
 
     Returns:
-        ((),()) -- Tuple of Tuples, ((Success),(Failures)) from imports
+        {{},{},,} -- {csv_file: {elapsed, fail, success, total_records},}
     """
-    
     return list(map(insert_to_mongo, files))
 
 
@@ -37,13 +37,11 @@ def parallel(files):
         {{},{},,} -- {csv_file: {elapsed, fail, success, total_records},}
 
     """
-    logger.info(files)
-    print(f"files:{files}")
     return list(map(join_process, list(map(start_process, files))))
 
 
 def start_process(csv_file):
-    """Start process on given csv_file
+    """ Start process on given csv_file
 
     Arguments:
         csv_file {string} -- csv_file to start insert process on
@@ -59,7 +57,7 @@ def start_process(csv_file):
 
 
 def join_process(process):
-    """Joins processes in process argument
+    """ Joins processes in process argument
 
     Arguments:
         process {list} -- list of processes to join
@@ -81,12 +79,12 @@ def insert_to_mongo(filename, results=None):
         filename {string} -- csv filename to import
 
     Returns:
-
+        dict -- Results from inserts for single csv
     """
     success = 0
     fail = 0
     start = time()
-    collection_name, _ = path.splitext(path.basename(filename))
+    collection_name, _ = splitext(basename(filename))
 
     with MONGO:
         mdb = eval(Settings.connect_string)
@@ -103,8 +101,8 @@ def insert_to_mongo(filename, results=None):
             logger.info("creating rental index")
             collection.create_index(
                 [
-                    (header[0], pymongo.ASCENDING),
-                    (header[5], pymongo.ASCENDING),
+                    (header[0], ASCENDING),
+                    (header[5], ASCENDING),
                 ],
                 unique=True,
             )
@@ -118,7 +116,7 @@ def insert_to_mongo(filename, results=None):
             try:
                 collection.insert_one(new_addition)
                 success += 1
-            except pymongo.errors.DuplicateKeyError:
+            except DuplicateKeyError:
                 fail += 1
 
     # This allows us to use the same insert function
