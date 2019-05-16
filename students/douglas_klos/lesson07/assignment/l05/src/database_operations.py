@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-#pylint: disable=eval-used, unused-argument
+# pylint: disable=eval-used
 """ HPNorton API for accessing MongoDB collections """
 
 from multiprocessing import Process, Queue
@@ -8,7 +8,8 @@ from time import time
 from loguru import logger
 from pymongo import ASCENDING
 from pymongo.errors import DuplicateKeyError
-from src.settings import Settings
+
+# from src.settings import Settings
 import src.mongodb_conn as mdb_conn
 
 
@@ -19,7 +20,7 @@ def linear(files):
     """ Import csv files into mongodatabase.
 
     Arguments:
-        files {list} -- *args list of csv files to import
+        [file1, file2, file3, ...] -- list of files to import
 
     Returns:
         {{},{},,} -- {csv_file: {elapsed, fail, success, total_records},}
@@ -31,7 +32,7 @@ def parallel(files):
     """ Import csv files into mongodatabase.
 
     Arguments:
-        files {list} -- args list of csv files to import
+        [file1, file2, file3, ...] -- list of files to import
 
     Returns:
         {{},{},,} -- {csv_file: {elapsed, fail, success, total_records},}
@@ -60,10 +61,10 @@ def join_process(process):
     """ Joins processes in process argument
 
     Arguments:
-        process {list} -- list of processes to join
+        [process1, process2, process3, ...] -- list of processes to join
 
     Returns:
-        dict -- Results from join
+        {collection_name: {"success", "fail", "total_records", "elapsed"}}
     """
     logger.info(f"Joining process {process[0]}")
     process[0].join()
@@ -75,11 +76,10 @@ def insert_to_mongo(filename, results=None):
     """ Inserts given csv file into mongo
 
     Arguments:
-        directory_name {string} -- directory containing csv file
         filename {string} -- csv filename to import
 
     Returns:
-        dict -- Results from inserts for single csv
+        {collection_name: {"success", "fail", "total_records", "elapsed"}}
     """
     success = 0
     fail = 0
@@ -87,7 +87,7 @@ def insert_to_mongo(filename, results=None):
     collection_name, _ = splitext(basename(filename))
 
     with MONGO:
-        mdb = eval(Settings.connect_string)
+        mdb = eval(MONGO.connect_string)
         logger.info(f"Inserting {collection_name} into Mongo...")
         collection = mdb[collection_name]
         iter_lines = get_line(open_file(filename))
@@ -95,16 +95,10 @@ def insert_to_mongo(filename, results=None):
 
         # Create the indicies for the collection
         if collection.name[:6] != "rental":
-            logger.info("rental collection")
             collection.create_index(header[0], unique=True)
         else:
-            logger.info("creating rental index")
             collection.create_index(
-                [
-                    (header[0], ASCENDING),
-                    (header[5], ASCENDING),
-                ],
-                unique=True,
+                [(header[0], ASCENDING), (header[5], ASCENDING)], unique=True
             )
 
         # Iterate through lines and insert records
@@ -139,17 +133,17 @@ def insert_to_mongo(filename, results=None):
         return return_dict
 
 
-def show_available_products(*args):
+def show_available_products():
     """ Creates a list of currently available products
 
     Returns:
-        dict -- Dictionary of Mongo documents, key=product_id
+        {product_id: {"description", "product_type", "quantity_available"}}
     """
     logger.info(f"Preparing dict of available prodcuts...")
     available_products = {}
 
     with MONGO:
-        mdb = eval(Settings.connect_string)
+        mdb = eval(MONGO.connect_string)
         products = mdb["product"]
         for doc in products.find():
             del doc["_id"]
@@ -161,17 +155,17 @@ def show_available_products(*args):
     return available_products
 
 
-def list_all_products(*args):
+def list_all_products():
     """ Prepares a dictionary of all products
 
     Returns:
-        dict -- Dictionary containing all products
+        {product_id: {"description", "product_type", "quantity_available"}}
     """
     logger.info(f"Perparing dict of all products...")
     all_products_dict = {}
 
     with MONGO:
-        mdb = eval(Settings.connect_string)
+        mdb = eval(MONGO.connect_string)
         products = mdb["product"]
         all_products = products.find({})
         for product in all_products:
@@ -182,17 +176,17 @@ def list_all_products(*args):
     return all_products_dict
 
 
-def list_all_rentals(*args):
-    """ Prepares a dictionary of all products
+def list_all_rentals():
+    """ Prepares a dictionary of all rentals
 
     Returns:
-        dict -- Dictionary containing all products
+        {user_id: {"address", "email", "name", "phone_number", "product_id"}}
     """
-    logger.info(f"Perparing dict of all products...")
+    logger.info(f"Perparing dict of all rentals...")
     all_rentals_dict = {}
 
     with MONGO:
-        mdb = eval(Settings.connect_string)
+        mdb = eval(MONGO.connect_string)
         rentals = mdb["rental"]
         all_rentals = rentals.find({})
         for rental in all_rentals:
@@ -203,17 +197,23 @@ def list_all_rentals(*args):
     return all_rentals_dict
 
 
-def list_all_customers(*args):
+def list_all_customers():
     """ Prepares a dictionary of all customers
 
     Returns:
-        dict -- Dictionary containing all customers
+        {user_id: {"credit_limit",
+                   "email_address",
+                   "home_address",
+                   "last_name",
+                   "name",
+                   "phone_number",
+                   "status"}}
     """
-    logger.info(f"Perparing dict of all products...")
+    logger.info(f"Perparing dict of all customers...")
     all_customers_dict = {}
 
     with MONGO:
-        mdb = eval(Settings.connect_string)
+        mdb = eval(MONGO.connect_string)
         customers = mdb["customers"]
         all_customers = customers.find({})
         for customer in all_customers:
@@ -231,13 +231,13 @@ def rentals_for_customer(user_id):
         user_id {string} -- user_id reference into product collection
 
     Returns:
-        dict -- Dictionary of products rented by specified user_id
+        [{"description", "product_id", "product_type"}, {...}, ...]
     """
     logger.info(f"Perparing customer dict for user_id: {user_id}...")
     rentals_for_user = []
 
     with MONGO:
-        mdb = eval(Settings.connect_string)
+        mdb = eval(MONGO.connect_string)
 
         rentals = mdb["rental"]
         products = mdb["product"]
@@ -263,13 +263,19 @@ def customers_renting_product(product_id):
         product_id {string} -- product_id reference into rental collection
 
     Returns:
-        dict -- Dictionary of rental customers for specified product_id
+        [{"credit_limit",
+          "email_address",
+          "last_name",
+          "name",
+          "phone_number",
+          "status",
+          "user_id"}, {...}, ...]
     """
     logger.info(f"Perparing rental dict for product_id: {product_id}...")
     users_renting_product = []
 
     with MONGO:
-        mdb = eval(Settings.connect_string)
+        mdb = eval(MONGO.connect_string)
 
         rentals = mdb["rental"]
         customers = mdb["customers"]
@@ -315,19 +321,19 @@ def open_file(filename):
         return content.read().decode("utf-8", errors="ignore").split("\n")
 
 
-def drop_database(*args):
+def drop_database():
     """ Drops database """
 
-    logger.warning(f"Dropping {Settings.database_name} database")
+    logger.warning(f"Dropping {MONGO.database_name} database")
     mdb = mdb_conn.MongoClient()
-    mdb.drop_database(Settings.database_name)
+    mdb.drop_database(MONGO.database_name)
 
 
-def drop_collections(*args):
+def drop_collections():
     """ Drops collections from Mongo that are used for this program """
 
     with MONGO:
-        mdb = eval(Settings.connect_string)
+        mdb = eval(MONGO.connect_string)
         logger.info(mdb.list_collection_names())
         collections = list(
             filter(lambda x: x != "system.indexes", mdb.list_collection_names())

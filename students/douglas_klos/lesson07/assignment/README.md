@@ -25,10 +25,10 @@ wrapper that does the same thing, except it spawns a new process for each one,
 and then joins them after.  That part of the assignment took like 20-30 minutes.
 
 Then came some heavy refactoring, abstraction, and redesign of the functions,
-including introducing a Settings class to allow for easily changing the name of
+including adding settings to allow for easily changing the name of
 the database you're connecting to.  Further, I came up with what I believe to be
 a better way for my main function to handle a large number of command line
-arguments, replacing my numerous if's with a loop and a list.  Also made good
+arguments, replacing my numerous if's with a list and some FP.  Also made good
 use of map, filter, and lambda in some locations.
 
 Included is a test suite that gives full coverage of the database_operations
@@ -84,37 +84,3 @@ $ time ./src/parallel_v10.py
 $ pylint ./src/
 ```
 Included in the data folder is a .zip file of the dataset used for testing.
-
-## My current ponderance
-
-
-The None type is a useful placeholder, but itself is still an object that can be passed around.
-
-In the following example, we have a tuple of function calls and their parameters. We use a map call to then execute all functions in the list with their given parameters. This however passes the None object to g(), which is recognized as a parameter and gives a TypeError. The workaround I've found is for all functions that don't take parameters, to add *args to their list  to catch the None object map passes over.
-
-Is there any sort of object or placeholder that will still work in a data structure but when used or passed in this fashion would not break g's parameters, or is there a way to do a conditional in the function call, such as...
-
-```Python
-x[0](x[1] if x[1] is not None else "PASS LITERALLY NOTHING")
-```
-
-I haven't found a way to do the pass nothing with an if-else yet.
-
-```Python
-POW = 2
-
-def f(x):
-    print(x**POW)
-
-# def g(*args):
-def g():
-    global POW
-    POW = 3
-
-def main():
-    function_list = ((f, 10), (g, None), (f, 10))
-    list(map(lambda x: x[0](x[1]), function_list))
-
-if __name__ == "__main__":
-    main()
-```

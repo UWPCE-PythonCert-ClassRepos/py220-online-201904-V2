@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ Main functions to interface with MongoDB """
 
-import argparse
+from argparse import ArgumentParser
 from pprint import pprint
 from loguru import logger
 import src.database_operations as db
@@ -12,26 +12,34 @@ def main(argv=None):
     args = parse_cmd_arguments(argv)
 
     func_struct = (
-        (args.disable_log, disable_log),
-        (args.all_products, db.list_all_products),
-        (args.available_products, db.show_available_products),
-        (args.all_customers, db.list_all_customers),
-        (args.all_rentals, db.list_all_rentals),
-        (args.drop_collections, db.drop_collections),
-        (args.drop_database, db.drop_database),
-        (args.rentals_for_customer, db.rentals_for_customer),
-        (args.customers_renting_product, db.customers_renting_product),
-        (args.parallel, db.parallel),
-        (args.linear, db.linear),
+        (args.disable_log, disable_log, ()),
+        (args.all_products, db.list_all_products, ()),
+        (args.available_products, db.show_available_products, ()),
+        (args.all_customers, db.list_all_customers, ()),
+        (args.all_rentals, db.list_all_rentals, ()),
+        (args.drop_collections, db.drop_collections, ()),
+        (args.drop_database, db.drop_database, ()),
+        (
+            args.rentals_for_customer,
+            db.rentals_for_customer,
+            (args.rentals_for_customer,),
+        ),
+        (
+            args.customers_renting_product,
+            db.customers_renting_product,
+            (args.customers_renting_product,),
+        ),
+        (args.parallel, db.parallel, (args.parallel,)),
+        (args.linear, db.linear, (args.linear,)),
     )
 
     pprint(
         list(
             map(
-                lambda x: x[1](x[0]),
+                lambda x: x[1](*x[2]),
                 filter(lambda x: x[0] is not False, func_struct),
             )
-        )
+        )[0]
     )
 
     # for function in func_struct:
@@ -40,8 +48,8 @@ def main(argv=None):
     #     elif function[0] is not False:
     #         pprint(function[1](function[0]))
 
-#pylint: disable=W0613
-def disable_log(*args):
+
+def disable_log():
     """ Disables logging for the system """
     logger.critical("Disabling Logging LOL")
     logger.disable("__main__")
@@ -57,7 +65,7 @@ def parse_cmd_arguments(args):
     Returns:
         ArgumentParser.parse_args
     """
-    parser = argparse.ArgumentParser(description="HPNorton Database Operations")
+    parser = ArgumentParser(description="HPNorton Database Operations")
     parser.add_argument(
         "--all-products",
         help="Show list of all products",
