@@ -11,9 +11,9 @@ def main(argv=None):
     """ Database main function """
     args = parse_cmd_arguments(argv)
 
-    FUNC_BOOL = 0
-    FUNC_CALL = 1
-    FUNC_ARGS = 2
+    _func_bool = 0
+    _func_call = 1
+    _func_args = 2
 
     func_struct = [
         [args.disable_log, disable_log, None],
@@ -35,15 +35,14 @@ def main(argv=None):
         ],
         [args.parallel, db.parallel, args.parallel],
         [args.linear, db.linear, args.linear],
-        [args.test_connection, db.test_connection, None]
     ]
 
     for function in func_struct:
-        if function[FUNC_BOOL]:
-            if function[FUNC_ARGS] is None:
-                pprint(function[FUNC_CALL]())
+        if function[_func_bool]:
+            if function[_func_args] is None:
+                pprint(function[_func_call]())
             else:
-                pprint(function[FUNC_CALL](function[FUNC_ARGS]))
+                pprint(function[_func_call](function[_func_args]))
 
 
 def disable_log():
@@ -129,16 +128,8 @@ def parse_cmd_arguments(args):
         default=False,
     )
     parser.add_argument(
-        "--test-connection",
-        help="test connection function - debug use",
-        action="store_true",
-        required=False,
-        default=False,
-    )
-    parser.add_argument(
         "--parallel",
         help="Loads csv files from specified data directory",
-        # metavar=("--parallel","file1 file2 file3 ..."),
         metavar=("--parallel", "file1 file2 file3 ..."),
         action="store",
         required=False,

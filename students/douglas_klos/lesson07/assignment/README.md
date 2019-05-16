@@ -13,7 +13,7 @@ assignment/
    ├─── l05/ - root program folder
    │      ├─── data/ - csv files
    │      ├─── src/ - module code
-   │      └─── tests/ - pytest files
+   │      └─── tests/ - pytest file
    └─── l06/ - root program folder
           ├─── data/ - .zip of dataset.csv file
           └─── src/ - module code

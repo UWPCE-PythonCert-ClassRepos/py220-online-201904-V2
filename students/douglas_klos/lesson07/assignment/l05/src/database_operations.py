@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+#pylint: disable=eval-used
 """ HPNorton API for accessing MongoDB collections """
 
 from os import path
@@ -71,7 +71,7 @@ def join_process(process):
     return process[1].get()
 
 
-#pylint: disable=R0914
+# pylint: disable=R0914
 def insert_to_mongo(filename, results=None):
     """ Inserts given csv file into mongo
 
@@ -89,7 +89,6 @@ def insert_to_mongo(filename, results=None):
 
     with MONGO:
         mdb = eval(Settings.connect_string)
-        logger.info(mdb)
         logger.info(f"Inserting {collection_name} into Mongo...")
         collection = mdb[collection_name]
         iter_lines = get_line(open_file(filename))
@@ -291,7 +290,6 @@ def customers_renting_product(product_id):
     return users_renting_product
 
 
-
 def get_line(lines):
     """ Generator for lines of content from csv file
 
@@ -331,26 +329,12 @@ def drop_collections():
 
     with MONGO:
         mdb = eval(Settings.connect_string)
-
-        customers = mdb["customers"]
-        logger.warning('Dropping "Cusomters"')
-        customers.drop()
-
-        rental = mdb["rental"]
-        logger.warning('Dropping "Rental"')
-        rental.drop()
-
-        product = mdb["product"]
-        logger.warning('Dropping "Product"')
-        product.drop()
+        logger.info(mdb.list_collection_names())
+        collections = list(
+            filter(lambda x: x != "system.indexes", mdb.list_collection_names())
+        )
+        for collection in collections:
+            logger.info(f"Dropping {collection}...")
+            mdb.drop_collection(collection)
 
     logger.warning("Purge complete!")
-
-
-def test_connection():
-    # dbname = MONGO.DB_NAME
-    # logger.info(MONGO.DB_NAME)
-    with MONGO:
-        mdb = eval(Settings.connect_string)
-        # logger.info(MONGO.connection.mdb_conn.DB_NAME)
-        logger.info(mdb.list_collection_names())

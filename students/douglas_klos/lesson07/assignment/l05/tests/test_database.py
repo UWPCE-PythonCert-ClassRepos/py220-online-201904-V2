@@ -314,6 +314,52 @@ def _list_all_rentals():
     }
 
 
+@pytest.fixture
+def _linear_insert():
+    """ Pytest fixture for linear insert """
+    return [
+        {"customers": {"fail": 0, "success": 9, "total_records": 9}},
+        {"product": {"fail": 0, "success": 9, "total_records": 9}},
+        {"rental": {"fail": 0, "success": 9, "total_records": 9}},
+    ]
+
+
+@pytest.fixture
+def _parallel_insert():
+    """ Pytest fixture for parallel insert """
+    return [
+        {"customers": {"fail": 0, "success": 9, "total_records": 9}},
+        {"product": {"fail": 0, "success": 9, "total_records": 9}},
+        {"rental": {"fail": 0, "success": 9, "total_records": 9}},
+    ]
+
+
+def test_linear(_linear_insert):
+    """ parallel import csv """
+    l.drop_database()
+    results = l.linear(
+        ["./data/customers.csv", "./data/product.csv", "./data/rental.csv"]
+    )
+
+    for result in results:
+        del result[next(iter(result))]["elapsed"]
+
+    assert _linear_insert == results
+
+
+def test_parallel(_linear_insert):
+    """ parallel import csv """
+    l.drop_database()
+    results = l.parallel(
+        ["./data/customers.csv", "./data/product.csv", "./data/rental.csv"]
+    )
+
+    for result in results:
+        del result[next(iter(result))]["elapsed"]
+
+    assert _linear_insert == results
+
+
 def test_insert_to_mongo():
     """ import given csv file into mongo """
 
@@ -440,7 +486,9 @@ def test_drop_databases():
     l.insert_to_mongo("./data/customers.csv")
     assert "HPNorton_PyMongo_L07" in l.MONGO.connection.list_database_names()
     l.drop_database()
-    assert "HPNorton_PyMongo_L07" not in l.MONGO.connection.list_database_names()
+    assert (
+        "HPNorton_PyMongo_L07" not in l.MONGO.connection.list_database_names()
+    )
 
 
 def test_drop_collections():
@@ -449,13 +497,16 @@ def test_drop_collections():
     l.insert_to_mongo("./data/customers.csv")
     l.insert_to_mongo("./data/product.csv")
     l.insert_to_mongo("./data/rental.csv")
-    assert "HPNorton_PyMongo_L07" in l.MONGO.connection.list_database_names()
-    assert "customers" in l.MONGO.connection.HPNorton_PyMongo_L07.list_collection_names()
-    assert "product" in l.MONGO.connection.HPNorton_PyMongo_L07.list_collection_names()
-    assert "rental" in l.MONGO.connection.HPNorton_PyMongo_L07.list_collection_names()
+    collection_names = (
+        l.MONGO.connection.HPNorton_PyMongo_L07.list_collection_names()
+    )
+    assert "customers" in collection_names
+    assert "product" in collection_names
+    assert "rental" in collection_names
     l.drop_collections()
-    assert "customers" not in l.MONGO.connection.HPNorton_PyMongo_L07.list_collection_names()
-    assert "product" not in l.MONGO.connection.HPNorton_PyMongo_L07.list_collection_names()
-    assert "rental" not in l.MONGO.connection.HPNorton_PyMongo_L07.list_collection_names()
-
-
+    collection_names = (
+        l.MONGO.connection.HPNorton_PyMongo_L07.list_collection_names()
+    )
+    assert "customers" not in collection_names
+    assert "product" not in collection_names
+    assert "rental" not in collection_names
