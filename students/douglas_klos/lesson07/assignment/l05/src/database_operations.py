@@ -23,7 +23,7 @@ def linear(files):
     Returns:
         ((),()) -- Tuple of Tuples, ((Success),(Failures)) from imports
     """
-
+    
     return list(map(insert_to_mongo, files))
 
 
@@ -37,7 +37,8 @@ def parallel(files):
         {{},{},,} -- {csv_file: {elapsed, fail, success, total_records},}
 
     """
-
+    logger.info(files)
+    print(f"files:{files}")
     return list(map(join_process, list(map(start_process, files))))
 
 
@@ -140,7 +141,7 @@ def insert_to_mongo(filename, results=None):
         return return_dict
 
 
-def show_available_products():
+def show_available_products(*args):
     """ Creates a list of currently available products
 
     Returns:
@@ -162,7 +163,7 @@ def show_available_products():
     return available_products
 
 
-def list_all_products():
+def list_all_products(*args):
     """ Prepares a dictionary of all products
 
     Returns:
@@ -183,7 +184,7 @@ def list_all_products():
     return all_products_dict
 
 
-def list_all_rentals():
+def list_all_rentals(*args):
     """ Prepares a dictionary of all products
 
     Returns:
@@ -204,7 +205,7 @@ def list_all_rentals():
     return all_rentals_dict
 
 
-def list_all_customers():
+def list_all_customers(*args):
     """ Prepares a dictionary of all customers
 
     Returns:
@@ -316,7 +317,7 @@ def open_file(filename):
         return content.read().decode("utf-8", errors="ignore").split("\n")
 
 
-def drop_database():
+def drop_database(*args):
     """ Drops database """
 
     logger.warning(f"Dropping {Settings.database_name} database")
@@ -324,7 +325,7 @@ def drop_database():
     mdb.drop_database(Settings.database_name)
 
 
-def drop_collections():
+def drop_collections(*args):
     """ Drops collections from Mongo that are used for this program """
 
     with MONGO:

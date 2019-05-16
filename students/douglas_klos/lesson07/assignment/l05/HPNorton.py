@@ -11,41 +11,37 @@ def main(argv=None):
     """ Database main function """
     args = parse_cmd_arguments(argv)
 
-    _func_bool = 0
-    _func_call = 1
-    _func_args = 2
-
     func_struct = [
-        [args.disable_log, disable_log, None],
-        [args.all_products, db.list_all_products, None],
-        [args.available_products, db.show_available_products, None],
-        [args.all_customers, db.list_all_customers, None],
-        [args.all_rentals, db.list_all_rentals, None],
-        [args.drop_collections, db.drop_collections, None],
-        [args.drop_database, db.drop_database, None],
-        [
-            args.rentals_for_customer,
-            db.rentals_for_customer,
-            args.rentals_for_customer,
-        ],
-        [
-            args.customers_renting_product,
-            db.customers_renting_product,
-            args.customers_renting_product,
-        ],
-        [args.parallel, db.parallel, args.parallel],
-        [args.linear, db.linear, args.linear],
+        [args.disable_log, disable_log],
+        [args.all_products, db.list_all_products],
+        [args.available_products, db.show_available_products],
+        [args.all_customers, db.list_all_customers],
+        [args.all_rentals, db.list_all_rentals],
+        [args.drop_collections, db.drop_collections],
+        [args.drop_database, db.drop_database],
+        [args.rentals_for_customer, db.rentals_for_customer],
+        [args.customers_renting_product, db.customers_renting_product],
+        [args.parallel, db.parallel],
+        [args.linear, db.linear],
     ]
 
-    for function in func_struct:
-        if function[_func_bool]:
-            if function[_func_args] is None:
-                pprint(function[_func_call]())
-            else:
-                pprint(function[_func_call](function[_func_args]))
+    pprint(
+        list(
+            map(
+                lambda x: x[1](x[0]),
+                filter(lambda x: x[0] is not False, func_struct),
+            )
+        )
+    )
+
+    # for function in func_struct:
+    #     if function[0] is True:
+    #         pprint(function[1]())
+    #     elif function[0] is not False:
+    #         pprint(function[1](function[0]))
 
 
-def disable_log():
+def disable_log(*args):
     """ Disables logging for the system """
     logger.critical("Disabling Logging LOL")
     logger.disable("__main__")
