@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 import threading
 import time
+from loguru import logger
 from pymongo import MongoClient
 import pandas as pd
 from decorator import timer
@@ -15,6 +16,8 @@ mongo = MongoClient("mongodb://localhost:27017/")
 db = mongo['HP_Norton']
 
 PROCESS_RESULT = []
+
+logger.add('Parallel Log.log')
 
 def view_collections():
     """
@@ -36,10 +39,11 @@ def remove_a_collection():
     """
     collection_names = ["customers", "product", "rental"]
     for name in collection_names:
+        logger.info(f"Removing collection: {name}:")
         remove = db[name]
         remove.drop()
 
-
+@logger.catch()
 def _read_data_create_collection(data):
     """
     Imports csv files, creates jsons with the csv file data, then
@@ -52,19 +56,23 @@ def _read_data_create_collection(data):
     #os.chdir(DATA_PATH)
     src_csv = DATA_PATH / data
     src_json = str(DATA_PATH / data).replace(".csv", '.json')
+    logger.info(f"Reading csv: {data}:")
     coll_csv = pd.read_csv(src_csv, encoding='ISO-8859-1')
     len_csv = int(coll_csv.iloc[:, 0].count())
     coll_csv.to_json(src_json,
                      orient='records')
+    logger.info(f"Opening json: {src_json}:")
     coll_json = open(src_json).read()
     coll_json = json.loads(coll_json)
     coll = db[data[:-4]]
     source = coll_json
     start_count = coll.count_documents({})
+    logger.info(f"Inserting data into : {coll}:")
     result = coll.insert_many(source)
     gc.collect()
     record_count = coll.count_documents({})
     result_tuple = (len_csv, start_count, record_count, time.thread_time())
+    logger.info(f"Process time was {time.thread_time()}:")
     PROCESS_RESULT.append(result_tuple)
 
 
@@ -83,9 +91,11 @@ def import_data_threading():
                                 args=(colls[1],))]
 
     for t in threads:
+        logger.info(f"Starting thread {t}:")
         t.start()
 
     for t in threads:
+        logger.info(f"Joining thread {t}:")
         t.join()
 
     return PROCESS_RESULT

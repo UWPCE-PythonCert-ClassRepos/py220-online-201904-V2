@@ -7,11 +7,14 @@ import json
 from pathlib import Path
 import time
 import pandas as pd
+from loguru import logger
 from pymongo import MongoClient
 from decorator import timer
 
 mongo = MongoClient("mongodb://localhost:27017/")
 db = mongo['HP_Norton']
+
+logger.add('Linear Log.log')
 
 
 def view_collections():
@@ -34,6 +37,7 @@ def remove_a_collection():
     """
     collection_names = ["customers", "product", "rental"]
     for name in collection_names:
+        logger.info(f"Removing collection: {name}:")
         remove = db[name]
         remove.drop()
 
@@ -56,18 +60,21 @@ def import_data(*args):
         src_csv = DATA_PATH / arg
         src_json = str(DATA_PATH / arg).replace(".csv", '.json')
         coll_csv = pd.read_csv(src_csv, encoding='ISO-8859-1')
+        logger.info(f"Reading csv: {arg}:")
         len_csv = int(coll_csv.iloc[:, 0].count())
         coll_csv.to_json(src_json,
                          orient='records')
+        logger.info(f"Opening json: {src_json}:")
         coll_json = open(src_json).read()
         coll_json = json.loads(coll_json)
-
         coll = db[arg[:-4]]
         source = coll_json
         start_count = coll.count_documents({})
+        logger.info(f"Inserting data into : {coll}:")
         result = coll.insert_many(source)
         coll_count = coll.count_documents({})
         results = (len_csv, start_count, coll_count, time.thread_time())
+        logger.info(f"Process time was {time.thread_time()}:")
         results_list.append(results)
     return results_list
 
@@ -141,7 +148,6 @@ if __name__ == "__main__":
         Simple script runner for on the fly testing
         :return: funtions called
         """
-        remove_a_collection()
         src_path = Path.cwd().with_name('data')
         print(import_data(src_path,
                           'product.csv', 'customers.csv'))
