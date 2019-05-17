@@ -2,19 +2,14 @@
 This module utilizes MongoDB to build a product database for
 HP Norton.
 """
-import csv
-from decorator import timer
 import gc
 import json
-from loguru import logger
-from multiprocessing import Process, Queue
-import multiprocessing
-import os
 from pathlib import Path
-import pandas as pd
-from pymongo import MongoClient
 import threading
 import time
+from pymongo import MongoClient
+import pandas as pd
+from decorator import timer
 
 mongo = MongoClient("mongodb://localhost:27017/")
 db = mongo['HP_Norton']
@@ -78,17 +73,14 @@ def _read_data_create_collection(data):
 @timer
 def import_data_threading():
     """
-    Imports csv files, creates jsons with the csv file data, then
-    creates collections with the jsons. Args are user supplied
-    :param args: data source path, customer, product, and rental
-    data source names
-    :return: collections with same name as data sources
-    """
+    Runs _read_data_create_collection through threading"""
 
     colls = ('product.csv', 'customers.csv')
 
-    threads = [threading.Thread(target=_read_data_create_collection, args=(colls[0],)),
-               threading.Thread(target=_read_data_create_collection, args=(colls[1],))]
+    threads = [threading.Thread(target=_read_data_create_collection,
+                                args=(colls[0],)),
+               threading.Thread(target=_read_data_create_collection,
+                                args=(colls[1],))]
 
     for t in threads:
         t.start()
@@ -102,10 +94,14 @@ def import_data_threading():
 
 @timer
 def import_data_queue():
+    """
+    Runs _read_data_create_collection via a queue"""
+
     colls = ('product.csv', 'customers.csv')
 
     for col in colls:
-        worker = threading.Thread(target=_read_data_create_collection, args=(col,))
+        worker = threading.Thread(target=_read_data_create_collection,
+                                  args=(col,))
         worker.daemon = True
         worker.start()
         worker.join()

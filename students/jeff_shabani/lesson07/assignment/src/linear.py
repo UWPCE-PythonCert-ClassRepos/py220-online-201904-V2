@@ -2,16 +2,13 @@
 This module utilizes MongoDB to build a product database for
 HP Norton.
 """
-from decorator import timer
 import gc
 import json
 from pathlib import Path
-import subprocess
-import sys
+import time
 import pandas as pd
 from pymongo import MongoClient
-import time
-
+from decorator import timer
 
 mongo = MongoClient("mongodb://localhost:27017/")
 db = mongo['HP_Norton']
@@ -39,6 +36,7 @@ def remove_a_collection():
     for name in collection_names:
         remove = db[name]
         remove.drop()
+
 
 @timer
 def import_data(*args):
@@ -139,7 +137,6 @@ def show_rentals(product_id):
 
 
 if __name__ == "__main__":
-
     def run():
         """
         Simple script runner for on the fly testing
