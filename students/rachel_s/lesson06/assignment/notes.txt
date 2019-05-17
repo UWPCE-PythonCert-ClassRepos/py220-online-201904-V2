@@ -1,0 +1,235 @@
+NOTES
+
+Initial poor_perf.py performance on 1 million records:
+
+$ python -m cProfile -s cumtime src/poor_perf.py
+{'2013': 0, '2014': 0, '2015': 111111, '2016': 0, '2017': 0, '2018': 0}
+'ao' was found 0 times
+         1083696 function calls (1083679 primitive calls) in 6.774 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+      3/1    0.000    0.000    6.774    6.774 {built-in method builtins.exec}
+        1    0.000    0.000    6.774    6.774 poor_perf.py:4(<module>)
+        1    0.053    0.053    6.772    6.772 poor_perf.py:59(main)
+        1    5.980    5.980    6.719    6.719 poor_perf.py:9(analyze)
+    41236    0.019    0.000    0.666    0.000 cp1252.py:22(decode)
+    41236    0.647    0.000    0.647    0.000 {built-in method _codecs.charmap_decode}
+  1000013    0.072    0.000    0.072    0.000 {method 'append' of 'list' objects}
+      5/2    0.000    0.000    0.002    0.001 <frozen importlib._bootstrap>:978(_find_and_load)
+      5/2    0.000    0.000    0.002    0.001 <frozen importlib._bootstrap>:948(_find_and_load_unlocked)
+      5/2    0.000    0.000    0.001    0.001 <frozen importlib._bootstrap>:663(_load_unlocked)
+        2    0.000    0.000    0.001    0.001 <frozen importlib._bootstrap_external>:722(exec_module)
+      8/2    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap>:211(_call_with_frames_removed)
+        5    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap>:882(_find_spec)
+        2    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:1272(find_spec)
+        2    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:1240(_get_spec)
+        2    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:793(get_code)
+        8    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:1356(find_spec)
+        1    0.000    0.000    0.001    0.001 datetime.py:5(<module>)
+       13    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:74(_path_stat)
+
+
+$ python -m cProfile -s time src/poor_perf.py
+{'2013': 0, '2014': 0, '2015': 111111, '2016': 0, '2017': 0, '2018': 0}
+'ao' was found 0 times
+         1083696 function calls (1083679 primitive calls) in 6.814 seconds
+
+   Ordered by: internal time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    6.026    6.026    6.770    6.770 poor_perf.py:9(analyze)
+    41236    0.653    0.000    0.653    0.000 {built-in method _codecs.charmap_decode}
+  1000013    0.072    0.000    0.072    0.000 {method 'append' of 'list' objects}           <--
+        1    0.041    0.041    6.811    6.811 poor_perf.py:59(main)
+    41236    0.018    0.000    0.671    0.000 cp1252.py:22(decode)
+       13    0.000    0.000    0.000    0.000 {built-in method nt.stat}
+        2    0.000    0.000    0.000    0.000 {built-in method builtins.print}
+        2    0.000    0.000    0.000    0.000 {built-in method marshal.loads}
+        3    0.000    0.000    0.000    0.000 {built-in method _imp.create_builtin}
+        2    0.000    0.000    0.000    0.000 {built-in method io.open}
+       13    0.000    0.000    0.000    0.000 {built-in method builtins.__build_class__}
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:914(get_data)
+        2    0.000    0.000    0.000    0.000 {method 'read' of '_io.FileIO' objects}
+        1    0.000    0.000    0.000    0.000 {built-in method nt.listdir}
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1190(_path_hooks)
+        9    0.000    0.000    0.000    0.000 datetime.py:473(__new__)
+        8    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:1356(find_spec)
+        1    0.000    0.000    0.001    0.001 datetime.py:5(<module>)
+        3    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:433(spec_from_loader)
+
+The list append doesn't take that long but we're doing it over a million
+times. Why do we even need to append the dates to a list? Why can't we
+just look at them in place and update the counts as needed?
+
+$ python -m cProfile -s time src/good_perf.py
+{'2013': 0, '2014': 0, '2015': 111111, '2016': 0, '2017': 0, '2018': 0}
+'ao' was found 0 times
+         1083696 function calls (1083679 primitive calls) in 5.974 seconds
+
+   Ordered by: internal time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    5.232    5.232    5.972    5.972 good_perf.py:15(analyze)
+    41236    0.658    0.000    0.658    0.000 {built-in method _codecs.charmap_decode}
+  1000001    0.063    0.000    0.063    0.000 {method 'keys' of 'dict' objects}
+    41236    0.018    0.000    0.676    0.000 cp1252.py:22(decode)
+       13    0.000    0.000    0.000    0.000 {built-in method nt.stat}
+        2    0.000    0.000    0.000    0.000 {built-in method marshal.loads}
+        2    0.000    0.000    0.000    0.000 {built-in method builtins.print}
+        3    0.000    0.000    0.000    0.000 {built-in method _imp.create_builtin}
+        2    0.000    0.000    0.000    0.000 {built-in method io.open}
+       13    0.000    0.000    0.000    0.000 {built-in method builtins.__build_class__}
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:914(get_data)
+        2    0.000    0.000    0.000    0.000 {method 'read' of '_io.FileIO' objects}
+        1    0.000    0.000    0.000    0.000 {built-in method nt.listdir}
+        9    0.000    0.000    0.000    0.000 datetime.py:473(__new__)
+        1    0.000    0.000    0.001    0.001 datetime.py:5(<module>)
+
+Well that saved one whole second. Of course now we just have a zillion
+dict.keys() calls instead of list appends. What if we did a set instead?
+
+A little googling says dict.keys() sucks and I should use 'if x in dict'
+instead so let's try that.
+
+$ python -m cProfile -s time src/good_perf.py
+{'2013': 0, '2014': 0, '2015': 111111, '2016': 0, '2017': 0, '2018': 0}
+'ao' was found 0 times
+         83695 function calls (83678 primitive calls) in 5.791 seconds
+
+   Ordered by: internal time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    5.110    5.110    5.789    5.789 good_perf.py:15(analyze)
+    41236    0.659    0.000    0.659    0.000 {built-in method _codecs.charmap_decode}
+    41236    0.020    0.000    0.678    0.000 cp1252.py:22(decode)
+       13    0.000    0.000    0.000    0.000 {built-in method nt.stat}
+        2    0.000    0.000    0.000    0.000 {built-in method marshal.loads}
+        2    0.000    0.000    0.000    0.000 {built-in method builtins.print}
+        3    0.000    0.000    0.000    0.000 {built-in method _imp.create_builtin}
+        2    0.000    0.000    0.000    0.000 {built-in method io.open}
+       13    0.000    0.000    0.000    0.000 {built-in method builtins.__build_class__}
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:914(get_data)
+        2    0.000    0.000    0.000    0.000 {method 'read' of '_io.FileIO' objects}
+        9    0.000    0.000    0.000    0.000 datetime.py:473(__new__)
+        1    0.000    0.000    0.000    0.000 {built-in method nt.listdir}
+        8    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:1356(find_spec)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1190(_path_hooks)
+        1    0.000    0.000    0.001    0.001 datetime.py:5(<module>)
+      5/2    0.000    0.000    0.002    0.001 <frozen importlib._bootstrap>:978(_find_and_load)
+       40    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:56(_path_join)
+       40    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:58(<listcomp>)
+        5    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap>:882(_find_spec)
+        2    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:1240(_get_spec)
+      5/2    0.000    0.000    0.001    0.001 <frozen importlib._bootstrap>:663(_load_unlocked)
+        5    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:157(_get_module_lock)
+        2    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:793(get_code)
+      171    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
+        5    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:504(_init_module_attrs)
+        4    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:271(cache_from_source)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1404(_fill_cache)
+       10    0.000    0.000    0.000    0.000 {built-in method _thread.allocate_lock}
+       24    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
+        1    0.000    0.000    5.789    5.789 good_perf.py:78(main)
+
+
+$ python -m cProfile -s cumtime src/good_perf.py
+{'2013': 0, '2014': 0, '2015': 111111, '2016': 0, '2017': 0, '2018': 0}
+'ao' was found 0 times
+         83695 function calls (83678 primitive calls) in 5.666 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+      3/1    0.000    0.000    5.666    5.666 {built-in method builtins.exec}
+        1    0.000    0.000    5.666    5.666 good_perf.py:6(<module>)
+        1    0.000    0.000    5.663    5.663 good_perf.py:78(main)
+        1    4.996    4.996    5.663    5.663 good_perf.py:15(analyze)
+    41236    0.020    0.000    0.667    0.000 cp1252.py:22(decode)
+    41236    0.647    0.000    0.647    0.000 {built-in method _codecs.charmap_decode}
+      5/2    0.000    0.000    0.002    0.001 <frozen importlib._bootstrap>:978(_find_and_load)
+      5/2    0.000    0.000    0.002    0.001 <frozen importlib._bootstrap>:948(_find_and_load_unlocked)
+      5/2    0.000    0.000    0.001    0.001 <frozen importlib._bootstrap>:663(_load_unlocked)
+        2    0.000    0.000    0.001    0.001 <frozen importlib._bootstrap_external>:722(exec_module)
+        5    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap>:882(_find_spec)
+      8/2    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap>:211(_call_with_frames_removed)
+        2    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:1272(find_spec)
+        2    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:1240(_get_spec)
+        2    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:793(get_code)
+        8    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:1356(find_spec)
+        1    0.000    0.000    0.001    0.001 datetime.py:5(<module>)
+       13    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:74(_path_stat)
+       13    0.000    0.000    0.000    0.000 {built-in method nt.stat}
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:523(_compile_bytecode)
+        2    0.000    0.000    0.000    0.000 {built-in method marshal.loads}
+        5    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:576(module_from_spec)
+        2    0.000    0.000    0.000    0.000 {built-in method builtins.print}
+       13    0.000    0.000    0.000    0.000 {built-in method builtins.__build_class__}
+        1    0.000    0.000    0.000    0.000 csv.py:4(<module>)
+        2    0.000    0.000    0.000    0.000 {built-in method io.open}
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:914(get_data)
+        3    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:740(create_module)
+        3    0.000    0.000    0.000    0.000 {built-in method _imp.create_builtin}
+        3    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:84(_path_is_mode_type)
+       10    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1203(_path_importer_cache)
+
+That earns us like 0.2 seconds but it got dict.keys() out of the top 
+function calls so I'm pleased with that.
+
+Also why the heck are we calling datetime?
+
+But first let's deal with this stupid second iteration through the file
+because we can add that into the first run.
+
+$ python -m cProfile -s cumtime src/good_perf.py
+{'2013': 0, '2014': 0, '2015': 111111, '2016': 0, '2017': 0, '2018': 0}
+'ao' was found 0 times
+         42454 function calls (42437 primitive calls) in 3.099 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+      3/1    0.000    0.000    3.099    3.099 {built-in method builtins.exec}
+        1    0.000    0.000    3.099    3.099 good_perf.py:6(<module>)
+        1    0.000    0.000    3.096    3.096 good_perf.py:83(main)
+        1    2.754    2.754    3.096    3.096 good_perf.py:15(analyze)
+    20618    0.010    0.000    0.342    0.000 cp1252.py:22(decode)
+    20618    0.332    0.000    0.332    0.000 {built-in method _codecs.charmap_decode}
+      5/2    0.000    0.000    0.003    0.001 <frozen importlib._bootstrap>:978(_find_and_load)
+      5/2    0.000    0.000    0.002    0.001 <frozen importlib._bootstrap>:948(_find_and_load_unlocked)
+      5/2    0.000    0.000    0.002    0.001 <frozen importlib._bootstrap>:663(_load_unlocked)
+        2    0.000    0.000    0.002    0.001 <frozen importlib._bootstrap_external>:722(exec_module)
+      8/2    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap>:211(_call_with_frames_removed)
+        5    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap>:882(_find_spec)
+        2    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:1272(find_spec)
+        2    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:1240(_get_spec)
+        2    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:793(get_code)
+        8    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:1356(find_spec)
+        1    0.000    0.000    0.001    0.001 datetime.py:5(<module>)
+       13    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:74(_path_stat)
+       13    0.000    0.000    0.000    0.000 {built-in method nt.stat}
+        1    0.000    0.000    0.000    0.000 csv.py:4(<module>)
+       13    0.000    0.000    0.000    0.000 {built-in method builtins.__build_class__}
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:523(_compile_bytecode)
+        2    0.000    0.000    0.000    0.000 {built-in method marshal.loads}
+        5    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:576(module_from_spec)
+        2    0.000    0.000    0.000    0.000 {built-in method builtins.print}
+        1    0.000    0.000    0.000    0.000 {built-in method io.open}
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:914(get_data)
+        3    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:740(create_module)
+        3    0.000    0.000    0.000    0.000 {built-in method _imp.create_builtin}
+        3    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:84(_path_is_mode_type)
+        9    0.000    0.000    0.000    0.000 datetime.py:473(__new__)
+       10    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1203(_path_importer_cache)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1190(_path_hooks)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1404(_fill_cache)
+        2    0.000    0.000    0.000    0.000 {method 'read' of '_io.FileIO' objects}
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:93(_path_isfile)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:951(path_stats)
+        1    0.000    0.000    0.000    0.000 {built-in method nt.listdir}
+       40    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:56(_path_join)
+        5    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:504(_init_module_attrs)
+        5    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:147(__enter__)
+
+3 SECONDS BOOYAH. Runtime is now less than half of original.
