@@ -2,12 +2,14 @@
 This module utilizes MongoDB to build a product database for
 HP Norton.
 """
+import csv
 from decorator import timer
 import gc
 import json
 from loguru import logger
 from multiprocessing import Process, Queue
 import multiprocessing
+import os
 from pathlib import Path
 import pandas as pd
 from pymongo import MongoClient
@@ -18,7 +20,6 @@ mongo = MongoClient("mongodb://localhost:27017/")
 db = mongo['HP_Norton']
 
 PROCESS_RESULT = []
-
 
 def view_collections():
     """
@@ -53,7 +54,7 @@ def _read_data_create_collection(data):
     :return: collections with same name as data sources
     """
     DATA_PATH = Path.cwd().with_name('data')
-    time.process_time_ns()
+    #os.chdir(DATA_PATH)
     src_csv = DATA_PATH / data
     src_json = str(DATA_PATH / data).replace(".csv", '.json')
     coll_csv = pd.read_csv(src_csv, encoding='ISO-8859-1')
@@ -66,10 +67,12 @@ def _read_data_create_collection(data):
     source = coll_json
     start_count = coll.count_documents({})
     result = coll.insert_many(source)
-    process_time = time.process_time()
+    gc.collect()
     record_count = coll.count_documents({})
     result_tuple = (len_csv, start_count, record_count, time.process_time())
     PROCESS_RESULT.append(result_tuple)
+
+
 
 
 @timer
@@ -94,6 +97,7 @@ def import_data_threading():
         t.join()
 
     return PROCESS_RESULT
+
 
 
 @timer
@@ -178,7 +182,6 @@ if __name__ == "__main__":
         """
         remove_a_collection()
         print(import_data_threading())
-
 
     run()
     gc.collect()

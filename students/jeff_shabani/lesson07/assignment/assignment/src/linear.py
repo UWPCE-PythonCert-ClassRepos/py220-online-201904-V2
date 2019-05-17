@@ -12,6 +12,7 @@ import pandas as pd
 from pymongo import MongoClient
 import time
 
+
 mongo = MongoClient("mongodb://localhost:27017/")
 db = mongo['HP_Norton']
 
@@ -38,7 +39,6 @@ def remove_a_collection():
     for name in collection_names:
         remove = db[name]
         remove.drop()
-
 
 @timer
 def import_data(*args):
