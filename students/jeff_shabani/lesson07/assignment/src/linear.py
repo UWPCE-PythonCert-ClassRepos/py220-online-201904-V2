@@ -66,9 +66,8 @@ def import_data(*args):
         source = coll_json
         start_count = coll.count_documents({})
         result = coll.insert_many(source)
-        process_time = time.process_time()
         coll_count = coll.count_documents({})
-        results = (len_csv, start_count, coll_count, process_time)
+        results = (len_csv, start_count, coll_count, time.thread_time())
         results_list.append(results)
     return results_list
 

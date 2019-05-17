@@ -64,7 +64,7 @@ def _read_data_create_collection(data):
     result = coll.insert_many(source)
     gc.collect()
     record_count = coll.count_documents({})
-    result_tuple = (len_csv, start_count, record_count, time.process_time())
+    result_tuple = (len_csv, start_count, record_count, time.thread_time())
     PROCESS_RESULT.append(result_tuple)
 
 
