@@ -9,6 +9,7 @@ import pymongo
 
 # pylint: disable= C0303
 
+
 class MongoDBConnection:
 
     """
@@ -42,12 +43,12 @@ def print_mdb_collection(collection_name):
 
 def _import_csv(filename):
     """
-    Returns a list of dictionaries.One dictionary for each row of data in a csv file.
+    Returns a list of dictionaries.One dictionary
+     for each row of data in a csv file.
     :return: list of dictionaries
 
     """
     with open(filename, newline="") as csvfile:
-
         dict_list = []
         csv_data = csv.reader(csvfile)
         headers = next(csv_data, None)  
@@ -61,7 +62,10 @@ def _import_csv(filename):
         return dict_list
 
 def _add_bulk_data(collection, directory_name, filename):
-
+    """
+    If it works properly, it will handle the
+    bulk imports from the csv files
+    """
     file_path = os.path.join(directory_name, filename)
     try:
         collection.insert_many(_import_csv(file_path), ordered=False)
@@ -75,10 +79,12 @@ def _add_bulk_data(collection, directory_name, filename):
 
 def import_data(database, directory_name, products_file, customers_file, rentals_file):
     """
-    Takes a directory name and three csv files as input.  Creates and populates a new MongoDB.    
-    :return: Tuple with record count for products, customers, rentals added (in that order) and
-
-    tuple with count of errors that occurred for products, customers, rentals (in that order).
+    Takes a directory name and three csv files as input.
+    Creates and populates a new MongoDB.
+    :return: Tuple with record count for products, customers,
+    rentals added (in that order) and
+    tuple with count of errors that occurred for products,
+    customers, rentals (in that order).
     """
 
     mongo = MongoDBConnection()
@@ -99,11 +105,11 @@ def import_data(database, directory_name, products_file, customers_file, rentals
     error_count = (products_errors, customers_errors, rentals_errors)
     return record_count, error_count
 
-
 def show_available_products(database):
     """
     Returns a dictionary for each product listed as available.    
-    :return: Dictionary with product_id, description, product_type, quantity_available.
+    :return: Dictionary with product_id, description,
+    product_type, quantity_available.
     """
     available_products = {}
     mongo = MongoDBConnection()
@@ -120,8 +126,8 @@ def show_available_products(database):
 
 def show_rentals(database, product_id):
     """
-    Returns a dictionary with user information from users who
-    have rented products matching the product_id.    
+    Returns a dictionary with user information from
+    users who have rented products matching the product_id.
     :return: user_id, name, address, phone_number, email
     """
     customer_info = {}
