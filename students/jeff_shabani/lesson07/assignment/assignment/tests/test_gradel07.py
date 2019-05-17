@@ -12,6 +12,7 @@
 import pytest
 import fake_submission as l
 
+
 @pytest.fixture
 def _all_answers():
     """
@@ -25,34 +26,34 @@ def _all_answers():
     answers_parallel = l.parallel()
 
     return ({
-        "processed": answers_linear[0][0],
-        "count_prior": answers_linear[0][1],
-        "count_new": answers_linear[0][2],
-        "elapsed": answers_linear[0][3]
-        },
-        {
-        "processed": answers_linear[1][0],
-        "count_prior": answers_linear[1][1],
-        "count_new": answers_linear[1][2],
-        "elapsed": answers_linear[1][3]
-        },
-        {
-        "processed": answers_parallel[0][0],
-        "count_prior": answers_parallel[0][1],
-        "count_new": answers_parallel[0][2],
-        "elapsed": answers_parallel[0][3]
-        },
-        {
-        "processed": answers_parallel[1][0],
-        "count_prior": answers_parallel[1][1],
-        "count_new": answers_parallel[1][2],
-        "elapsed": answers_parallel[1][3]
-        }
-        )
+                "processed": answers_linear[0][0],
+                "count_prior": answers_linear[0][1],
+                "count_new": answers_linear[0][2],
+                "elapsed": answers_linear[0][3]
+            },
+            {
+                "processed": answers_linear[1][0],
+                "count_prior": answers_linear[1][1],
+                "count_new": answers_linear[1][2],
+                "elapsed": answers_linear[1][3]
+            },
+            {
+                "processed": answers_parallel[0][0],
+                "count_prior": answers_parallel[0][1],
+                "count_new": answers_parallel[0][2],
+                "elapsed": answers_parallel[0][3]
+            },
+            {
+                "processed": answers_parallel[1][0],
+                "count_prior": answers_parallel[1][1],
+                "count_new": answers_parallel[1][2],
+                "elapsed": answers_parallel[1][3]
+            }
+    )
 
 
 def test_submission(_all_answers):
-    #linear cust/prod, parallel cust/prod
+    # linear cust/prod, parallel cust/prod
     for answer in _all_answers:
         # needs a few more
         assert type(answer["processed"]) == int
