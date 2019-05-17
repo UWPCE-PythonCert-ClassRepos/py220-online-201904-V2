@@ -140,13 +140,14 @@ if __name__ == '__main__':
         db = mongo.connection.media
 
         logging.info('Importing csv files')
-        import_data(db, '', 'products.csv', 'customers.csv', 'rentals.csv')
+        import_data(db, '', 'product.csv', 'customer.csv', 'rental.csv')
 
         logging.info('Showing available products')
-        print(show_available_products(db))
+        # print(show_available_products(db))
 
         logging.info('\nShowing rental information for prd005')
         logging.info(show_rentals(db, 'prd005'))
+        print(show_rentals(db, 'prd005'))
 
         logging.info('\nClearing data from database.')
         clear_data(db)

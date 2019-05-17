@@ -5,6 +5,7 @@ poorly performing, poorly written module
 
 import datetime
 import csv
+from timeit import timeit
 
 def analyze(filename):
     start = datetime.datetime.now()
@@ -57,9 +58,10 @@ def analyze(filename):
     return (start, end, year_count, found)
 
 def main():
-    filename = "data/exercise.csv"
+    filename = "exercise.csv"
     analyze(filename)
 
 
 if __name__ == "__main__":
     main()
+    print(timeit("analyze('exercise.csv')", globals=globals(), number=10))

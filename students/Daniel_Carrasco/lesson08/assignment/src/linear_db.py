@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
-# pylint: disable=C0103, W0621
+# pylint: disable=C0103, W0621, W1203
 '''
 Mongo DB assignment for Python 220.  This one I get a bit better than the last
 Actually, turns out that's a lie.  This is a giant rabbit hole.
 '''
 import csv
 import logging
+from timeit import timeit
+from pathlib import Path
 import pymongo
+from line_profiler import LineProfiler
+
+logging.basicConfig(filename='example.log', level=logging.DEBUG)
 
 
 class MongoDBConnection:
@@ -32,6 +37,7 @@ def _import_csv(filename):
     '''
     This function imports the .csv files containing our data.
     '''
+    filename = Path.cwd().with_name('data') / filename
     with open(filename, newline='', encoding='utf-8') as file:
         dict_list = []
         csv_data = csv.reader(file)
@@ -45,7 +51,7 @@ def _import_csv(filename):
                 row_dict[column] = row[index]
 
             dict_list.append(row_dict)
-        logging.info('.csv imported')
+        logging.info(f'{filename}.csv imported')
         return dict_list
 
 
@@ -93,9 +99,6 @@ def show_available_products(db):
                         'quantity_available': product_id['quantity_available']}
         if product_id['quantity_available'] != '0':
             available_products[product_id['product_id']] = product_dict
-            continue
-        else:
-            continue
 
     return available_products
 
@@ -116,9 +119,6 @@ def show_rentals(db, product_id):
                             'phone_number': customer_record['phone_number'],
                             'email': customer_record['email']}
             rental_users_dict[customer_id] = rental_users
-            continue
-        else:
-            continue
 
     return rental_users_dict
 
@@ -132,7 +132,10 @@ def clear_data(db):
     db.rentals.drop()
 
 
-if __name__ == '__main__':
+def main():
+    '''
+    Main execution
+    '''
     mongo = MongoDBConnection()
 
     with mongo:
@@ -140,13 +143,24 @@ if __name__ == '__main__':
         db = mongo.connection.media
 
         logging.info('Importing csv files')
-        import_data(db, '', 'products.csv', 'customers.csv', 'rentals.csv')
+        import_data(db, '', 'product.csv', 'customer.csv', 'rental.csv')
 
         logging.info('Showing available products')
-        print(show_available_products(db))
 
         logging.info('\nShowing rental information for prd005')
         logging.info(show_rentals(db, 'prd005'))
 
         logging.info('\nClearing data from database.')
         clear_data(db)
+
+
+if __name__ == '__main__':
+    main()
+
+    print(timeit('main()', globals=globals(), number=1))
+    print(timeit('main()', globals=globals(), number=10))
+
+    lp = LineProfiler()
+    lp_wrapper = lp(main)
+    lp_wrapper()
+    lp.print_stats()
