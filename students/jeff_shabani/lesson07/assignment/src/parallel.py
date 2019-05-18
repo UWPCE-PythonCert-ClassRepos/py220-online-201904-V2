@@ -12,6 +12,7 @@ import os
 from pymongo import MongoClient
 import pandas as pd
 from decorator import timer
+from tools.utilities_ import _delete_file_by_type
 
 mongo = MongoClient("mongodb://localhost:27017/")
 db = mongo['HP_Norton']
@@ -45,20 +46,6 @@ def remove_a_collection():
         logger.info(f"Removing collection: {name}:")
         remove = db[name]
         remove.drop()
-
-
-def _delete_json():
-    """
-    Clearun utility that deletes json files created in
-    collection creation process.
-    :return:
-    """
-    os.chdir(DATA_PATH)
-    removal_path = Path.cwd()
-    for json in removal_path.iterdir():
-        if json.suffix == '.json':
-            logger.info(f'Removing {json.name}.')
-            os.remove(json.name)
 
 
 @logger.catch()
@@ -201,7 +188,7 @@ if __name__ == "__main__":
         """
         remove_a_collection()
         print(import_data_threading())
-        _delete_json()
+        _delete_file_by_type(DATA_PATH, '.json')
 
 
     run()
