@@ -72,9 +72,9 @@ def import_data(*args):
         start_count = coll.count_documents({})
         logger.info(f"Inserting data into : {coll}:")
         result = coll.insert_many(source)
+        logger.info(f"Process time was {time.thread_time()}:")
         coll_count = coll.count_documents({})
         results = (len_csv, start_count, coll_count, time.thread_time())
-        logger.info(f"Process time was {time.thread_time()}:")
         results_list.append(results)
     return results_list
 

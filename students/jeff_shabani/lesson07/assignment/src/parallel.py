@@ -17,10 +17,10 @@ from tools.utilities_ import _delete_file_by_type
 mongo = MongoClient("mongodb://localhost:27017/")
 db = mongo['HP_Norton']
 
+logger.add('Parallel Log.log')
+
 DATA_PATH = Path.cwd().with_name('data')
 PROCESS_RESULT = []
-
-
 
 
 def view_collections():
@@ -72,10 +72,10 @@ def _read_data_create_collection(data):
     start_count = coll.count_documents({})
     logger.info(f"Inserting data into : {coll}:")
     result = coll.insert_many(source)
+    logger.info(f"Process time was {time.thread_time()}:")
     gc.collect()
     record_count = coll.count_documents({})
     result_tuple = (len_csv, start_count, record_count, time.thread_time())
-    logger.info(f"Process time was {time.thread_time()}:")
     PROCESS_RESULT.append(result_tuple)
 
 
@@ -83,7 +83,7 @@ def _read_data_create_collection(data):
 def import_data_threading():
     """
     Runs _read_data_create_collection through threading"""
-    logger.info('Parallel run')
+    logger.info('Threaded run run')
 
     colls = ('product.csv', 'customers.csv')
 
@@ -97,8 +97,6 @@ def import_data_threading():
 
     for t in threads:
         t.join()
-
-    logger.add('Parallel Log-Threading.log')
 
     return PROCESS_RESULT
 
@@ -117,8 +115,6 @@ def import_data_queue():
         worker.daemon = True
         worker.start()
         worker.join()
-
-    logger.add('Parallel Log-Queue.log')
 
     return PROCESS_RESULT
 
