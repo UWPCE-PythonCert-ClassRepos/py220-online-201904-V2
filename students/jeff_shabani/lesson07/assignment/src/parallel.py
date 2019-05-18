@@ -20,7 +20,7 @@ db = mongo['HP_Norton']
 DATA_PATH = Path.cwd().with_name('data')
 PROCESS_RESULT = []
 
-logger.add('Parallel Log.log')
+
 
 
 def view_collections():
@@ -98,6 +98,8 @@ def import_data_threading():
     for t in threads:
         t.join()
 
+    logger.add('Parallel Log-Threading.log')
+
     return PROCESS_RESULT
 
 
@@ -115,6 +117,8 @@ def import_data_queue():
         worker.daemon = True
         worker.start()
         worker.join()
+
+    logger.add('Parallel Log-Queue.log')
 
     return PROCESS_RESULT
 
