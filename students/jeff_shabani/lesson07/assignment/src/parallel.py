@@ -8,6 +8,7 @@ from pathlib import Path
 import threading
 import time
 from loguru import logger
+import os
 from pymongo import MongoClient
 import pandas as pd
 from decorator import timer
@@ -15,9 +16,11 @@ from decorator import timer
 mongo = MongoClient("mongodb://localhost:27017/")
 db = mongo['HP_Norton']
 
+DATA_PATH = Path.cwd().with_name('data')
 PROCESS_RESULT = []
 
 logger.add('Parallel Log.log')
+
 
 def view_collections():
     """
@@ -43,6 +46,21 @@ def remove_a_collection():
         remove = db[name]
         remove.drop()
 
+
+def _delete_json():
+    """
+    Clearun utility that deletes json files created in
+    collection creation process.
+    :return:
+    """
+    os.chdir(DATA_PATH)
+    removal_path = Path.cwd()
+    for json in removal_path.iterdir():
+        if json.suffix == '.json':
+            logger.info(f'Removing {json.name}.')
+            os.remove(json.name)
+
+
 @logger.catch()
 def _read_data_create_collection(data):
     """
@@ -52,8 +70,6 @@ def _read_data_create_collection(data):
     data source names
     :return: collections with same name as data sources
     """
-    DATA_PATH = Path.cwd().with_name('data')
-    #os.chdir(DATA_PATH)
     src_csv = DATA_PATH / data
     src_json = str(DATA_PATH / data).replace(".csv", '.json')
     logger.info(f"Reading csv: {data}:")
@@ -74,8 +90,6 @@ def _read_data_create_collection(data):
     result_tuple = (len_csv, start_count, record_count, time.thread_time())
     logger.info(f"Process time was {time.thread_time()}:")
     PROCESS_RESULT.append(result_tuple)
-
-
 
 
 @timer
@@ -99,7 +113,6 @@ def import_data_threading():
         t.join()
 
     return PROCESS_RESULT
-
 
 
 @timer
@@ -188,6 +201,8 @@ if __name__ == "__main__":
         """
         remove_a_collection()
         print(import_data_threading())
+        _delete_json()
+
 
     run()
     gc.collect()
