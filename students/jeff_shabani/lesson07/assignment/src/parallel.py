@@ -5,10 +5,10 @@ HP Norton.
 import gc
 import json
 from pathlib import Path
+import sys
 import threading
 import time
 from loguru import logger
-import os
 from pymongo import MongoClient
 import pandas as pd
 from decorator import timer
@@ -83,6 +83,7 @@ def _read_data_create_collection(data):
 def import_data_threading():
     """
     Runs _read_data_create_collection through threading"""
+    logger.info('Parallel run')
 
     colls = ('product.csv', 'customers.csv')
 
@@ -92,11 +93,9 @@ def import_data_threading():
                                 args=(colls[1],))]
 
     for t in threads:
-        logger.info(f"Starting thread {t}:")
         t.start()
 
     for t in threads:
-        logger.info(f"Joining thread {t}:")
         t.join()
 
     return PROCESS_RESULT
@@ -106,6 +105,7 @@ def import_data_threading():
 def import_data_queue():
     """
     Runs _read_data_create_collection via a queue"""
+    logger.info('Queue run.')
 
     colls = ('product.csv', 'customers.csv')
 
@@ -115,6 +115,8 @@ def import_data_queue():
         worker.daemon = True
         worker.start()
         worker.join()
+
+    return PROCESS_RESULT
 
 
 def show_available_products():
@@ -180,16 +182,42 @@ def show_rentals(product_id: str) -> str:
         print('Invalid product code')
 
 
+def quit_the_program():
+    """
+    Simply quits the program.
+    :return: closes the program
+    """
+    print('Tschüss')
+    sys.exit()
+
+
 if __name__ == "__main__":
-    def run():
+
+    def run_options():
         """
-        Simple script runner for on the fly testing
-        :return: funtions called
+        Function for manual testing.
+        :return: Function entered
         """
-        remove_a_collection()
-        print(import_data_threading())
-        _delete_file_by_type(DATA_PATH, '.json')
+        answer = input("\n".join(("Run with threading or queueing?",
+                                  "Select and option below:",
+                                  "1 - Run with threading.",
+                                  "2 - Run with queueing.",
+                                  "3 - Quit",
+                                  ">>> ")))
+        if answer == '1':
+            remove_a_collection()
+            print(import_data_threading())
+            _delete_file_by_type(DATA_PATH, '.json')
+        elif answer == '2':
+            remove_a_collection()
+            print(import_data_queue())
+            _delete_file_by_type(DATA_PATH, '.json')
+        elif answer == '3':
+            quit_the_program()
+        else:
+            quit_the_program()
+        gc.collect()
 
 
-    run()
-    gc.collect()
+    while True:
+        run_options()
