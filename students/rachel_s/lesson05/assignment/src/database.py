@@ -81,7 +81,7 @@ def bulk_writer(data, database, table):
         result.bulk_api_result['nInserted'],
         table
     ))
-    if len(result.bulk_api_result['writeErrors']) > 0:
+    if result.bulk_api_result['writeErrors']:
         logger.warning('{} errors occurred on insertion to {} table'.format(
             len(result.bulk_api_result['writeErrors']),
             table
