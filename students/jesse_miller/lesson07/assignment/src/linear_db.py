@@ -62,7 +62,7 @@ def _import_csv(filename):
                 row_dict[column] = row[index]
 
             dict_list.append(row_dict)
-        logging.info(f'{filename}.csv imported')
+        logging.info(f'{filename} imported')
         return dict_list
 
 
@@ -88,16 +88,43 @@ def import_data(db, directory_name, products_file, customers_file, rentals_file)
     '''
     Function to import data into three MongoDB tables
     '''
-    products = db['products']
-    products_results = _add_bulk_data(products, directory_name, products_file)
+    # products = db['products']
+    # products_results = _add_bulk_data(products, directory_name, products_file)
+#
+    # customers = db['customers']
+    # customers_results = _add_bulk_data(customers, directory_name, customers_file)
+#
+    # rentals = db['rentals']
+    # rentals_results = _add_bulk_data(rentals, directory_name, rentals_file)
 
-    customers = db['customers']
-    customers_results = _add_bulk_data(customers, directory_name, customers_file)
+    # return [products_results, customers_results, rentals_results]
+    product_errors = 0
+    customer_errors = 0
+    rental_errors = 0
+    directory_name = directory_name
+    try:
+        products = db['products']
+        products.insert_many(_import_csv(products_file))
+    except ImportError:
+        product_errors += 1
+    try:
+        customers = db['customers']
+        customers.insert_many(_import_csv(customers_file))
+    except ImportError:
+        customer_errors += 1
+    try:
+        rentals = db['rentals']
+        rentals.insert_many(_import_csv(rentals_file))
+    except ImportError:
+        rental_errors += 1
 
-    rentals = db['rentals']
-    rentals_results = _add_bulk_data(rentals, directory_name, rentals_file)
+    record_count = (db.products.count_documents({}),
+                    db.customers.count_documents({}),
+                    db.rentals.count_documents({}))
 
-    return [products_results, customers_results, rentals_results]
+    error_count = (product_errors, customer_errors, rental_errors)
+    logging.info('Database Populated')
+    return record_count, error_count
 
 
 def show_available_products(db):
