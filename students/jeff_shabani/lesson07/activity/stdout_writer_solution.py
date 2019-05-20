@@ -13,6 +13,7 @@ def write():
     sys.stdout.write("..done\n")
     lock.release()
 
+
 threads = []
 for i in range(50):
     thread = threading.Thread(target=write)
@@ -25,4 +26,3 @@ for i in range(50):
 # required because these are all daemon threads
 for thread in threads:
     thread.join()
-

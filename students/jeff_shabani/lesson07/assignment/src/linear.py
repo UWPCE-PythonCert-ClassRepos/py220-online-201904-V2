@@ -2,22 +2,19 @@
 This module utilizes MongoDB to build a product database for
 HP Norton.
 """
-from decorator import timer
 import gc
 import json
-from loguru import logger
-from multiprocessing import Process, Queue
-import multiprocessing
 from pathlib import Path
-import pandas as pd
-from pymongo import MongoClient
-import threading
 import time
+import pandas as pd
+from loguru import logger
+from pymongo import MongoClient
+from decorator import timer
 
 mongo = MongoClient("mongodb://localhost:27017/")
 db = mongo['HP_Norton']
 
-PROCESS_RESULT = []
+logger.add('Linear Log.log')
 
 
 def view_collections():
@@ -40,40 +37,13 @@ def remove_a_collection():
     """
     collection_names = ["customers", "product", "rental"]
     for name in collection_names:
+        logger.info(f"Removing collection: {name}:")
         remove = db[name]
         remove.drop()
 
 
-def _read_data_create_collection(data):
-    """
-    Imports csv files, creates jsons with the csv file data, then
-    creates collections with the jsons. Args are user supplied
-    :param args: data source path, customer, product, and rental
-    data source names
-    :return: collections with same name as data sources
-    """
-    DATA_PATH = Path.cwd().with_name('data')
-    time.process_time_ns()
-    src_csv = DATA_PATH / data
-    src_json = str(DATA_PATH / data).replace(".csv", '.json')
-    coll_csv = pd.read_csv(src_csv, encoding='ISO-8859-1')
-    len_csv = int(coll_csv.iloc[:, 0].count())
-    coll_csv.to_json(src_json,
-                     orient='records')
-    coll_json = open(src_json).read()
-    coll_json = json.loads(coll_json)
-    coll = db[data[:-4]]
-    source = coll_json
-    start_count = coll.count_documents({})
-    result = coll.insert_many(source)
-    process_time = time.process_time()
-    record_count = coll.count_documents({})
-    result_tuple = (len_csv, start_count, record_count, time.process_time())
-    PROCESS_RESULT.append(result_tuple)
-
-
 @timer
-def import_data_threading():
+def import_data(*args):
     """
     Imports csv files, creates jsons with the csv file data, then
     creates collections with the jsons. Args are user supplied
@@ -82,29 +52,31 @@ def import_data_threading():
     :return: collections with same name as data sources
     """
 
-    colls = ('product.csv', 'customers.csv')
-
-    threads = [threading.Thread(target=_read_data_create_collection, args=(colls[0],)),
-               threading.Thread(target=_read_data_create_collection, args=(colls[1],))]
-
-    for t in threads:
-        t.start()
-
-    for t in threads:
-        t.join()
-
-    return PROCESS_RESULT
-
-
-@timer
-def import_data_queue():
-    colls = ('product.csv', 'customers.csv')
-
-    for col in colls:
-        worker = threading.Thread(target=_read_data_create_collection, args=(col,))
-        worker.daemon = True
-        worker.start()
-        worker.join()
+    DATA_PATH = Path(args[0])
+    colls = [i for i in args[1:]]
+    results_list = []
+    remove_a_collection()
+    for arg in colls:
+        src_csv = DATA_PATH / arg
+        src_json = str(DATA_PATH / arg).replace(".csv", '.json')
+        coll_csv = pd.read_csv(src_csv, encoding='ISO-8859-1')
+        logger.info(f"Reading csv: {arg}:")
+        len_csv = int(coll_csv.iloc[:, 0].count())
+        coll_csv.to_json(src_json,
+                         orient='records')
+        logger.info(f"Opening json: {src_json}:")
+        coll_json = open(src_json).read()
+        coll_json = json.loads(coll_json)
+        coll = db[arg[:-4]]
+        source = coll_json
+        start_count = coll.count_documents({})
+        logger.info(f"Inserting data into : {coll}:")
+        result = coll.insert_many(source)
+        logger.info(f"Process time was {time.thread_time()}:")
+        coll_count = coll.count_documents({})
+        results = (len_csv, start_count, coll_count, time.thread_time())
+        results_list.append(results)
+    return results_list
 
 
 def show_available_products():
@@ -134,7 +106,7 @@ def get_all_product_ids():
     return product_id_list
 
 
-def get_rental_user_id(product_id: str) -> str:
+def get_rental_user_id(product_id):
     """
     returns a set of user_id's of customers who have rented
     a specific product
@@ -148,7 +120,7 @@ def get_rental_user_id(product_id: str) -> str:
     return user_id_set
 
 
-def show_rentals(product_id: str) -> str:
+def show_rentals(product_id):
     """
     returns customers who have rented specific products
     :param product_id:
@@ -176,8 +148,9 @@ if __name__ == "__main__":
         Simple script runner for on the fly testing
         :return: funtions called
         """
-        remove_a_collection()
-        print(import_data_threading())
+        src_path = Path.cwd().with_name('data')
+        print(import_data(src_path,
+                          'product.csv', 'customers.csv'))
 
 
     run()

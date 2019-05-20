@@ -6,13 +6,15 @@ from pysnooper import snoop
 
 lock = threading.Lock()
 
+sema = threading.Semaphore()
+
 
 def write():
-    lock.acquire()
+    sema.acquire()
     sys.stdout.write("%s writing.." % threading.current_thread().name)
     time.sleep(random.random())
     sys.stdout.write("..done\n")
-    lock.release()
+    sema.release()
 
 
 threads = []
