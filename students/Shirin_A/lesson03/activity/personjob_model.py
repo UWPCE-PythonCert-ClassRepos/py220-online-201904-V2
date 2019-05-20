@@ -85,3 +85,36 @@ class PersonNumKey(BaseModel):
     person_name = CharField(max_length = 30)
     lives_in_town = CharField(max_length = 40)
     nickname = CharField(max_length = 20, null = True)
+
+
+#For a Department, we need to know it’s department number,
+#which is 4 characters long and starts with a letter.
+#We need to know the department name (30 characters),
+#and the name of the department manager (30 characters).
+#We also need to know the duration in days that the job was held.
+#Think about this last one carefully.
+# ADDED BELOW FOR LESSON03 ACTIVITY
+
+class Department(BaseModel):
+    """
+        This class defines the department, which maintains details of the
+        department number, name, manager and duration the job was held.
+    """
+    logger.info('Now using the Department class') 
+    dept_number = CharField(primary_key = True, max_length = 4)
+    logger.info('Department Name')
+    dept_name = CharField(max_length = 30)
+    
+    logger.info('Department Manager')
+    dept_manager = CharField(max_length = 30)
+
+    logger.info('Dates')
+    start_date = DateField(formats = 'YYYY-MM-DD')
+    end_date = DateField(formats = 'YYYY-MM-DD')
+
+    logger.info('Duration')
+    d_duration = (end_date - start_date)
+    person_employed = ForeignKeyField(Person, related_name='was_filled_by', null = False) 
+
+
+    

@@ -1,0 +1,12 @@
+
+
+default: great_circle
+
+great_circle: great_circle_setup.py great_circle.pyx libgreatcircle.a
+	python3 great_circle_setup.py build_ext --inplace
+
+libgreatcircle.a:
+	make -C libgreatcircle.a 
+
+clean:
+	rm *.so

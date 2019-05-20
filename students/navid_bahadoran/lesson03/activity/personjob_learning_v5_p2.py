@@ -29,12 +29,23 @@ logger.info('Inner join (which is the default) shows only records that match')
 query = (Person
          .select(Person, Job)
          .join(Job, JOIN.INNER)
-        )
+         )
 
 logger.info('View matching records from both tables')
 
 for person in query:
     logger.info(f'Person {person.person_name} had job {person.job.job_name}')
 
+query = (Person
+         .select(Person, Job)
+         .join(Job, JOIN.LEFT_OUTER)
+        )
+
+for person in query:
+    try:
+        logger.info(f'Person {person.person_name} had job {person.job.job_name}')
+
+    except Exception as e:
+        logger.info(f'Person {person.person_name} had no job')
 
 database.close()

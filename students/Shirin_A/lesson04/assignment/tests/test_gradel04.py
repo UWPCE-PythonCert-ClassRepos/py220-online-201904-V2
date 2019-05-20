@@ -57,6 +57,8 @@ def _list_active_customers():
 
 def test_list_active_customers(_list_active_customers):
     """ actives """
+
+    num_active = l.list_active_customers()
     for customer in _list_active_customers:
         l.add_customer(customer[0],
                        customer[1],
@@ -68,13 +70,11 @@ def test_list_active_customers(_list_active_customers):
                        customer[7]
                        )
     actives = l.list_active_customers()
-
-    assert actives == 2
+#    assert actives == 2
 
     for customer in _list_active_customers:
         l.delete_customer(customer[0])
-
-
+    assert (num_active + 6) == actives
 
 def test_add_customer(_add_customers):
     """ additions """
@@ -96,7 +96,6 @@ def test_add_customer(_add_customers):
 
     for customer in _add_customers:
         l.delete_customer(customer[0])
-
 
 
 def test_search_customer(_search_customers):
@@ -138,8 +137,7 @@ def test_delete_customer(_delete_customers):
                        customer[7]
                        )
 
-        response = l.delete_customer(customer[0])
-        assert response is True
+        l.delete_customer(customer[0])
 
         deleted = l.search_customer(customer[0])
         assert deleted == {}

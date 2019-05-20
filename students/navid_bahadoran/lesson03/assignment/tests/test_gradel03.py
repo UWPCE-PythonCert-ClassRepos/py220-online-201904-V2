@@ -8,7 +8,8 @@
 
 import pytest
 
-import basic_operations as l
+import ..src.basic_operations as l
+
 
 @pytest.fixture
 def _add_customers():
@@ -22,27 +23,32 @@ def _add_customers():
         ("777", "Name", "Lastname", "Address", "phone", "email", "active", 999)
     ]
 
+
 @pytest.fixture
-def _search_customers(): # needs to del with database
+def _search_customers():  # needs to del with database
     return [
         [("998", "Name", "Lastname", "Address", "phone", "email", "active", 999),
          ("997", "Name", "Lastname", "Address", "phone", "email", "inactive", 10)],
         ("998", "000")
     ]
+
+
 @pytest.fixture
-def _delete_customers(): # needs to del with database
+def _delete_customers():  # needs to del with database
     return [
         ("898", "Name", "Lastname", "Address", "phone", "email", "active", 999),
         ("897", "Name", "Lastname", "Address", "phone", "email", "inactive", 10)
     ]
 
+
 @pytest.fixture
-def _update_customer_credit(): # needs to del with database
+def _update_customer_credit():  # needs to del with database
     return [
         ("798", "Name", "Lastname", "Address", "phone", "email", "active", 999),
         ("797", "Name", "Lastname", "Address", "phone", "email", "inactive", 10),
         ("796", "Name", "Lastname", "Address", "phone", "email", "inactive", -99)
     ]
+
 
 @pytest.fixture
 def _list_active_customers():
@@ -54,6 +60,7 @@ def _list_active_customers():
         ("594", "Name", "Lastname", "Address", "phone", "email", "active", 10),
         ("593", "Name", "Lastname", "Address", "phone", "email", "active", 99)
     ]
+
 
 def test_list_active_customers(_list_active_customers):
     """ actives """
@@ -73,7 +80,6 @@ def test_list_active_customers(_list_active_customers):
 
     for customer in _list_active_customers:
         l.delete_customer(customer[0])
-
 
 
 def test_add_customer(_add_customers):
@@ -96,7 +102,6 @@ def test_add_customer(_add_customers):
 
     for customer in _add_customers:
         l.delete_customer(customer[0])
-
 
 
 def test_search_customer(_search_customers):
@@ -144,6 +149,7 @@ def test_delete_customer(_delete_customers):
         deleted = l.search_customer(customer[0])
         assert deleted == {}
 
+
 def test_update_customer_credit(_update_customer_credit):
     """ update """
     for customer in _update_customer_credit:
@@ -162,5 +168,5 @@ def test_update_customer_credit(_update_customer_credit):
     l.update_customer_credit("797", -42)
     l.update_customer_credit("796", 500)
     with pytest.raises(ValueError) as excinfo:
-        l.update_customer_credit("00100", 1000) # error
-        assert 'NoCustomer'  in str(excinfo.value)
+        l.update_customer_credit("00100", 1000)  # error
+        assert 'NoCustomer' in str(excinfo.value)

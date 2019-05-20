@@ -211,3 +211,112 @@ To set a breakpoint first set the breakpoint, then define the condition when the
 `b 15` will set a breakpoint at line 15
 
 `condition 1 i > 700` sets a condition for breakpoint 1 so that the code will run until that condition is reached.
+
+
+
+# Week 3
+
+peewee. `pip install peewee`
+
+To start, instantiate a database and models:
+
+```python
+from peewee import *
+
+db = SqliteDatabase('people.db')
+
+class Person(Model):
+	name = CharField()
+	birthday = DateField()
+	
+	class Meta:
+		database = db # This model uses the 'people.db' database
+        
+class Pet(Model):
+    owner = ForeignKeyField(Person, backref='pets')
+    name = CharField()
+    animal_type = CharField()
+    
+    class Meta:
+        database = db # This model uses the 'people.db' database
+```
+
+The pet model is related to the person model through a foreign key relationship.
+
+It's not necessary to open the database connection explicitly but it's good practice:
+
+`db.connect()`
+
+Then we create our tables:
+
+`db.create_tables([Person, Pet])`
+
+A couple different ways to store data:
+
+```python
+from datetime import date
+uncle_bob = Person(name='Bob', birthday=date(1960, 1, 2))
+uncle_bob.save()
+
+# or
+
+grandma = Person.create(name='Grandma', birthday=date(1925, 2, 15))
+
+# update a row:
+grandma.name = "Grandma L."
+grandma.save()
+```
+
+
+
+Next we'll add pets:
+
+```python
+bob_kitty = Pet.create(owner=uncle_bob, name='Kitty', animal_type='cat')
+herb_fido = Pet.create(owner=herb, name='Fido', animal_type='dog')
+```
+
+and delete pets:
+
+`herb_fido.delete_instance()`
+
+### Peewee retrieving data
+
+to get a single record use `select.get()`:
+
+` grandma = Person.select().where(Person.name == 'Grandma L.').get()`
+
+or
+
+`grandma = Person.get(Person.name == 'Grandma L.')`
+
+To get all the people:
+
+`people = Person.select()`
+
+To get all the people and their pets:
+
+`query = (Pet.select(Pet, Person).join(Person).where(Pet.animal_type =='cat'))`
+
+Sort queries with `order_by`:
+
+`people = Person.select().order_by(Person.birthday.desc())`
+
+To get all people with their pets attached we use `prefetch`:
+
+`query = Person.select().order_by(Person.name).prefetch(Pet)`
+
+To search for anyone whose name starts with an upper or lowercase G we'll use a SQL function:
+
+```python
+expression = fn.Lower(fn.Substr(Person.name, 1, 1)) == 'g'
+for person in Person.select().where(expression):
+	print(person.name)
+	
+# prints:
+# Grandma L.
+```
+
+Finally we'll close the connection:
+
+`db.close()`
