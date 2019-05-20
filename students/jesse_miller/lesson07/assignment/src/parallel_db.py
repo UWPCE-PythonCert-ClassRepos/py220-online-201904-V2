@@ -38,7 +38,7 @@ def print_mdb_collection(collection_name):
         print(doc)
 
 
-def _import_csv(filename):
+def import_data(filename):
     '''
     Returns a list of dictionaries.  One dictionary for each row of data in a
     csv file.
