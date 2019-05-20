@@ -1,0 +1,1001 @@
+product_id,description,product_type,quantity_available
+P000001,Chair Red leather,Livingroom,21
+P000002,Table Oak,Livingroom,4
+P000003,Couch Green cloth,Livingroom,10
+P000004,Dining table Plastic,Kitchen,23
+P000005,Stool Black ash,Kitchen,12
+P000006,Chair Red leather,Livingroom,21
+P000007,Table Oak,Livingroom,4
+P000008,Couch Green cloth,Livingroom,10
+P000009,Dining table Plastic,Kitchen,23
+P000010,Stool Black ash,Kitchen,12
+P000011,Chair Red leather,Livingroom,21
+P000012,Table Oak,Livingroom,4
+P000013,Couch Green cloth,Livingroom,10
+P000014,Dining table Plastic,Kitchen,23
+P000015,Stool Black ash,Kitchen,12
+P000016,Chair Red leather,Livingroom,21
+P000017,Table Oak,Livingroom,4
+P000018,Couch Green cloth,Livingroom,10
+P000019,Dining table Plastic,Kitchen,23
+P000020,Stool Black ash,Kitchen,12
+P000021,Chair Red leather,Livingroom,21
+P000022,Table Oak,Livingroom,4
+P000023,Couch Green cloth,Livingroom,10
+P000024,Dining table Plastic,Kitchen,23
+P000025,Stool Black ash,Kitchen,12
+P000026,Chair Red leather,Livingroom,21
+P000027,Table Oak,Livingroom,4
+P000028,Couch Green cloth,Livingroom,10
+P000029,Dining table Plastic,Kitchen,23
+P000030,Stool Black ash,Kitchen,12
+P000031,Chair Red leather,Livingroom,21
+P000032,Table Oak,Livingroom,4
+P000033,Couch Green cloth,Livingroom,10
+P000034,Dining table Plastic,Kitchen,23
+P000035,Stool Black ash,Kitchen,12
+P000036,Chair Red leather,Livingroom,21
+P000037,Table Oak,Livingroom,4
+P000038,Couch Green cloth,Livingroom,10
+P000039,Dining table Plastic,Kitchen,23
+P000040,Stool Black ash,Kitchen,12
+P000041,Chair Red leather,Livingroom,21
+P000042,Table Oak,Livingroom,4
+P000043,Couch Green cloth,Livingroom,10
+P000044,Dining table Plastic,Kitchen,23
+P000045,Stool Black ash,Kitchen,12
+P000046,Chair Red leather,Livingroom,21
+P000047,Table Oak,Livingroom,4
+P000048,Couch Green cloth,Livingroom,10
+P000049,Dining table Plastic,Kitchen,23
+P000050,Stool Black ash,Kitchen,12
+P000051,Chair Red leather,Livingroom,21
+P000052,Table Oak,Livingroom,4
+P000053,Couch Green cloth,Livingroom,10
+P000054,Dining table Plastic,Kitchen,23
+P000055,Stool Black ash,Kitchen,12
+P000056,Chair Red leather,Livingroom,21
+P000057,Table Oak,Livingroom,4
+P000058,Couch Green cloth,Livingroom,10
+P000059,Dining table Plastic,Kitchen,23
+P000060,Stool Black ash,Kitchen,12
+P000061,Chair Red leather,Livingroom,21
+P000062,Table Oak,Livingroom,4
+P000063,Couch Green cloth,Livingroom,10
+P000064,Dining table Plastic,Kitchen,23
+P000065,Stool Black ash,Kitchen,12
+P000066,Chair Red leather,Livingroom,21
+P000067,Table Oak,Livingroom,4
+P000068,Couch Green cloth,Livingroom,10
+P000069,Dining table Plastic,Kitchen,23
+P000070,Stool Black ash,Kitchen,12
+P000071,Chair Red leather,Livingroom,21
+P000072,Table Oak,Livingroom,4
+P000073,Couch Green cloth,Livingroom,10
+P000074,Dining table Plastic,Kitchen,23
+P000075,Stool Black ash,Kitchen,12
+P000076,Chair Red leather,Livingroom,21
+P000077,Table Oak,Livingroom,4
+P000078,Couch Green cloth,Livingroom,10
+P000079,Dining table Plastic,Kitchen,23
+P000080,Stool Black ash,Kitchen,12
+P000081,Chair Red leather,Livingroom,21
+P000082,Table Oak,Livingroom,4
+P000083,Couch Green cloth,Livingroom,10
+P000084,Dining table Plastic,Kitchen,23
+P000085,Stool Black ash,Kitchen,12
+P000086,Chair Red leather,Livingroom,21
+P000087,Table Oak,Livingroom,4
+P000088,Couch Green cloth,Livingroom,10
+P000089,Dining table Plastic,Kitchen,23
+P000090,Stool Black ash,Kitchen,12
+P000091,Chair Red leather,Livingroom,21
+P000092,Table Oak,Livingroom,4
+P000093,Couch Green cloth,Livingroom,10
+P000094,Dining table Plastic,Kitchen,23
+P000095,Stool Black ash,Kitchen,12
+P000096,Chair Red leather,Livingroom,21
+P000097,Table Oak,Livingroom,4
+P000098,Couch Green cloth,Livingroom,10
+P000099,Dining table Plastic,Kitchen,23
+P000100,Stool Black ash,Kitchen,12
+P000101,Chair Red leather,Livingroom,21
+P000102,Table Oak,Livingroom,4
+P000103,Couch Green cloth,Livingroom,10
+P000104,Dining table Plastic,Kitchen,23
+P000105,Stool Black ash,Kitchen,12
+P000106,Chair Red leather,Livingroom,21
+P000107,Table Oak,Livingroom,4
+P000108,Couch Green cloth,Livingroom,10
+P000109,Dining table Plastic,Kitchen,23
+P000110,Stool Black ash,Kitchen,12
+P000111,Chair Red leather,Livingroom,21
+P000112,Table Oak,Livingroom,4
+P000113,Couch Green cloth,Livingroom,10
+P000114,Dining table Plastic,Kitchen,23
+P000115,Stool Black ash,Kitchen,12
+P000116,Chair Red leather,Livingroom,21
+P000117,Table Oak,Livingroom,4
+P000118,Couch Green cloth,Livingroom,10
+P000119,Dining table Plastic,Kitchen,23
+P000120,Stool Black ash,Kitchen,12
+P000121,Chair Red leather,Livingroom,21
+P000122,Table Oak,Livingroom,4
+P000123,Couch Green cloth,Livingroom,10
+P000124,Dining table Plastic,Kitchen,23
+P000125,Stool Black ash,Kitchen,12
+P000126,Chair Red leather,Livingroom,21
+P000127,Table Oak,Livingroom,4
+P000128,Couch Green cloth,Livingroom,10
+P000129,Dining table Plastic,Kitchen,23
+P000130,Stool Black ash,Kitchen,12
+P000131,Chair Red leather,Livingroom,21
+P000132,Table Oak,Livingroom,4
+P000133,Couch Green cloth,Livingroom,10
+P000134,Dining table Plastic,Kitchen,23
+P000135,Stool Black ash,Kitchen,12
+P000136,Chair Red leather,Livingroom,21
+P000137,Table Oak,Livingroom,4
+P000138,Couch Green cloth,Livingroom,10
+P000139,Dining table Plastic,Kitchen,23
+P000140,Stool Black ash,Kitchen,12
+P000141,Chair Red leather,Livingroom,21
+P000142,Table Oak,Livingroom,4
+P000143,Couch Green cloth,Livingroom,10
+P000144,Dining table Plastic,Kitchen,23
+P000145,Stool Black ash,Kitchen,12
+P000146,Chair Red leather,Livingroom,21
+P000147,Table Oak,Livingroom,4
+P000148,Couch Green cloth,Livingroom,10
+P000149,Dining table Plastic,Kitchen,23
+P000150,Stool Black ash,Kitchen,12
+P000151,Chair Red leather,Livingroom,21
+P000152,Table Oak,Livingroom,4
+P000153,Couch Green cloth,Livingroom,10
+P000154,Dining table Plastic,Kitchen,23
+P000155,Stool Black ash,Kitchen,12
+P000156,Chair Red leather,Livingroom,21
+P000157,Table Oak,Livingroom,4
+P000158,Couch Green cloth,Livingroom,10
+P000159,Dining table Plastic,Kitchen,23
+P000160,Stool Black ash,Kitchen,12
+P000161,Chair Red leather,Livingroom,21
+P000162,Table Oak,Livingroom,4
+P000163,Couch Green cloth,Livingroom,10
+P000164,Dining table Plastic,Kitchen,23
+P000165,Stool Black ash,Kitchen,12
+P000166,Chair Red leather,Livingroom,21
+P000167,Table Oak,Livingroom,4
+P000168,Couch Green cloth,Livingroom,10
+P000169,Dining table Plastic,Kitchen,23
+P000170,Stool Black ash,Kitchen,12
+P000171,Chair Red leather,Livingroom,21
+P000172,Table Oak,Livingroom,4
+P000173,Couch Green cloth,Livingroom,10
+P000174,Dining table Plastic,Kitchen,23
+P000175,Stool Black ash,Kitchen,12
+P000176,Chair Red leather,Livingroom,21
+P000177,Table Oak,Livingroom,4
+P000178,Couch Green cloth,Livingroom,10
+P000179,Dining table Plastic,Kitchen,23
+P000180,Stool Black ash,Kitchen,12
+P000181,Chair Red leather,Livingroom,21
+P000182,Table Oak,Livingroom,4
+P000183,Couch Green cloth,Livingroom,10
+P000184,Dining table Plastic,Kitchen,23
+P000185,Stool Black ash,Kitchen,12
+P000186,Chair Red leather,Livingroom,21
+P000187,Table Oak,Livingroom,4
+P000188,Couch Green cloth,Livingroom,10
+P000189,Dining table Plastic,Kitchen,23
+P000190,Stool Black ash,Kitchen,12
+P000191,Chair Red leather,Livingroom,21
+P000192,Table Oak,Livingroom,4
+P000193,Couch Green cloth,Livingroom,10
+P000194,Dining table Plastic,Kitchen,23
+P000195,Stool Black ash,Kitchen,12
+P000196,Chair Red leather,Livingroom,21
+P000197,Table Oak,Livingroom,4
+P000198,Couch Green cloth,Livingroom,10
+P000199,Dining table Plastic,Kitchen,23
+P000200,Stool Black ash,Kitchen,12
+P000201,Chair Red leather,Livingroom,21
+P000202,Table Oak,Livingroom,4
+P000203,Couch Green cloth,Livingroom,10
+P000204,Dining table Plastic,Kitchen,23
+P000205,Stool Black ash,Kitchen,12
+P000206,Chair Red leather,Livingroom,21
+P000207,Table Oak,Livingroom,4
+P000208,Couch Green cloth,Livingroom,10
+P000209,Dining table Plastic,Kitchen,23
+P000210,Stool Black ash,Kitchen,12
+P000211,Chair Red leather,Livingroom,21
+P000212,Table Oak,Livingroom,4
+P000213,Couch Green cloth,Livingroom,10
+P000214,Dining table Plastic,Kitchen,23
+P000215,Stool Black ash,Kitchen,12
+P000216,Chair Red leather,Livingroom,21
+P000217,Table Oak,Livingroom,4
+P000218,Couch Green cloth,Livingroom,10
+P000219,Dining table Plastic,Kitchen,23
+P000220,Stool Black ash,Kitchen,12
+P000221,Chair Red leather,Livingroom,21
+P000222,Table Oak,Livingroom,4
+P000223,Couch Green cloth,Livingroom,10
+P000224,Dining table Plastic,Kitchen,23
+P000225,Stool Black ash,Kitchen,12
+P000226,Chair Red leather,Livingroom,21
+P000227,Table Oak,Livingroom,4
+P000228,Couch Green cloth,Livingroom,10
+P000229,Dining table Plastic,Kitchen,23
+P000230,Stool Black ash,Kitchen,12
+P000231,Chair Red leather,Livingroom,21
+P000232,Table Oak,Livingroom,4
+P000233,Couch Green cloth,Livingroom,10
+P000234,Dining table Plastic,Kitchen,23
+P000235,Stool Black ash,Kitchen,12
+P000236,Chair Red leather,Livingroom,21
+P000237,Table Oak,Livingroom,4
+P000238,Couch Green cloth,Livingroom,10
+P000239,Dining table Plastic,Kitchen,23
+P000240,Stool Black ash,Kitchen,12
+P000241,Chair Red leather,Livingroom,21
+P000242,Table Oak,Livingroom,4
+P000243,Couch Green cloth,Livingroom,10
+P000244,Dining table Plastic,Kitchen,23
+P000245,Stool Black ash,Kitchen,12
+P000246,Chair Red leather,Livingroom,21
+P000247,Table Oak,Livingroom,4
+P000248,Couch Green cloth,Livingroom,10
+P000249,Dining table Plastic,Kitchen,23
+P000250,Stool Black ash,Kitchen,12
+P000251,Chair Red leather,Livingroom,21
+P000252,Table Oak,Livingroom,4
+P000253,Couch Green cloth,Livingroom,10
+P000254,Dining table Plastic,Kitchen,23
+P000255,Stool Black ash,Kitchen,12
+P000256,Chair Red leather,Livingroom,21
+P000257,Table Oak,Livingroom,4
+P000258,Couch Green cloth,Livingroom,10
+P000259,Dining table Plastic,Kitchen,23
+P000260,Stool Black ash,Kitchen,12
+P000261,Chair Red leather,Livingroom,21
+P000262,Table Oak,Livingroom,4
+P000263,Couch Green cloth,Livingroom,10
+P000264,Dining table Plastic,Kitchen,23
+P000265,Stool Black ash,Kitchen,12
+P000266,Chair Red leather,Livingroom,21
+P000267,Table Oak,Livingroom,4
+P000268,Couch Green cloth,Livingroom,10
+P000269,Dining table Plastic,Kitchen,23
+P000270,Stool Black ash,Kitchen,12
+P000271,Chair Red leather,Livingroom,21
+P000272,Table Oak,Livingroom,4
+P000273,Couch Green cloth,Livingroom,10
+P000274,Dining table Plastic,Kitchen,23
+P000275,Stool Black ash,Kitchen,12
+P000276,Chair Red leather,Livingroom,21
+P000277,Table Oak,Livingroom,4
+P000278,Couch Green cloth,Livingroom,10
+P000279,Dining table Plastic,Kitchen,23
+P000280,Stool Black ash,Kitchen,12
+P000281,Chair Red leather,Livingroom,21
+P000282,Table Oak,Livingroom,4
+P000283,Couch Green cloth,Livingroom,10
+P000284,Dining table Plastic,Kitchen,23
+P000285,Stool Black ash,Kitchen,12
+P000286,Chair Red leather,Livingroom,21
+P000287,Table Oak,Livingroom,4
+P000288,Couch Green cloth,Livingroom,10
+P000289,Dining table Plastic,Kitchen,23
+P000290,Stool Black ash,Kitchen,12
+P000291,Chair Red leather,Livingroom,21
+P000292,Table Oak,Livingroom,4
+P000293,Couch Green cloth,Livingroom,10
+P000294,Dining table Plastic,Kitchen,23
+P000295,Stool Black ash,Kitchen,12
+P000296,Chair Red leather,Livingroom,21
+P000297,Table Oak,Livingroom,4
+P000298,Couch Green cloth,Livingroom,10
+P000299,Dining table Plastic,Kitchen,23
+P000300,Stool Black ash,Kitchen,12
+P000301,Chair Red leather,Livingroom,21
+P000302,Table Oak,Livingroom,4
+P000303,Couch Green cloth,Livingroom,10
+P000304,Dining table Plastic,Kitchen,23
+P000305,Stool Black ash,Kitchen,12
+P000306,Chair Red leather,Livingroom,21
+P000307,Table Oak,Livingroom,4
+P000308,Couch Green cloth,Livingroom,10
+P000309,Dining table Plastic,Kitchen,23
+P000310,Stool Black ash,Kitchen,12
+P000311,Chair Red leather,Livingroom,21
+P000312,Table Oak,Livingroom,4
+P000313,Couch Green cloth,Livingroom,10
+P000314,Dining table Plastic,Kitchen,23
+P000315,Stool Black ash,Kitchen,12
+P000316,Chair Red leather,Livingroom,21
+P000317,Table Oak,Livingroom,4
+P000318,Couch Green cloth,Livingroom,10
+P000319,Dining table Plastic,Kitchen,23
+P000320,Stool Black ash,Kitchen,12
+P000321,Chair Red leather,Livingroom,21
+P000322,Table Oak,Livingroom,4
+P000323,Couch Green cloth,Livingroom,10
+P000324,Dining table Plastic,Kitchen,23
+P000325,Stool Black ash,Kitchen,12
+P000326,Chair Red leather,Livingroom,21
+P000327,Table Oak,Livingroom,4
+P000328,Couch Green cloth,Livingroom,10
+P000329,Dining table Plastic,Kitchen,23
+P000330,Stool Black ash,Kitchen,12
+P000331,Chair Red leather,Livingroom,21
+P000332,Table Oak,Livingroom,4
+P000333,Couch Green cloth,Livingroom,10
+P000334,Dining table Plastic,Kitchen,23
+P000335,Stool Black ash,Kitchen,12
+P000336,Chair Red leather,Livingroom,21
+P000337,Table Oak,Livingroom,4
+P000338,Couch Green cloth,Livingroom,10
+P000339,Dining table Plastic,Kitchen,23
+P000340,Stool Black ash,Kitchen,12
+P000341,Chair Red leather,Livingroom,21
+P000342,Table Oak,Livingroom,4
+P000343,Couch Green cloth,Livingroom,10
+P000344,Dining table Plastic,Kitchen,23
+P000345,Stool Black ash,Kitchen,12
+P000346,Chair Red leather,Livingroom,21
+P000347,Table Oak,Livingroom,4
+P000348,Couch Green cloth,Livingroom,10
+P000349,Dining table Plastic,Kitchen,23
+P000350,Stool Black ash,Kitchen,12
+P000351,Chair Red leather,Livingroom,21
+P000352,Table Oak,Livingroom,4
+P000353,Couch Green cloth,Livingroom,10
+P000354,Dining table Plastic,Kitchen,23
+P000355,Stool Black ash,Kitchen,12
+P000356,Chair Red leather,Livingroom,21
+P000357,Table Oak,Livingroom,4
+P000358,Couch Green cloth,Livingroom,10
+P000359,Dining table Plastic,Kitchen,23
+P000360,Stool Black ash,Kitchen,12
+P000361,Chair Red leather,Livingroom,21
+P000362,Table Oak,Livingroom,4
+P000363,Couch Green cloth,Livingroom,10
+P000364,Dining table Plastic,Kitchen,23
+P000365,Stool Black ash,Kitchen,12
+P000366,Chair Red leather,Livingroom,21
+P000367,Table Oak,Livingroom,4
+P000368,Couch Green cloth,Livingroom,10
+P000369,Dining table Plastic,Kitchen,23
+P000370,Stool Black ash,Kitchen,12
+P000371,Chair Red leather,Livingroom,21
+P000372,Table Oak,Livingroom,4
+P000373,Couch Green cloth,Livingroom,10
+P000374,Dining table Plastic,Kitchen,23
+P000375,Chair Red leather,Livingroom,21
+P000376,Table Oak,Livingroom,4
+P000377,Couch Green cloth,Livingroom,10
+P000378,Dining table Plastic,Kitchen,23
+P000379,Stool Black ash,Kitchen,12
+P000380,Chair Red leather,Livingroom,21
+P000381,Table Oak,Livingroom,4
+P000382,Couch Green cloth,Livingroom,10
+P000383,Dining table Plastic,Kitchen,23
+P000384,Stool Black ash,Kitchen,12
+P000385,Chair Red leather,Livingroom,21
+P000386,Table Oak,Livingroom,4
+P000387,Couch Green cloth,Livingroom,10
+P000388,Dining table Plastic,Kitchen,23
+P000389,Stool Black ash,Kitchen,12
+P000390,Chair Red leather,Livingroom,21
+P000391,Table Oak,Livingroom,4
+P000392,Couch Green cloth,Livingroom,10
+P000393,Dining table Plastic,Kitchen,23
+P000394,Stool Black ash,Kitchen,12
+P000395,Chair Red leather,Livingroom,21
+P000396,Table Oak,Livingroom,4
+P000397,Couch Green cloth,Livingroom,10
+P000398,Dining table Plastic,Kitchen,23
+P000399,Stool Black ash,Kitchen,12
+P000400,Chair Red leather,Livingroom,21
+P000401,Table Oak,Livingroom,4
+P000402,Couch Green cloth,Livingroom,10
+P000403,Dining table Plastic,Kitchen,23
+P000404,Stool Black ash,Kitchen,12
+P000405,Chair Red leather,Livingroom,21
+P000406,Table Oak,Livingroom,4
+P000407,Couch Green cloth,Livingroom,10
+P000408,Dining table Plastic,Kitchen,23
+P000409,Stool Black ash,Kitchen,12
+P000410,Chair Red leather,Livingroom,21
+P000411,Table Oak,Livingroom,4
+P000412,Couch Green cloth,Livingroom,10
+P000413,Dining table Plastic,Kitchen,23
+P000414,Stool Black ash,Kitchen,12
+P000415,Chair Red leather,Livingroom,21
+P000416,Table Oak,Livingroom,4
+P000417,Couch Green cloth,Livingroom,10
+P000418,Dining table Plastic,Kitchen,23
+P000419,Stool Black ash,Kitchen,12
+P000420,Chair Red leather,Livingroom,21
+P000421,Table Oak,Livingroom,4
+P000422,Couch Green cloth,Livingroom,10
+P000423,Dining table Plastic,Kitchen,23
+P000424,Stool Black ash,Kitchen,12
+P000425,Chair Red leather,Livingroom,21
+P000426,Table Oak,Livingroom,4
+P000427,Couch Green cloth,Livingroom,10
+P000428,Dining table Plastic,Kitchen,23
+P000429,Stool Black ash,Kitchen,12
+P000430,Chair Red leather,Livingroom,21
+P000431,Table Oak,Livingroom,4
+P000432,Couch Green cloth,Livingroom,10
+P000433,Dining table Plastic,Kitchen,23
+P000434,Stool Black ash,Kitchen,12
+P000435,Chair Red leather,Livingroom,21
+P000436,Table Oak,Livingroom,4
+P000437,Couch Green cloth,Livingroom,10
+P000438,Dining table Plastic,Kitchen,23
+P000439,Stool Black ash,Kitchen,12
+P000440,Chair Red leather,Livingroom,21
+P000441,Table Oak,Livingroom,4
+P000442,Couch Green cloth,Livingroom,10
+P000443,Dining table Plastic,Kitchen,23
+P000444,Stool Black ash,Kitchen,12
+P000445,Chair Red leather,Livingroom,21
+P000446,Table Oak,Livingroom,4
+P000447,Couch Green cloth,Livingroom,10
+P000448,Dining table Plastic,Kitchen,23
+P000449,Stool Black ash,Kitchen,12
+P000450,Chair Red leather,Livingroom,21
+P000451,Table Oak,Livingroom,4
+P000452,Couch Green cloth,Livingroom,10
+P000453,Dining table Plastic,Kitchen,23
+P000454,Stool Black ash,Kitchen,12
+P000455,Chair Red leather,Livingroom,21
+P000456,Table Oak,Livingroom,4
+P000457,Couch Green cloth,Livingroom,10
+P000458,Dining table Plastic,Kitchen,23
+P000459,Stool Black ash,Kitchen,12
+P000460,Chair Red leather,Livingroom,21
+P000461,Table Oak,Livingroom,4
+P000462,Couch Green cloth,Livingroom,10
+P000463,Dining table Plastic,Kitchen,23
+P000464,Stool Black ash,Kitchen,12
+P000465,Chair Red leather,Livingroom,21
+P000466,Table Oak,Livingroom,4
+P000467,Couch Green cloth,Livingroom,10
+P000468,Dining table Plastic,Kitchen,23
+P000469,Stool Black ash,Kitchen,12
+P000470,Chair Red leather,Livingroom,21
+P000471,Table Oak,Livingroom,4
+P000472,Couch Green cloth,Livingroom,10
+P000473,Dining table Plastic,Kitchen,23
+P000474,Stool Black ash,Kitchen,12
+P000475,Chair Red leather,Livingroom,21
+P000476,Table Oak,Livingroom,4
+P000477,Couch Green cloth,Livingroom,10
+P000478,Dining table Plastic,Kitchen,23
+P000479,Stool Black ash,Kitchen,12
+P000480,Chair Red leather,Livingroom,21
+P000481,Table Oak,Livingroom,4
+P000482,Couch Green cloth,Livingroom,10
+P000483,Dining table Plastic,Kitchen,23
+P000484,Stool Black ash,Kitchen,12
+P000485,Chair Red leather,Livingroom,21
+P000486,Table Oak,Livingroom,4
+P000487,Couch Green cloth,Livingroom,10
+P000488,Dining table Plastic,Kitchen,23
+P000489,Stool Black ash,Kitchen,12
+P000490,Chair Red leather,Livingroom,21
+P000491,Table Oak,Livingroom,4
+P000492,Couch Green cloth,Livingroom,10
+P000493,Dining table Plastic,Kitchen,23
+P000494,Stool Black ash,Kitchen,12
+P000495,Chair Red leather,Livingroom,21
+P000496,Table Oak,Livingroom,4
+P000497,Couch Green cloth,Livingroom,10
+P000498,Dining table Plastic,Kitchen,23
+P000499,Stool Black ash,Kitchen,12
+P000500,Chair Red leather,Livingroom,21
+P000501,Table Oak,Livingroom,4
+P000502,Couch Green cloth,Livingroom,10
+P000503,Dining table Plastic,Kitchen,23
+P000504,Stool Black ash,Kitchen,12
+P000505,Chair Red leather,Livingroom,21
+P000506,Table Oak,Livingroom,4
+P000507,Couch Green cloth,Livingroom,10
+P000508,Dining table Plastic,Kitchen,23
+P000509,Stool Black ash,Kitchen,12
+P000510,Chair Red leather,Livingroom,21
+P000511,Table Oak,Livingroom,4
+P000512,Couch Green cloth,Livingroom,10
+P000513,Dining table Plastic,Kitchen,23
+P000514,Stool Black ash,Kitchen,12
+P000515,Chair Red leather,Livingroom,21
+P000516,Table Oak,Livingroom,4
+P000517,Couch Green cloth,Livingroom,10
+P000518,Dining table Plastic,Kitchen,23
+P000519,Stool Black ash,Kitchen,12
+P000520,Chair Red leather,Livingroom,21
+P000521,Table Oak,Livingroom,4
+P000522,Couch Green cloth,Livingroom,10
+P000523,Dining table Plastic,Kitchen,23
+P000524,Stool Black ash,Kitchen,12
+P000525,Chair Red leather,Livingroom,21
+P000526,Table Oak,Livingroom,4
+P000527,Couch Green cloth,Livingroom,10
+P000528,Dining table Plastic,Kitchen,23
+P000529,Stool Black ash,Kitchen,12
+P000530,Chair Red leather,Livingroom,21
+P000531,Table Oak,Livingroom,4
+P000532,Couch Green cloth,Livingroom,10
+P000533,Dining table Plastic,Kitchen,23
+P000534,Stool Black ash,Kitchen,12
+P000535,Chair Red leather,Livingroom,21
+P000536,Table Oak,Livingroom,4
+P000537,Couch Green cloth,Livingroom,10
+P000538,Dining table Plastic,Kitchen,23
+P000539,Stool Black ash,Kitchen,12
+P000540,Chair Red leather,Livingroom,21
+P000541,Table Oak,Livingroom,4
+P000542,Couch Green cloth,Livingroom,10
+P000543,Dining table Plastic,Kitchen,23
+P000544,Stool Black ash,Kitchen,12
+P000545,Chair Red leather,Livingroom,21
+P000546,Table Oak,Livingroom,4
+P000547,Couch Green cloth,Livingroom,10
+P000548,Dining table Plastic,Kitchen,23
+P000549,Stool Black ash,Kitchen,12
+P000550,Chair Red leather,Livingroom,21
+P000551,Table Oak,Livingroom,4
+P000552,Couch Green cloth,Livingroom,10
+P000553,Dining table Plastic,Kitchen,23
+P000554,Stool Black ash,Kitchen,12
+P000555,Chair Red leather,Livingroom,21
+P000556,Table Oak,Livingroom,4
+P000557,Couch Green cloth,Livingroom,10
+P000558,Dining table Plastic,Kitchen,23
+P000559,Stool Black ash,Kitchen,12
+P000560,Chair Red leather,Livingroom,21
+P000561,Table Oak,Livingroom,4
+P000562,Couch Green cloth,Livingroom,10
+P000563,Dining table Plastic,Kitchen,23
+P000564,Stool Black ash,Kitchen,12
+P000565,Chair Red leather,Livingroom,21
+P000566,Table Oak,Livingroom,4
+P000567,Couch Green cloth,Livingroom,10
+P000568,Dining table Plastic,Kitchen,23
+P000569,Stool Black ash,Kitchen,12
+P000570,Chair Red leather,Livingroom,21
+P000571,Table Oak,Livingroom,4
+P000572,Couch Green cloth,Livingroom,10
+P000573,Dining table Plastic,Kitchen,23
+P000574,Stool Black ash,Kitchen,12
+P000575,Chair Red leather,Livingroom,21
+P000576,Table Oak,Livingroom,4
+P000577,Couch Green cloth,Livingroom,10
+P000578,Dining table Plastic,Kitchen,23
+P000579,Stool Black ash,Kitchen,12
+P000580,Chair Red leather,Livingroom,21
+P000581,Table Oak,Livingroom,4
+P000582,Couch Green cloth,Livingroom,10
+P000583,Dining table Plastic,Kitchen,23
+P000584,Stool Black ash,Kitchen,12
+P000585,Chair Red leather,Livingroom,21
+P000586,Table Oak,Livingroom,4
+P000587,Couch Green cloth,Livingroom,10
+P000588,Dining table Plastic,Kitchen,23
+P000589,Stool Black ash,Kitchen,12
+P000590,Chair Red leather,Livingroom,21
+P000591,Table Oak,Livingroom,4
+P000592,Couch Green cloth,Livingroom,10
+P000593,Dining table Plastic,Kitchen,23
+P000594,Stool Black ash,Kitchen,12
+P000595,Chair Red leather,Livingroom,21
+P000596,Table Oak,Livingroom,4
+P000597,Couch Green cloth,Livingroom,10
+P000598,Dining table Plastic,Kitchen,23
+P000599,Stool Black ash,Kitchen,12
+P000600,Chair Red leather,Livingroom,21
+P000601,Table Oak,Livingroom,4
+P000602,Couch Green cloth,Livingroom,10
+P000603,Dining table Plastic,Kitchen,23
+P000604,Stool Black ash,Kitchen,12
+P000605,Chair Red leather,Livingroom,21
+P000606,Table Oak,Livingroom,4
+P000607,Couch Green cloth,Livingroom,10
+P000608,Dining table Plastic,Kitchen,23
+P000609,Stool Black ash,Kitchen,12
+P000610,Chair Red leather,Livingroom,21
+P000611,Table Oak,Livingroom,4
+P000612,Couch Green cloth,Livingroom,10
+P000613,Dining table Plastic,Kitchen,23
+P000614,Stool Black ash,Kitchen,12
+P000615,Chair Red leather,Livingroom,21
+P000616,Table Oak,Livingroom,4
+P000617,Couch Green cloth,Livingroom,10
+P000618,Dining table Plastic,Kitchen,23
+P000619,Stool Black ash,Kitchen,12
+P000620,Chair Red leather,Livingroom,21
+P000621,Table Oak,Livingroom,4
+P000622,Couch Green cloth,Livingroom,10
+P000623,Dining table Plastic,Kitchen,23
+P000624,Stool Black ash,Kitchen,12
+P000625,Chair Red leather,Livingroom,21
+P000626,Table Oak,Livingroom,4
+P000627,Couch Green cloth,Livingroom,10
+P000628,Dining table Plastic,Kitchen,23
+P000629,Stool Black ash,Kitchen,12
+P000630,Chair Red leather,Livingroom,21
+P000631,Table Oak,Livingroom,4
+P000632,Couch Green cloth,Livingroom,10
+P000633,Dining table Plastic,Kitchen,23
+P000634,Stool Black ash,Kitchen,12
+P000635,Chair Red leather,Livingroom,21
+P000636,Table Oak,Livingroom,4
+P000637,Couch Green cloth,Livingroom,10
+P000638,Dining table Plastic,Kitchen,23
+P000639,Stool Black ash,Kitchen,12
+P000640,Chair Red leather,Livingroom,21
+P000641,Table Oak,Livingroom,4
+P000642,Couch Green cloth,Livingroom,10
+P000643,Dining table Plastic,Kitchen,23
+P000644,Stool Black ash,Kitchen,12
+P000645,Chair Red leather,Livingroom,21
+P000646,Table Oak,Livingroom,4
+P000647,Couch Green cloth,Livingroom,10
+P000648,Dining table Plastic,Kitchen,23
+P000649,Stool Black ash,Kitchen,12
+P000650,Chair Red leather,Livingroom,21
+P000651,Table Oak,Livingroom,4
+P000652,Couch Green cloth,Livingroom,10
+P000653,Dining table Plastic,Kitchen,23
+P000654,Stool Black ash,Kitchen,12
+P000655,Chair Red leather,Livingroom,21
+P000656,Table Oak,Livingroom,4
+P000657,Couch Green cloth,Livingroom,10
+P000658,Dining table Plastic,Kitchen,23
+P000659,Stool Black ash,Kitchen,12
+P000660,Chair Red leather,Livingroom,21
+P000661,Table Oak,Livingroom,4
+P000662,Couch Green cloth,Livingroom,10
+P000663,Dining table Plastic,Kitchen,23
+P000664,Stool Black ash,Kitchen,12
+P000665,Chair Red leather,Livingroom,21
+P000666,Table Oak,Livingroom,4
+P000667,Couch Green cloth,Livingroom,10
+P000668,Dining table Plastic,Kitchen,23
+P000669,Stool Black ash,Kitchen,12
+P000670,Chair Red leather,Livingroom,21
+P000671,Table Oak,Livingroom,4
+P000672,Couch Green cloth,Livingroom,10
+P000673,Dining table Plastic,Kitchen,23
+P000674,Stool Black ash,Kitchen,12
+P000675,Chair Red leather,Livingroom,21
+P000676,Table Oak,Livingroom,4
+P000677,Couch Green cloth,Livingroom,10
+P000678,Dining table Plastic,Kitchen,23
+P000679,Stool Black ash,Kitchen,12
+P000680,Chair Red leather,Livingroom,21
+P000681,Table Oak,Livingroom,4
+P000682,Couch Green cloth,Livingroom,10
+P000683,Dining table Plastic,Kitchen,23
+P000684,Stool Black ash,Kitchen,12
+P000685,Chair Red leather,Livingroom,21
+P000686,Table Oak,Livingroom,4
+P000687,Couch Green cloth,Livingroom,10
+P000688,Dining table Plastic,Kitchen,23
+P000689,Stool Black ash,Kitchen,12
+P000690,Chair Red leather,Livingroom,21
+P000691,Table Oak,Livingroom,4
+P000692,Couch Green cloth,Livingroom,10
+P000693,Dining table Plastic,Kitchen,23
+P000694,Stool Black ash,Kitchen,12
+P000695,Chair Red leather,Livingroom,21
+P000696,Table Oak,Livingroom,4
+P000697,Couch Green cloth,Livingroom,10
+P000698,Dining table Plastic,Kitchen,23
+P000699,Stool Black ash,Kitchen,12
+P000700,Chair Red leather,Livingroom,21
+P000701,Table Oak,Livingroom,4
+P000702,Couch Green cloth,Livingroom,10
+P000703,Dining table Plastic,Kitchen,23
+P000704,Stool Black ash,Kitchen,12
+P000705,Chair Red leather,Livingroom,21
+P000706,Table Oak,Livingroom,4
+P000707,Couch Green cloth,Livingroom,10
+P000708,Dining table Plastic,Kitchen,23
+P000709,Stool Black ash,Kitchen,12
+P000710,Chair Red leather,Livingroom,21
+P000711,Table Oak,Livingroom,4
+P000712,Couch Green cloth,Livingroom,10
+P000713,Dining table Plastic,Kitchen,23
+P000714,Stool Black ash,Kitchen,12
+P000715,Chair Red leather,Livingroom,21
+P000716,Table Oak,Livingroom,4
+P000717,Couch Green cloth,Livingroom,10
+P000718,Dining table Plastic,Kitchen,23
+P000719,Stool Black ash,Kitchen,12
+P000720,Chair Red leather,Livingroom,21
+P000721,Table Oak,Livingroom,4
+P000722,Couch Green cloth,Livingroom,10
+P000723,Dining table Plastic,Kitchen,23
+P000724,Stool Black ash,Kitchen,12
+P000725,Chair Red leather,Livingroom,21
+P000726,Table Oak,Livingroom,4
+P000727,Couch Green cloth,Livingroom,10
+P000728,Dining table Plastic,Kitchen,23
+P000729,Stool Black ash,Kitchen,12
+P000730,Chair Red leather,Livingroom,21
+P000731,Table Oak,Livingroom,4
+P000732,Couch Green cloth,Livingroom,10
+P000733,Dining table Plastic,Kitchen,23
+P000734,Stool Black ash,Kitchen,12
+P000735,Chair Red leather,Livingroom,21
+P000736,Table Oak,Livingroom,4
+P000737,Couch Green cloth,Livingroom,10
+P000738,Dining table Plastic,Kitchen,23
+P000739,Stool Black ash,Kitchen,12
+P000740,Chair Red leather,Livingroom,21
+P000741,Table Oak,Livingroom,4
+P000742,Couch Green cloth,Livingroom,10
+P000743,Dining table Plastic,Kitchen,23
+P000744,Stool Black ash,Kitchen,12
+P000745,Chair Red leather,Livingroom,21
+P000746,Table Oak,Livingroom,4
+P000747,Couch Green cloth,Livingroom,10
+P000748,Dining table Plastic,Kitchen,23
+P000749,Stool Black ash,Kitchen,12
+P000750,Chair Red leather,Livingroom,21
+P000751,Table Oak,Livingroom,4
+P000752,Couch Green cloth,Livingroom,10
+P000753,Dining table Plastic,Kitchen,23
+P000754,Stool Black ash,Kitchen,12
+P000755,Chair Red leather,Livingroom,21
+P000756,Table Oak,Livingroom,4
+P000757,Couch Green cloth,Livingroom,10
+P000758,Dining table Plastic,Kitchen,23
+P000759,Stool Black ash,Kitchen,12
+P000760,Chair Red leather,Livingroom,21
+P000761,Table Oak,Livingroom,4
+P000762,Couch Green cloth,Livingroom,10
+P000763,Dining table Plastic,Kitchen,23
+P000764,Stool Black ash,Kitchen,12
+P000765,Chair Red leather,Livingroom,21
+P000766,Table Oak,Livingroom,4
+P000767,Couch Green cloth,Livingroom,10
+P000768,Dining table Plastic,Kitchen,23
+P000769,Stool Black ash,Kitchen,12
+P000770,Chair Red leather,Livingroom,21
+P000771,Table Oak,Livingroom,4
+P000772,Couch Green cloth,Livingroom,10
+P000773,Dining table Plastic,Kitchen,23
+P000774,Stool Black ash,Kitchen,12
+P000775,Chair Red leather,Livingroom,21
+P000776,Table Oak,Livingroom,4
+P000777,Couch Green cloth,Livingroom,10
+P000778,Dining table Plastic,Kitchen,23
+P000779,Stool Black ash,Kitchen,12
+P000780,Chair Red leather,Livingroom,21
+P000781,Table Oak,Livingroom,4
+P000782,Couch Green cloth,Livingroom,10
+P000783,Dining table Plastic,Kitchen,23
+P000784,Stool Black ash,Kitchen,12
+P000785,Chair Red leather,Livingroom,21
+P000786,Table Oak,Livingroom,4
+P000787,Couch Green cloth,Livingroom,10
+P000788,Dining table Plastic,Kitchen,23
+P000789,Stool Black ash,Kitchen,12
+P000790,Chair Red leather,Livingroom,21
+P000791,Table Oak,Livingroom,4
+P000792,Couch Green cloth,Livingroom,10
+P000793,Dining table Plastic,Kitchen,23
+P000794,Stool Black ash,Kitchen,12
+P000795,Chair Red leather,Livingroom,21
+P000796,Table Oak,Livingroom,4
+P000797,Couch Green cloth,Livingroom,10
+P000798,Dining table Plastic,Kitchen,23
+P000799,Stool Black ash,Kitchen,12
+P000800,Chair Red leather,Livingroom,21
+P000801,Table Oak,Livingroom,4
+P000802,Couch Green cloth,Livingroom,10
+P000803,Dining table Plastic,Kitchen,23
+P000804,Stool Black ash,Kitchen,12
+P000805,Chair Red leather,Livingroom,21
+P000806,Table Oak,Livingroom,4
+P000807,Couch Green cloth,Livingroom,10
+P000808,Dining table Plastic,Kitchen,23
+P000809,Stool Black ash,Kitchen,12
+P000810,Chair Red leather,Livingroom,21
+P000811,Table Oak,Livingroom,4
+P000812,Couch Green cloth,Livingroom,10
+P000813,Dining table Plastic,Kitchen,23
+P000814,Stool Black ash,Kitchen,12
+P000815,Chair Red leather,Livingroom,21
+P000816,Table Oak,Livingroom,4
+P000817,Couch Green cloth,Livingroom,10
+P000818,Dining table Plastic,Kitchen,23
+P000819,Stool Black ash,Kitchen,12
+P000820,Chair Red leather,Livingroom,21
+P000821,Table Oak,Livingroom,4
+P000822,Couch Green cloth,Livingroom,10
+P000823,Dining table Plastic,Kitchen,23
+P000824,Stool Black ash,Kitchen,12
+P000825,Chair Red leather,Livingroom,21
+P000826,Table Oak,Livingroom,4
+P000827,Couch Green cloth,Livingroom,10
+P000828,Dining table Plastic,Kitchen,23
+P000829,Stool Black ash,Kitchen,12
+P000830,Chair Red leather,Livingroom,21
+P000831,Table Oak,Livingroom,4
+P000832,Couch Green cloth,Livingroom,10
+P000833,Dining table Plastic,Kitchen,23
+P000834,Stool Black ash,Kitchen,12
+P000835,Chair Red leather,Livingroom,21
+P000836,Table Oak,Livingroom,4
+P000837,Couch Green cloth,Livingroom,10
+P000838,Dining table Plastic,Kitchen,23
+P000839,Stool Black ash,Kitchen,12
+P000840,Chair Red leather,Livingroom,21
+P000841,Table Oak,Livingroom,4
+P000842,Couch Green cloth,Livingroom,10
+P000843,Dining table Plastic,Kitchen,23
+P000844,Stool Black ash,Kitchen,12
+P000845,Chair Red leather,Livingroom,21
+P000846,Table Oak,Livingroom,4
+P000847,Couch Green cloth,Livingroom,10
+P000848,Dining table Plastic,Kitchen,23
+P000849,Stool Black ash,Kitchen,12
+P000850,Chair Red leather,Livingroom,21
+P000851,Table Oak,Livingroom,4
+P000852,Couch Green cloth,Livingroom,10
+P000853,Dining table Plastic,Kitchen,23
+P000854,Stool Black ash,Kitchen,12
+P000855,Chair Red leather,Livingroom,21
+P000856,Table Oak,Livingroom,4
+P000857,Couch Green cloth,Livingroom,10
+P000858,Dining table Plastic,Kitchen,23
+P000859,Stool Black ash,Kitchen,12
+P000860,Chair Red leather,Livingroom,21
+P000861,Table Oak,Livingroom,4
+P000862,Couch Green cloth,Livingroom,10
+P000863,Dining table Plastic,Kitchen,23
+P000864,Stool Black ash,Kitchen,12
+P000865,Chair Red leather,Livingroom,21
+P000866,Table Oak,Livingroom,4
+P000867,Couch Green cloth,Livingroom,10
+P000868,Dining table Plastic,Kitchen,23
+P000869,Stool Black ash,Kitchen,12
+P000870,Chair Red leather,Livingroom,21
+P000871,Table Oak,Livingroom,4
+P000872,Couch Green cloth,Livingroom,10
+P000873,Dining table Plastic,Kitchen,23
+P000874,Stool Black ash,Kitchen,12
+P000875,Chair Red leather,Livingroom,21
+P000876,Table Oak,Livingroom,4
+P000877,Couch Green cloth,Livingroom,10
+P000878,Dining table Plastic,Kitchen,23
+P000879,Stool Black ash,Kitchen,12
+P000880,Chair Red leather,Livingroom,21
+P000881,Table Oak,Livingroom,4
+P000882,Couch Green cloth,Livingroom,10
+P000883,Dining table Plastic,Kitchen,23
+P000884,Stool Black ash,Kitchen,12
+P000885,Chair Red leather,Livingroom,21
+P000886,Table Oak,Livingroom,4
+P000887,Couch Green cloth,Livingroom,10
+P000888,Dining table Plastic,Kitchen,23
+P000889,Stool Black ash,Kitchen,12
+P000890,Chair Red leather,Livingroom,21
+P000891,Table Oak,Livingroom,4
+P000892,Couch Green cloth,Livingroom,10
+P000893,Dining table Plastic,Kitchen,23
+P000894,Stool Black ash,Kitchen,12
+P000895,Chair Red leather,Livingroom,21
+P000896,Table Oak,Livingroom,4
+P000897,Couch Green cloth,Livingroom,10
+P000898,Dining table Plastic,Kitchen,23
+P000899,Stool Black ash,Kitchen,12
+P000900,Chair Red leather,Livingroom,21
+P000901,Table Oak,Livingroom,4
+P000902,Couch Green cloth,Livingroom,10
+P000903,Dining table Plastic,Kitchen,23
+P000904,Stool Black ash,Kitchen,12
+P000905,Chair Red leather,Livingroom,21
+P000906,Table Oak,Livingroom,4
+P000907,Couch Green cloth,Livingroom,10
+P000908,Dining table Plastic,Kitchen,23
+P000909,Stool Black ash,Kitchen,12
+P000910,Chair Red leather,Livingroom,21
+P000911,Table Oak,Livingroom,4
+P000912,Couch Green cloth,Livingroom,10
+P000913,Dining table Plastic,Kitchen,23
+P000914,Stool Black ash,Kitchen,12
+P000915,Chair Red leather,Livingroom,21
+P000916,Table Oak,Livingroom,4
+P000917,Couch Green cloth,Livingroom,10
+P000918,Dining table Plastic,Kitchen,23
+P000919,Stool Black ash,Kitchen,12
+P000920,Chair Red leather,Livingroom,21
+P000921,Table Oak,Livingroom,4
+P000922,Couch Green cloth,Livingroom,10
+P000923,Dining table Plastic,Kitchen,23
+P000924,Stool Black ash,Kitchen,12
+P000925,Chair Red leather,Livingroom,21
+P000926,Table Oak,Livingroom,4
+P000927,Couch Green cloth,Livingroom,10
+P000928,Dining table Plastic,Kitchen,23
+P000929,Stool Black ash,Kitchen,12
+P000930,Chair Red leather,Livingroom,21
+P000931,Table Oak,Livingroom,4
+P000932,Couch Green cloth,Livingroom,10
+P000933,Dining table Plastic,Kitchen,23
+P000934,Stool Black ash,Kitchen,12
+P000935,Chair Red leather,Livingroom,21
+P000936,Table Oak,Livingroom,4
+P000937,Couch Green cloth,Livingroom,10
+P000938,Dining table Plastic,Kitchen,23
+P000939,Stool Black ash,Kitchen,12
+P000940,Chair Red leather,Livingroom,21
+P000941,Table Oak,Livingroom,4
+P000942,Couch Green cloth,Livingroom,10
+P000943,Dining table Plastic,Kitchen,23
+P000944,Stool Black ash,Kitchen,12
+P000945,Chair Red leather,Livingroom,21
+P000946,Table Oak,Livingroom,4
+P000947,Couch Green cloth,Livingroom,10
+P000948,Dining table Plastic,Kitchen,23
+P000949,Stool Black ash,Kitchen,12
+P000950,Chair Red leather,Livingroom,21
+P000951,Table Oak,Livingroom,4
+P000952,Couch Green cloth,Livingroom,10
+P000953,Dining table Plastic,Kitchen,23
+P000954,Stool Black ash,Kitchen,12
+P000955,Chair Red leather,Livingroom,21
+P000956,Table Oak,Livingroom,4
+P000957,Couch Green cloth,Livingroom,10
+P000958,Dining table Plastic,Kitchen,23
+P000959,Stool Black ash,Kitchen,12
+P000960,Chair Red leather,Livingroom,21
+P000961,Table Oak,Livingroom,4
+P000962,Couch Green cloth,Livingroom,10
+P000963,Dining table Plastic,Kitchen,23
+P000964,Stool Black ash,Kitchen,12
+P000965,Chair Red leather,Livingroom,21
+P000966,Table Oak,Livingroom,4
+P000967,Couch Green cloth,Livingroom,10
+P000968,Dining table Plastic,Kitchen,23
+P000969,Stool Black ash,Kitchen,12
+P000970,Chair Red leather,Livingroom,21
+P000971,Table Oak,Livingroom,4
+P000972,Couch Green cloth,Livingroom,10
+P000973,Dining table Plastic,Kitchen,23
+P000974,Chair Red leather,Livingroom,21
+P000975,Table Oak,Livingroom,4
+P000976,Couch Green cloth,Livingroom,10
+P000977,Dining table Plastic,Kitchen,23
+P000978,Stool Black ash,Kitchen,12
+P000979,Chair Red leather,Livingroom,21
+P000980,Table Oak,Livingroom,4
+P000981,Couch Green cloth,Livingroom,10
+P000982,Dining table Plastic,Kitchen,23
+P000983,Stool Black ash,Kitchen,12
+P000984,Chair Red leather,Livingroom,21
+P000985,Table Oak,Livingroom,4
+P000986,Couch Green cloth,Livingroom,10
+P000987,Dining table Plastic,Kitchen,23
+P000988,Stool Black ash,Kitchen,12
+P000989,Chair Red leather,Livingroom,21
+P000990,Table Oak,Livingroom,4
+P000991,Couch Green cloth,Livingroom,10
+P000992,Dining table Plastic,Kitchen,23
+P000993,Stool Black ash,Kitchen,12
+P000994,Chair Red leather,Livingroom,21
+P000995,Table Oak,Livingroom,4
+P000996,Couch Green cloth,Livingroom,10
+P000997,Dining table Plastic,Kitchen,23
+P000998,Stool Black ash,Kitchen,12
+P000999,Chair Red leather,Livingroom,21
+P001000,Table Oak,Livingroom,4

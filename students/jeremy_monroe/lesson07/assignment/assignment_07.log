@@ -1,0 +1,108 @@
+I'll put my final results at the top:
+
+linear total runtime 100 entry csv file: '0:00:00.330982'
+linear total runtime 9999 entry csv file: '0:00:09.303592'
+
+multithreading runtime 100 entry csv file: '0:00:03.341103'
+
+Below is the start of my notes through the process
+######################################################################
+--------------------------------------------------------
+######################################################################
+Ok, linear.py is just my database.py submission from assignment_05. I made a
+few slight changes to it because my database insertion code was definitely not
+DRY.
+
+Regardless, I'm using it for my baseline timing. Oh, and the times directly
+below are with test csv files that only have 100 entries. I'll run it with the
+full csv file in a moment.
+
+Parsing the csv files doesn't take much of any time so I'm focusing on the
+database insertions since they look like the bottleneck.
+
+2019-05-19 11:24:00,728 linear.py:126 INFO
+Successfully saved product info
+
+2019-05-19 11:24:00,729 linear.py:87  INFO
+Product insertion took: 0:00:00.128209
+
+2019-05-19 11:24:00,898 linear.py:126 INFO
+Successfully saved customer info
+
+2019-05-19 11:24:00,899 linear.py:92  INFO
+Customer insertion took: 0:00:00.170080
+
+2019-05-19 11:24:00,915 linear.py:102 INFO
+Total runtime = 0:00:00.330982
+
+________________________________
+This final log.info is the return value from import_data
+________________________________
+
+2019-05-19 11:24:00,915 linear.py:234 INFO
+[(101, 0, 101, '0:00:00.330982'), (100, 0, 100, '0:00:00.330982')]
+
+________________________________
+↓ These are the linear.py times ↓ run with the full csv files. ↓
+________________________________
+
+2019-05-19 11:22:06,551 linear.py:126 INFO
+Successfully saved product info
+
+2019-05-19 11:22:06,551 linear.py:87  INFO
+Product insertion took: 0:00:04.486974
+
+2019-05-19 11:22:11,111 linear.py:126 INFO
+Successfully saved customer info
+
+2019-05-19 11:22:11,111 linear.py:92  INFO
+Customer insertion took: 0:00:04.559635
+
+2019-05-19 11:22:11,274 linear.py:102 INFO
+Total runtime = 0:00:09.303592
+
+2019-05-19 11:22:11,280 linear.py:240 INFO
+[(9999, 0, 9999, '0:00:09.303592'), (9999, 0, 9999, '0:00:09.303592')]
+
+#############################################
+---------------------------------------
+#############################################
+
+________________________________
+↓ This is my multithreading attempt with 100 entry csv file and a single thread.
+________________________________
+
+2019-05-19 11:26:13,365 parallel_multithread_try.py:265 INFO
+thread_count = 1
+
+2019-05-19 11:26:14,862 parallel_multithread_try.py:98  INFO
+Product insertion took: 0:00:01.478682
+
+2019-05-19 11:26:16,679 parallel_multithread_try.py:104 INFO
+Customer insertion took: 0:00:01.816577
+
+2019-05-19 11:26:16,707 parallel_multithread_try.py:113 INFO
+Total runtime = 0:00:03.341103
+
+2019-05-19 11:26:16,708 parallel_multithread_try.py:268 INFO
+[(101, 0, 101, '0:00:03.341103'), (100, 0, 100, '0:00:03.341103')]
+
+________________________________
+↓ This is my multithreading attempt with ↓ 100 entry csv file and 20 threads.
+________________________________
+
+2019-05-19 11:26:43,489 parallel_multithread_try.py:265 INFO
+thread_count = 20
+
+2019-05-19 11:26:45,148 parallel_multithread_try.py:98  INFO
+Product insertion took: 0:00:01.651251
+
+2019-05-19 11:26:47,011 parallel_multithread_try.py:104 INFO
+Customer insertion took: 0:00:01.863090
+
+2019-05-19 11:26:47,017 parallel_multithread_try.py:113 INFO
+Total runtime = 0:00:03.526339
+
+2019-05-19 11:26:47,017 parallel_multithread_try.py:268 INFO
+[(101, 0, 100, '0:00:03.526339'), (100, 0, 100, '0:00:03.526339')]
+

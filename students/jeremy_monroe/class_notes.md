@@ -320,3 +320,29 @@ for person in Person.select().where(expression):
 Finally we'll close the connection:
 
 `db.close()`
+
+
+
+
+
+# Week 7
+
+## Concurrency & async
+
+communication between processes can be achieved via:
+
+`multiprocessing.Queue`
+
+`multiprocessing.Pipe`
+
+
+
+"Python threads do not work well for computationally intensive work."
+
+"Python threads work well if the threads are spending time waiting for something:
+
+- Database access
+- Network access
+- file I/O"
+
+"Multiprocessing is suitable for computationally intensive work and works best on large problems with not much data to pass back and forth."
