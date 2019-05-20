@@ -1,20 +1,21 @@
 """
 Module that creates new inventory management objects"""
+from functools import partial
 from pathlib import Path
 import pandas as pd
 
 DATA_PATH = Path.cwd().with_name('data')
 
-COLUMNS = ['invoice_file', 'customer_name', 'item_code', 'item_description',
+COLUMNS = ['customer_name', 'item_code', 'item_description',
            'item_monthly_price']
 
-SEED_DATA = [(None, 'Elisa Miles', 'LR04', 'Leather Sofa', 25.00),
-             (None, 'Edward Data', 'KT78', 'Kitchen Table', 10.00),
-             (None, 'Alex Gonzales', 'BR02', 'Queen Mattress', 17.00)]
+SEED_DATA = [('Elisa Miles', 'LR04', 'Leather Sofa', 25.00),
+             ('Edward Data', 'KT78', 'Kitchen Table', 10.00),
+             ('Alex Gonzales', 'BR02', 'Queen Mattress', 17.00)]
 
-SEED_DATA_3 = [(None, '3Elisa Miles', 'LR04', 'Leather Sofa', 25.00),
-               (None, '3Edward Data', 'KT78', 'Kitchen Table', 10.00),
-               (None, '3Alex Gonzales', 'BR02', 'Queen Mattress', 17.00)]
+SEED_DATA_3 = [('3Elisa Miles', 'LR04', 'Leather Sofa', 25.00),
+               ('3Edward Data', 'KT78', 'Kitchen Table', 10.00),
+               ('3Alex Gonzales', 'BR02', 'Queen Mattress', 17.00)]
 
 
 def add_furniture(file_name, source):
@@ -46,7 +47,9 @@ def check_file_exists(fpath_):
     """
     return Path.exists(fpath_)
 
+def single_customer():
+    pass
+
 
 if __name__ == '__main__':
-    print(check_file_exists(DATA_PATH / 'inventory.csv'))
     add_furniture('inventory.csv', SEED_DATA)
