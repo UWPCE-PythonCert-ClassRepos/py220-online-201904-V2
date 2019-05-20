@@ -162,6 +162,7 @@ def show_rentals(db, product_id):
                             'email': customer_record['email']}
 
             rental_users_dict[customer_id] = rental_users
+        print(db.customers.find_one({'user_id': 'C000003'}))
         return rental_users_dict
 
 
@@ -191,7 +192,7 @@ def main():
         logging.info(show_available_products(db))
 
         logging.info('\nShowing rental information for P000003')
-        logging.info(show_rentals(db, 'P000003'))
+        logging.info(show_rentals(db, 'P000004'))
         print(show_rentals(db, 'P000004'))
 
         logging.info('\nClearing data from database.')
