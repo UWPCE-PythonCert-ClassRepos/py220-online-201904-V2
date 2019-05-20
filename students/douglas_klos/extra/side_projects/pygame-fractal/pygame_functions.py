@@ -14,3 +14,8 @@ def check_keydown_event(event):
     """ Check event when keydown is detected """
     if event.key == pygame.K_q:
         sys.exit()
+
+    # if event.key == pygame.K_m:
+    #     calculate_mandelbrot()
+    #     display_fractal(screen, point_list)
+    #     update_screen()
