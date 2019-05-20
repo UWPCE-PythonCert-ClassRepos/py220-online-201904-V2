@@ -1,4 +1,4 @@
-# pylint: disable=W0212,W0621,W0212,C0111,C0103
+# pylint: disable=W0212, W0621, W0212, C0111, C0103, E0401
 import pytest
 import parallel_db as d
 
