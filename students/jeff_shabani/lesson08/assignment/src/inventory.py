@@ -18,7 +18,8 @@ SEED_DATA_3 = [('3Elisa Miles', 'LR04', 'Leather Sofa', 25.00),
                ('3Alex Gonzales', 'BR02', 'Queen Mattress', 17.00)]
 
 
-def add_furniture(file_name, source):
+def add_furniture(file_name, customer_name, item_code, item_description,
+           item_monthly_price):
     """
     This function creates a dataframe from an input source. It then checks if
     a with an input file name exists. If it is read in as a dataframe and the
@@ -28,8 +29,10 @@ def add_furniture(file_name, source):
     :param source:
     :return: new or modified csv file
     """
-    test = pd.DataFrame.from_records(source, columns=COLUMNS)
-    test['invoice_file'] = file_name
+
+    data = [(customer_name, item_code, item_description,
+           item_monthly_price)]
+    test = pd.DataFrame.from_records(data, columns=COLUMNS)
     if check_file_exists(DATA_PATH / file_name):
         read_in = pd.read_csv(DATA_PATH / file_name)
         read_in = read_in.append(test)
@@ -37,6 +40,17 @@ def add_furniture(file_name, source):
     else:
         final = test.to_csv(DATA_PATH / file_name, index=False)
     return test
+
+
+def create_initial_file(file_name, source):
+    """
+    creates initial file for testing
+    :param file_name:
+    :param source:
+    :return: csv file
+    """
+    test = pd.DataFrame.from_records(source, columns=COLUMNS)
+    return test.to_csv(DATA_PATH / file_name, index=False)
 
 
 def check_file_exists(fpath_):
@@ -52,4 +66,6 @@ def single_customer():
 
 
 if __name__ == '__main__':
-    add_furniture('inventory.csv', SEED_DATA)
+    create_initial_file('inventory.csv', SEED_DATA)
+    add_furniture('inventory.csv', 'Moostie Moo', 'LR04', 'Leather Sofa', 25.00)
+    add_furniture('inventory.csv', 'WilliamB', 'LR04', 'Leather Sofa', 25.00)

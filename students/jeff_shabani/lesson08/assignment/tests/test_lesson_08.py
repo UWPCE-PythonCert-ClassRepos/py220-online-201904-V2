@@ -9,9 +9,9 @@ from pathlib import Path
 
 DATA_PATH = Path.cwd().with_name('data')
 
-TEST_DATA=[(None, 'Elisa Miles', 'LR04', 'Leather Sofa', 25.00),
-            (None, 'Edward Data', 'KT78', 'Kitchen Table', 10.00),
-            (None, 'Alex Gonzales', 'BR02', 'Queen Mattress', 17.00)]
+TEST_DATA=[('Elisa Miles', 'LR04', 'Leather Sofa', 25.00),
+            ('Edward Data', 'KT78', 'Kitchen Table', 10.00),
+            ('Alex Gonzales', 'BR02', 'Queen Mattress', 17.00)]
 
 
 class PerformanceTesting(unittest.TestCase):
@@ -23,8 +23,10 @@ class PerformanceTesting(unittest.TestCase):
         :return: tuple
         """
         self.assertFalse(False, Path.exists(DATA_PATH / 'inventory.csv'))
-        self.assertTrue(Path.exists(DATA_PATH / 'inventory.csv'),
-                        add_furniture('inventory.csv', TEST_DATA))
+        add_furniture('inventory.csv', 'Elisa Miles', 'LR04', 'Leather Sofa', 25.00)
+        add_furniture('inventory.csv','Edward Data', 'KT78', 'Kitchen Table', 10.00)
+        add_furniture('inventory.csv','Alex Gonzales', 'BR02', 'Queen Mattress', 17.00)
+        self.assertTrue(True, Path.exists(DATA_PATH / 'inventory.csv'))
         os.remove(DATA_PATH / 'inventory.csv')
 
 
@@ -34,7 +36,9 @@ class PerformanceTesting(unittest.TestCase):
         added to the inventory csv
         :return: tuple
         """
-        add_furniture('inventory.csv', TEST_DATA)
+        add_furniture('inventory.csv', 'Elisa Miles', 'LR04', 'Leather Sofa', 25.00)
+        add_furniture('inventory.csv', 'Edward Data', 'KT78', 'Kitchen Table', 10.00)
+        add_furniture('inventory.csv', 'Alex Gonzales', 'BR02', 'Queen Mattress', 17.00)
         test = pd.read_csv(DATA_PATH/'inventory.csv')
         len_csv = int(test.iloc[:, 0].count())
         self.assertEqual(3, len_csv)
