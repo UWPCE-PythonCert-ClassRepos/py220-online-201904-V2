@@ -13,9 +13,7 @@ SEED_DATA = [('Elisa Miles', 'LR04', 'Leather Sofa', 25.00),
              ('Edward Data', 'KT78', 'Kitchen Table', 10.00),
              ('Alex Gonzales', 'BR02', 'Queen Mattress', 17.00)]
 
-SEED_DATA_3 = [('3Elisa Miles', 'LR04', 'Leather Sofa', 25.00),
-               ('3Edward Data', 'KT78', 'Kitchen Table', 10.00),
-               ('3Alex Gonzales', 'BR02', 'Queen Mattress', 17.00)]
+TEST_FILE_NAME = 'test_items.csv'
 
 
 def add_furniture(file_name, customer_name, item_code, item_description,
@@ -55,17 +53,17 @@ def create_initial_file(file_name, source):
 
 def check_file_exists(fpath_):
     """
-    Function that checks if a file exists.\
+    Function that checks if a file exists.
     :param fpath_:
     :return: bool
     """
     return Path.exists(fpath_)
 
-def single_customer():
+def single_customer(customer_name, file_name):
     pass
 
 
 if __name__ == '__main__':
-    create_initial_file('inventory.csv', SEED_DATA)
-    add_furniture('inventory.csv', 'Moostie Moo', 'LR04', 'Leather Sofa', 25.00)
-    add_furniture('inventory.csv', 'WilliamB', 'LR04', 'Leather Sofa', 25.00)
+    create_initial_file(TEST_FILE_NAME, SEED_DATA)
+    add_furniture(TEST_FILE_NAME, 'New Person 1', 'LR04', 'Leather Sofa', 25.00)
+    add_furniture(TEST_FILE_NAME, 'New Person 2', 'LR04', 'Leather Sofa', 25.00)
