@@ -34,4 +34,4 @@ def check_file_exists(fpath_):
 
 print(check_file_exists(DATA_PATH / 'inventory.csv'))
 
-add_furniture('inventory.csv', SEED_DATA_3)
+add_furniture('inventory.csv', SEED_DATA)
