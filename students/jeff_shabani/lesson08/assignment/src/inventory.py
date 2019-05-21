@@ -76,7 +76,7 @@ def single_customer(customer_name, dest_file_name, src_file_name):
     """
     infile = pd.read_csv(DATA_PATH / src_file_name)
     infile = infile[infile['customer_name'] == customer_name]
-    outfile = infile.to_csv(DATA_PATH / dest_file_name, index=False)
+    infile.to_csv(DATA_PATH / dest_file_name, index=False)
 
 
 create_invoice = partial(single_customer, 'Susan Wong', 'rented_items.csv')
