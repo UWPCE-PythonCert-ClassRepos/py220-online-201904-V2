@@ -1,0 +1,11 @@
+My approach was to increase the efficiency of looping through the rows
+of data, especially after populating to a million lines. In the original
+poor_perf file, there is a second open with context statement which
+repeats looping through the rows looking for "ao." Just combine that
+with context as an if condition to speed up time. Also, changed several if conditions under the analyze function scope to elif/else statements.
+After improvements comparing original function analyze runtime
+is 15.02 secs. Whereas improved function analyze_v2 runtime is 6.54
+faster.
+
+
+
