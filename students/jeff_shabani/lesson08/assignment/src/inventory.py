@@ -80,6 +80,3 @@ def single_customer(customer_name, dest_file_name, src_file_name):
 
 
 create_invoice = partial(single_customer, 'Susan Wong', 'rented_items.csv')
-
-if __name__ == '__main__':
-    create_initial_file(TEST_FILE_NAME, SEED_DATA)
