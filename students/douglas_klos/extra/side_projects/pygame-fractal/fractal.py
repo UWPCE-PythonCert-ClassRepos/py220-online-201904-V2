@@ -8,14 +8,16 @@ import src.pygame_functions as pf
 def main():
 
     settings = Settings()
+    
+
     point_list = func.fractal_list[settings.current_fractal](settings)
-    # point_list = func.calculate_mandelbrot(settings)
+    # palette = func.linear_colorize(settings)
+    palette = func.colorize(settings)
 
     init() #pygame
     screen = display.set_mode((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT))
     display.set_caption(f"Fractals")
-
-    palette = func.colorize(settings)
+    
     func.display_fractal(palette, screen, point_list)
     func.update_screen()
 

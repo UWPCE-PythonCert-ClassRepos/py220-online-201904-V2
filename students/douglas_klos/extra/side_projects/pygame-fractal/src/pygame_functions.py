@@ -1,5 +1,6 @@
 import sys
 import pygame
+from math import floor
 import src.functions as func
 
 
@@ -69,7 +70,7 @@ def check_mouse_up_event(screen, settings, palette):
         point_list = func.fractal_list[settings.current_fractal](settings)
 
         for point in point_list:
-            screen.set_at((point[0], point[1]), palette[point[2]])
+            screen.set_at((point[0], point[1]), palette[floor(point[2])])
 
         pygame.display.flip()
 
