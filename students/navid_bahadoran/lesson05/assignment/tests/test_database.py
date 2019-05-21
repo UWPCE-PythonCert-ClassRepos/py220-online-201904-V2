@@ -4,8 +4,9 @@ grade lesson 5
 
 import os
 import pytest
+import pathlib
 
-import database as l
+import src.database as l
 
 
 @pytest.fixture
@@ -49,7 +50,9 @@ def _show_rentals():
 
 def test_import_data():
     """ import """
-    data_dir = os.path.dirname(os.path.abspath(__file__))
+    file_dir = pathlib.Path(os.path.abspath(__file__)).parents
+    data_dir = file_dir[1]/"data"
+    # data_dir = os.path.dirname(os.path.abspath(__file__))
     added, errors = l.import_data(data_dir, "product.csv", "customers.csv", "rental.csv")
 
     for add in added:
@@ -70,5 +73,5 @@ def test_show_available_products(_show_available_products):
 
 def test_show_rentals(_show_rentals):
     """ rentals """
-    students_response = l.show_rentals("P000003")
+    students_response = l.show_rentals("prd005")
     assert students_response == _show_rentals
