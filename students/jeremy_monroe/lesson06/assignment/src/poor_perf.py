@@ -8,6 +8,10 @@ import csv
 
 
 def analyze(filename):
+    """
+    Analyzes a csv file and returns relevant information about said file
+    and the amount of time the analyzation took.
+    """
     start = datetime.datetime.now()
     with open(filename) as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
@@ -60,6 +64,7 @@ def analyze(filename):
 
 
 def main():
+    """ To be run if __name__ == __main__ """
     filename = "data/exercise.csv"
     analyze(filename)
 

@@ -26,7 +26,8 @@ def add_records(filename):
     """
     new_record_gen = ([index+10, str(uuid.uuid4()), index+10, index+10,
                        generate_random_cc_number(), generate_random_date(),
-                       generate_random_sentence()] for index in range(REPETITIONS))
+                       generate_random_sentence()]
+                      for index in range(REPETITIONS))
 
     with open(filename, 'a', newline='') as csvfile:
         writer = csv.writer(csvfile)
