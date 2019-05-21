@@ -39,7 +39,7 @@ def add_furniture(file_name, customer_name, item_code, item_description,
         read_in = read_in.append(test)
         read_in.to_csv(DATA_PATH / file_name, index=False)
     else:
-        final = test.to_csv(DATA_PATH / file_name, index=False)
+        test.to_csv(DATA_PATH / file_name, index=False)
     return test
 
 
@@ -51,7 +51,7 @@ def create_initial_file(file_name, source):
     :return: csv file
     """
     test = pd.DataFrame.from_records(source, columns=COLUMNS)
-    return test.to_csv(DATA_PATH / file_name, index=False)
+    test.to_csv(DATA_PATH / file_name, index=False)
 
 
 def check_file_exists(fpath_):
