@@ -2,11 +2,10 @@
 
 ## Closures and partials
 
-While this was an interesting assignment to do, it seems short.  Usually I go
-well above and beyond on assignments for personal enrichment.  This week though,
-the majority of time was spent working on a side project, a fractal rendering
-program written in python with numba for jit compiling.  I've had a lot of fun
-writing it and it's working out better than I had originally expected.
+This week though, the majority of time was spent working on a side project,
+a fractal rendering program written in python with numba for jit compiling.
+I've had a lot of fun writing it and it's working out better than I had
+originally expected.
 
 https://github.com/Douglas-Klos/fractals-py
 
@@ -25,4 +24,4 @@ $ firefox htmlcov/index.html
 
 Pylint: 10 on all files
 
-Pytest: 100% covereage of inventory.py
+Pytest: 100% coverage of inventory.py

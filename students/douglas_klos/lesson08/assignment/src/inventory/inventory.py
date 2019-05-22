@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
-#pylint: disable=W0106
+# pylint: disable=W0106
 """ HPNorton - Lesson 08 - Currying and Closures """
 
-from os.path import isfile
 from csv import writer, reader
 from functools import partial
 
@@ -19,15 +18,10 @@ def add_furniture(invoice_file, customer_name,
         item_monthly_rate {float} -- Monthly rate for item
     """
 
-    new_item = [customer_name, item_code, item_description, item_monthly_rate]
-
-    # if Path(invoice_file).exists():
-    if isfile(invoice_file):
-        with open(invoice_file, "a") as csv_file:
-            writer(csv_file).writerow(new_item)
-    else:
-        with open(invoice_file, "w") as csv_file:
-            writer(csv_file).writerow(new_item)
+    with open(invoice_file, "a") as csv_file:
+        writer(csv_file).writerow(
+            [customer_name, item_code, item_description, item_monthly_rate]
+        )
 
 
 def single_customer(customer_name, invoice_file):
@@ -81,10 +75,10 @@ def single_customer_search(customer_name, invoice_file):
             invoice_file {string} -- Invoice file to insert into
         """
 
-        rental_list = []
         with open(invoice_file, "r") as csv_file:
             rental_list = [
-                line for line in list(reader(csv_file))
+                line
+                for line in list(reader(csv_file))
                 if line[0] == customer_name and line[1] == rental_items
             ]
         if not rental_list:
