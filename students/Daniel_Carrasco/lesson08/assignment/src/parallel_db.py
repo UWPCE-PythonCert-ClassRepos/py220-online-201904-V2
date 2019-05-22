@@ -114,7 +114,7 @@ def import_data(db, directory_name, products_file, customers_file, rentals_file)
     for t in threads:
         t.join()
 
-    return [results_dict['customers'], results_dict['products'], results_dict['rentals']]
+    return [results_dict['customers'], results_dict['products']]
 
 
 def show_available_products(db):
@@ -139,18 +139,18 @@ def show_rentals(db, product_id):
     products matching the product_id.
     '''
 
-    rental_users_dict = {}
+    customer_info = {}
 
     for rental in db.rentals.find():
-        if rental['product_id'] == product_id:
-            customer_id = rental['user_id']
-            customer_record = db.customers.find_one({'user_id': customer_id})
+        if rental["product_id"] == product_id:
+            customer_id = rental["user_id"]
+            customer_record = db.customers.find_one({"user_id": customer_id})
 
-            rental_users = {key: value for key, value in customer_record.items() \
-            if key not in ('_id', 'user_id')}
-            rental_users_dict[customer_id] = rental_users
+            short_dict = {key: value for key, value in customer_record.items() \
+            if key not in ("_id", "user_id")}
+            customer_info[customer_id] = short_dict
 
-    return rental_users_dict
+        return customer_info
 
 
 def clear_data(db):
