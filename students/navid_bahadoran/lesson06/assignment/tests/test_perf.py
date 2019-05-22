@@ -2,12 +2,13 @@
 check good works the same, and is faster
 """
 import pytest
-import poor_perf as p
-import good_perf as g
+import src.poor_perf as p
+import src.good_perf as g
 import pathlib
 import os
-ASSIGNMENT_FOLDER = pathlib.Path(os.getcwd()).parent
+ASSIGNMENT_FOLDER = pathlib.Path(__file__).parents[1]
 CSV_FILE = ASSIGNMENT_FOLDER / "data/exercise.csv"
+
 
 
 def test_assess_preformance():

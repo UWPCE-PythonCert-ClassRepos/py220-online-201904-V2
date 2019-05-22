@@ -10,7 +10,8 @@
 """
 
 import pytest
-import src.database_l07 as l
+import linear as l
+import parallel as p
 
 @pytest.fixture
 def _all_answers():
@@ -21,8 +22,8 @@ def _all_answers():
 
     """
 
-    answers_linear = l.linear()
-    answers_parallel = l.parallel()
+    answers_linear = l.import_data('../data/', "product.csv", "customer.csv")
+    answers_parallel = p.import_data('../data/', "product.csv", "customer.csv")
 
     return ({
         "processed": answers_linear[0][0],
@@ -53,6 +54,7 @@ def _all_answers():
 
 def test_submission(_all_answers):
     #linear cust/prod, parallel cust/prod
+    l.drop_data()
     for answer in _all_answers:
         # needs a few more
         assert type(answer["processed"]) == int
