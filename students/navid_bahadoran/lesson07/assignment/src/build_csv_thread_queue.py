@@ -1,11 +1,14 @@
-"""his code creates a 1000,000 records in csv file named new_csv.csv"""
+import random
+import logging
+import concurrent.futures
+import queue
 import os
 import hashlib
 import csv
-import random
 import string
 import datetime
 import pathlib
+from threading import Event
 
 HEADER = ["seq", "guid", "seq", "seq", "ccumber", "date", "sentence"]
 ASSIGNMENT_FOLDER = pathlib.Path(__file__).parents[1]
@@ -18,7 +21,7 @@ D2 = datetime.datetime.strptime('1/1/2100', '%m/%d/%Y')
 DELTA = (D2 - D1).days
 
 
-def func():
+def producer(pipeline, event):
     """" create 1000,000 records as generator"""
     for i in range(1000000):
         guid = hashlib.md5(os.urandom(32)).hexdigest()
@@ -30,7 +33,22 @@ def func():
         sentence = random.choice(string.ascii_uppercase) + " ".join(
             ("".join(random.choices(string.ascii_lowercase, k=random.randrange(2, 7))) for j in
              range(random.randrange(1, 20))))
-        yield (i + 1, guid, i + 1, i + 1, ccnumber, date, sentence)
+        pipeline.put((i + 1, guid, i + 1, i + 1, ccnumber, date, sentence))
+    event.set()
 
 
-CSV_WRITER.writerows(func())
+def consumer(pipeline, event):
+    while not event.is_set() or not pipeline.empty():
+        item = pipeline.get(timeout=0.01)
+        CSV_WRITER.writerow(item)
+
+
+if __name__ == "__main__":
+    format = "%(asctime)s: %(message)s"
+    logging.basicConfig(format=format, level=logging.INFO,
+                        datefmt="%H:%M:%S")
+    pipeline = queue.Queue()
+    event = Event()
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        executor.submit(producer, pipeline, event)
+        executor.submit(consumer, pipeline, event)
