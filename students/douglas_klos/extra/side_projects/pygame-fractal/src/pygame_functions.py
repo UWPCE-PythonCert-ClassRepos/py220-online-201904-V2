@@ -7,17 +7,21 @@ import src.functions as func
 def check_events(screen, settings, palette):
 
     start_pos = None
-    for event in pygame.event.get():
+    for event in pygame.event.poll():
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
             check_keydown_event(event)
-        elif event.type == pygame.MOUSEBUTTONDOWN:
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == LEFT:
             settings._mouse_down = pygame.mouse.get_pos()
-        elif event.type == pygame.MOUSEBUTTONUP:
+        elif event.type == pygame.MOUSEBUTTONUP and event.button == LEFT:
             settings._mouse_up = pygame.mouse.get_pos()
             check_mouse_up_event(screen, settings, palette)
             # print(Settings.mouse_up[0] - Settings.mouse_down[0])
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == RIGHT:
+            print(f"right mouse button down")
+        elif event.type == pygame.MOUSEBUTTONUP and event.button == RIGHT:
+            print(f"right mouse button up")
 
 
 def check_mouse_up_event(screen, settings, palette):
