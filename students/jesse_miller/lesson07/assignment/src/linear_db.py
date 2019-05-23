@@ -6,7 +6,6 @@ Actually, turns out that's a lie.  This is a giant rabbit hole.
 '''
 import csv
 import logging
-# import time
 import os
 from timeit import timeit
 from pathlib import Path
@@ -72,14 +71,12 @@ def _add_bulk_data(collection, directory_name, filename):
     '''
     file_path = os.path.join(directory_name, filename)
 
-    # start_time = time.time()
     initial_records = collection.count_documents({})
 
     collection.insert_many(_import_csv(file_path), ordered=False)
 
     final_records = collection.count_documents({})
     records_processed = final_records - initial_records
-    # run_time = time.time() - start_time
 
     return records_processed, initial_records, final_records #, run_time
 
@@ -88,16 +85,6 @@ def import_data(db, directory_name, products_file, customers_file, rentals_file)
     '''
     Function to import data into three MongoDB tables
     '''
-    # products = db['products']
-    # products_results = _add_bulk_data(products, directory_name, products_file)
-#
-    # customers = db['customers']
-    # customers_results = _add_bulk_data(customers, directory_name, customers_file)
-#
-    # rentals = db['rentals']
-    # rentals_results = _add_bulk_data(rentals, directory_name, rentals_file)
-
-    # return [products_results, customers_results, rentals_results]
     product_errors = 0
     customer_errors = 0
     rental_errors = 0
@@ -129,7 +116,8 @@ def import_data(db, directory_name, products_file, customers_file, rentals_file)
 
 def show_available_products(db):
     '''
-    Returns a dictionary for each product that is available for rent (quantity > 0).
+    Returns a dictionary for each product that is available for rent
+    (quantity > 0).
     '''
     available_products = {}
     for product_id in db.products.find():
@@ -150,20 +138,18 @@ def show_rentals(db, product_id):
 
     for rental in db.rentals.find():
         if rental['product_id'] == product_id:
-            customer_id = rental['user_id']
-            print(customer_id)
+            customer_id = rental['product_id']
 
-            customer_record = db.customers.find_one({'user_id': customer_id})
-            print(customer_record)
+            customer_record = db.customers.find_one({'Id': customer_id})
 
-            rental_users = {'name': customer_record['name'],
-                            'address': customer_record['address'],
-                            'phone_number': customer_record['phone_number'],
-                            'email': customer_record['email']}
-
+            rental_users = {'Name': customer_record['Name'],
+                            'Last_name': customer_record['Last_name'],
+                            'Home_address': customer_record['Home_address'],
+                            'Phone_number': customer_record['Phone_number'],
+                            'Email_address': customer_record['Email_address']}
             rental_users_dict[customer_id] = rental_users
-        print(db.customers.find_one({'user_id': 'C000003'}))
-        return rental_users_dict
+
+    return rental_users_dict
 
 
 def clear_data(db):
@@ -191,7 +177,7 @@ def main():
         logging.info('Showing available products')
         logging.info(show_available_products(db))
 
-        logging.info('\nShowing rental information for P000003')
+        logging.info('\nShowing rental information for P000004')
         logging.info(show_rentals(db, 'P000004'))
         print(show_rentals(db, 'P000004'))
 

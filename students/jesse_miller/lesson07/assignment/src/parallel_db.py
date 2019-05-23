@@ -38,7 +38,7 @@ def print_mdb_collection(collection_name):
         print(doc)
 
 
-def import_data(filename):
+def _import_csv(filename):
     '''
     Returns a list of dictionaries.  One dictionary for each row of data in a
     csv file.
@@ -49,9 +49,9 @@ def import_data(filename):
 
         csv_data = csv.reader(csvfile)
 
-        headers = next(csv_data, None)
+        headers = next(csv_data, None)  # Save the first line as the headers
 
-        if headers[0].startswith('ï»¿'):
+        if headers[0].startswith('ï»¿'):  # Check for weird formatting
             headers[0] = headers[0][3:]
 
         for row in csv_data:
@@ -142,12 +142,12 @@ def show_rentals(db, product_id):
     customer_info = {}
 
     for rental in db.rentals.find():
-        if rental["product_id"] == product_id:
-            customer_id = rental["user_id"]
-            customer_record = db.customers.find_one({"user_id": customer_id})
+        if rental['product_id'] == product_id:
+            customer_id = rental['user_id']
+            customer_record = db.customers.find_one({'user_id': customer_id})
 
             short_dict = {key: value for key, value in customer_record.items() \
-            if key not in ("_id", "user_id")}
+            if key not in ('_id', 'user_id')}
             customer_info[customer_id] = short_dict
 
         return customer_info
