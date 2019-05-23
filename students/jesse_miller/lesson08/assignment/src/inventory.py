@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-#pylint: disable=C0103
+#pylint: disable=C0103, W0621
 '''
 Inventory management through functional programming
 '''
@@ -8,7 +8,7 @@ import logging
 from functools import partial
 from pathlib import Path
 from timeit import timeit
-from line_profiler import LineProfiler
+# from line_profiler import LineProfiler
 
 
 logging.basicConfig(filename='inventory.log', level=logging.DEBUG)
@@ -29,17 +29,17 @@ def add_furniture(invoice_file='', customer_name='', item_code='',
     logging.info('Furnature added')
 
 
-def add_test_data():
+def add_test_data(invoice_file):
     '''
     Populating the test date into the file.
     '''
     logging.info('Adding test data')
 
-    add_furniture(invoice, 'Elisa Miles', 'LR04', 'Leather Sofa',
+    add_furniture(invoice_file, 'Elisa Miles', 'LR04', 'Leather Sofa',
                   '25.00')
-    add_furniture(invoice, 'Edward Data', 'KT78', 'Kitchen Table',
+    add_furniture(invoice_file, 'Edward Data', 'KT78', 'Kitchen Table',
                   '10.00')
-    add_furniture(invoice, 'Alex Gonzales', 'BR02', 'Queen Mattress',
+    add_furniture(invoice_file, 'Alex Gonzales', 'BR02', 'Queen Mattress',
                   '17.00')
 
 
@@ -61,17 +61,17 @@ def single_customer(customer_name, invoice_file):
 
 
 if __name__ == '__main__':
-    add_test_data()
 
-    invoice = Path.cwd().with_name('data') / 'invoice_file.csv'
+    invoice_file = Path.cwd().with_name('data') / 'invoice_file.csv'
+    add_test_data(invoice_file)
     test_items = invoice = Path.cwd().with_name('data') / 'test_items.csv'
-    test_customer = single_customer('Susan Wong', invoice)
+    test_customer = single_customer('Susan Wong', invoice_file)
     test_customer(test_items)
 
-    print(timeit('main()', globals=globals(), number=1))
-    print(timeit('main()', globals=globals(), number=10))
+    print(timeit('add_test_data(invoice_file)', globals=globals(), number=1))
+    print(timeit('add_test_data(invoice_file)', globals=globals(), number=10))
 
-    lp = LineProfiler()
-    lp_wrapper = lp(add_test_data)
-    lp_wrapper()
-    lp.print_stats()
+    # lp = LineProfiler()
+    # lp_wrapper = lp(add_test_data(invoice_file))
+    # lp_wrapper()
+    # lp.print_stats()
