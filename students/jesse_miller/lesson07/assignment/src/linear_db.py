@@ -138,15 +138,15 @@ def show_rentals(db, product_id):
 
     for rental in db.rentals.find():
         if rental['product_id'] == product_id:
-            customer_id = rental['product_id']
+            customer_id = rental['user_id']
 
             customer_record = db.customers.find_one({'Id': customer_id})
 
-            rental_users = {'Name': customer_record['Name'],
-                            'Last_name': customer_record['Last_name'],
-                            'Home_address': customer_record['Home_address'],
-                            'Phone_number': customer_record['Phone_number'],
-                            'Email_address': customer_record['Email_address']}
+            rental_users = {'name': customer_record['Name'] + ' ' +
+                                    customer_record['Last_name'],
+                            'address': customer_record['Home_address'],
+                            'phone_number': customer_record['Phone_number'],
+                            'email': customer_record['Email_address']}
             rental_users_dict[customer_id] = rental_users
 
     return rental_users_dict
@@ -179,7 +179,6 @@ def main():
 
         logging.info('\nShowing rental information for P000004')
         logging.info(show_rentals(db, 'P000004'))
-        print(show_rentals(db, 'P000004'))
 
         logging.info('\nClearing data from database.')
         clear_data(db)
