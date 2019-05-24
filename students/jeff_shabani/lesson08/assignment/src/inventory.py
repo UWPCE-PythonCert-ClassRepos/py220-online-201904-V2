@@ -79,4 +79,7 @@ def single_customer(customer_name, dest_file_name, src_file_name):
     infile.to_csv(DATA_PATH / dest_file_name, index=False)
 
 
-create_invoice = partial(single_customer, 'Susan Wong', 'rented_items.csv')
+if __name__ == '__main__':
+    # create_initial_file(TEST_FILE_NAME, SEED_DATA)
+    create_invoice = partial(single_customer, 'Susan Wong', 'rented_items.csv')
+    create_invoice(TEST_FILE_NAME)
