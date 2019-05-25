@@ -1,6 +1,5 @@
 """
 Module that creates new inventory management objects"""
-from functools import partial
 from pathlib import Path
 import pandas as pd
 
@@ -63,23 +62,26 @@ def check_file_exists(fpath_):
     return Path.exists(fpath_)
 
 
-def single_customer(customer_name, dest_file_name, src_file_name):
+def single_customer(customer_name, dest_file_name):
     """
     This function takes a source csv and creates a new csv filtered to
-    include only records with the customer name entered. It then uses funtools
-    partial to create a new function with customer name and destination file
+    include only records with the customer name entered. It then uses a
+    closure to create a new function with customer name and destination file
     name set. The only thing to enter is the name of the source file.
     :param customer_name:
     :param dest_file_name:
-    :param src_file_name:
     :return: a new function
     """
-    infile = pd.read_csv(DATA_PATH / src_file_name)
-    infile = infile[infile['customer_name'] == customer_name]
-    infile.to_csv(DATA_PATH / dest_file_name, index=False)
+
+    def add_single_customer_data(src_file_name):
+        infile = pd.read_csv(DATA_PATH / src_file_name)
+        infile = infile[infile['customer_name'] == customer_name]
+        infile.to_csv(DATA_PATH / dest_file_name, index=False)
+
+    return add_single_customer_data
 
 
 if __name__ == '__main__':
-    # create_initial_file(TEST_FILE_NAME, SEED_DATA)
-    create_invoice = partial(single_customer, 'Susan Wong', 'rented_items.csv')
-    create_invoice(TEST_FILE_NAME)
+    create_initial_file(TEST_FILE_NAME, SEED_DATA)
+    CREATE_INVOICE = single_customer('Susan Wong', 'rented_items.csv')
+    CREATE_INVOICE(TEST_FILE_NAME)
