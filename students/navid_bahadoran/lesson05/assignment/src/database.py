@@ -100,5 +100,4 @@ def show_rentals(product_id):
         for user in result:
             doc = hp_norton_db.customers.find_one({'user_id': user['user_id']}, {'_id': 0})
             rental_users.update({list(doc.values())[0]: dict(list(doc.items())[1:])})
-        # pprint.pprint(rental_users)
         return rental_users

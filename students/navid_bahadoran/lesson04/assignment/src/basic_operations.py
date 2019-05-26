@@ -3,7 +3,7 @@
 
 import logging
 from peewee import *
-from .model import *
+from src.model import *
 
 logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)

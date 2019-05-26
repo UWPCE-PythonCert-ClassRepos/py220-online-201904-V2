@@ -5,9 +5,12 @@ import csv
 import random
 import string
 import datetime
+import pathlib
 
 HEADER = ["seq", "guid", "seq", "seq", "ccumber", "date", "sentence"]
-CSV_FILE = open("new_csv.csv", "w", newline='')
+ASSIGNMENT_FOLDER = pathlib.Path(__file__).parents[1]
+CSV_FILE = ASSIGNMENT_FOLDER / "data/exercise.csv"
+CSV_FILE = open(CSV_FILE, "w", newline='')
 CSV_WRITER = csv.writer(CSV_FILE, delimiter=",")
 CSV_WRITER.writerow(HEADER)
 D1 = datetime.datetime.strptime('1/1/1900', '%m/%d/%Y')

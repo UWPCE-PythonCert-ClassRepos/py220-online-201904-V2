@@ -1,0 +1,8 @@
+Modified the code form lesson05, it now returns a tuple for customer and a tuple
+for products. Each tuple contains 4 values: (the number of records processed (int),
+the record count in the database prior to running (int), the record count after
+running (int), and the time taken to run the module (float).
+
+
+Using time, my linear.py takes about 4.5 sec to import customer or product into database.
+Using threading in my parallel.py, the run time is reduced to about 0.3 sec.
