@@ -1,0 +1,72 @@
+Inital copy, all of the sudden my rentals process doesn't work.  Ive spent
+an inordinate amount of time trying to figure out why as well...
+
+At least running it is okay:
+eve:src jmiller$ python linear_db.py
+1.746678653
+18.003225602
+Timer unit: 1e-06 s
+
+Total time: 2.71624 s
+File: linear_db.py
+Function: main at line 133
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+   133                                           def main():
+   134                                               '''
+   135                                               Main execution
+   136                                               '''
+   137         1         20.0     20.0      0.0      mongo = MongoDBConnection()
+   138
+   139         1       2516.0   2516.0      0.1      with mongo:
+   140         1        365.0    365.0      0.0          logging.info('Opening MongoDB')
+   141         1         93.0     93.0      0.0          db = mongo.connection.media
+   142
+   143         1        294.0    294.0      0.0          logging.info('Importing csv files')
+   144         1    2439900.0 2439900.0     89.8          import_data(db, '', 'product.csv', 'customer.csv', 'rental.csv')
+   145
+   146         1        179.0    179.0      0.0          logging.info('Showing available products')
+   147                                                   # print(show_available_products(db))
+   148
+   149         1        171.0    171.0      0.0          logging.info('\nShowing rental information for prd005')
+   150         1     198415.0 198415.0      7.3          logging.info(show_rentals(db, 'prd005'))
+   151                                                   # print(show_rentals(db, 'prd005'))
+   152
+   153         1        260.0    260.0      0.0          logging.info('\nClearing data from database.')
+   154         1      74027.0  74027.0      2.7          clear_data(db)
+
+   Adding threading, and a bit of refactoring:
+
+   eve:src jmiller$ python parallel_db.py
+1.479316141
+17.931713984
+Timer unit: 1e-06 s
+
+Total time: 1.73211 s
+File: parallel_db.py
+Function: main at line 163
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+   163                                           def main():
+   164                                               '''
+   165                                               Main function
+   166                                               '''
+   167         1         21.0     21.0      0.0      mongo = MongoDBConnection()
+   168
+   169         1       4033.0   4033.0      0.2      with mongo:
+   170         1         99.0     99.0      0.0          db = mongo.connection.media
+   171
+   172         1          3.0      3.0      0.0          results = import_data(db, '', 'product.csv', 'customer.csv',
+   173         1    1644929.0 1644929.0     95.0                                'rental.csv')
+   174
+   175         1      83021.0  83021.0      4.8          clear_data(db)
+   176
+   177         1          3.0      3.0      0.0      return results
+
+[master]
+
+
+Of course, show_rentals() still doesn't work, and for the life of me I don't
+know why... it's showing up empty now.

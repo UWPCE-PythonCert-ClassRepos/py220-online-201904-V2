@@ -5,7 +5,7 @@ import os
 import datetime
 import csv
 
-ASSIGNMENT_FOLDER = pathlib.Path(os.getcwd()).parent
+ASSIGNMENT_FOLDER = pathlib.Path(__file__).parents[1]
 CSV_FILE = ASSIGNMENT_FOLDER / "data/exercise.csv"
 
 

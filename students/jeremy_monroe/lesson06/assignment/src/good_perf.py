@@ -1,5 +1,4 @@
-""" Slightly better written faster module.
-"""
+""" Slightly better written faster module. """
 
 from datetime import datetime
 from collections import Counter
