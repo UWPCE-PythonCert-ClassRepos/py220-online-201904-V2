@@ -6,7 +6,9 @@ Lesson 08
 Functions to add furniture to a CSV file.
 '''
 
+import csv
 from pathlib import Path
+from functools import partial
 
 # Rachel Schirra
 # May 27, 2019
@@ -26,29 +28,18 @@ def add_furniture(
     '''
     my_inv = Path(invoice_file)
     if my_inv.is_file():
-        my_file = open(my_inv, 'a')
+        open_type = 'a'
     else:
-        my_file = open(my_inv, 'w')
-    my_file.write(','.join([
-        customer_name,
-        item_code,
-        item_description,
-        item_monthly_price
-        ]))
-    my_file.close()
+        open_type = 'w'
+    with open(my_inv, open_type) as my_file:
+        my_file.write(','.join([
+            customer_name,
+            item_code,
+            item_description,
+            str(item_monthly_price)
+            ]))
+        my_file.write('\n')
 
-
-'''
-Create a function called single_customer:
-
-Input parameters: customer_name, invoice_file.
-
-Output: Returns a function that takes one parameter, rental_items.
-
-single_customer needs to use functools.partial and closures, in order
-to return a function that will iterate through rental_items and add each
-item to invoice_file.
-'''
 
 def single_customer(customer_name, invoice_file):
     '''
@@ -56,3 +47,31 @@ def single_customer(customer_name, invoice_file):
     function iterates through rental_items and adds each item to
     invoice_file.
     '''
+    # Create function with pre-assigned invoice file and customer name
+    add_item = partial(
+        add_furniture,
+        invoice_file=invoice_file,
+        customer_name=customer_name
+    )
+
+    # Create function for output
+    def invoicer(rental_items):
+        # Get data from rental_items file
+        # ps DictReader is the greatest
+        inv_data = []
+        with open(rental_items, 'r') as file:
+            reader = csv.DictReader(file, fieldnames=[
+                'item_code',
+                'item_description',
+                'item_monthly_price'
+            ])
+            for row in reader:
+                inv_data.append(dict(row))
+        # Apply add_item function to each row from rental_items
+        for line in inv_data:
+            add_item(
+                item_code=line['item_code'],
+                item_description=line['item_description'],
+                item_monthly_price=line['item_monthly_price']
+            )
+    return invoicer
