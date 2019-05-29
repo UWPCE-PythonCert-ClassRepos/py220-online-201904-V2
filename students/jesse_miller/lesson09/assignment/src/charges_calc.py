@@ -49,6 +49,18 @@ def log_level_settings(log_level):
         return
 
 
+def conditional_log(func):
+    '''
+    Decorator for conditional logging.
+    '''
+    def not_logged(*args, **kwargs):
+        logging.disable(logging.CRITICAL)  # Turn logging off
+        result = func(*args, **kwargs)  # Run function
+        logging.disable(logging.NOTSET)  # Turn logging on
+        return result
+    return not_logged
+
+
 def load_rentals_file(filename):
     '''
     Loads rental data from a file on the system.
@@ -65,6 +77,7 @@ def load_rentals_file(filename):
     return data
 
 
+@conditional_log
 def calculate_additional_fields(data):
     '''
     Calculate fields from the file.  To be honest at this stage I don't know
@@ -82,7 +95,7 @@ def calculate_additional_fields(data):
             logging.debug(value)
 
         value['total_days'] = (rental_end - rental_start).days
-        if value["total_days"] < 0:
+        if value['total_days'] < 0:
             logging.error('Total days is negative.')
             print('Total days cannot be negative.')
             logging.debug(value)
@@ -100,8 +113,8 @@ def calculate_additional_fields(data):
         try:
             value['unit_cost'] = value['total_price'] / value['units_rented']
         except ZeroDivisionError as div_error:
-            logging.warning("%s division by 0.", div_error)
-            print("Error with units rented. Division by 0.")
+            logging.warning('%s division by 0.', div_error)
+            print('Error with units rented. Division by 0.')
             logging.debug(value)
 
         # import pdb; pdb.set_trace()
@@ -126,5 +139,10 @@ if __name__ == '__main__':
     DEBUG_LEVEL = int(ARGS.debug)
     log_level_settings(DEBUG_LEVEL)
     DATA = load_rentals_file(ARGS.input)
-    DATA = calculate_additional_fields(DATA)
-    save_to_json(ARGS.output, DATA)
+    if int(ARGS.conditional) == 1:
+        FINAL_DATA = calculate_additional_fields(DATA)
+    else:
+        PLAIN_FUNC = undecorated(calculate_additional_fields)
+        FINAL_DATA = PLAIN_FUNC(DATA)
+
+    save_to_json(ARGS.output, FINAL_DATA)
