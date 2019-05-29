@@ -1,39 +1,27 @@
 #!/usr/bin/env python3
 """Returns total price paid for individual rentals"""
 
-# Douglas Klos
-# April 9th, 2019
-# Python 220
-# Lesson 02, debugging and logger
 
-import sys
-import argparse
-import json
+from sys import argv, stderr
+from argparse import ArgumentParser
+from json import load, decoder, dump
 from datetime import datetime as dt
 from math import sqrt
 from loguru import logger
 
-LOG_FILE = dt.now().strftime("%Y-%m-%d") + ".log"
-LOG_FORMAT = "%(asctime)s %(filename)s:%(lineno)-3d %(levelname)s %(message)s"
+
+def disable_logging(func):
+    """ Decorator to disable logging in functions """
+    def logged(*args, **kwargs):
+        if "-d" in argv:
+            logger.disable("__main__")
+        result = func(*args, **kwargs)
+        logger.enable("__main__")
+        return result
+    return logged
 
 
-def main():
-    """main function"""
-
-    logger.remove()
-    logger.add(LOG_FILE, level="DEBUG")
-    logger.add(sys.stderr, level="DEBUG")
-
-    args = parse_cmd_arguments()
-    set_debug_level(args)
-    data = load_rentals_file(args.input)
-    data = repair_dates(data)
-    data, bad_data = calculate_additional_fields(data)
-    data = remove_bad_data(data, bad_data)
-    save_to_json(args.output, data)
-    save_to_json(args.output + ".bad", bad_data)
-
-
+@disable_logging
 def parse_cmd_arguments():
     """Parses the command line arguments
 
@@ -41,40 +29,20 @@ def parse_cmd_arguments():
         ArgumentParser.parse_args
 
     """
-    parser = argparse.ArgumentParser(description="Process some integers.")
+    parser = ArgumentParser(description="Process some integers.")
     parser.add_argument("-i", "--input", help="input JSON file", required=True)
     parser.add_argument("-o", "--output", help="ouput JSON file", required=True)
-    parser.add_argument("-d", "--debug", help="debugger level", required=False)
+    parser.add_argument(
+        "-d",
+        "--disable",
+        help="disable_logging",
+        action="store_true",
+        required=False,
+    )
     return parser.parse_args()
 
 
-def set_debug_level(args):
-    """Sets the debug level based on command line arguments"""
-
-    if args.debug:
-        if args.debug == "0":
-            logger.disable("__main__")
-        elif args.debug == "1":
-            logger.remove()
-            logger.add(LOG_FILE, level="DEBUG")
-            logger.add(sys.stderr, level="DEBUG")
-        elif args.debug == "2":
-            logger.remove()
-            logger.add(LOG_FILE, level="INFO")
-            logger.add(sys.stderr, level="INFO")
-        elif args.debug == "3":
-            logger.remove()
-            logger.add(LOG_FILE, level="WARNING")
-            logger.add(sys.stderr, level="WARNING")
-        elif args.debug == "4":
-            logger.remove()
-            logger.add(LOG_FILE, level="ERROR")
-            logger.add(sys.stderr, level="ERROR")
-        else:
-            print(f"Invalid debug level specified: {args.debug}.  (0-4)")
-            exit(0)
-
-
+@disable_logging
 def load_rentals_file(filename):
     """Loads rental data from input json file
 
@@ -88,18 +56,20 @@ def load_rentals_file(filename):
     logger.info("-----Start of load_rental_file-----")
     with open(filename) as file:
         try:
-            new_data = json.load(file)
-        except json.decoder.JSONDecodeError as ex:
+            new_data = load(file)
+        except decoder.JSONDecodeError as ex:
             logger.critical(
                 "Loading data from json failed."
                 "\n\tThe following error should contain the line where the "
                 "problem occured.\n\tFix the source file and try again."
-                "\n\tException: %s", repr(ex)
+                "\n\tException: %s",
+                repr(ex),
             )
             exit(0)
     return new_data
 
 
+@disable_logging
 def repair_dates(data):
     """Repairs incorrect dates in data
 
@@ -129,6 +99,7 @@ def repair_dates(data):
     return data
 
 
+@disable_logging
 def calculate_additional_fields(data):
     """Calculates additional fields of data
 
@@ -158,6 +129,7 @@ def calculate_additional_fields(data):
     return data, bad_data
 
 
+@disable_logging
 def remove_bad_data(data, bad_data):
     """Removes bad entries from the dictionary
 
@@ -174,6 +146,7 @@ def remove_bad_data(data, bad_data):
     return data
 
 
+@disable_logging
 def save_to_json(filename, data):
     """Saves the input_data to filename in json format
 
@@ -183,7 +156,25 @@ def save_to_json(filename, data):
     """
     logger.info(f"-----Start of save_to_json({filename}, data)-----")
     with open(filename, "w") as file:
-        json.dump(data, file)
+        dump(data, file)
+
+
+def main():
+    """main function"""
+
+    log_file = dt.now().strftime("%Y-%m-%d") + ".log"
+
+    logger.remove()
+    logger.add(log_file, level="DEBUG")
+    logger.add(stderr, level="DEBUG")
+
+    args = parse_cmd_arguments()
+
+    data, bad_data = calculate_additional_fields(
+        repair_dates(load_rentals_file(args.input))
+    )
+    save_to_json(args.output, remove_bad_data(data, bad_data))
+    save_to_json(args.output + ".bad", bad_data)
 
 
 if __name__ == "__main__":
