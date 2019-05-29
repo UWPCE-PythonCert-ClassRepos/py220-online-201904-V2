@@ -15,9 +15,10 @@ def _customers_to_add():
         ["Elisa Miles", "LR04", "Leather Sofa", "25.00"],
         ["Edward Data", "KT78", "Kitchen Table", "10.00"],
         ["Alex Gonzales", "BR02", "Queen Mattress", "17.00"],
-        ["Hououin Kyouma", "FG04", "Moad Snake", "1200.00"],
+
+        ["Kyouma Hououin", "FG04", "Moad Snake", "1200.00"],
         ["Hashida Itaru", "FG204", "2nd Edition Ver. 2.31", "00.00"],
-        ["christina", "FG88", "Replicator", "800.00"],
+        ["Christina", "FG88", "Replicator", "800.00"]   
     ]
 
 
@@ -27,30 +28,31 @@ def _full_invoice():
         ["Elisa Miles", "LR04", "Leather Sofa", "25.00"],
         ["Edward Data", "KT78", "Kitchen Table", "10.00"],
         ["Alex Gonzales", "BR02", "Queen Mattress", "17.00"],
-        ["Hououin Kyouma", "FG04", "Moad Snake", "1200.00"],
+        ["Kyouma Hououin", "FG04", "Moad Snake", "1200.00"],
         ["Hashida Itaru", "FG204", "2nd Edition Ver. 2.31", "00.00"],
-        ["christina", "FG88", "Replicator", "800.00"],
-        ["Hououin Kyouma", "FG06", "Cyalume Saber", "7.50"],
+        ["Christina", "FG88", "Replicator", "800.00"],
+        ["Kyouma Hououin", "FG06", "Cyalume Saber", "7.50"],
         [
-            "Hououin Kyouma",
+            "Kyouma Hououin",
             "FG07",
             "Active-Shell Optical Camouflage Ball",
             "12.50",
         ],
-        ["Hououin Kyouma", "FG08", "Phonewave", "1000.00"],
-        ["Hououin Kyouma", "FG204", "Time Machine", "0.00"],
+        ["Kyouma Hououin", "FG08", "Phonewave", "1000.00"],
+        ["Kyouma Hououin", "FG204", "Time Machine", "0.00"]
     ]
 
 
 @fixture
 def _customer_search_christina():
-    return [["christina", "FG88", "Replicator", "800.00"]]
+    return [["Christina", "FG88", "Replicator", "800.00"]]
 
 
 def test_add_furniture_write(_customers_to_add):
     """ Tests that add furniture new file writing works """
 
     test_invoice = "../data/test-invoice.csv"
+    csv_contents = []
 
     if Path(test_invoice).exists():
         remove(test_invoice)
@@ -61,7 +63,12 @@ def test_add_furniture_write(_customers_to_add):
         )
 
     with open(test_invoice, "r") as csv_file:
-        csv_contents = list(reader(csv_file))
+        contents = reader(csv_file, delimiter=',')
+        for line in contents:
+            if line != []:
+                csv_contents += [line]
+
+        csv_contents += contents
 
     assert _customers_to_add == csv_contents
 
@@ -70,6 +77,7 @@ def test_add_furniture_append(_customers_to_add):
     """ Tests that add furniture append file writing works """
 
     test_invoice = "../data/test-invoice.csv"
+    csv_contents = []
 
     if Path(test_invoice).exists():
         remove(test_invoice)
@@ -83,7 +91,12 @@ def test_add_furniture_append(_customers_to_add):
         )
 
     with open(test_invoice, "r") as csv_file:
-        csv_contents = list(reader(csv_file))
+        contents = reader(csv_file, delimiter=',')
+        for line in contents:
+            if line != []:
+                csv_contents += [line]
+
+        csv_contents += contents
 
     assert _customers_to_add == csv_contents
 
@@ -93,12 +106,18 @@ def test_single_customer(_full_invoice):
 
     test_invoice = "../data/test-invoice.csv"
     items_to_insert = "../data/items.csv"
+    csv_contents = []
 
-    function = l.single_customer("Hououin Kyouma", test_invoice)
+    function = l.single_customer("Kyouma Hououin", test_invoice)
     function(items_to_insert)
 
     with open(test_invoice, "r") as csv_file:
-        csv_contents = list(reader(csv_file))
+        contents = reader(csv_file, delimiter=',')
+        for line in contents:
+            if line != []:
+                csv_contents += [line]
+
+        csv_contents += contents
 
     assert _full_invoice == csv_contents
 
@@ -107,6 +126,7 @@ def test_customer_search(_customers_to_add, _customer_search_christina):
     """ Tests that customer serach is working"""
 
     test_invoice = "../data/test-invoice.csv"
+    csv_contents = []
 
     if Path(test_invoice).exists():
         remove(test_invoice)
@@ -116,6 +136,6 @@ def test_customer_search(_customers_to_add, _customer_search_christina):
             test_invoice, customer[0], customer[1], customer[2], customer[3]
         )
 
-    func = l.single_customer_search("christina", test_invoice)
+    func = l.single_customer_search("Christina", test_invoice)
     assert func("FG88") == _customer_search_christina
     assert func("FG204") == "Nothing Found"

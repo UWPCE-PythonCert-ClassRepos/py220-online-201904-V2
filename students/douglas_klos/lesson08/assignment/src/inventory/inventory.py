@@ -79,7 +79,7 @@ def single_customer_search(customer_name, invoice_file):
             rental_list = [
                 line
                 for line in list(reader(csv_file))
-                if line[0] == customer_name and line[1] == rental_items
+                if line != [] and line[0] == customer_name and line[1] == rental_items
             ]
         if not rental_list:
             return "Nothing Found"
