@@ -6,13 +6,13 @@ Lesson 08
 Functions to add furniture to a CSV file.
 '''
 
-import csv
-from pathlib import Path
-from functools import partial
-
 # Rachel Schirra
 # May 27, 2019
 # Python 220 Lesson 08
+
+import csv
+from pathlib import Path
+from functools import partial
 
 
 def add_furniture(
