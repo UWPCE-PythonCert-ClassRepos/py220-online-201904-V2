@@ -1,39 +1,76 @@
+# pylint: disable=W0212, W0621, W0212, C0111, C0103, E0401
 import pytest
-import os
+import parallel_db as d
 
-import database as l
+@pytest.fixture(scope='function')
+def mongo_database():
+    '''
+    Creates a MongoDB.
+    '''
+    mongo = d.MongoDBConnection()
 
-@pytest.fixture
-def _show_available_products():
-    return {
-            'P000001':{'description':'Chair Red leather','product_type':'livingroom','quantity_available':'21'},
-            'P000002':{'description':'Table Oak','product_type':'livingroom','quantity_available':'4'},
-            'P000003':{'description':'Couch Green cloth','product_type':'livingroom','quantity_available':'10'},
-            'P000004':{'description':'Dining table Plastic','product_type':'Kitchen','quantity_available':'23'},
-            'P000005':{'description':'Stool Black ash','product_type':'Kitchen','quantity_available':'12'}
-           }    
+    with mongo:
+        db = mongo.connection.media
 
-@pytest.fixture
-def _show_rentals():
-    return {
-            'C000001':{'name':'Shea Boehm','address':'3343 Sallie Gateway','phone_number':'508.104.0644','email':'Alexander.Weber@monroe.com'},
-            'C000003':{'name':'Elfrieda Skiles','address':'3180 Mose Row','phone_number':'839)825-0058','email':'Mylene_Smitham@hannah.co.uk'}
-           }
+        yield db
 
-def test_import_data():
-    dir = os.path.dirname(os.path.abspath(__file__))
-    added, errors = l.import_data(dir, "products.csv", "customers.csv", "rentals.csv")
-    for add in added:
-        assert isinstance(add, int)
-    for error in errors:
-        assert isinstance(error, int)  
-    assert added == (5,11,9)
-    assert errors == (0,0,0)
+        d.clear_data(db)
 
-def test_show_available_products(_show_available_products):
-    students_response = l.show_available_products()
-    assert students_response == _show_available_products
 
-def test_show_rentals(_show_rentals):
-    students_response = l.show_rentals("P000003")
-    assert students_response == _show_rentals
+def test_import_csv():
+    products_list = d._import_csv('product.csv')
+
+    assert len(products_list) == 9999
+
+
+def test_add_bulk_data(mongo_database):
+    results_dict = {}
+    d._add_bulk_data(results_dict, mongo_database.rentals, '', 'rental.csv')
+
+    assert results_dict['rentals'][0] == 9999
+    assert results_dict['rentals'][1] == 0
+    assert results_dict['rentals'][2] == 9999
+    assert isinstance(results_dict['rentals'][3], float)
+
+
+def test_import_data(mongo_database):
+    result = d.import_data(mongo_database, '', 'product.csv', 'customer.csv',
+                           'rental.csv')
+
+    assert result[0][0] == 9999
+    assert result[0][1] == 0
+    assert result[0][2] == 9999
+    assert isinstance(result[0][3], float)
+
+    assert result[1][0] == 9999
+    assert result[1][1] == 0
+    assert result[1][2] == 9999
+    assert isinstance(result[1][3], float)
+
+
+def test_show_available_products(mongo_database):
+    d.import_data(mongo_database, '', 'product.csv', 'customer.csv', 'rental.csv')
+    result = d.show_available_products(mongo_database)
+
+    assert len(result) == 9999
+    assert 'P000001' in result
+    assert 'P010999' not in result
+
+
+def test_show_rentals(mongo_database):
+    d.import_data(mongo_database, '', 'product.csv', 'customer.csv', 'rental.csv')
+
+    result = d.show_rentals(mongo_database, 'P000004')
+
+    assert len(result) == 2
+    assert list(result.keys()) == ['C000002', 'C000004']
+
+
+def test_clear_data(mongo_database):
+    d.import_data(mongo_database, '', 'product.csv', 'customer.csv', 'rental.csv')
+    result = sorted(mongo_database.list_collection_names())
+    assert result == ['customers', 'products', 'rentals']
+
+    d.clear_data(mongo_database)
+    result2 = mongo_database.list_collection_names()
+    assert result2 == []
