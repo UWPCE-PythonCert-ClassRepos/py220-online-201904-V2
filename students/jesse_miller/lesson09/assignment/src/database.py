@@ -23,10 +23,12 @@ class MongoDBConnection:
         self.connection = None
 
     def __enter__(self):
+        print('Opening a MongoDB connection.\n')
         self.connection = pymongo.MongoClient(self.host, self.port)
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
+        print('\nClosing the MongoDB connection.')
         self.connection.close()
 
 
@@ -67,21 +69,26 @@ def _add_bulk_data(results, collection, directory_name, filename):
     '''
     Adds data in bulk to database.
     '''
-    file_path = os.path.join(directory_name, filename)
+    try:
 
-    start_time = time.time()
-    initial_records = collection.count_documents({})
+        file_path = os.path.join(directory_name, filename)
 
-    collection.insert_many(_import_csv(file_path), ordered=False)
+        start_time = time.time()
+        initial_records = collection.count_documents({})
 
-    final_records = collection.count_documents({})
-    records_processed = final_records - initial_records
-    run_time = time.time() - start_time
+        collection.insert_many(_import_csv(file_path), ordered=False)
 
-    stats = (records_processed, initial_records, final_records, run_time)
+        final_records = collection.count_documents({})
+        records_processed = final_records - initial_records
+        run_time = time.time() - start_time
 
-    results[collection.name] = stats
+        stats = (records_processed, initial_records, final_records, run_time)
 
+        results[collection.name] = stats
+
+    except pymongo.errors.BulkWriteError as bwe:
+        print(bwe.details)
+        return len(bwe.details['writeErrors'])
 
 def import_data(db, directory_name, products_file, customers_file, rentals_file):
     '''
