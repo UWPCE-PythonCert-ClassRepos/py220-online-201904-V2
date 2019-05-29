@@ -484,10 +484,10 @@ def test_drop_databases():
     """ Test drop HPNorton database """
 
     l.insert_to_mongo("./data/customers.csv")
-    assert "HPNorton_PyMongo_L07" in l.MONGO.connection.list_database_names()
+    assert "HPNorton_PyMongo_L09" in l.MONGO.connection.list_database_names()
     l.drop_database()
     assert (
-        "HPNorton_PyMongo_L07" not in l.MONGO.connection.list_database_names()
+        "HPNorton_PyMongo_L09" not in l.MONGO.connection.list_database_names()
     )
 
 
@@ -498,14 +498,14 @@ def test_drop_collections():
     l.insert_to_mongo("./data/product.csv")
     l.insert_to_mongo("./data/rental.csv")
     collection_names = (
-        l.MONGO.connection.HPNorton_PyMongo_L07.list_collection_names()
+        l.MONGO.connection.HPNorton_PyMongo_L09.list_collection_names()
     )
     assert "customers" in collection_names
     assert "product" in collection_names
     assert "rental" in collection_names
     l.drop_collections()
     collection_names = (
-        l.MONGO.connection.HPNorton_PyMongo_L07.list_collection_names()
+        l.MONGO.connection.HPNorton_PyMongo_L09.list_collection_names()
     )
     assert "customers" not in collection_names
     assert "product" not in collection_names

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# pylint: disable=eval-used
 """ HPNorton API for accessing MongoDB collections """
 
 from multiprocessing import Process, Queue
@@ -9,7 +8,6 @@ from loguru import logger
 from pymongo import ASCENDING
 from pymongo.errors import DuplicateKeyError
 
-# from src.settings import Settings
 import src.mongodb_conn as mdb_conn
 
 
@@ -86,8 +84,7 @@ def insert_to_mongo(filename, results=None):
     start = time()
     collection_name, _ = splitext(basename(filename))
 
-    with MONGO:
-        mdb = eval(MONGO.connect_string)
+    with MONGO as mdb:
         logger.info(f"Inserting {collection_name} into Mongo...")
         collection = mdb[collection_name]
         iter_lines = get_line(open_file(filename))
@@ -142,8 +139,7 @@ def show_available_products():
     logger.info(f"Preparing dict of available prodcuts...")
     available_products = {}
 
-    with MONGO:
-        mdb = eval(MONGO.connect_string)
+    with MONGO as mdb:
         products = mdb["product"]
         for doc in products.find():
             del doc["_id"]
@@ -164,8 +160,7 @@ def list_all_products():
     logger.info(f"Perparing dict of all products...")
     all_products_dict = {}
 
-    with MONGO:
-        mdb = eval(MONGO.connect_string)
+    with MONGO as mdb:
         products = mdb["product"]
         all_products = products.find({})
         for product in all_products:
@@ -185,8 +180,7 @@ def list_all_rentals():
     logger.info(f"Perparing dict of all rentals...")
     all_rentals_dict = {}
 
-    with MONGO:
-        mdb = eval(MONGO.connect_string)
+    with MONGO as mdb:
         rentals = mdb["rental"]
         all_rentals = rentals.find({})
         for rental in all_rentals:
@@ -212,8 +206,7 @@ def list_all_customers():
     logger.info(f"Perparing dict of all customers...")
     all_customers_dict = {}
 
-    with MONGO:
-        mdb = eval(MONGO.connect_string)
+    with MONGO as mdb:
         customers = mdb["customers"]
         all_customers = customers.find({})
         for customer in all_customers:
@@ -236,9 +229,7 @@ def rentals_for_customer(user_id):
     logger.info(f"Perparing customer dict for user_id: {user_id}...")
     rentals_for_user = []
 
-    with MONGO:
-        mdb = eval(MONGO.connect_string)
-
+    with MONGO as mdb:
         rentals = mdb["rental"]
         products = mdb["product"]
         query = {"user_id": user_id}
@@ -274,8 +265,7 @@ def customers_renting_product(product_id):
     logger.info(f"Perparing rental dict for product_id: {product_id}...")
     users_renting_product = []
 
-    with MONGO:
-        mdb = eval(MONGO.connect_string)
+    with MONGO as mdb:
 
         rentals = mdb["rental"]
         customers = mdb["customers"]
@@ -332,8 +322,7 @@ def drop_database():
 def drop_collections():
     """ Drops collections from Mongo that are used for this program """
 
-    with MONGO:
-        mdb = eval(MONGO.connect_string)
+    with MONGO as mdb:
         logger.info(mdb.list_collection_names())
         collections = list(
             filter(lambda x: x != "system.indexes", mdb.list_collection_names())

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """ Main functions to interface with MongoDB """
 
+import sys
 from argparse import ArgumentParser
 from pprint import pprint
 from loguru import logger
@@ -42,16 +43,9 @@ def main(argv=None):
         )[0]
     )
 
-    # for function in func_struct:
-    #     if function[0] is True:
-    #         pprint(function[1]())
-    #     elif function[0] is not False:
-    #         pprint(function[1](function[0]))
-
 
 def disable_log():
     """ Disables logging for the system """
-    logger.critical("Disabling Logging LOL")
     logger.disable("__main__")
     logger.disable("src.database_operations")
 
@@ -149,6 +143,10 @@ def parse_cmd_arguments(args):
         default=False,
         nargs="*",
     )
+    if len(sys.argv) == 1:
+        parser.print_help(sys.stderr)
+        sys.exit(1)
+
     return parser.parse_args(args)
 
 
