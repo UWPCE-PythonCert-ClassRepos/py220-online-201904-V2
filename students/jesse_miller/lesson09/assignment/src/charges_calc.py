@@ -4,12 +4,15 @@ Returns total price paid for individual rentals
 import argparse
 import json
 import datetime
+from pathlib import Path
 import math
 import logging
+from undecorated import undecorated
 
 LOG_FORMAT = '%(asctime)s %(filename)s:%(lineno)-3d %(levelname)s %(message)s'
 FORMATTER = logging.Formatter(LOG_FORMAT)
 LOGGER = logging.getLogger()
+
 
 
 def parse_cmd_arguments():
