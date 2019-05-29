@@ -27,9 +27,7 @@ def list_image_files(location):
     for item in path.iterdir():
         if item.is_dir():
             return_list += list_image_files(item)
-
-    for item in path.iterdir():
-        if item.is_file():
+        elif item.is_file():
             if item.name[-4:].lower() in valid_extensions:
                 file_list.append(item.name)
 

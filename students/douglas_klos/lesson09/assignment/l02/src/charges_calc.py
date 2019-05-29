@@ -4,37 +4,26 @@
 # Douglas Klos
 # April 9th, 2019
 # Python 220
-# Lesson 02, debugging and logging
+# Lesson 02, debugging and logger
 
+import sys
 import argparse
 import json
-import datetime
-import math
-import logging
+from datetime import datetime as dt
+from math import sqrt
+from loguru import logger
 
-
-LOG_FILE = datetime.datetime.now().strftime("%Y-%m-%d") + ".log"
+LOG_FILE = dt.now().strftime("%Y-%m-%d") + ".log"
 LOG_FORMAT = "%(asctime)s %(filename)s:%(lineno)-3d %(levelname)s %(message)s"
-FORMATTER = logging.Formatter(LOG_FORMAT)
-
-FILE_HANDLER = logging.FileHandler(LOG_FILE)
-FILE_HANDLER.setLevel(logging.DEBUG)
-FILE_HANDLER.setFormatter(FORMATTER)
-
-CONSOLER_HANDLER = logging.StreamHandler()
-CONSOLER_HANDLER.setLevel(logging.DEBUG)
-CONSOLER_HANDLER.setFormatter(FORMATTER)
-
-LOGGER = logging.getLogger()
-LOGGER.setLevel(logging.NOTSET)
-LOGGER.addHandler(FILE_HANDLER)
-LOGGER.addHandler(CONSOLER_HANDLER)
-
-LOGGER.disabled = True
 
 
 def main():
     """main function"""
+
+    logger.remove()
+    logger.add(LOG_FILE, level="DEBUG")
+    logger.add(sys.stderr, level="DEBUG")
+
     args = parse_cmd_arguments()
     set_debug_level(args)
     data = load_rentals_file(args.input)
@@ -52,7 +41,6 @@ def parse_cmd_arguments():
         ArgumentParser.parse_args
 
     """
-    logging.info("Start of parse_cmd_arguments()")  # We'll never see this
     parser = argparse.ArgumentParser(description="Process some integers.")
     parser.add_argument("-i", "--input", help="input JSON file", required=True)
     parser.add_argument("-o", "--output", help="ouput JSON file", required=True)
@@ -62,20 +50,28 @@ def parse_cmd_arguments():
 
 def set_debug_level(args):
     """Sets the debug level based on command line arguments"""
+
     if args.debug:
         if args.debug == "0":
-            pass
+            logger.disable("__main__")
         elif args.debug == "1":
-            LOGGER.disabled = False
-            LOGGER.setLevel(logging.ERROR)
+            logger.remove()
+            logger.add(LOG_FILE, level="DEBUG")
+            logger.add(sys.stderr, level="DEBUG")
         elif args.debug == "2":
-            LOGGER.disabled = False
-            LOGGER.setLevel(logging.WARNING)
+            logger.remove()
+            logger.add(LOG_FILE, level="INFO")
+            logger.add(sys.stderr, level="INFO")
         elif args.debug == "3":
-            LOGGER.disabled = False
-            LOGGER.setLevel(logging.DEBUG)
+            logger.remove()
+            logger.add(LOG_FILE, level="WARNING")
+            logger.add(sys.stderr, level="WARNING")
+        elif args.debug == "4":
+            logger.remove()
+            logger.add(LOG_FILE, level="ERROR")
+            logger.add(sys.stderr, level="ERROR")
         else:
-            print(f"Invalid debug level specified: {args.debug}.  (0-3)")
+            print(f"Invalid debug level specified: {args.debug}.  (0-4)")
             exit(0)
 
 
@@ -89,12 +85,12 @@ def load_rentals_file(filename):
         dict: Dictionary of rental data
 
     """
-    logging.info("-----Start of load_rental_file-----")
+    logger.info("-----Start of load_rental_file-----")
     with open(filename) as file:
         try:
             new_data = json.load(file)
         except json.decoder.JSONDecodeError as ex:
-            logging.critical(
+            logger.critical(
                 "Loading data from json failed."
                 "\n\tThe following error should contain the line where the "
                 "problem occured.\n\tFix the source file and try again."
@@ -114,26 +110,22 @@ def repair_dates(data):
         dict: Dictionary with dates repaired
 
     """
-    logging.info("-----Start of repair_dates-----")
+    logger.info("-----Start of repair_dates-----")
     for key, value in data.items():
         try:
-            rental_start = datetime.datetime.strptime(
-                value["rental_start"], "%m/%d/%y"
-            )
-            rental_end = datetime.datetime.strptime(
-                value["rental_end"], "%m/%d/%y"
-            )
+            rental_start = dt.strptime(value["rental_start"], "%m/%d/%y")
+            rental_end = dt.strptime(value["rental_end"], "%m/%d/%y")
             if rental_end < rental_start:
-                logging.warning(
-                    "Key:%s rental start, end dates reversed.  Repairing.", key
+                logger.warning(
+                    f"Key:{key} rental start, end dates reversed.  Repairing"
                 )
                 value["rental_start"], value["rental_end"] = (
                     value["rental_end"],
                     value["rental_start"],
                 )
         except ValueError:
-            logging.error("Key:%s contains bad date data.  Skipping.", key)
-            logging.debug("Value:%s", value)
+            logger.error(f"Key:{key} contains bad date data.  Skipping.")
+            logger.debug(f"Value:{value}")
     return data
 
 
@@ -148,25 +140,21 @@ def calculate_additional_fields(data):
 
     """
     bad_data = {}
-    logging.info("-----Start of load_additional_fields-----")
+    logger.info("-----Start of load_additional_fields-----")
     for key, value in data.items():
         try:
-            rental_start = datetime.datetime.strptime(
-                value["rental_start"], "%m/%d/%y"
-            )
-            rental_end = datetime.datetime.strptime(
-                value["rental_end"], "%m/%d/%y"
-            )
+            rental_start = dt.strptime(value["rental_start"], "%m/%d/%y")
+            rental_end = dt.strptime(value["rental_end"], "%m/%d/%y")
             value["total_days"] = (rental_end - rental_start).days
             value["total_price"] = value["total_days"] * value["price_per_day"]
-            value["sqrt_total_price"] = math.sqrt(value["total_price"])
+            value["sqrt_total_price"] = sqrt(value["total_price"])
             value["unit_cost"] = value["total_price"] / value["units_rented"]
         except (ZeroDivisionError, ValueError):
             bad_data[key] = value
-            logging.error(
-                "Key:%s Failed calculating additional fields.  Skipping.", key
+            logger.error(
+                f"Key:{key} Failed calculating additional fields.  Skipping."
             )
-            logging.debug("Value:%s", value)
+            logger.debug(f"Value:{value}")
     return data, bad_data
 
 
@@ -193,7 +181,7 @@ def save_to_json(filename, data):
         input_data (dict): Dictionary of data to be saved
 
     """
-    logging.info("-----Start of save_to_json(%s, data)-----", filename)
+    logger.info(f"-----Start of save_to_json({filename}, data)-----")
     with open(filename, "w") as file:
         json.dump(data, file)
 

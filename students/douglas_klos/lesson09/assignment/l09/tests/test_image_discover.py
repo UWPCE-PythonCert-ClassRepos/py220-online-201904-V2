@@ -1,7 +1,4 @@
-"""
-grade l9 part 3
-"""
-
+""" Test file for Lesson 09 Part 3"""
 
 from pytest import fixture
 import src.image_discover as img
@@ -36,6 +33,6 @@ def _test_list_image_files():
 
 
 def test_list_image_files(_test_list_image_files):
-    """ student geneartes """
+    """ student generates """
     images = img.list_image_files("./data/")
     assert images == _test_list_image_files
