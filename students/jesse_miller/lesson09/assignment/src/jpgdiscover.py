@@ -4,8 +4,9 @@ Recursion
 '''
 
 import os
+from pathlib import Path
 
-def jpg_discover(directory, jpg_list=None):
+def list_jpg_files(directory, jpg_list=None):
     '''
     Recursively searches a parent directory and all subdirectories for jpg files.
     '''
@@ -17,9 +18,9 @@ def jpg_discover(directory, jpg_list=None):
 
     for item in os.listdir(directory):
         if os.path.isdir(os.path.join(directory, item)):
-            jpg_discover(os.path.join(directory, item), jpg_list)
+            list_jpg_files(os.path.join(directory, item), jpg_list)
 
-        if item.endswith('.jpg'):
+        if item.endswith('.png'):
             current_list[1].append(item)
 
     if current_list[1]:  # Check if there are jpg files in current_list.
@@ -30,7 +31,11 @@ def jpg_discover(directory, jpg_list=None):
 
 print('List of directories with jpg files:')
 
-IMAGE_LIST = jpg_discover(os.path.join(os.getcwd(), 'data'))
+IMAGE_LIST = list_jpg_files(os.path.join(os.getcwd(), 'data'))
 
 for sublist in IMAGE_LIST:
     print(sublist)
+
+if __name__ == '__main__':
+    directory = Path.cwd()
+    print(*list_jpg_files(directory), sep='\n')

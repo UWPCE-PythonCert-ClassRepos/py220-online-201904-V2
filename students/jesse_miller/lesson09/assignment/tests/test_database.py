@@ -1,6 +1,5 @@
 # pylint: disable=W0212, W0621, W0212, C0111, C0103, E0401
 import pytest
-from pathlib import Path
 import database as d
 
 

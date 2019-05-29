@@ -68,6 +68,7 @@ def load_rentals_file(filename):
     '''
     Loads rental data from a file on the system.
     '''
+    filename = Path.cwd().with_name('data') / filename
     with open(filename) as file:
         try:
             data = json.load(file)
