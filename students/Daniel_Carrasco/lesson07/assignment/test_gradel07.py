@@ -10,7 +10,9 @@
 """
 
 import pytest
-import fake_submission as l
+import os
+import linear as l
+import parallel as p
 
 @pytest.fixture
 def _all_answers():
@@ -21,8 +23,14 @@ def _all_answers():
 
     """
 
-    answers_linear = l.linear()
-    answers_parallel = l.parallel()
+    current_directory = os.path.dirname(__file__)
+    parent_directory = os.path.split(current_directory)[0]
+    print(current_directory)
+    print(parent_directory)
+
+
+    answers_linear = l.linear(parent_directory, "/data/product.csv", "/data/customer.csv", "/data/rental.csv")
+    answers_parallel = p.parallel(parent_directory, "/data/product.csv", "/data/customer.csv", "/data/rental.csv")
 
     return ({
         "processed": answers_linear[0][0],
