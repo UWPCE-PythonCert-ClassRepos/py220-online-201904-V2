@@ -1,7 +1,7 @@
 '''
 Lesson 07:  Linear DB loading
 '''
-# pylint: disable=C0103
+# pylint: disable=C0103,R1710
 import csv
 import os
 import logging
@@ -90,7 +90,8 @@ def _add_bulk_data(results, collection, directory_name, filename):
         print(bwe.details)
         return len(bwe.details['writeErrors'])
 
-def import_data(db, directory_name, products_file, customers_file, rentals_file):
+def import_data(db, directory_name, products_file, customers_file,
+                rentals_file):
     '''
     Takes a directory name and three csv files as input.  Creates and populates
     three collections in MongoDB.

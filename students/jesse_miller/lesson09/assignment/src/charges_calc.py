@@ -14,7 +14,6 @@ FORMATTER = logging.Formatter(LOG_FORMAT)
 LOGGER = logging.getLogger()
 
 
-
 def parse_cmd_arguments():
     '''
     Parses arguments from the commandline when run

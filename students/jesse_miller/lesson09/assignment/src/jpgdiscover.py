@@ -8,7 +8,8 @@ from pathlib import Path
 
 def list_jpg_files(directory, jpg_list=None):
     '''
-    Recursively searches a parent directory and all subdirectories for jpg files.
+    Recursively searches a parent directory and all subdirectories for jpg
+    files.
     '''
 
     if jpg_list is None:
@@ -37,5 +38,5 @@ for sublist in IMAGE_LIST:
     print(sublist)
 
 if __name__ == '__main__':
-    directory = Path.cwd()
-    print(*list_jpg_files(directory), sep='\n')
+    DIRECTORY = Path.cwd()
+    print(*list_jpg_files(DIRECTORY), sep='\n')
