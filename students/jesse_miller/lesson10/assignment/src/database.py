@@ -9,7 +9,6 @@ import os
 import logging
 import time
 from pathlib import Path
-import threading
 import types
 import pymongo
 
@@ -62,9 +61,9 @@ def timing_wrapper(func):
                             db.customers.count_documents({}),
                             db.rentals.count_documents({}))
 
-            time_results = f"{func.__name__}, {time_elapsed}, {record_count}\n"
+            time_results = f'{func.__name__}, {time_elapsed}, {record_count}\n'
 
-        with open("timings.csv", "a+") as file:
+        with open('timings.csv', 'a+') as file:
             file.write(time_results)
 
         return result
@@ -129,7 +128,7 @@ class Database(metaclass=MetaTimer):
 
         except pymongo.errors.BulkWriteError as bwe:
             print(bwe.details)
-            return len(bwe.details["writeErrors"])
+            return len(bwe.details['writeErrors'])
 
 
     def import_data(self, db, directory_name, products_file, customers_file,
@@ -140,35 +139,29 @@ class Database(metaclass=MetaTimer):
         '''
 
         products = db['products']
+        products_errors = Database._add_bulk_data(self,
+                                                  products,
+                                                  directory_name,
+                                                  products_file)
+
         customers = db['customers']
+        customers_errors = Database._add_bulk_data(self,
+                                                   customers,
+                                                   directory_name,
+                                                   customers_file)
+
         rentals = db['rentals']
+        rentals_errors = Database._add_bulk_data(self,
+                                                 rentals,
+                                                 directory_name,
+                                                 rentals_file)
 
-        results_dict = {}
+        record_count = (db.products.count_documents({}),
+                        db.customers.count_documents({}),
+                        db.rentals.count_documents({}))
+        error_count = (products_errors, customers_errors, rentals_errors)
 
-        threads = [threading.Thread(
-            target=self._add_bulk_data, args=(results_dict,
-                                              products,
-                                              directory_name,
-                                              products_file)),
-                   threading.Thread(
-                       target=self._add_bulk_data, args=(results_dict,
-                                                         customers,
-                                                         directory_name,
-                                                         customers_file)),
-                   threading.Thread(
-                       target=self._add_bulk_data, args=(results_dict,
-                                                         rentals,
-                                                         directory_name,
-                                                         rentals_file))]
-
-        for t in threads:
-            t.start()
-
-        for t in threads:
-            t.join()
-
-        return [results_dict['customers'], results_dict['products'],
-                results_dict['rentals']]
+        return record_count, error_count
 
 
     def show_available_products(self, db):
@@ -228,18 +221,23 @@ def main():
         logging.info('Opening MongoDB')
         db = mongo.connection.media
 
+        timed_database = Database()
+
         logging.info('Importing csv files')
-        results = import_data(db, '', 'product.csv', 'customer.csv',
-                              'rental.csv')
+        results = timed_database.import_data(db,
+                                             '',
+                                             'product.csv',
+                                             'customer.csv',
+                                             'rental.csv')
 
         logging.info('Showing available products')
-        logging.info(show_available_products(db))
+        logging.info(timed_database.show_available_products(db))
 
         logging.info('\nShowing rental information for P000004')
-        logging.info(show_rentals(db, 'P000004'))
+        logging.info(timed_database.show_rentals(db, 'P000004'))
 
         logging.info('\nClearing data from database.')
-        clear_data(db)
+        timed_database.clear_data(db)
 
     return results
 

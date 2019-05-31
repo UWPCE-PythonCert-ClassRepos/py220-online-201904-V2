@@ -12,47 +12,37 @@ def mongo_database():
 
     with mongo:
         db = mongo.connection.media
+        test_utilities = d.Database()
 
-        yield db
+        yield (db, test_utilities)
 
-        d.clear_data(db)
+        test_utilities.clear_data(db)
 
 
-def test_import_csv():
-    products_list = d._import_csv('product.csv')
+def test_import_csv(mongo_database):
+    products_list = mongo_database[1]._import_csv('product.csv')
 
     assert len(products_list) == 9999
 
 
-def test_add_bulk_data(mongo_database):
-    results_dict = {}
-    d._add_bulk_data(results_dict, mongo_database.rentals, '', 'rental.csv')
-
-    assert results_dict['rentals'][0] == 9999
-    assert results_dict['rentals'][1] == 0
-    assert results_dict['rentals'][2] == 9999
-    assert isinstance(results_dict['rentals'][3], float)
-
-
 def test_import_data(mongo_database):
-    result = d.import_data(mongo_database, '', 'product.csv', 'customer.csv',
-                           'rental.csv')
+    result = mongo_database[1].import_data(mongo_database[0],
+                                           '',
+                                           'product.csv',
+                                           'customer.csv',
+                                           'rental.csv')
 
-    assert result[0][0] == 9999
-    assert result[0][1] == 0
-    assert result[0][2] == 9999
-    assert isinstance(result[0][3], float)
-
-    assert result[1][0] == 9999
-    assert result[1][1] == 0
-    assert result[1][2] == 9999
-    assert isinstance(result[1][3], float)
+    assert result == ((9999, 9999, 9999), (0, 0, 0))
 
 
 def test_show_available_products(mongo_database):
-    d.import_data(mongo_database, '', 'product.csv', 'customer.csv',
-                  'rental.csv')
-    result = d.show_available_products(mongo_database)
+    mongo_database[1].import_data(mongo_database[0],
+                                  '',
+                                  'product.csv',
+                                  'customer.csv',
+                                  'rental.csv')
+
+    result = mongo_database[1].show_available_products(mongo_database[0])
 
     assert len(result) == 9999
     assert 'P000001' in result
@@ -60,21 +50,29 @@ def test_show_available_products(mongo_database):
 
 
 def test_show_rentals(mongo_database):
-    d.import_data(mongo_database, '', 'product.csv', 'customer.csv',
-                  'rental.csv')
+    mongo_database[1].import_data(mongo_database[0],
+                                  '',
+                                  'product.csv',
+                                  'customer.csv',
+                                  'rental.csv')
 
-    result = d.show_rentals(mongo_database, 'P000004')
+    result = mongo_database[1].show_rentals(mongo_database[0], 'P000004')
 
     assert len(result) == 2
     assert list(result.keys()) == ['C000002', 'C000004']
 
 
 def test_clear_data(mongo_database):
-    d.import_data(mongo_database, '', 'product.csv', 'customer.csv',
-                  'rental.csv')
-    result = sorted(mongo_database.list_collection_names())
-    assert result == ['customers', 'products', 'rentals']
+    mongo_database[1].import_data(mongo_database[0],
+                                  '',
+                                  'product.csv',
+                                  'customer.csv',
+                                  'rental.csv')
 
-    d.clear_data(mongo_database)
-    result2 = mongo_database.list_collection_names()
+    result = mongo_database[0].list_collection_names()
+
+    assert result == ['products', 'rentals', 'customers']
+
+    mongo_database[1].clear_data(mongo_database[0])
+    result2 = mongo_database[0].list_collection_names()
     assert result2 == []
