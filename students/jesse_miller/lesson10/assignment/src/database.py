@@ -3,7 +3,7 @@ Lesson 10:  Metaprogramming
 First thing I did was remove the timeit and lineprofiler calls.  We're obviously
 replacing them with a timing function.
 '''
-# pylint: disable=C0103,R1710
+# pylint: disable=C0103,R1710,R0913,R0903,R0201
 import csv
 import os
 import logging
@@ -88,158 +88,134 @@ class MetaTimer(type):
         return super(MetaTimer, cls).__new__(cls, name, bases, attr)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-def _import_csv(filename):
+class Database(metaclass=MetaTimer):
     '''
-    Returns a list of dictionaries.  One dictionary for each row of data in a
-    csv file.
+    Class to encap the original database program
     '''
-    filename = Path.cwd().with_name('data') / filename
-    with open(filename, newline='') as csvfile:
-        dict_list = []
 
-        csv_data = csv.reader(csvfile)
+    def _import_csv(self, filename):
+        '''
+        Returns a list of dictionaries.  One dictionary for each row of data in
+        a csv file.
+        '''
+        filename = Path.cwd().with_name('data') / filename
+        with open(filename, newline='') as csvfile:
+            dict_list = []
+            csv_data = csv.reader(csvfile)
+            headers = next(csv_data, None)  # Save the first line as the headers
 
-        headers = next(csv_data, None)  # Save the first line as the headers
+            if headers[0].startswith('ï»¿'):  # Check for weird formatting
+                headers[0] = headers[0][3:]
 
-        if headers[0].startswith('ï»¿'):  # Check for weird formatting
-            headers[0] = headers[0][3:]
+            for row in csv_data:
+                row_dict = {column: row[index] for index, column in \
+                enumerate(headers)}
 
-        for row in csv_data:
-            row_dict = {column: row[index] for index, column in \
-            enumerate(headers)}
+                dict_list.append(row_dict)
 
-            dict_list.append(row_dict)
-
-        return dict_list
+            return dict_list
 
 
-def _add_bulk_data(results, collection, directory_name, filename):
-    '''
-    Adds data in bulk to database.
-    '''
-    try:
-
+    def _add_bulk_data(self, collection, directory_name, filename):
+        '''
+        Adds data in bulk to database.
+        '''
         file_path = os.path.join(directory_name, filename)
 
-        start_time = time.time()
-        initial_records = collection.count_documents({})
+        try:
+            collection.insert_many(Database._import_csv(self, file_path),
+                                   ordered=False)
+            return 0
 
-        collection.insert_many(_import_csv(file_path), ordered=False)
-
-        final_records = collection.count_documents({})
-        records_processed = final_records - initial_records
-        run_time = time.time() - start_time
-
-        stats = (records_processed, initial_records, final_records, run_time)
-
-        results[collection.name] = stats
-
-    except pymongo.errors.BulkWriteError as bwe:
-        print(bwe.details)
-        return len(bwe.details['writeErrors'])
-
-def import_data(db, directory_name, products_file, customers_file,
-                rentals_file):
-    '''
-    Takes a directory name and three csv files as input.  Creates and populates
-    three collections in MongoDB.
-    '''
-
-    products = db['products']
-    customers = db['customers']
-    rentals = db['rentals']
-
-    results_dict = {}
-
-    threads = [threading.Thread(target=_add_bulk_data, args=(results_dict,
-                                                             products,
-                                                             directory_name,
-                                                             products_file)),
-               threading.Thread(target=_add_bulk_data, args=(results_dict,
-                                                             customers,
-                                                             directory_name,
-                                                             customers_file)),
-               threading.Thread(target=_add_bulk_data, args=(results_dict,
-                                                             rentals,
-                                                             directory_name,
-                                                             rentals_file))]
-
-    for t in threads:
-        t.start()
-
-    for t in threads:
-        t.join()
-
-    return [results_dict['customers'], results_dict['products'],
-            results_dict['rentals']]
+        except pymongo.errors.BulkWriteError as bwe:
+            print(bwe.details)
+            return len(bwe.details["writeErrors"])
 
 
-def show_available_products(db):
-    '''
-    Returns a dictionary for each product listed as available.
-    '''
+    def import_data(self, db, directory_name, products_file, customers_file,
+                    rentals_file):
+        '''
+        Takes a directory name and three csv files as input.  Creates and
+        populates three collections in MongoDB.
+        '''
 
-    available_products = {}
+        products = db['products']
+        customers = db['customers']
+        rentals = db['rentals']
 
-    for product in db.products.find():
-        if product['quantity_available'] != '0':
-            rental_users = {key: value for key, value in product.items() if \
-                          key not in ('_id', 'product_id')}
-            available_products[product['product_id']] = rental_users
+        results_dict = {}
 
-    return available_products
+        threads = [threading.Thread(
+            target=self._add_bulk_data, args=(results_dict,
+                                              products,
+                                              directory_name,
+                                              products_file)),
+                   threading.Thread(
+                       target=self._add_bulk_data, args=(results_dict,
+                                                         customers,
+                                                         directory_name,
+                                                         customers_file)),
+                   threading.Thread(
+                       target=self._add_bulk_data, args=(results_dict,
+                                                         rentals,
+                                                         directory_name,
+                                                         rentals_file))]
 
+        for t in threads:
+            t.start()
 
-def show_rentals(db, product_id):
-    '''
-    Function to look up customers who have rented a specific product.
-    '''
-    rental_users_dict = {}
+        for t in threads:
+            t.join()
 
-    for rental in db.rentals.find():
-        if rental['product_id'] == product_id:
-            customer_id = rental['user_id']
-
-            customer_record = db.customers.find_one({'Id': customer_id})
-
-            rental_users = {'name': customer_record['Name'] + ' ' +
-                                    customer_record['Last_name'],
-                            'address': customer_record['Home_address'],
-                            'phone_number': customer_record['Phone_number'],
-                            'email': customer_record['Email_address']}
-            rental_users_dict[customer_id] = rental_users
-
-    return rental_users_dict
-
-
-def clear_data(db):
-    '''
-    Delete data in MongoDB.
-    '''
-    db.products.drop()
-    db.customers.drop()
-    db.rentals.drop()
+        return [results_dict['customers'], results_dict['products'],
+                results_dict['rentals']]
 
 
+    def show_available_products(self, db):
+        '''
+        Returns a dictionary for each product listed as available.
+        '''
+
+        available_products = {}
+
+        for product in db.products.find():
+            if product['quantity_available'] != '0':
+                rental_users = {key: value for key, value in product.items() \
+                    if key not in ('_id', 'product_id')}
+                available_products[product['product_id']] = rental_users
+
+        return available_products
 
 
+    def show_rentals(self, db, product_id):
+        '''
+        Function to look up customers who have rented a specific product.
+        '''
+        rental_users_dict = {}
+
+        for rental in db.rentals.find():
+            if rental['product_id'] == product_id:
+                customer_id = rental['user_id']
+
+                customer_record = db.customers.find_one({'Id': customer_id})
+
+                rental_users = {'name': customer_record['Name'] + ' ' +
+                                        customer_record['Last_name'],
+                                'address': customer_record['Home_address'],
+                                'phone_number': customer_record['Phone_number'],
+                                'email': customer_record['Email_address']}
+                rental_users_dict[customer_id] = rental_users
+
+        return rental_users_dict
 
 
-
-
+    def clear_data(self, db):
+        '''
+        Delete data in MongoDB.
+        '''
+        db.products.drop()
+        db.customers.drop()
+        db.rentals.drop()
 
 
 def main():
