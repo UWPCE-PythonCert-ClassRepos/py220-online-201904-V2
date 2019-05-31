@@ -1,19 +1,47 @@
 #!/usr/bin/env python3
+# pylint: disable=W0613
 """ HPNorton API for accessing MongoDB collections """
 
+from datetime import datetime
 from multiprocessing import Process, Queue
 from os.path import splitext, basename
 from time import time
+from wrapt import decorator
 from loguru import logger
 from pymongo import ASCENDING
 from pymongo.errors import DuplicateKeyError
-
 import src.mongodb_conn as mdb_conn
 
 
 MONGO = mdb_conn.MongoDBConnection()
 
 
+@decorator
+def timer_logger(function, instance, args, kwargs):
+    """ Times functions and writes results to timings.txt """
+    start = datetime.now()
+    result = function(*args, **kwargs)
+    end = datetime.now()
+    with open("timings.txt", "a") as log_file:
+        log_file.write(
+            f"{function.__name__} "
+            f"called at {start.strftime('%Y-%m-%d %H:%M:%S')}\n"
+        )
+        if (
+                function.__name__ == "insert_to_mongo" or
+                function.__name__ == "get_line_from_file"
+        ):
+            record_count = 0
+            for _ in open(args[0]):
+                record_count += 1
+            log_file.write(f"\tCalled on {record_count} records\n")
+        else:
+            log_file.write(f"\targs:{args}, kwargs:{kwargs}\n")
+        log_file.write(f"\tExecution time {end - start} seconds\n")
+    return result
+
+
+@timer_logger
 def linear(files):
     """ Import csv files into mongodatabase.
 
@@ -26,6 +54,7 @@ def linear(files):
     return list(map(insert_to_mongo, files))
 
 
+@timer_logger
 def parallel(files):
     """ Import csv files into mongodatabase.
 
@@ -39,6 +68,7 @@ def parallel(files):
     return list(map(join_process, list(map(start_process, files))))
 
 
+@timer_logger
 def start_process(csv_file):
     """ Start process on given csv_file
 
@@ -55,6 +85,7 @@ def start_process(csv_file):
     return process, results
 
 
+@timer_logger
 def join_process(process):
     """ Joins processes in process argument
 
@@ -70,6 +101,7 @@ def join_process(process):
 
 
 # pylint: disable=R0914
+@timer_logger
 def insert_to_mongo(filename, results=None):
     """ Inserts given csv file into mongo
 
@@ -87,7 +119,7 @@ def insert_to_mongo(filename, results=None):
     with MONGO as mdb:
         logger.info(f"Inserting {collection_name} into Mongo...")
         collection = mdb[collection_name]
-        iter_lines = get_line(open_file(filename))
+        iter_lines = get_line_from_file(filename)
         header = next(iter_lines).split(",")
 
         # Create the indicies for the collection
@@ -130,6 +162,7 @@ def insert_to_mongo(filename, results=None):
         return return_dict
 
 
+@timer_logger
 def show_available_products():
     """ Creates a list of currently available products
 
@@ -151,6 +184,7 @@ def show_available_products():
     return available_products
 
 
+@timer_logger
 def list_all_products():
     """ Prepares a dictionary of all products
 
@@ -171,6 +205,7 @@ def list_all_products():
     return all_products_dict
 
 
+@timer_logger
 def list_all_rentals():
     """ Prepares a dictionary of all rentals
 
@@ -191,6 +226,7 @@ def list_all_rentals():
     return all_rentals_dict
 
 
+@timer_logger
 def list_all_customers():
     """ Prepares a dictionary of all customers
 
@@ -217,6 +253,7 @@ def list_all_customers():
     return all_customers_dict
 
 
+@timer_logger
 def rentals_for_customer(user_id):
     """Prepares a dict of products rented by user_id
 
@@ -247,6 +284,7 @@ def rentals_for_customer(user_id):
     return rentals_for_user
 
 
+@timer_logger
 def customers_renting_product(product_id):
     """Prepares a dict of customers renting product_id
 
@@ -285,20 +323,8 @@ def customers_renting_product(product_id):
     return users_renting_product
 
 
-def get_line(lines):
-    """ Generator for lines of content from csv file
-
-    Arguments:
-        lines {list} -- List of lines containing data from csv file
-
-    Yields:
-        string -- CSV string containing information for a single customer.
-    """
-    for line in lines:
-        yield line
-
-
-def open_file(filename):
+@timer_logger
+def get_line_from_file(filename):
     """ Opens the file specified from the command line
 
     Arguments:
@@ -308,9 +334,12 @@ def open_file(filename):
         list containing lines of customer data from csv file
     """
     with open(filename, "rb") as content:
-        return content.read().decode("utf-8", errors="ignore").split("\n")
+        lines = content.read().decode("utf-8", errors="ignore").split("\n")
+        for line in lines:
+            yield line
 
 
+@timer_logger
 def drop_database():
     """ Drops database """
 
@@ -319,6 +348,7 @@ def drop_database():
     mdb.drop_database(MONGO.database_name)
 
 
+@timer_logger
 def drop_collections():
     """ Drops collections from Mongo that are used for this program """
 

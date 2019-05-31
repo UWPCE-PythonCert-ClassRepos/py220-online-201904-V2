@@ -413,7 +413,7 @@ def test_show_available_products(_show_available_products):
     """ available products """
     l.drop_database()
     l.insert_to_mongo("./data/product.csv")
-    l.DB_NAME = "HPNorton_PyMongo_L07"
+    l.DB_NAME = "HPNorton_PyMongo_L10"
     students_response = l.show_available_products()
     assert students_response == _show_available_products
 
@@ -462,32 +462,22 @@ def test_rentals_for_customer(_list_rentals_for_customer):
     assert my_response == _list_rentals_for_customer
 
 
-def test_get_line():
-    """ Test get_line function """
-    lines = [x for x in range(10)]
-    for num, line in enumerate(l.get_line(lines)):
-        assert line == lines[num]
+def test_get_line_from_file():
+    """ Test get line from file function """
+    file = open("./data/customers.csv", "r").read()
 
-
-def test_open_file():
-    """ Test open file function """
-    file = l.open_file("./data/customers.csv")
-
-    with open("./data/customers.csv", "rb") as content:
-        next(content)
-        lines = content.read().decode("utf-8-sig", errors="ignore").split("\n")
-        for line in lines:
-            assert line in file
+    for line in l.get_line_from_file("./data/customers.csv"):
+        assert line in file
 
 
 def test_drop_databases():
     """ Test drop HPNorton database """
 
     l.insert_to_mongo("./data/customers.csv")
-    assert "HPNorton_PyMongo_L09" in l.MONGO.connection.list_database_names()
+    assert "HPNorton_PyMongo_L10" in l.MONGO.connection.list_database_names()
     l.drop_database()
     assert (
-        "HPNorton_PyMongo_L09" not in l.MONGO.connection.list_database_names()
+        "HPNorton_PyMongo_L10" not in l.MONGO.connection.list_database_names()
     )
 
 
@@ -498,14 +488,14 @@ def test_drop_collections():
     l.insert_to_mongo("./data/product.csv")
     l.insert_to_mongo("./data/rental.csv")
     collection_names = (
-        l.MONGO.connection.HPNorton_PyMongo_L09.list_collection_names()
+        l.MONGO.connection.HPNorton_PyMongo_L10.list_collection_names()
     )
     assert "customers" in collection_names
     assert "product" in collection_names
     assert "rental" in collection_names
     l.drop_collections()
     collection_names = (
-        l.MONGO.connection.HPNorton_PyMongo_L09.list_collection_names()
+        l.MONGO.connection.HPNorton_PyMongo_L10.list_collection_names()
     )
     assert "customers" not in collection_names
     assert "product" not in collection_names
