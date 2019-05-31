@@ -413,7 +413,7 @@ def test_show_available_products(_show_available_products):
     """ available products """
     l.drop_database()
     l.insert_to_mongo("./data/product.csv")
-    l.DB_NAME = "HPNorton_PyMongo_L07"
+    l.DB_NAME = "HPNorton_PyMongo_L09"
     students_response = l.show_available_products()
     assert students_response == _show_available_products
 
