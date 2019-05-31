@@ -44,5 +44,3 @@ if __name__ == "__main__":
     # create a couple people:
     p1 = Person("Fred", "Jones", "206-555-1234")
     update_person(p1)
-
-
