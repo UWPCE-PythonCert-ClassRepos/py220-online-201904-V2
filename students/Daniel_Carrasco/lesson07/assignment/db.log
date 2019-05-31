@@ -1,0 +1,44 @@
+2019-05-28 00:54:39,931 linear.py:48  INFO starting MongoDBConnection
+2019-05-28 00:54:40,029 linear.py:67  INFO importing data
+2019-05-28 00:54:40,029 linear.py:117 INFO reading /data/product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson07/assignment
+2019-05-28 00:54:40,054 linear.py:131 INFO successfully read in data
+2019-05-28 00:54:40,054 linear.py:117 INFO reading /data/customer.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson07/assignment
+2019-05-28 00:54:40,100 linear.py:131 INFO successfully read in data
+2019-05-28 00:54:40,100 linear.py:117 INFO reading /data/rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson07/assignment
+2019-05-28 00:54:40,143 linear.py:131 INFO successfully read in data
+2019-05-28 00:54:40,378 linear.py:146 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-05-28 00:54:40,651 linear.py:146 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-05-28 00:54:40,889 linear.py:146 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-05-28 00:54:40,981 linear.py:84  INFO succesful product imports = 9999 to db
+2019-05-28 00:54:40,981 linear.py:85  INFO succesful customer imports = 9999 to db
+2019-05-28 00:54:40,981 linear.py:86  INFO succesful rental imports = 9999 to db
+2019-05-28 00:54:40,981 linear.py:89  INFO product import errors = 0 to db
+2019-05-28 00:54:40,981 linear.py:90  INFO customer import errors = 0 to db
+2019-05-28 00:54:40,981 linear.py:91  INFO rental import errors = 0 to db
+2019-05-28 00:54:40,992 linear.py:160 INFO starting show_available_products method
+2019-05-28 00:54:41,012 linear.py:175 INFO available products = {}
+2019-05-28 00:54:41,012 linear.py:184 INFO starting show_rentals method
+2019-05-28 00:54:41,021 linear.py:203 INFO showing rentals that match "prd002" = {}
+2019-05-28 00:54:41,022 linear.py:213 INFO starting drop data method
+2019-05-28 00:54:58,447 parallel.py:49  INFO starting MongoDBConnection
+2019-05-28 00:54:58,455 parallel.py:68  INFO importing data
+2019-05-28 00:54:58,456 parallel.py:132 INFO reading /data/product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson07/assignment
+2019-05-28 00:54:58,482 parallel.py:146 INFO successfully read in data
+2019-05-28 00:54:58,482 parallel.py:132 INFO reading /data/customer.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson07/assignment
+2019-05-28 00:54:58,525 parallel.py:146 INFO successfully read in data
+2019-05-28 00:54:58,525 parallel.py:132 INFO reading /data/rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson07/assignment
+2019-05-28 00:54:58,564 parallel.py:146 INFO successfully read in data
+2019-05-28 00:54:58,933 parallel.py:161 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-05-28 00:54:58,955 parallel.py:161 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-05-28 00:54:59,175 parallel.py:161 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-05-28 00:54:59,477 parallel.py:98  INFO succesful product imports = 9999 to db
+2019-05-28 00:54:59,477 parallel.py:99  INFO succesful customer imports = 9999 to db
+2019-05-28 00:54:59,477 parallel.py:100 INFO succesful rental imports = 9999 to db
+2019-05-28 00:54:59,477 parallel.py:103 INFO product import errors = <Thread(Thread-1, stopped 123145568907264)> to db
+2019-05-28 00:54:59,477 parallel.py:104 INFO customer import errors = <Thread(Thread-2, stopped 123145574162432)> to db
+2019-05-28 00:54:59,477 parallel.py:105 INFO rental import errors = 0 to db
+2019-05-28 00:54:59,487 parallel.py:175 INFO starting show_available_products method
+2019-05-28 00:54:59,498 parallel.py:190 INFO available products = {}
+2019-05-28 00:54:59,498 parallel.py:199 INFO starting show_rentals method
+2019-05-28 00:54:59,506 parallel.py:218 INFO showing rentals that match "prd002" = {}
+2019-05-28 00:54:59,506 parallel.py:228 INFO starting drop data method
