@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 
 from contextlib import contextmanager
+from loguru import logger
+import sys
 import typing
 
 
 class Locke:
-    def __init__(self, capacity: int, name=None):
+
+    def __init__(self, capacity: int):
         self.capacity = capacity
 
     def __enter__(self):
@@ -26,7 +29,8 @@ class Locke:
     def close_doors(self):
         print("Closing the doors")
 
-    def move_boats_through(self, boats: int, boat_name):
+    def move_boats_through(self, boats: int, boat_name: str):
+        logger.add(sys.stderr, level="INFO")
         self.boats = boats
         self.boat_name = boat_name
         if self.boats <= self.capacity:
@@ -52,14 +56,8 @@ if __name__ == '__main__':
     med_boat = 9
     big_boat = 13
 
-    try:
-        with small_locke as locke:
-            locke.move_boats_through(sm_boat, 'small boat')
-    except:
-        raise Exception('exception raised:small boat / small lock').with_traceback(None)
+    with small_locke as locke:
+        locke.move_boats_through(sm_boat, 'small boat')
 
-    try:
-        with large_locke as locke:
-            locke.move_boats_through(big_boat, 'big_boat')
-    except:
-        raise Exception('exception raised:small boat / small lock').with_traceback(None)
+    with large_locke as locke:
+        locke.move_boats_through(big_boat, 'big_boat')
