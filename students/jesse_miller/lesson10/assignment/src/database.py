@@ -233,10 +233,18 @@ def main():
         logging.info('Showing available products')
         logging.info(timed_database.show_available_products(db))
 
+        print(f"Number of records for products, customers, rentals: {results[0]}.")
+        print(f"Number of errors for products, customers, rentals: {results[1]}.")
+
+        print("Showing available products:")
+        print(timed_database.show_available_products(db))
+
         logging.info('\nShowing rental information for P000004')
         logging.info(timed_database.show_rentals(db, 'P000004'))
+        print(timed_database.show_rentals(db, 'P000004'))
 
         logging.info('\nClearing data from database.')
+        print("\nClearing data from database.")
         timed_database.clear_data(db)
 
     return results
