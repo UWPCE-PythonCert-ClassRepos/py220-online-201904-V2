@@ -1,5 +1,7 @@
 '''
-Lesson 07:  Linear DB loading
+Lesson 10:  Metaprogramming
+First thing I did was remove the timeit and lineprofiler calls.  We're obviously
+replacing them with a timing function.
 '''
 # pylint: disable=C0103,R1710
 import csv
@@ -7,9 +9,8 @@ import os
 import logging
 import time
 from pathlib import Path
-from timeit import timeit
 import threading
-from line_profiler import LineProfiler
+import types
 import pymongo
 
 
@@ -38,6 +39,66 @@ def print_mdb_collection(collection_name):
     '''
     for doc in collection_name.find():
         print(doc)
+
+
+def timing_wrapper(func):
+    '''
+    This will return a new function that encapsulates the timing of the
+    execution of function passed in the function.  Man that's confusing.
+    Just, lookit, below here are timing functions that the executable
+    functions in this program will pass through.
+    '''
+    def timing_function(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        time_elapsed = time.time() - start
+
+        mongo = MongoDBConnection()
+
+        with mongo:
+            db = mongo.connection.media
+
+            record_count = (db.products.count_documents({}),
+                            db.customers.count_documents({}),
+                            db.rentals.count_documents({}))
+
+            time_results = f"{func.__name__}, {time_elapsed}, {record_count}\n"
+
+        with open("timings.csv", "a+") as file:
+            file.write(time_results)
+
+        return result
+    return timing_function
+
+
+class MetaTimer(type):
+    '''
+    Metaclass that replaces class methods with timed methods.
+    '''
+
+    def __new__(cls, name, bases, attr):
+        '''
+        Replace each function with a new function that is timed.
+        Returns result from original function.
+        '''
+        for key, value in attr.items():
+            if isinstance(value, (types.FunctionType, types.MethodType)):
+                attr[key] = timing_wrapper(value)
+
+        return super(MetaTimer, cls).__new__(cls, name, bases, attr)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def _import_csv(filename):
@@ -122,7 +183,8 @@ def import_data(db, directory_name, products_file, customers_file,
     for t in threads:
         t.join()
 
-    return [results_dict['customers'], results_dict['products']]
+    return [results_dict['customers'], results_dict['products'],
+            results_dict['rentals']]
 
 
 def show_available_products(db):
@@ -172,6 +234,14 @@ def clear_data(db):
     db.rentals.drop()
 
 
+
+
+
+
+
+
+
+
 def main():
     '''
     Main function
@@ -189,8 +259,8 @@ def main():
         logging.info('Showing available products')
         logging.info(show_available_products(db))
 
-        logging.info('\nShowing rental information for prd005')
-        logging.info(show_rentals(db, 'prd005'))
+        logging.info('\nShowing rental information for P000004')
+        logging.info(show_rentals(db, 'P000004'))
 
         logging.info('\nClearing data from database.')
         clear_data(db)
@@ -200,10 +270,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    print(timeit('main()', globals=globals(), number=1))
-    print(timeit('main()', globals=globals(), number=10))
-
-    lp = LineProfiler()
-    lp_wrapper = lp(main)
-    lp_wrapper()
-    lp.print_stats()
