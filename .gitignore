@@ -49,7 +49,8 @@ coverage.xml
 *.cover
 .hypothesis/
 .pytest_cache/
-
+.png
+.vscode
 # Translations
 *.mo
 *.pot
@@ -123,3 +124,4 @@ _gsdata_/
 
 # VSCode workspace
 .vscode
+*.mp4
