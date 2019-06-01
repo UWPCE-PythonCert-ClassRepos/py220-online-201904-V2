@@ -2,8 +2,10 @@
 Returns total price paid for individual rentals
 '''
 import argparse
+import inspect
 import json
 import logging
+from loguru import logger
 import numpy as np
 import pandas as pd
 
@@ -39,14 +41,9 @@ def parse_cmd_arguments():
 
 def logging_decorator(func):
     def wrapper(*args):
-        if args == 0:
-            LOGGER.disabled = True
-        else:
-            LOGGER.disabled = False
-        func(args)
-
+        logger.info(f'{logging_decorator.__name__} args are: {args}')
+        return func(args[0])
     return wrapper
-
 
 @logging_decorator
 def configure_logging(log_level):
@@ -55,6 +52,10 @@ def configure_logging(log_level):
     :param log_level:
     :return: logging objects with specified levels
     """
+
+    # if log_level == 0:
+    #     pass
+    logger.info(f'{configure_logging.__name__} Args are: {log_level}')
     log_file = logging.FileHandler('charges_calc.log')
     log_file.setFormatter(FORMATTER)
 
@@ -65,15 +66,12 @@ def configure_logging(log_level):
     LOGGER.addHandler(console_handler)
 
     if log_level == 1:
-        LOGGER.disabled = False
         LOGGER.setLevel(logging.ERROR)
     elif log_level == 2:
-        LOGGER.disabled = False
         LOGGER.setLevel(logging.WARNING)
     elif log_level == 3:
-        LOGGER.disabled = False
         LOGGER.setLevel(logging.DEBUG)
-    elif log_level == 4:
+    elif log_level == 0:
         LOGGER.disabled = True
     else:
         return
