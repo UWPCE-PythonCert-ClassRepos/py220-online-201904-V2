@@ -23,7 +23,7 @@ def parse_cmd_arguments():
     return args
 
 
-def make_director_items_list(path_: str):
+def list_jpg_files(path_: str):
     """
     User creates list of directory containing files
     of a specific type
@@ -45,4 +45,4 @@ def make_director_items_list(path_: str):
 
 if __name__ == '__main__':
     INARGS = parse_cmd_arguments()
-    print(make_director_items_list(INARGS.path))
+    print(list_jpg_files(INARGS.path))
