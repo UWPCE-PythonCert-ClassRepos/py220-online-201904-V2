@@ -1,0 +1,1356 @@
+__init__ called at 2019-06-01 08:12:31
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef388eb8>,), kwargs:{}
+	Execution time 0:00:00.000004 seconds
+drop_database called at 2019-06-01 08:12:31
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef388eb8>,), kwargs:{}
+	Execution time 0:00:00.009416 seconds
+get_line_from_file called at 2019-06-01 08:12:31
+	Called on 10 records
+	Execution time 0:00:00.000001 seconds
+insert_to_mongo called at 2019-06-01 08:12:31
+	Called on 10 records
+	Execution time 0:00:00.505463 seconds
+get_line_from_file called at 2019-06-01 08:12:31
+	Called on 10 records
+	Execution time 0:00:00.000009 seconds
+insert_to_mongo called at 2019-06-01 08:12:31
+	Called on 10 records
+	Execution time 0:00:00.507439 seconds
+get_line_from_file called at 2019-06-01 08:12:32
+	Called on 10 records
+	Execution time 0:00:00.000004 seconds
+insert_to_mongo called at 2019-06-01 08:12:32
+	Called on 10 records
+	Execution time 0:00:00.504784 seconds
+linear called at 2019-06-01 08:12:31
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef388eb8>, ['./data/customers.csv', './data/product.csv', './data/rental.csv']), kwargs:{}
+	Execution time 0:00:01.518799 seconds
+__init__ called at 2019-06-01 08:12:32
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef388da0>,), kwargs:{}
+	Execution time 0:00:00.000009 seconds
+drop_database called at 2019-06-01 08:12:32
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef388da0>,), kwargs:{}
+	Execution time 0:00:00.014837 seconds
+start_process called at 2019-06-01 08:12:32
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef388da0>, './data/customers.csv'), kwargs:{}
+	Execution time 0:00:00.003793 seconds
+start_process called at 2019-06-01 08:12:32
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef388da0>, './data/product.csv'), kwargs:{}
+	Execution time 0:00:00.002150 seconds
+get_line_from_file called at 2019-06-01 08:12:32
+	Called on 10 records
+	Execution time 0:00:00.000004 seconds
+start_process called at 2019-06-01 08:12:32
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef388da0>, './data/rental.csv'), kwargs:{}
+	Execution time 0:00:00.002893 seconds
+get_line_from_file called at 2019-06-01 08:12:32
+	Called on 10 records
+	Execution time 0:00:00.000007 seconds
+get_line_from_file called at 2019-06-01 08:12:32
+	Called on 10 records
+	Execution time 0:00:00.000004 seconds
+insert_to_mongo called at 2019-06-01 08:12:32
+	Called on 10 records
+	Execution time 0:00:00.505550 seconds
+join_process called at 2019-06-01 08:12:32
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef388da0>, (<Process(Process-1, stopped)>, <multiprocessing.queues.Queue object at 0x7f1cef388e48>)), kwargs:{}
+	Execution time 0:00:00.501946 seconds
+insert_to_mongo called at 2019-06-01 08:12:32
+	Called on 10 records
+	Execution time 0:00:00.505133 seconds
+join_process called at 2019-06-01 08:12:33
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef388da0>, (<Process(Process-2, stopped)>, <multiprocessing.queues.Queue object at 0x7f1cef36ce10>)), kwargs:{}
+	Execution time 0:00:00.001975 seconds
+insert_to_mongo called at 2019-06-01 08:12:32
+	Called on 10 records
+	Execution time 0:00:00.505242 seconds
+join_process called at 2019-06-01 08:12:33
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef388da0>, (<Process(Process-3, stopped)>, <multiprocessing.queues.Queue object at 0x7f1ceccc6518>)), kwargs:{}
+	Execution time 0:00:00.004678 seconds
+parallel called at 2019-06-01 08:12:32
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef388da0>, ['./data/customers.csv', './data/product.csv', './data/rental.csv']), kwargs:{}
+	Execution time 0:00:00.519242 seconds
+__init__ called at 2019-06-01 08:12:33
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef388be0>,), kwargs:{}
+	Execution time 0:00:00.000014 seconds
+drop_collections called at 2019-06-01 08:12:33
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef388be0>,), kwargs:{}
+	Execution time 0:00:00.005620 seconds
+get_line_from_file called at 2019-06-01 08:12:33
+	Called on 10 records
+	Execution time 0:00:00.000004 seconds
+insert_to_mongo called at 2019-06-01 08:12:33
+	Called on 10 records
+	Execution time 0:00:00.506406 seconds
+get_line_from_file called at 2019-06-01 08:12:34
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:12:33
+	Called on 10 records
+	Execution time 0:00:00.508280 seconds
+get_line_from_file called at 2019-06-01 08:12:34
+	Called on 10 records
+	Execution time 0:00:00.000007 seconds
+insert_to_mongo called at 2019-06-01 08:12:34
+	Called on 10 records
+	Execution time 0:00:00.508278 seconds
+get_line_from_file called at 2019-06-01 08:12:35
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:12:35
+	Called on 10 records
+	Execution time 0:00:00.507850 seconds
+get_line_from_file called at 2019-06-01 08:12:35
+	Called on 10 records
+	Execution time 0:00:00.000007 seconds
+insert_to_mongo called at 2019-06-01 08:12:35
+	Called on 10 records
+	Execution time 0:00:00.506607 seconds
+get_line_from_file called at 2019-06-01 08:12:36
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+insert_to_mongo called at 2019-06-01 08:12:36
+	Called on 10 records
+	Execution time 0:00:00.506621 seconds
+__init__ called at 2019-06-01 08:12:36
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef388f98>,), kwargs:{}
+	Execution time 0:00:00.000018 seconds
+drop_database called at 2019-06-01 08:12:36
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef388f98>,), kwargs:{}
+	Execution time 0:00:00.022930 seconds
+get_line_from_file called at 2019-06-01 08:12:36
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:12:36
+	Called on 10 records
+	Execution time 0:00:00.505397 seconds
+show_available_products called at 2019-06-01 08:12:37
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef388f98>,), kwargs:{}
+	Execution time 0:00:00.007355 seconds
+__init__ called at 2019-06-01 08:12:37
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef35cc18>,), kwargs:{}
+	Execution time 0:00:00.000019 seconds
+drop_database called at 2019-06-01 08:12:37
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef35cc18>,), kwargs:{}
+	Execution time 0:00:00.021688 seconds
+get_line_from_file called at 2019-06-01 08:12:37
+	Called on 10 records
+	Execution time 0:00:00.000005 seconds
+insert_to_mongo called at 2019-06-01 08:12:37
+	Called on 10 records
+	Execution time 0:00:00.507213 seconds
+get_line_from_file called at 2019-06-01 08:12:37
+	Called on 10 records
+	Execution time 0:00:00.000005 seconds
+insert_to_mongo called at 2019-06-01 08:12:37
+	Called on 10 records
+	Execution time 0:00:00.508301 seconds
+get_line_from_file called at 2019-06-01 08:12:38
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:12:38
+	Called on 10 records
+	Execution time 0:00:00.507760 seconds
+customers_renting_product called at 2019-06-01 08:12:38
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef35cc18>, 'P000001'), kwargs:{}
+	Execution time 0:00:00.012884 seconds
+__init__ called at 2019-06-01 08:12:38
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef36c8d0>,), kwargs:{}
+	Execution time 0:00:00.000025 seconds
+drop_database called at 2019-06-01 08:12:38
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef36c8d0>,), kwargs:{}
+	Execution time 0:00:00.024829 seconds
+get_line_from_file called at 2019-06-01 08:12:38
+	Called on 10 records
+	Execution time 0:00:00.000004 seconds
+insert_to_mongo called at 2019-06-01 08:12:38
+	Called on 10 records
+	Execution time 0:00:00.506689 seconds
+list_all_customers called at 2019-06-01 08:12:39
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef36c8d0>,), kwargs:{}
+	Execution time 0:00:00.004930 seconds
+__init__ called at 2019-06-01 08:12:39
+	args:(<src.database_operations.HPNortonDB object at 0x7f1ceccc6080>,), kwargs:{}
+	Execution time 0:00:00.000006 seconds
+drop_database called at 2019-06-01 08:12:39
+	args:(<src.database_operations.HPNortonDB object at 0x7f1ceccc6080>,), kwargs:{}
+	Execution time 0:00:00.012681 seconds
+get_line_from_file called at 2019-06-01 08:12:39
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:12:39
+	Called on 10 records
+	Execution time 0:00:00.503614 seconds
+list_all_products called at 2019-06-01 08:12:39
+	args:(<src.database_operations.HPNortonDB object at 0x7f1ceccc6080>,), kwargs:{}
+	Execution time 0:00:00.003298 seconds
+__init__ called at 2019-06-01 08:12:39
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef3b3400>,), kwargs:{}
+	Execution time 0:00:00.000006 seconds
+drop_database called at 2019-06-01 08:12:39
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef3b3400>,), kwargs:{}
+	Execution time 0:00:00.014766 seconds
+get_line_from_file called at 2019-06-01 08:12:39
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:12:39
+	Called on 10 records
+	Execution time 0:00:00.505508 seconds
+list_all_rentals called at 2019-06-01 08:12:40
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef3b3400>,), kwargs:{}
+	Execution time 0:00:00.006904 seconds
+__init__ called at 2019-06-01 08:12:40
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef3b3a58>,), kwargs:{}
+	Execution time 0:00:00.000018 seconds
+drop_database called at 2019-06-01 08:12:40
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef3b3a58>,), kwargs:{}
+	Execution time 0:00:00.027191 seconds
+get_line_from_file called at 2019-06-01 08:12:40
+	Called on 10 records
+	Execution time 0:00:00.000008 seconds
+insert_to_mongo called at 2019-06-01 08:12:40
+	Called on 10 records
+	Execution time 0:00:00.505354 seconds
+get_line_from_file called at 2019-06-01 08:12:40
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:12:40
+	Called on 10 records
+	Execution time 0:00:00.505887 seconds
+get_line_from_file called at 2019-06-01 08:12:41
+	Called on 10 records
+	Execution time 0:00:00.000007 seconds
+insert_to_mongo called at 2019-06-01 08:12:41
+	Called on 10 records
+	Execution time 0:00:00.508493 seconds
+rentals_for_customer called at 2019-06-01 08:12:41
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef3b3a58>, 'C000001'), kwargs:{}
+	Execution time 0:00:00.009677 seconds
+__init__ called at 2019-06-01 08:12:41
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef36c828>,), kwargs:{}
+	Execution time 0:00:00.000018 seconds
+get_line_from_file called at 2019-06-01 08:12:41
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+__init__ called at 2019-06-01 08:12:41
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef36ce10>,), kwargs:{}
+	Execution time 0:00:00.000015 seconds
+get_line_from_file called at 2019-06-01 08:12:41
+	Called on 10 records
+	Execution time 0:00:00.000007 seconds
+insert_to_mongo called at 2019-06-01 08:12:41
+	Called on 10 records
+	Execution time 0:00:00.506387 seconds
+drop_database called at 2019-06-01 08:12:42
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef36ce10>,), kwargs:{}
+	Execution time 0:00:00.014404 seconds
+__init__ called at 2019-06-01 08:12:42
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef3b3400>,), kwargs:{}
+	Execution time 0:00:00.000007 seconds
+get_line_from_file called at 2019-06-01 08:12:42
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+insert_to_mongo called at 2019-06-01 08:12:42
+	Called on 10 records
+	Execution time 0:00:00.506112 seconds
+get_line_from_file called at 2019-06-01 08:12:42
+	Called on 10 records
+	Execution time 0:00:00.000007 seconds
+insert_to_mongo called at 2019-06-01 08:12:42
+	Called on 10 records
+	Execution time 0:00:00.508516 seconds
+get_line_from_file called at 2019-06-01 08:12:43
+	Called on 10 records
+	Execution time 0:00:00.000005 seconds
+insert_to_mongo called at 2019-06-01 08:12:43
+	Called on 10 records
+	Execution time 0:00:00.508264 seconds
+drop_collections called at 2019-06-01 08:12:43
+	args:(<src.database_operations.HPNortonDB object at 0x7f1cef3b3400>,), kwargs:{}
+	Execution time 0:00:00.009864 seconds
+__init__ called at 2019-06-01 08:15:39
+	args:(<src.database_operations.HPNortonDB object at 0x7f3977c05e48>,), kwargs:{}
+	Execution time 0:00:00.000004 seconds
+drop_database called at 2019-06-01 08:15:39
+	args:(<src.database_operations.HPNortonDB object at 0x7f3977c05e48>,), kwargs:{}
+	Execution time 0:00:00.009645 seconds
+get_line_from_file called at 2019-06-01 08:15:39
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:15:39
+	Called on 10 records
+	Execution time 0:00:00.505411 seconds
+get_line_from_file called at 2019-06-01 08:15:40
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:15:40
+	Called on 10 records
+	Execution time 0:00:00.508020 seconds
+get_line_from_file called at 2019-06-01 08:15:40
+	Called on 10 records
+	Execution time 0:00:00.000037 seconds
+insert_to_mongo called at 2019-06-01 08:15:40
+	Called on 10 records
+	Execution time 0:00:00.508266 seconds
+linear called at 2019-06-01 08:15:39
+	args:(<src.database_operations.HPNortonDB object at 0x7f3977c05e48>, ['./data/customers.csv', './data/product.csv', './data/rental.csv']), kwargs:{}
+	Execution time 0:00:01.523338 seconds
+__init__ called at 2019-06-01 08:15:41
+	args:(<src.database_operations.HPNortonDB object at 0x7f39789fac88>,), kwargs:{}
+	Execution time 0:00:00.000017 seconds
+drop_database called at 2019-06-01 08:15:41
+	args:(<src.database_operations.HPNortonDB object at 0x7f39789fac88>,), kwargs:{}
+	Execution time 0:00:00.028066 seconds
+start_process called at 2019-06-01 08:15:41
+	args:(<src.database_operations.HPNortonDB object at 0x7f39789fac88>, './data/customers.csv'), kwargs:{}
+	Execution time 0:00:00.010518 seconds
+start_process called at 2019-06-01 08:15:41
+	args:(<src.database_operations.HPNortonDB object at 0x7f39789fac88>, './data/product.csv'), kwargs:{}
+	Execution time 0:00:00.005647 seconds
+get_line_from_file called at 2019-06-01 08:15:41
+	Called on 10 records
+	Execution time 0:00:00.000014 seconds
+start_process called at 2019-06-01 08:15:41
+	args:(<src.database_operations.HPNortonDB object at 0x7f39789fac88>, './data/rental.csv'), kwargs:{}
+	Execution time 0:00:00.006070 seconds
+get_line_from_file called at 2019-06-01 08:15:41
+	Called on 10 records
+	Execution time 0:00:00.000010 seconds
+get_line_from_file called at 2019-06-01 08:15:41
+	Called on 10 records
+	Execution time 0:00:00.000008 seconds
+insert_to_mongo called at 2019-06-01 08:15:41
+	Called on 10 records
+	Execution time 0:00:00.514469 seconds
+join_process called at 2019-06-01 08:15:41
+	args:(<src.database_operations.HPNortonDB object at 0x7f39789fac88>, (<Process(Process-1, stopped)>, <multiprocessing.queues.Queue object at 0x7f3977c05be0>)), kwargs:{}
+	Execution time 0:00:00.507689 seconds
+insert_to_mongo called at 2019-06-01 08:15:41
+	Called on 10 records
+	Execution time 0:00:00.512966 seconds
+join_process called at 2019-06-01 08:15:42
+	args:(<src.database_operations.HPNortonDB object at 0x7f39789fac88>, (<Process(Process-2, stopped)>, <multiprocessing.queues.Queue object at 0x7f3977be7e48>)), kwargs:{}
+	Execution time 0:00:00.004987 seconds
+insert_to_mongo called at 2019-06-01 08:15:41
+	Called on 10 records
+	Execution time 0:00:00.511321 seconds
+join_process called at 2019-06-01 08:15:42
+	args:(<src.database_operations.HPNortonDB object at 0x7f39789fac88>, (<Process(Process-3, stopped)>, <multiprocessing.queues.Queue object at 0x7f3975542550>)), kwargs:{}
+	Execution time 0:00:00.003790 seconds
+parallel called at 2019-06-01 08:15:41
+	args:(<src.database_operations.HPNortonDB object at 0x7f39789fac88>, ['./data/customers.csv', './data/product.csv', './data/rental.csv']), kwargs:{}
+	Execution time 0:00:00.543525 seconds
+__init__ called at 2019-06-01 08:15:42
+	args:(<src.database_operations.HPNortonDB object at 0x7f3977c05eb8>,), kwargs:{}
+	Execution time 0:00:00.000038 seconds
+drop_collections called at 2019-06-01 08:15:42
+	args:(<src.database_operations.HPNortonDB object at 0x7f3977c05eb8>,), kwargs:{}
+	Execution time 0:00:00.016639 seconds
+get_line_from_file called at 2019-06-01 08:15:42
+	Called on 10 records
+	Execution time 0:00:00.000007 seconds
+insert_to_mongo called at 2019-06-01 08:15:42
+	Called on 10 records
+	Execution time 0:00:00.509483 seconds
+get_line_from_file called at 2019-06-01 08:15:42
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:15:42
+	Called on 10 records
+	Execution time 0:00:00.506088 seconds
+get_line_from_file called at 2019-06-01 08:15:43
+	Called on 10 records
+	Execution time 0:00:00.000009 seconds
+insert_to_mongo called at 2019-06-01 08:15:43
+	Called on 10 records
+	Execution time 0:00:00.508396 seconds
+get_line_from_file called at 2019-06-01 08:15:43
+	Called on 10 records
+	Execution time 0:00:00.000007 seconds
+insert_to_mongo called at 2019-06-01 08:15:43
+	Called on 10 records
+	Execution time 0:00:00.508981 seconds
+get_line_from_file called at 2019-06-01 08:15:44
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:15:44
+	Called on 10 records
+	Execution time 0:00:00.507305 seconds
+get_line_from_file called at 2019-06-01 08:15:44
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+insert_to_mongo called at 2019-06-01 08:15:44
+	Called on 10 records
+	Execution time 0:00:00.506220 seconds
+__init__ called at 2019-06-01 08:15:45
+	args:(<src.database_operations.HPNortonDB object at 0x7f3977c059b0>,), kwargs:{}
+	Execution time 0:00:00.000018 seconds
+drop_database called at 2019-06-01 08:15:45
+	args:(<src.database_operations.HPNortonDB object at 0x7f3977c059b0>,), kwargs:{}
+	Execution time 0:00:00.027274 seconds
+get_line_from_file called at 2019-06-01 08:15:45
+	Called on 10 records
+	Execution time 0:00:00.000009 seconds
+insert_to_mongo called at 2019-06-01 08:15:45
+	Called on 10 records
+	Execution time 0:00:00.507168 seconds
+show_available_products called at 2019-06-01 08:15:45
+	args:(<src.database_operations.HPNortonDB object at 0x7f3977c059b0>,), kwargs:{}
+	Execution time 0:00:00.004246 seconds
+__init__ called at 2019-06-01 08:15:45
+	args:(<src.database_operations.HPNortonDB object at 0x7f397a0cf828>,), kwargs:{}
+	Execution time 0:00:00.000012 seconds
+drop_database called at 2019-06-01 08:15:45
+	args:(<src.database_operations.HPNortonDB object at 0x7f397a0cf828>,), kwargs:{}
+	Execution time 0:00:00.020095 seconds
+get_line_from_file called at 2019-06-01 08:15:45
+	Called on 10 records
+	Execution time 0:00:00.000005 seconds
+insert_to_mongo called at 2019-06-01 08:15:45
+	Called on 10 records
+	Execution time 0:00:00.503928 seconds
+get_line_from_file called at 2019-06-01 08:15:46
+	Called on 10 records
+	Execution time 0:00:00.000001 seconds
+insert_to_mongo called at 2019-06-01 08:15:46
+	Called on 10 records
+	Execution time 0:00:00.505197 seconds
+get_line_from_file called at 2019-06-01 08:15:46
+	Called on 10 records
+	Execution time 0:00:00.000008 seconds
+insert_to_mongo called at 2019-06-01 08:15:46
+	Called on 10 records
+	Execution time 0:00:00.509163 seconds
+customers_renting_product called at 2019-06-01 08:15:47
+	args:(<src.database_operations.HPNortonDB object at 0x7f397a0cf828>, 'P000001'), kwargs:{}
+	Execution time 0:00:00.008331 seconds
+__init__ called at 2019-06-01 08:15:47
+	args:(<src.database_operations.HPNortonDB object at 0x7f3977c05be0>,), kwargs:{}
+	Execution time 0:00:00.000004 seconds
+drop_database called at 2019-06-01 08:15:47
+	args:(<src.database_operations.HPNortonDB object at 0x7f3977c05be0>,), kwargs:{}
+	Execution time 0:00:00.011559 seconds
+get_line_from_file called at 2019-06-01 08:15:47
+	Called on 10 records
+	Execution time 0:00:00.000001 seconds
+insert_to_mongo called at 2019-06-01 08:15:47
+	Called on 10 records
+	Execution time 0:00:00.505640 seconds
+list_all_customers called at 2019-06-01 08:15:47
+	args:(<src.database_operations.HPNortonDB object at 0x7f3977c05be0>,), kwargs:{}
+	Execution time 0:00:00.006580 seconds
+__init__ called at 2019-06-01 08:15:47
+	args:(<src.database_operations.HPNortonDB object at 0x7f3975542f98>,), kwargs:{}
+	Execution time 0:00:00.000012 seconds
+drop_database called at 2019-06-01 08:15:47
+	args:(<src.database_operations.HPNortonDB object at 0x7f3975542f98>,), kwargs:{}
+	Execution time 0:00:00.017339 seconds
+get_line_from_file called at 2019-06-01 08:15:47
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+insert_to_mongo called at 2019-06-01 08:15:47
+	Called on 10 records
+	Execution time 0:00:00.503638 seconds
+list_all_products called at 2019-06-01 08:15:48
+	args:(<src.database_operations.HPNortonDB object at 0x7f3975542f98>,), kwargs:{}
+	Execution time 0:00:00.001597 seconds
+__init__ called at 2019-06-01 08:15:48
+	args:(<src.database_operations.HPNortonDB object at 0x7f3975542ba8>,), kwargs:{}
+	Execution time 0:00:00.000005 seconds
+drop_database called at 2019-06-01 08:15:48
+	args:(<src.database_operations.HPNortonDB object at 0x7f3975542ba8>,), kwargs:{}
+	Execution time 0:00:00.013400 seconds
+get_line_from_file called at 2019-06-01 08:15:48
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:15:48
+	Called on 10 records
+	Execution time 0:00:00.506085 seconds
+list_all_rentals called at 2019-06-01 08:15:48
+	args:(<src.database_operations.HPNortonDB object at 0x7f3975542ba8>,), kwargs:{}
+	Execution time 0:00:00.007415 seconds
+__init__ called at 2019-06-01 08:15:48
+	args:(<src.database_operations.HPNortonDB object at 0x7f3977be7f60>,), kwargs:{}
+	Execution time 0:00:00.000017 seconds
+drop_database called at 2019-06-01 08:15:48
+	args:(<src.database_operations.HPNortonDB object at 0x7f3977be7f60>,), kwargs:{}
+	Execution time 0:00:00.028032 seconds
+get_line_from_file called at 2019-06-01 08:15:48
+	Called on 10 records
+	Execution time 0:00:00.000005 seconds
+insert_to_mongo called at 2019-06-01 08:15:48
+	Called on 10 records
+	Execution time 0:00:00.508878 seconds
+get_line_from_file called at 2019-06-01 08:15:49
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:15:49
+	Called on 10 records
+	Execution time 0:00:00.505319 seconds
+get_line_from_file called at 2019-06-01 08:15:49
+	Called on 10 records
+	Execution time 0:00:00.000001 seconds
+insert_to_mongo called at 2019-06-01 08:15:49
+	Called on 10 records
+	Execution time 0:00:00.502402 seconds
+rentals_for_customer called at 2019-06-01 08:15:50
+	args:(<src.database_operations.HPNortonDB object at 0x7f3977be7f60>, 'C000001'), kwargs:{}
+	Execution time 0:00:00.001888 seconds
+__init__ called at 2019-06-01 08:15:50
+	args:(<src.database_operations.HPNortonDB object at 0x7f3977c2b550>,), kwargs:{}
+	Execution time 0:00:00.000004 seconds
+get_line_from_file called at 2019-06-01 08:15:50
+	Called on 10 records
+	Execution time 0:00:00.000001 seconds
+__init__ called at 2019-06-01 08:15:50
+	args:(<src.database_operations.HPNortonDB object at 0x7f3977c2b2e8>,), kwargs:{}
+	Execution time 0:00:00.000003 seconds
+get_line_from_file called at 2019-06-01 08:15:50
+	Called on 10 records
+	Execution time 0:00:00.000001 seconds
+insert_to_mongo called at 2019-06-01 08:15:50
+	Called on 10 records
+	Execution time 0:00:00.502766 seconds
+drop_database called at 2019-06-01 08:15:50
+	args:(<src.database_operations.HPNortonDB object at 0x7f3977c2b2e8>,), kwargs:{}
+	Execution time 0:00:00.014627 seconds
+__init__ called at 2019-06-01 08:15:50
+	args:(<src.database_operations.HPNortonDB object at 0x7f3977c2b3c8>,), kwargs:{}
+	Execution time 0:00:00.000005 seconds
+get_line_from_file called at 2019-06-01 08:15:50
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:15:50
+	Called on 10 records
+	Execution time 0:00:00.502796 seconds
+get_line_from_file called at 2019-06-01 08:15:51
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+insert_to_mongo called at 2019-06-01 08:15:51
+	Called on 10 records
+	Execution time 0:00:00.503728 seconds
+get_line_from_file called at 2019-06-01 08:15:51
+	Called on 10 records
+	Execution time 0:00:00.000001 seconds
+insert_to_mongo called at 2019-06-01 08:15:51
+	Called on 10 records
+	Execution time 0:00:00.502929 seconds
+drop_collections called at 2019-06-01 08:15:52
+	args:(<src.database_operations.HPNortonDB object at 0x7f3977c2b3c8>,), kwargs:{}
+	Execution time 0:00:00.003968 seconds
+__init__ called at 2019-06-01 08:21:42
+	args:(<src.database_operations.HPNortonDB object at 0x7f533c00ce48>,), kwargs:{}
+	Execution time 0:00:00.000006 seconds
+drop_database called at 2019-06-01 08:21:42
+	args:(<src.database_operations.HPNortonDB object at 0x7f533c00ce48>,), kwargs:{}
+	Execution time 0:00:00.007908 seconds
+get_line_from_file called at 2019-06-01 08:21:42
+	Called on 10 records
+	Execution time 0:00:00.000001 seconds
+insert_to_mongo called at 2019-06-01 08:21:42
+	Called on 10 records
+	Execution time 0:00:00.505634 seconds
+get_line_from_file called at 2019-06-01 08:21:43
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:21:43
+	Called on 10 records
+	Execution time 0:00:00.508867 seconds
+get_line_from_file called at 2019-06-01 08:21:43
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:21:43
+	Called on 10 records
+	Execution time 0:00:00.508679 seconds
+linear called at 2019-06-01 08:21:42
+	args:(<src.database_operations.HPNortonDB object at 0x7f533c00ce48>, ['./data/customers.csv', './data/product.csv', './data/rental.csv']), kwargs:{}
+	Execution time 0:00:01.524844 seconds
+__init__ called at 2019-06-01 08:21:44
+	args:(<src.database_operations.HPNortonDB object at 0x7f533c00ccf8>,), kwargs:{}
+	Execution time 0:00:00.000018 seconds
+drop_database called at 2019-06-01 08:21:44
+	args:(<src.database_operations.HPNortonDB object at 0x7f533c00ccf8>,), kwargs:{}
+	Execution time 0:00:00.028554 seconds
+start_process called at 2019-06-01 08:21:44
+	args:(<src.database_operations.HPNortonDB object at 0x7f533c00ccf8>, './data/customers.csv'), kwargs:{}
+	Execution time 0:00:00.013341 seconds
+start_process called at 2019-06-01 08:21:44
+	args:(<src.database_operations.HPNortonDB object at 0x7f533c00ccf8>, './data/product.csv'), kwargs:{}
+	Execution time 0:00:00.006481 seconds
+get_line_from_file called at 2019-06-01 08:21:44
+	Called on 10 records
+	Execution time 0:00:00.000008 seconds
+start_process called at 2019-06-01 08:21:44
+	args:(<src.database_operations.HPNortonDB object at 0x7f533c00ccf8>, './data/rental.csv'), kwargs:{}
+	Execution time 0:00:00.004217 seconds
+get_line_from_file called at 2019-06-01 08:21:44
+	Called on 10 records
+	Execution time 0:00:00.000009 seconds
+get_line_from_file called at 2019-06-01 08:21:44
+	Called on 10 records
+	Execution time 0:00:00.000012 seconds
+insert_to_mongo called at 2019-06-01 08:21:44
+	Called on 10 records
+	Execution time 0:00:00.513521 seconds
+join_process called at 2019-06-01 08:21:44
+	args:(<src.database_operations.HPNortonDB object at 0x7f533c00ccf8>, (<Process(Process-1, stopped)>, <multiprocessing.queues.Queue object at 0x7f533c0000b8>)), kwargs:{}
+	Execution time 0:00:00.508206 seconds
+insert_to_mongo called at 2019-06-01 08:21:44
+	Called on 10 records
+	Execution time 0:00:00.511634 seconds
+join_process called at 2019-06-01 08:21:44
+	args:(<src.database_operations.HPNortonDB object at 0x7f533c00ccf8>, (<Process(Process-2, stopped)>, <multiprocessing.queues.Queue object at 0x7f533bfeff60>)), kwargs:{}
+	Execution time 0:00:00.003689 seconds
+insert_to_mongo called at 2019-06-01 08:21:44
+	Called on 10 records
+	Execution time 0:00:00.510702 seconds
+join_process called at 2019-06-01 08:21:44
+	args:(<src.database_operations.HPNortonDB object at 0x7f533c00ccf8>, (<Process(Process-3, stopped)>, <multiprocessing.queues.Queue object at 0x7f533994a668>)), kwargs:{}
+	Execution time 0:00:00.003511 seconds
+parallel called at 2019-06-01 08:21:44
+	args:(<src.database_operations.HPNortonDB object at 0x7f533c00ccf8>, ['./data/customers.csv', './data/product.csv', './data/rental.csv']), kwargs:{}
+	Execution time 0:00:00.543795 seconds
+__init__ called at 2019-06-01 08:21:44
+	args:(<src.database_operations.HPNortonDB object at 0x7f533c0005f8>,), kwargs:{}
+	Execution time 0:00:00.000035 seconds
+drop_collections called at 2019-06-01 08:21:44
+	args:(<src.database_operations.HPNortonDB object at 0x7f533c0005f8>,), kwargs:{}
+	Execution time 0:00:00.017300 seconds
+get_line_from_file called at 2019-06-01 08:21:44
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:21:44
+	Called on 10 records
+	Execution time 0:00:00.509541 seconds
+get_line_from_file called at 2019-06-01 08:21:45
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:21:45
+	Called on 10 records
+	Execution time 0:00:00.508239 seconds
+get_line_from_file called at 2019-06-01 08:21:45
+	Called on 10 records
+	Execution time 0:00:00.000009 seconds
+insert_to_mongo called at 2019-06-01 08:21:45
+	Called on 10 records
+	Execution time 0:00:00.507745 seconds
+get_line_from_file called at 2019-06-01 08:21:46
+	Called on 10 records
+	Execution time 0:00:00.000004 seconds
+insert_to_mongo called at 2019-06-01 08:21:46
+	Called on 10 records
+	Execution time 0:00:00.507563 seconds
+get_line_from_file called at 2019-06-01 08:21:46
+	Called on 10 records
+	Execution time 0:00:00.000009 seconds
+insert_to_mongo called at 2019-06-01 08:21:46
+	Called on 10 records
+	Execution time 0:00:00.507096 seconds
+get_line_from_file called at 2019-06-01 08:21:47
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+insert_to_mongo called at 2019-06-01 08:21:47
+	Called on 10 records
+	Execution time 0:00:00.503877 seconds
+__init__ called at 2019-06-01 08:21:47
+	args:(<src.database_operations.HPNortonDB object at 0x7f533c0005f8>,), kwargs:{}
+	Execution time 0:00:00.000007 seconds
+drop_database called at 2019-06-01 08:21:47
+	args:(<src.database_operations.HPNortonDB object at 0x7f533c0005f8>,), kwargs:{}
+	Execution time 0:00:00.014565 seconds
+get_line_from_file called at 2019-06-01 08:21:47
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:21:47
+	Called on 10 records
+	Execution time 0:00:00.503573 seconds
+show_available_products called at 2019-06-01 08:21:48
+	args:(<src.database_operations.HPNortonDB object at 0x7f533c0005f8>,), kwargs:{}
+	Execution time 0:00:00.002643 seconds
+__init__ called at 2019-06-01 08:21:48
+	args:(<src.database_operations.HPNortonDB object at 0x7f533c000e80>,), kwargs:{}
+	Execution time 0:00:00.000008 seconds
+drop_database called at 2019-06-01 08:21:48
+	args:(<src.database_operations.HPNortonDB object at 0x7f533c000e80>,), kwargs:{}
+	Execution time 0:00:00.016793 seconds
+get_line_from_file called at 2019-06-01 08:21:48
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+insert_to_mongo called at 2019-06-01 08:21:48
+	Called on 10 records
+	Execution time 0:00:00.505575 seconds
+get_line_from_file called at 2019-06-01 08:21:48
+	Called on 10 records
+	Execution time 0:00:00.000005 seconds
+insert_to_mongo called at 2019-06-01 08:21:48
+	Called on 10 records
+	Execution time 0:00:00.506674 seconds
+get_line_from_file called at 2019-06-01 08:21:49
+	Called on 10 records
+	Execution time 0:00:00.000009 seconds
+insert_to_mongo called at 2019-06-01 08:21:49
+	Called on 10 records
+	Execution time 0:00:00.507660 seconds
+customers_renting_product called at 2019-06-01 08:21:49
+	args:(<src.database_operations.HPNortonDB object at 0x7f533c000e80>, 'P000001'), kwargs:{}
+	Execution time 0:00:00.013637 seconds
+__init__ called at 2019-06-01 08:21:49
+	args:(<src.database_operations.HPNortonDB object at 0x7f533994ad68>,), kwargs:{}
+	Execution time 0:00:00.000017 seconds
+drop_database called at 2019-06-01 08:21:49
+	args:(<src.database_operations.HPNortonDB object at 0x7f533994ad68>,), kwargs:{}
+	Execution time 0:00:00.029117 seconds
+get_line_from_file called at 2019-06-01 08:21:50
+	Called on 10 records
+	Execution time 0:00:00.000004 seconds
+insert_to_mongo called at 2019-06-01 08:21:50
+	Called on 10 records
+	Execution time 0:00:00.507937 seconds
+list_all_customers called at 2019-06-01 08:21:50
+	args:(<src.database_operations.HPNortonDB object at 0x7f533994ad68>,), kwargs:{}
+	Execution time 0:00:00.007749 seconds
+__init__ called at 2019-06-01 08:21:50
+	args:(<src.database_operations.HPNortonDB object at 0x7f533bfeff98>,), kwargs:{}
+	Execution time 0:00:00.000016 seconds
+drop_database called at 2019-06-01 08:21:50
+	args:(<src.database_operations.HPNortonDB object at 0x7f533bfeff98>,), kwargs:{}
+	Execution time 0:00:00.027387 seconds
+get_line_from_file called at 2019-06-01 08:21:50
+	Called on 10 records
+	Execution time 0:00:00.000007 seconds
+insert_to_mongo called at 2019-06-01 08:21:50
+	Called on 10 records
+	Execution time 0:00:00.509250 seconds
+list_all_products called at 2019-06-01 08:21:51
+	args:(<src.database_operations.HPNortonDB object at 0x7f533bfeff98>,), kwargs:{}
+	Execution time 0:00:00.007330 seconds
+__init__ called at 2019-06-01 08:21:51
+	args:(<src.database_operations.HPNortonDB object at 0x7f533bfef940>,), kwargs:{}
+	Execution time 0:00:00.000018 seconds
+drop_database called at 2019-06-01 08:21:51
+	args:(<src.database_operations.HPNortonDB object at 0x7f533bfef940>,), kwargs:{}
+	Execution time 0:00:00.030252 seconds
+get_line_from_file called at 2019-06-01 08:21:51
+	Called on 10 records
+	Execution time 0:00:00.000008 seconds
+insert_to_mongo called at 2019-06-01 08:21:51
+	Called on 10 records
+	Execution time 0:00:00.509368 seconds
+list_all_rentals called at 2019-06-01 08:21:51
+	args:(<src.database_operations.HPNortonDB object at 0x7f533bfef940>,), kwargs:{}
+	Execution time 0:00:00.007557 seconds
+__init__ called at 2019-06-01 08:21:51
+	args:(<src.database_operations.HPNortonDB object at 0x7f533bfefa20>,), kwargs:{}
+	Execution time 0:00:00.000013 seconds
+drop_database called at 2019-06-01 08:21:51
+	args:(<src.database_operations.HPNortonDB object at 0x7f533bfefa20>,), kwargs:{}
+	Execution time 0:00:00.017110 seconds
+get_line_from_file called at 2019-06-01 08:21:51
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:21:51
+	Called on 10 records
+	Execution time 0:00:00.503405 seconds
+get_line_from_file called at 2019-06-01 08:21:52
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:21:52
+	Called on 10 records
+	Execution time 0:00:00.503342 seconds
+get_line_from_file called at 2019-06-01 08:21:52
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:21:52
+	Called on 10 records
+	Execution time 0:00:00.503014 seconds
+rentals_for_customer called at 2019-06-01 08:21:53
+	args:(<src.database_operations.HPNortonDB object at 0x7f533bfefa20>, 'C000001'), kwargs:{}
+	Execution time 0:00:00.002831 seconds
+__init__ called at 2019-06-01 08:21:53
+	args:(<src.database_operations.HPNortonDB object at 0x7f533bfef978>,), kwargs:{}
+	Execution time 0:00:00.000006 seconds
+get_line_from_file called at 2019-06-01 08:21:53
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+__init__ called at 2019-06-01 08:21:53
+	args:(<src.database_operations.HPNortonDB object at 0x7f533994a8d0>,), kwargs:{}
+	Execution time 0:00:00.000005 seconds
+get_line_from_file called at 2019-06-01 08:21:53
+	Called on 10 records
+	Execution time 0:00:00.000001 seconds
+insert_to_mongo called at 2019-06-01 08:21:53
+	Called on 10 records
+	Execution time 0:00:00.503370 seconds
+drop_database called at 2019-06-01 08:21:53
+	args:(<src.database_operations.HPNortonDB object at 0x7f533994a8d0>,), kwargs:{}
+	Execution time 0:00:00.014262 seconds
+__init__ called at 2019-06-01 08:21:53
+	args:(<src.database_operations.HPNortonDB object at 0x7f533994aba8>,), kwargs:{}
+	Execution time 0:00:00.000005 seconds
+get_line_from_file called at 2019-06-01 08:21:53
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:21:53
+	Called on 10 records
+	Execution time 0:00:00.506086 seconds
+get_line_from_file called at 2019-06-01 08:21:54
+	Called on 10 records
+	Execution time 0:00:00.000008 seconds
+insert_to_mongo called at 2019-06-01 08:21:54
+	Called on 10 records
+	Execution time 0:00:00.508480 seconds
+get_line_from_file called at 2019-06-01 08:21:54
+	Called on 10 records
+	Execution time 0:00:00.000008 seconds
+insert_to_mongo called at 2019-06-01 08:21:54
+	Called on 10 records
+	Execution time 0:00:00.508393 seconds
+drop_collections called at 2019-06-01 08:21:55
+	args:(<src.database_operations.HPNortonDB object at 0x7f533994aba8>,), kwargs:{}
+	Execution time 0:00:00.014115 seconds
+__init__ called at 2019-06-01 08:23:08
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283852e48>,), kwargs:{}
+	Execution time 0:00:00.000005 seconds
+drop_database called at 2019-06-01 08:23:08
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283852e48>,), kwargs:{}
+	Execution time 0:00:00.010200 seconds
+get_line_from_file called at 2019-06-01 08:23:08
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:23:08
+	Called on 10 records
+	Execution time 0:00:00.505423 seconds
+get_line_from_file called at 2019-06-01 08:23:08
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:23:08
+	Called on 10 records
+	Execution time 0:00:00.507913 seconds
+get_line_from_file called at 2019-06-01 08:23:09
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:23:09
+	Called on 10 records
+	Execution time 0:00:00.508516 seconds
+linear called at 2019-06-01 08:23:08
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283852e48>, ['./data/customers.csv', './data/product.csv', './data/rental.csv']), kwargs:{}
+	Execution time 0:00:01.523519 seconds
+__init__ called at 2019-06-01 08:23:09
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283852fd0>,), kwargs:{}
+	Execution time 0:00:00.000019 seconds
+drop_database called at 2019-06-01 08:23:09
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283852fd0>,), kwargs:{}
+	Execution time 0:00:00.028338 seconds
+start_process called at 2019-06-01 08:23:09
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283852fd0>, './data/customers.csv'), kwargs:{}
+	Execution time 0:00:00.012587 seconds
+start_process called at 2019-06-01 08:23:09
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283852fd0>, './data/product.csv'), kwargs:{}
+	Execution time 0:00:00.006261 seconds
+get_line_from_file called at 2019-06-01 08:23:09
+	Called on 10 records
+	Execution time 0:00:00.000009 seconds
+start_process called at 2019-06-01 08:23:09
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283852fd0>, './data/rental.csv'), kwargs:{}
+	Execution time 0:00:00.003797 seconds
+get_line_from_file called at 2019-06-01 08:23:09
+	Called on 10 records
+	Execution time 0:00:00.000009 seconds
+get_line_from_file called at 2019-06-01 08:23:09
+	Called on 10 records
+	Execution time 0:00:00.000007 seconds
+insert_to_mongo called at 2019-06-01 08:23:09
+	Called on 10 records
+	Execution time 0:00:00.512416 seconds
+insert_to_mongo called at 2019-06-01 08:23:09
+	Called on 10 records
+	Execution time 0:00:00.510042 seconds
+join_process called at 2019-06-01 08:23:09
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283852fd0>, (<Process(Process-1, stopped)>, <multiprocessing.queues.Queue object at 0x7f0283852f98>)), kwargs:{}
+	Execution time 0:00:00.507742 seconds
+join_process called at 2019-06-01 08:23:10
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283852fd0>, (<Process(Process-2, stopped)>, <multiprocessing.queues.Queue object at 0x7f0283833e80>)), kwargs:{}
+	Execution time 0:00:00.003476 seconds
+insert_to_mongo called at 2019-06-01 08:23:09
+	Called on 10 records
+	Execution time 0:00:00.510384 seconds
+join_process called at 2019-06-01 08:23:10
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283852fd0>, (<Process(Process-3, stopped)>, <multiprocessing.queues.Queue object at 0x7f028118f550>)), kwargs:{}
+	Execution time 0:00:00.003592 seconds
+parallel called at 2019-06-01 08:23:09
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283852fd0>, ['./data/customers.csv', './data/product.csv', './data/rental.csv']), kwargs:{}
+	Execution time 0:00:00.541685 seconds
+__init__ called at 2019-06-01 08:23:10
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283852d30>,), kwargs:{}
+	Execution time 0:00:00.000041 seconds
+drop_collections called at 2019-06-01 08:23:10
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283852d30>,), kwargs:{}
+	Execution time 0:00:00.016105 seconds
+get_line_from_file called at 2019-06-01 08:23:10
+	Called on 10 records
+	Execution time 0:00:00.000007 seconds
+insert_to_mongo called at 2019-06-01 08:23:10
+	Called on 10 records
+	Execution time 0:00:00.508668 seconds
+get_line_from_file called at 2019-06-01 08:23:10
+	Called on 10 records
+	Execution time 0:00:00.000007 seconds
+insert_to_mongo called at 2019-06-01 08:23:10
+	Called on 10 records
+	Execution time 0:00:00.508559 seconds
+get_line_from_file called at 2019-06-01 08:23:11
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:23:11
+	Called on 10 records
+	Execution time 0:00:00.508910 seconds
+get_line_from_file called at 2019-06-01 08:23:11
+	Called on 10 records
+	Execution time 0:00:00.000007 seconds
+insert_to_mongo called at 2019-06-01 08:23:11
+	Called on 10 records
+	Execution time 0:00:00.508960 seconds
+get_line_from_file called at 2019-06-01 08:23:12
+	Called on 10 records
+	Execution time 0:00:00.000009 seconds
+insert_to_mongo called at 2019-06-01 08:23:12
+	Called on 10 records
+	Execution time 0:00:00.507705 seconds
+get_line_from_file called at 2019-06-01 08:23:12
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+insert_to_mongo called at 2019-06-01 08:23:12
+	Called on 10 records
+	Execution time 0:00:00.505026 seconds
+__init__ called at 2019-06-01 08:23:13
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283852f98>,), kwargs:{}
+	Execution time 0:00:00.000010 seconds
+drop_database called at 2019-06-01 08:23:13
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283852f98>,), kwargs:{}
+	Execution time 0:00:00.015658 seconds
+get_line_from_file called at 2019-06-01 08:23:13
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:23:13
+	Called on 10 records
+	Execution time 0:00:00.503257 seconds
+show_available_products called at 2019-06-01 08:23:13
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283852f98>,), kwargs:{}
+	Execution time 0:00:00.001843 seconds
+__init__ called at 2019-06-01 08:23:13
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283824d68>,), kwargs:{}
+	Execution time 0:00:00.000005 seconds
+drop_database called at 2019-06-01 08:23:13
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283824d68>,), kwargs:{}
+	Execution time 0:00:00.012974 seconds
+get_line_from_file called at 2019-06-01 08:23:13
+	Called on 10 records
+	Execution time 0:00:00.000001 seconds
+insert_to_mongo called at 2019-06-01 08:23:13
+	Called on 10 records
+	Execution time 0:00:00.503381 seconds
+get_line_from_file called at 2019-06-01 08:23:14
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:23:14
+	Called on 10 records
+	Execution time 0:00:00.503510 seconds
+get_line_from_file called at 2019-06-01 08:23:14
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:23:14
+	Called on 10 records
+	Execution time 0:00:00.505772 seconds
+customers_renting_product called at 2019-06-01 08:23:15
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283824d68>, 'P000001'), kwargs:{}
+	Execution time 0:00:00.013298 seconds
+__init__ called at 2019-06-01 08:23:15
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283879c50>,), kwargs:{}
+	Execution time 0:00:00.000017 seconds
+drop_database called at 2019-06-01 08:23:15
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283879c50>,), kwargs:{}
+	Execution time 0:00:00.027205 seconds
+get_line_from_file called at 2019-06-01 08:23:15
+	Called on 10 records
+	Execution time 0:00:00.000009 seconds
+insert_to_mongo called at 2019-06-01 08:23:15
+	Called on 10 records
+	Execution time 0:00:00.506374 seconds
+list_all_customers called at 2019-06-01 08:23:15
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283879c50>,), kwargs:{}
+	Execution time 0:00:00.002408 seconds
+__init__ called at 2019-06-01 08:23:15
+	args:(<src.database_operations.HPNortonDB object at 0x7f028118f0f0>,), kwargs:{}
+	Execution time 0:00:00.000007 seconds
+drop_database called at 2019-06-01 08:23:15
+	args:(<src.database_operations.HPNortonDB object at 0x7f028118f0f0>,), kwargs:{}
+	Execution time 0:00:00.015683 seconds
+get_line_from_file called at 2019-06-01 08:23:15
+	Called on 10 records
+	Execution time 0:00:00.000004 seconds
+insert_to_mongo called at 2019-06-01 08:23:15
+	Called on 10 records
+	Execution time 0:00:00.506440 seconds
+list_all_products called at 2019-06-01 08:23:16
+	args:(<src.database_operations.HPNortonDB object at 0x7f028118f0f0>,), kwargs:{}
+	Execution time 0:00:00.007495 seconds
+__init__ called at 2019-06-01 08:23:16
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283833d68>,), kwargs:{}
+	Execution time 0:00:00.000015 seconds
+drop_database called at 2019-06-01 08:23:16
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283833d68>,), kwargs:{}
+	Execution time 0:00:00.028050 seconds
+get_line_from_file called at 2019-06-01 08:23:16
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:23:16
+	Called on 10 records
+	Execution time 0:00:00.509148 seconds
+list_all_rentals called at 2019-06-01 08:23:16
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283833d68>,), kwargs:{}
+	Execution time 0:00:00.007501 seconds
+__init__ called at 2019-06-01 08:23:16
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283879208>,), kwargs:{}
+	Execution time 0:00:00.000016 seconds
+drop_database called at 2019-06-01 08:23:16
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283879208>,), kwargs:{}
+	Execution time 0:00:00.028654 seconds
+get_line_from_file called at 2019-06-01 08:23:16
+	Called on 10 records
+	Execution time 0:00:00.000005 seconds
+insert_to_mongo called at 2019-06-01 08:23:16
+	Called on 10 records
+	Execution time 0:00:00.508797 seconds
+get_line_from_file called at 2019-06-01 08:23:17
+	Called on 10 records
+	Execution time 0:00:00.000008 seconds
+insert_to_mongo called at 2019-06-01 08:23:17
+	Called on 10 records
+	Execution time 0:00:00.508317 seconds
+get_line_from_file called at 2019-06-01 08:23:17
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:23:17
+	Called on 10 records
+	Execution time 0:00:00.508098 seconds
+rentals_for_customer called at 2019-06-01 08:23:18
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283879208>, 'C000001'), kwargs:{}
+	Execution time 0:00:00.005681 seconds
+__init__ called at 2019-06-01 08:23:18
+	args:(<src.database_operations.HPNortonDB object at 0x7f02838790f0>,), kwargs:{}
+	Execution time 0:00:00.000009 seconds
+get_line_from_file called at 2019-06-01 08:23:18
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+__init__ called at 2019-06-01 08:23:18
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283879ba8>,), kwargs:{}
+	Execution time 0:00:00.000008 seconds
+get_line_from_file called at 2019-06-01 08:23:18
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+insert_to_mongo called at 2019-06-01 08:23:18
+	Called on 10 records
+	Execution time 0:00:00.504381 seconds
+drop_database called at 2019-06-01 08:23:18
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283879ba8>,), kwargs:{}
+	Execution time 0:00:00.023127 seconds
+__init__ called at 2019-06-01 08:23:19
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283833198>,), kwargs:{}
+	Execution time 0:00:00.000018 seconds
+get_line_from_file called at 2019-06-01 08:23:19
+	Called on 10 records
+	Execution time 0:00:00.000009 seconds
+insert_to_mongo called at 2019-06-01 08:23:19
+	Called on 10 records
+	Execution time 0:00:00.507323 seconds
+get_line_from_file called at 2019-06-01 08:23:19
+	Called on 10 records
+	Execution time 0:00:00.000005 seconds
+insert_to_mongo called at 2019-06-01 08:23:19
+	Called on 10 records
+	Execution time 0:00:00.505889 seconds
+get_line_from_file called at 2019-06-01 08:23:20
+	Called on 10 records
+	Execution time 0:00:00.000009 seconds
+insert_to_mongo called at 2019-06-01 08:23:20
+	Called on 10 records
+	Execution time 0:00:00.507973 seconds
+drop_collections called at 2019-06-01 08:23:20
+	args:(<src.database_operations.HPNortonDB object at 0x7f0283833198>,), kwargs:{}
+	Execution time 0:00:00.014410 seconds
+__init__ called at 2019-06-01 08:27:27
+	args:(<src.database_operations.HPNortonDB object at 0x7f920ebe07f0>,), kwargs:{}
+	Execution time 0:00:00.000005 seconds
+list_all_products called at 2019-06-01 08:27:27
+	args:(<src.database_operations.HPNortonDB object at 0x7f920ebe07f0>,), kwargs:{}
+	Execution time 0:00:00.001784 seconds
+__init__ called at 2019-06-01 08:27:43
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf1536ceb8>,), kwargs:{}
+	Execution time 0:00:00.000004 seconds
+drop_database called at 2019-06-01 08:27:43
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf1536ceb8>,), kwargs:{}
+	Execution time 0:00:00.007963 seconds
+get_line_from_file called at 2019-06-01 08:27:43
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:27:43
+	Called on 10 records
+	Execution time 0:00:00.502771 seconds
+get_line_from_file called at 2019-06-01 08:27:44
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:27:44
+	Called on 10 records
+	Execution time 0:00:00.503616 seconds
+get_line_from_file called at 2019-06-01 08:27:44
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:27:44
+	Called on 10 records
+	Execution time 0:00:00.504624 seconds
+linear called at 2019-06-01 08:27:43
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf1536ceb8>, ['./data/customers.csv', './data/product.csv', './data/rental.csv']), kwargs:{}
+	Execution time 0:00:01.511738 seconds
+__init__ called at 2019-06-01 08:27:45
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf1536cfd0>,), kwargs:{}
+	Execution time 0:00:00.000008 seconds
+drop_database called at 2019-06-01 08:27:45
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf1536cfd0>,), kwargs:{}
+	Execution time 0:00:00.015432 seconds
+start_process called at 2019-06-01 08:27:45
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf1536cfd0>, './data/customers.csv'), kwargs:{}
+	Execution time 0:00:00.003710 seconds
+start_process called at 2019-06-01 08:27:45
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf1536cfd0>, './data/product.csv'), kwargs:{}
+	Execution time 0:00:00.002006 seconds
+get_line_from_file called at 2019-06-01 08:27:45
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+start_process called at 2019-06-01 08:27:45
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf1536cfd0>, './data/rental.csv'), kwargs:{}
+	Execution time 0:00:00.002135 seconds
+get_line_from_file called at 2019-06-01 08:27:45
+	Called on 10 records
+	Execution time 0:00:00.000004 seconds
+get_line_from_file called at 2019-06-01 08:27:45
+	Called on 10 records
+	Execution time 0:00:00.000005 seconds
+insert_to_mongo called at 2019-06-01 08:27:45
+	Called on 10 records
+	Execution time 0:00:00.506978 seconds
+insert_to_mongo called at 2019-06-01 08:27:45
+	Called on 10 records
+	Execution time 0:00:00.506298 seconds
+join_process called at 2019-06-01 08:27:45
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf1536cfd0>, (<Process(Process-1, stopped)>, <multiprocessing.queues.Queue object at 0x7fdf1536c828>)), kwargs:{}
+	Execution time 0:00:00.506025 seconds
+join_process called at 2019-06-01 08:27:45
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf1536cfd0>, (<Process(Process-2, stopped)>, <multiprocessing.queues.Queue object at 0x7fdf1534ee80>)), kwargs:{}
+	Execution time 0:00:00.002100 seconds
+insert_to_mongo called at 2019-06-01 08:27:45
+	Called on 10 records
+	Execution time 0:00:00.507833 seconds
+join_process called at 2019-06-01 08:27:45
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf1536cfd0>, (<Process(Process-3, stopped)>, <multiprocessing.queues.Queue object at 0x7fdf140c7588>)), kwargs:{}
+	Execution time 0:00:00.003935 seconds
+parallel called at 2019-06-01 08:27:45
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf1536cfd0>, ['./data/customers.csv', './data/product.csv', './data/rental.csv']), kwargs:{}
+	Execution time 0:00:00.522048 seconds
+__init__ called at 2019-06-01 08:27:45
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf1536ca20>,), kwargs:{}
+	Execution time 0:00:00.000038 seconds
+drop_collections called at 2019-06-01 08:27:45
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf1536ca20>,), kwargs:{}
+	Execution time 0:00:00.016505 seconds
+get_line_from_file called at 2019-06-01 08:27:46
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:27:46
+	Called on 10 records
+	Execution time 0:00:00.506390 seconds
+get_line_from_file called at 2019-06-01 08:27:46
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:27:46
+	Called on 10 records
+	Execution time 0:00:00.502892 seconds
+get_line_from_file called at 2019-06-01 08:27:47
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:27:47
+	Called on 10 records
+	Execution time 0:00:00.505365 seconds
+get_line_from_file called at 2019-06-01 08:27:47
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:27:47
+	Called on 10 records
+	Execution time 0:00:00.507685 seconds
+get_line_from_file called at 2019-06-01 08:27:48
+	Called on 10 records
+	Execution time 0:00:00.000009 seconds
+insert_to_mongo called at 2019-06-01 08:27:48
+	Called on 10 records
+	Execution time 0:00:00.508417 seconds
+get_line_from_file called at 2019-06-01 08:27:48
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:27:48
+	Called on 10 records
+	Execution time 0:00:00.507737 seconds
+__init__ called at 2019-06-01 08:27:49
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf1536cd30>,), kwargs:{}
+	Execution time 0:00:00.000019 seconds
+drop_database called at 2019-06-01 08:27:49
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf1536cd30>,), kwargs:{}
+	Execution time 0:00:00.027538 seconds
+get_line_from_file called at 2019-06-01 08:27:49
+	Called on 10 records
+	Execution time 0:00:00.000005 seconds
+insert_to_mongo called at 2019-06-01 08:27:49
+	Called on 10 records
+	Execution time 0:00:00.509151 seconds
+show_available_products called at 2019-06-01 08:27:49
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf1536cd30>,), kwargs:{}
+	Execution time 0:00:00.007487 seconds
+__init__ called at 2019-06-01 08:27:49
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf15394160>,), kwargs:{}
+	Execution time 0:00:00.000017 seconds
+drop_database called at 2019-06-01 08:27:49
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf15394160>,), kwargs:{}
+	Execution time 0:00:00.026695 seconds
+get_line_from_file called at 2019-06-01 08:27:49
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:27:49
+	Called on 10 records
+	Execution time 0:00:00.509016 seconds
+get_line_from_file called at 2019-06-01 08:27:50
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:27:50
+	Called on 10 records
+	Execution time 0:00:00.508104 seconds
+get_line_from_file called at 2019-06-01 08:27:50
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:27:50
+	Called on 10 records
+	Execution time 0:00:00.508426 seconds
+customers_renting_product called at 2019-06-01 08:27:51
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf15394160>, 'P000001'), kwargs:{}
+	Execution time 0:00:00.004707 seconds
+__init__ called at 2019-06-01 08:27:51
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf15394128>,), kwargs:{}
+	Execution time 0:00:00.000005 seconds
+drop_database called at 2019-06-01 08:27:51
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf15394128>,), kwargs:{}
+	Execution time 0:00:00.012783 seconds
+get_line_from_file called at 2019-06-01 08:27:51
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:27:51
+	Called on 10 records
+	Execution time 0:00:00.502380 seconds
+list_all_customers called at 2019-06-01 08:27:51
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf15394128>,), kwargs:{}
+	Execution time 0:00:00.001610 seconds
+__init__ called at 2019-06-01 08:27:51
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf140c7630>,), kwargs:{}
+	Execution time 0:00:00.000005 seconds
+drop_database called at 2019-06-01 08:27:51
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf140c7630>,), kwargs:{}
+	Execution time 0:00:00.013219 seconds
+get_line_from_file called at 2019-06-01 08:27:51
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:27:51
+	Called on 10 records
+	Execution time 0:00:00.504086 seconds
+list_all_products called at 2019-06-01 08:27:52
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf140c7630>,), kwargs:{}
+	Execution time 0:00:00.003023 seconds
+__init__ called at 2019-06-01 08:27:52
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf15394080>,), kwargs:{}
+	Execution time 0:00:00.000007 seconds
+drop_database called at 2019-06-01 08:27:52
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf15394080>,), kwargs:{}
+	Execution time 0:00:00.014477 seconds
+get_line_from_file called at 2019-06-01 08:27:52
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+insert_to_mongo called at 2019-06-01 08:27:52
+	Called on 10 records
+	Execution time 0:00:00.503662 seconds
+list_all_rentals called at 2019-06-01 08:27:52
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf15394080>,), kwargs:{}
+	Execution time 0:00:00.002420 seconds
+__init__ called at 2019-06-01 08:27:52
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf15394240>,), kwargs:{}
+	Execution time 0:00:00.000006 seconds
+drop_database called at 2019-06-01 08:27:52
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf15394240>,), kwargs:{}
+	Execution time 0:00:00.014584 seconds
+get_line_from_file called at 2019-06-01 08:27:52
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-06-01 08:27:52
+	Called on 10 records
+	Execution time 0:00:00.506052 seconds
+get_line_from_file called at 2019-06-01 08:27:53
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:27:53
+	Called on 10 records
+	Execution time 0:00:00.508411 seconds
+get_line_from_file called at 2019-06-01 08:27:53
+	Called on 10 records
+	Execution time 0:00:00.000009 seconds
+insert_to_mongo called at 2019-06-01 08:27:53
+	Called on 10 records
+	Execution time 0:00:00.508532 seconds
+rentals_for_customer called at 2019-06-01 08:27:54
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf15394240>, 'C000001'), kwargs:{}
+	Execution time 0:00:00.009641 seconds
+__init__ called at 2019-06-01 08:27:54
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf1534ee80>,), kwargs:{}
+	Execution time 0:00:00.000018 seconds
+get_line_from_file called at 2019-06-01 08:27:54
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+__init__ called at 2019-06-01 08:27:54
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf1534ef28>,), kwargs:{}
+	Execution time 0:00:00.000016 seconds
+get_line_from_file called at 2019-06-01 08:27:54
+	Called on 10 records
+	Execution time 0:00:00.000008 seconds
+insert_to_mongo called at 2019-06-01 08:27:54
+	Called on 10 records
+	Execution time 0:00:00.508673 seconds
+drop_database called at 2019-06-01 08:27:54
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf1534ef28>,), kwargs:{}
+	Execution time 0:00:00.026457 seconds
+__init__ called at 2019-06-01 08:27:54
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf1534e908>,), kwargs:{}
+	Execution time 0:00:00.000017 seconds
+get_line_from_file called at 2019-06-01 08:27:54
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:27:54
+	Called on 10 records
+	Execution time 0:00:00.508537 seconds
+get_line_from_file called at 2019-06-01 08:27:55
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-06-01 08:27:55
+	Called on 10 records
+	Execution time 0:00:00.508195 seconds
+get_line_from_file called at 2019-06-01 08:27:55
+	Called on 10 records
+	Execution time 0:00:00.000008 seconds
+insert_to_mongo called at 2019-06-01 08:27:55
+	Called on 10 records
+	Execution time 0:00:00.508125 seconds
+drop_collections called at 2019-06-01 08:27:56
+	args:(<src.database_operations.HPNortonDB object at 0x7fdf1534e908>,), kwargs:{}
+	Execution time 0:00:00.013476 seconds

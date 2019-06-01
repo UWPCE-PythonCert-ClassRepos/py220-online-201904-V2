@@ -5,11 +5,15 @@
 
 ```
 assignment/
-   ├─── l05-decorator/ - HPNorton.py
+   ├─── l05-decorator/ - HPNorton.py (Just a bunch of functions)
    │      ├─── data/ - csv files
    │      ├─── src/ - module code
    │      └─── tests/ - pytest file
-   └─── l05-metaclass/ - HPNorton.py
+   ├─── l05-OO/ - HPNorton.py (Object Oriented Version)
+   │      ├─── data/ - csv files
+   │      ├─── src/ - module code
+   │      └─── tests/ - pytest file
+   └─── l05-meta/ - HPNorton.py (Object Oriented with Metaclass)
           ├─── data/ - csv files
           ├─── src/ - module code
           └─── tests/ - pytest file
@@ -18,6 +22,12 @@ assignment/
 ## Decorator
 
 I first completed this assignment using a decorator - just consider it a warm up.
+
+Next I created an HPNorton class and moved all the database related function
+calls to methods of the class.
+
+Third, I created a metaclass that wraps each method of HPNorton with a timing/
+logging function that writes the requested results to timings.txt
 
 The tests are designed to be run on the smaller test data, which are a head
 of the main larger data files.  Two scripts are included to facilitate
