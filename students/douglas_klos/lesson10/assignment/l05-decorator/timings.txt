@@ -583,3 +583,45 @@ insert_to_mongo called at 2019-05-31 15:45:50
 drop_collections called at 2019-05-31 15:45:50
 	args:(), kwargs:{}
 	Execution time 0:00:00.002910 seconds
+start_process called at 2019-05-31 15:57:49
+	args:('./data/customers.csv',), kwargs:{}
+	Execution time 0:00:00.002762 seconds
+start_process called at 2019-05-31 15:57:49
+	args:('./data/product.csv',), kwargs:{}
+	Execution time 0:00:00.001029 seconds
+get_line_from_file called at 2019-05-31 15:57:49
+	Called on 10 records
+	Execution time 0:00:00.000004 seconds
+start_process called at 2019-05-31 15:57:49
+	args:('./data/rental.csv',), kwargs:{}
+	Execution time 0:00:00.001363 seconds
+get_line_from_file called at 2019-05-31 15:57:49
+	Called on 10 records
+	Execution time 0:00:00.000004 seconds
+get_line_from_file called at 2019-05-31 15:57:49
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+insert_to_mongo called at 2019-05-31 15:57:49
+	Called on 10 records
+	Execution time 0:00:00.505241 seconds
+insert_to_mongo called at 2019-05-31 15:57:49
+	Called on 10 records
+	Execution time 0:00:00.505523 seconds
+join_process called at 2019-05-31 15:57:49
+	args:((<Process(Process-1, stopped)>, <multiprocessing.queues.Queue object at 0x7f7c25de9da0>),), kwargs:{}
+	Execution time 0:00:00.505047 seconds
+insert_to_mongo called at 2019-05-31 15:57:49
+	Called on 10 records
+	Execution time 0:00:00.505534 seconds
+join_process called at 2019-05-31 15:57:50
+	args:((<Process(Process-2, stopped)>, <multiprocessing.queues.Queue object at 0x7f7c25bae0b8>),), kwargs:{}
+	Execution time 0:00:00.001085 seconds
+join_process called at 2019-05-31 15:57:50
+	args:((<Process(Process-3, stopped)>, <multiprocessing.queues.Queue object at 0x7f7c25baed68>),), kwargs:{}
+	Execution time 0:00:00.001275 seconds
+parallel called at 2019-05-31 15:57:49
+	args:(['./data/customers.csv', './data/product.csv', './data/rental.csv'],), kwargs:{}
+	Execution time 0:00:00.514100 seconds
+show_available_products called at 2019-05-31 16:01:27
+	args:(), kwargs:{}
+	Execution time 0:00:00.001985 seconds

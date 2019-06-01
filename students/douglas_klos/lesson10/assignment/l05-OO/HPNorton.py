@@ -12,26 +12,28 @@ def main(argv=None):
     """ Database main function """
     args = parse_cmd_arguments(argv)
 
+    HPNorton = db.HPNortonDB()
+
     func_struct = (
         (args.disable_log, disable_log, ()),
-        (args.all_products, db.list_all_products, ()),
-        (args.available_products, db.show_available_products, ()),
-        (args.all_customers, db.list_all_customers, ()),
-        (args.all_rentals, db.list_all_rentals, ()),
-        (args.drop_collections, db.drop_collections, ()),
-        (args.drop_database, db.drop_database, ()),
+        (args.all_products, HPNorton.list_all_products, ()),
+        (args.available_products, HPNorton.show_available_products, ()),
+        (args.all_customers, HPNorton.list_all_customers, ()),
+        (args.all_rentals, HPNorton.list_all_rentals, ()),
+        (args.drop_collections, HPNorton.drop_collections, ()),
+        (args.drop_database, HPNorton.drop_database, ()),
         (
             args.rentals_for_customer,
-            db.rentals_for_customer,
+            HPNorton.rentals_for_customer,
             (args.rentals_for_customer,),
         ),
         (
             args.customers_renting_product,
-            db.customers_renting_product,
+            HPNorton.customers_renting_product,
             (args.customers_renting_product,),
         ),
-        (args.parallel, db.parallel, (args.parallel,)),
-        (args.linear, db.linear, (args.linear,)),
+        (args.parallel, HPNorton.parallel, (args.parallel,)),
+        (args.linear, HPNorton.linear, (args.linear,)),
     )
 
     pprint(
@@ -40,7 +42,7 @@ def main(argv=None):
                 lambda x: x[1](*x[2]),
                 filter(lambda x: x[0] is not False, func_struct),
             )
-        )[0]
+        )
     )
 
 

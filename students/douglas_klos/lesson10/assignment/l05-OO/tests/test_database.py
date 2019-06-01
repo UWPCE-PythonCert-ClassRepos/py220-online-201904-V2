@@ -1,6 +1,5 @@
-"""grade lesson 5
-"""
-
+""" Tests for lesson 10 """
+#pylint: disable=C0103
 import pytest
 import src.database_operations as l
 
@@ -336,8 +335,10 @@ def _parallel_insert():
 
 def test_linear(_linear_insert):
     """ parallel import csv """
-    l.drop_database()
-    results = l.linear(
+    HPNorton = l.HPNortonDB()
+    HPNorton.drop_database()
+
+    results = HPNorton.linear(
         ["./data/customers.csv", "./data/product.csv", "./data/rental.csv"]
     )
 
@@ -349,8 +350,10 @@ def test_linear(_linear_insert):
 
 def test_parallel(_linear_insert):
     """ parallel import csv """
-    l.drop_database()
-    results = l.parallel(
+    HPNorton = l.HPNortonDB()
+    HPNorton.drop_database()
+
+    results = HPNorton.parallel(
         ["./data/customers.csv", "./data/product.csv", "./data/rental.csv"]
     )
 
@@ -362,46 +365,45 @@ def test_parallel(_linear_insert):
 
 def test_insert_to_mongo():
     """ import given csv file into mongo """
+    HPNorton = l.HPNortonDB()
+    HPNorton.drop_collections()
 
-    # l.drop_database()
-    l.drop_collections()
-
-    results = l.insert_to_mongo("./data/product.csv")
+    results = HPNorton.insert_to_mongo("./data/product.csv")
     results = results["product"]
     assert results["success"] == 9
     assert results["fail"] == 0
     assert results["total_records"] == 9
     assert results["elapsed"] > 0
 
-    results = l.insert_to_mongo("./data/customers.csv")
+    results = HPNorton.insert_to_mongo("./data/customers.csv")
     results = results["customers"]
     assert results["success"] == 9
     assert results["fail"] == 0
     assert results["total_records"] == 9
     assert results["elapsed"] > 0
 
-    results = l.insert_to_mongo("./data/rental.csv")
+    results = HPNorton.insert_to_mongo("./data/rental.csv")
     results = results["rental"]
     assert results["success"] == 9
     assert results["fail"] == 0
     assert results["total_records"] == 9
     assert results["elapsed"] > 0
 
-    results = l.insert_to_mongo("./data/product.csv")
+    results = HPNorton.insert_to_mongo("./data/product.csv")
     results = results["product"]
     assert results["success"] == 0
     assert results["fail"] == 9
     assert results["total_records"] == 9
     assert results["elapsed"] > 0
 
-    results = l.insert_to_mongo("./data/customers.csv")
+    results = HPNorton.insert_to_mongo("./data/customers.csv")
     results = results["customers"]
     assert results["success"] == 0
     assert results["fail"] == 9
     assert results["total_records"] == 9
     assert results["elapsed"] > 0
 
-    results = l.insert_to_mongo("./data/rental.csv")
+    results = HPNorton.insert_to_mongo("./data/rental.csv")
     results = results["rental"]
     assert results["success"] == 0
     assert results["fail"] == 9
@@ -411,101 +413,107 @@ def test_insert_to_mongo():
 
 def test_show_available_products(_show_available_products):
     """ available products """
-    l.drop_database()
-    l.insert_to_mongo("./data/product.csv")
-    l.DB_NAME = "HPNorton_PyMongo_L09"
-    students_response = l.show_available_products()
+    HPNorton = l.HPNortonDB()
+    HPNorton.drop_database()
+
+    HPNorton.insert_to_mongo("./data/product.csv")
+    HPNorton.DB_NAME = "HPNorton_PyMongo_L10"
+    students_response = HPNorton.show_available_products()
     assert students_response == _show_available_products
 
 
 def test_show_rentals(_list_customers_renting_product):
     """ rentals """
-    l.drop_database()
-    l.insert_to_mongo("./data/customers.csv")
-    l.insert_to_mongo("./data/product.csv")
-    l.insert_to_mongo("./data/rental.csv")
-    students_response = l.customers_renting_product("P000001")
+    HPNorton = l.HPNortonDB()
+    HPNorton.drop_database()
+
+    HPNorton.insert_to_mongo("./data/customers.csv")
+    HPNorton.insert_to_mongo("./data/product.csv")
+    HPNorton.insert_to_mongo("./data/rental.csv")
+    students_response = HPNorton.customers_renting_product("P000001")
     assert students_response == _list_customers_renting_product
 
 
 def test_list_all_customers(_list_all_customers):
     """ customers """
-    l.drop_database()
-    l.insert_to_mongo("./data/customers.csv")
-    my_response = l.list_all_customers()
+    HPNorton = l.HPNortonDB()
+    HPNorton.drop_database()
+
+    HPNorton.insert_to_mongo("./data/customers.csv")
+    my_response = HPNorton.list_all_customers()
     assert my_response == _list_all_customers
 
 
 def test_list_all_products(_list_all_products):
     """ customers """
-    l.drop_database()
-    l.insert_to_mongo("./data/product.csv")
-    my_response = l.list_all_products()
+    HPNorton = l.HPNortonDB()
+    HPNorton.drop_database()
+    HPNorton.insert_to_mongo("./data/product.csv")
+    my_response = HPNorton.list_all_products()
     assert my_response == _list_all_products
 
 
 def test_list_all_rentals(_list_all_rentals):
     """ customers """
-    l.drop_database()
-    l.insert_to_mongo("./data/rental.csv")
-    my_response = l.list_all_rentals()
+    HPNorton = l.HPNortonDB()
+    HPNorton.drop_database()
+    HPNorton.insert_to_mongo("./data/rental.csv")
+    my_response = HPNorton.list_all_rentals()
     assert my_response == _list_all_rentals
 
 
 def test_rentals_for_customer(_list_rentals_for_customer):
     """ rentals for customers """
-    l.drop_database()
-    l.insert_to_mongo("./data/customers.csv")
-    l.insert_to_mongo("./data/product.csv")
-    l.insert_to_mongo("./data/rental.csv")
-    my_response = l.rentals_for_customer("C000001")
+    HPNorton = l.HPNortonDB()
+    HPNorton.drop_database()
+    HPNorton.insert_to_mongo("./data/customers.csv")
+    HPNorton.insert_to_mongo("./data/product.csv")
+    HPNorton.insert_to_mongo("./data/rental.csv")
+    my_response = HPNorton.rentals_for_customer("C000001")
     assert my_response == _list_rentals_for_customer
 
 
-def test_get_line():
-    """ Test get_line function """
-    lines = [x for x in range(10)]
-    for num, line in enumerate(l.get_line(lines)):
-        assert line == lines[num]
+def test_get_line_from_file():
+    """ Test get line from file function """
+    HPNorton = l.HPNortonDB()
+    file = open("./data/customers.csv", "r").read()
 
-
-def test_open_file():
-    """ Test open file function """
-    file = l.open_file("./data/customers.csv")
-
-    with open("./data/customers.csv", "rb") as content:
-        next(content)
-        lines = content.read().decode("utf-8-sig", errors="ignore").split("\n")
-        for line in lines:
-            assert line in file
+    for line in HPNorton.get_line_from_file("./data/customers.csv"):
+        assert line in file
 
 
 def test_drop_databases():
     """ Test drop HPNorton database """
+    HPNorton = l.HPNortonDB()
 
-    l.insert_to_mongo("./data/customers.csv")
-    assert "HPNorton_PyMongo_L09" in l.MONGO.connection.list_database_names()
-    l.drop_database()
+    HPNorton.insert_to_mongo("./data/customers.csv")
     assert (
-        "HPNorton_PyMongo_L09" not in l.MONGO.connection.list_database_names()
+        "HPNorton_PyMongo_L10"
+        in HPNorton.MONGO.connection.list_database_names()
+    )
+    HPNorton.drop_database()
+    assert (
+        "HPNorton_PyMongo_L10"
+        not in HPNorton.MONGO.connection.list_database_names()
     )
 
 
 def test_drop_collections():
     """ Test drop HPNorton collections """
+    HPNorton = l.HPNortonDB()
 
-    l.insert_to_mongo("./data/customers.csv")
-    l.insert_to_mongo("./data/product.csv")
-    l.insert_to_mongo("./data/rental.csv")
+    HPNorton.insert_to_mongo("./data/customers.csv")
+    HPNorton.insert_to_mongo("./data/product.csv")
+    HPNorton.insert_to_mongo("./data/rental.csv")
     collection_names = (
-        l.MONGO.connection.HPNorton_PyMongo_L09.list_collection_names()
+        HPNorton.MONGO.connection.HPNorton_PyMongo_L10.list_collection_names()
     )
     assert "customers" in collection_names
     assert "product" in collection_names
     assert "rental" in collection_names
-    l.drop_collections()
+    HPNorton.drop_collections()
     collection_names = (
-        l.MONGO.connection.HPNorton_PyMongo_L09.list_collection_names()
+        HPNorton.MONGO.connection.HPNorton_PyMongo_L10.list_collection_names()
     )
     assert "customers" not in collection_names
     assert "product" not in collection_names
