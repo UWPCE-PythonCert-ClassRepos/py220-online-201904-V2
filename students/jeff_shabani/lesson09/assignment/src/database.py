@@ -21,7 +21,6 @@ def open_db():
     except Exception as e:
         print(f'Error {e} encountered')
 
-
 db = open_db()
 
 
@@ -171,7 +170,6 @@ if __name__ == "__main__":
                           'product.csv', 'customers.csv', 'rental.csv'))
         print(show_available_products())
         print(show_rentals('prd001'))
-
 
     run()
     gc.collect()
