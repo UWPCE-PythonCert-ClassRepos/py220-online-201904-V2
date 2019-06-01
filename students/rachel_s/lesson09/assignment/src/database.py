@@ -11,7 +11,7 @@ decorators!
 
 import os
 import csv
-import cProfile
+import argparse
 from pymongo import MongoClient, InsertOne
 from pymongo.errors import PyMongoError, BulkWriteError
 from loguru import logger
@@ -38,20 +38,25 @@ def log_wrapper(func):
         if args and kwargs:
             logger.debug('Executing {function} with args {args}'
                          'and kwargs {kwargs}'.format(
-                             function=func, args=args, kwargs=kwargs))
+                             function=func.__name__, args=args, kwargs=kwargs))
         elif args:
             logger.debug('Executing {function} with args {args}'.format(
-                function=func, args=args))
+                function=func.__name__, args=args))
         elif kwargs:
             logger.debug('Executing {function} with args {kwargs}'.format(
-                function=func, kwargs=kwargs))
+                function=func.__name__, kwargs=kwargs))
         else:
             logger.debug('Executing {function} with no arguments'.format(
-                function=func
+                function=func.__name__
             ))
         result = func(*args, **kwargs)
+        if result:
+            logger.debug('Function {function} output: {result}'.format(
+                function=func.__name__, result=result
+            ))
         return result
     return logged
+
 
 def import_csv(path):
     '''
@@ -169,6 +174,11 @@ def import_data(directory_name, product_file, customer_file, rentals_file):
     error_count = {'customer': 0,
                    'product': 0,
                    'rentals': 0}
+    paths = {
+        'customer': os.path.join(directory_name, customer_file),
+        'product': os.path.join(directory_name, product_file),
+        'rentals': os.path.join(directory_name, rentals_file)
+    }
 
     mongo = MongoDBConnection()
     logger.debug('Connecting to MongoDB')
@@ -176,44 +186,14 @@ def import_data(directory_name, product_file, customer_file, rentals_file):
         logger.debug('Connecting to hpnorton database')
         dbase = mongo.connection.hpnorton
 
-        # Create product data collection
-        try:
-            prod_result = slow_writer(
-                directory_name,
-                product_file,
-                dbase,
-                'product'
-            )
-            records['product'] = prod_result[0]
-            error_count['product'] = prod_result[1]
-        except BulkWriteError as err:
-            logger.error(err)
-
-        # Create customer data collection
-        try:
-            cust_result = slow_writer(
-                directory_name,
-                customer_file,
-                dbase,
-                'customer'
-            )
-            records['customer'] = cust_result[0]
-            error_count['customer'] = cust_result[1]
-        except BulkWriteError as err:
-            logger.error(err)
-
-        # Create rentals data collection
-        try:
-            rent_result = slow_writer(
-                directory_name,
-                rentals_file,
-                dbase,
-                'rentals'
-            )
-            records['rentals'] = rent_result[0]
-            error_count['rentals'] = rent_result[1]
-        except BulkWriteError as err:
-            logger.error(err)
+        for name, path in paths.items():
+            data = import_csv(path)
+            try:
+                result = bulk_writer(data, dbase, name)
+                records[name] = result[0]
+                error_count[name] = result[1]
+            except BulkWriteError as err:
+                logger.error(err)
 
     return ((records['product'], records['customer'], records['rentals']),
             (error_count['product'], error_count['customer'],
@@ -233,21 +213,17 @@ def show_available_products():
     '''
     mongo = MongoDBConnection()
     logger.debug('Connecting to MongoDB')
-    avail = []
+    avail = {}
     with mongo:
         logger.debug('Connecting to hpnorton database')
         dbase = mongo.connection.hpnorton
         records = dbase.product.find()
     for record in records:
         if int(record['quantity_available']) > 0:
-            avail.append(
-                {
-                    'product_id': record['product_id'],
-                    'description': record['description'],
-                    'product_type': record['product_type'],
-                    'quantity_available': record['quantity_available']
-                }
-            )
+            name = record['product_id']
+            del record['_id']
+            del record['product_id']
+            avail[name] = record
     return avail
 
 
@@ -274,7 +250,11 @@ def show_rentals(product_id):
         records = {}
         for item in renters:
             renter = dbase.customer.find_one({'user_id': item})
-            records[item] = renter
+            name = renter['user_id']
+            del renter['_id']
+            del renter['user_id']
+            del renter['zip_code']
+            records[name] = renter
     return records
 
 
@@ -293,8 +273,23 @@ def db_clear():
         dbase.product.drop()
         logger.debug('Product dropped.')
 
+def parse_cmd_arguments():
+    """
+    Takes command arguments and returns arguments as parsed according to
+    the JSON file
+    """
+    parser = argparse.ArgumentParser(description='Process some integers.')
+    parser.add_argument('-d', '--debug', help='enable debugging',
+                        default=0, required=False)
+    return parser.parse_args()
 
-if __name__ == '__main__':
-    cProfile.run(
-        'import_data("../data", "product.csv", "customer.csv", "rental.csv")'
-    )
+
+if __name__ == "__main__":
+    __args__ = parse_cmd_arguments()
+    # Set up the logger
+    if int(__args__.debug) > 0:
+        show_rentals = log_wrapper(show_rentals)
+        show_available_products = log_wrapper(show_available_products)
+        import_data = log_wrapper(import_data)
+        bulk_writer = log_wrapper(bulk_writer)
+        import_csv = log_wrapper(import_csv)
