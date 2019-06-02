@@ -536,3 +536,35 @@ In [5]: cProfile.run('import_data("../data", "product.csv", "customer.csv", "ren
        26    0.000    0.000    0.000    0.000 {method 'utcoffset' of 'datetime.timezone' objects}
        53    0.000    0.000    0.000    0.000 {method 'values' of 'dict' objects}
       312    0.002    0.000    0.002    0.000 {method 'write' of '_io.TextIOWrapper' objects}
+
+SORRY EXCUSE ME BUT WHAT IS ALL THAT THREADING
+
+Apparently the bulk_writer from pymongo is in fact threaded. Good job
+pymongo! Bad job me because I'm supposed to be learning how to do it 
+myself. Now I have to rewrite my code to suck more.
+
+ python database_lesson_5.py
+2019-05-19 17:18:21.366 | DEBUG    | __main__:import_data:143 - Converting products file to dictionary
+2019-05-19 17:18:21.368 | DEBUG    | __main__:import_csv:40 - Attempting to open file ..\data\product.csv
+2019-05-19 17:18:21.370 | DEBUG    | __main__:import_csv:44 - Successfully loaded ..\data\product.csv
+2019-05-19 17:18:21.421 | DEBUG    | __main__:import_data:149 - Converting customers file to dictionary
+2019-05-19 17:18:21.423 | DEBUG    | __main__:import_csv:40 - Attempting to open file ..\data\customer.csv
+2019-05-19 17:18:21.424 | DEBUG    | __main__:import_csv:44 - Successfully loaded ..\data\customer.csv
+2019-05-19 17:18:21.519 | DEBUG    | __main__:import_data:155 - Converting rentals file to dictionary
+2019-05-19 17:18:21.522 | DEBUG    | __main__:import_csv:40 - Attempting to open file ..\data\rental.csv
+2019-05-19 17:18:21.523 | DEBUG    | __main__:import_csv:44 - Successfully loaded ..\data\rental.csv
+2019-05-19 17:18:21.598 | DEBUG    | __main__:import_data:162 - Connecting to MongoDB
+2019-05-19 17:18:21.605 | DEBUG    | __main__:import_data:164 - Connecting to hpnorton database
+2019-05-19 17:18:21.609 | DEBUG    | __main__:slow_writer:108 - Creating product table
+2019-05-19 17:18:21.610 | DEBUG    | __main__:slow_writer:110 - Inserting data to product table
+2019-05-19 17:18:25.410 | DEBUG    | __main__:slow_writer:122 - 9999 records inserted to product table
+2019-05-19 17:18:25.412 | DEBUG    | __main__:slow_writer:108 - Creating customer table
+2019-05-19 17:18:25.413 | DEBUG    | __main__:slow_writer:110 - Inserting data to customer table
+2019-05-19 17:18:29.225 | DEBUG    | __main__:slow_writer:122 - 9999 records inserted to customer table
+2019-05-19 17:18:29.226 | DEBUG    | __main__:slow_writer:108 - Creating rentals table
+2019-05-19 17:18:29.227 | DEBUG    | __main__:slow_writer:110 - Inserting data to rentals table
+2019-05-19 17:18:32.985 | DEBUG    | __main__:slow_writer:122 - 9999 records inserted to rentals table
+         8467982 function calls (8347960 primitive calls) in 11.631 seconds
+
+that's more like it. Slow as heck now.
+

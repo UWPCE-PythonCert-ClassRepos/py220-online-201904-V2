@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
 
-'''
-Functions to add and remove items from furniture mongoDB
-'''
+'''Functions to add and remove items from furniture mongoDB'''
 
 # Rachel Schirra
-# June 02, 2019
-# Python 220 Lesson 09
+# May 22, 2019
+# Python 220 Lesson 07
 
 import os
 import csv
 import cProfile
-from pymongo import MongoClient
+import multiprocessing
+import threading
+import timeit
+from pymongo import MongoClient, InsertOne
 from pymongo.errors import PyMongoError, BulkWriteError
 from loguru import logger
 
@@ -25,18 +26,10 @@ class MongoDBConnection(object):
         self.connection = None
 
     def __enter__(self):
-        # Let's move the logging for mongodb connections out of the code
-        # and put it here instead so we don't have it laying around all
-        # over the place.
-        logger.debug('Connecting to MongoDB.')
         self.connection = MongoClient(self.host, self.port)
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        # Report the values when we exit also
-        logger.debug(f'exc_type: {exc_type}')
-        logger.debug(f'exc_val: {exc_val}')
-        logger.debug(f'exc_traceback: {exc_tb}')
         self.connection.close()
 
 
@@ -111,60 +104,113 @@ def import_data(directory_name, product_file, customer_file, rentals_file):
     customers, and rentals added, and a count of any errors that
     occurred.
     '''
-    records = {'customer': 0,
-               'product': 0,
-               'rentals': 0}
-    error_count = {'customer': 0,
-                   'product': 0,
-                   'rentals': 0}
-    paths = {
-        'customer': customer_file,
-        'product': product_file,
-        'rentals': rentals_file
-    }
 
     mongo = MongoDBConnection()
+    logger.debug('Connecting to MongoDB')
     with mongo:
         logger.debug('Connecting to hpnorton database')
-        dbase = mongo.connection.hpnorton
+        database = mongo.connection.hpnorton
 
-        for name, filename in paths.items():
-            try:
-                # (directory_name, data_file, database, table):
-                result = slow_writer(directory_name, filename, dbase, name)
-                records[name] = result[0]
-                error_count[name] = result[1]
-            except BulkWriteError as err:
-                logger.error(err)
+        # LET'S DO SOME THREADS
+        times_dict = {}
 
-    return ((records['product'], records['customer'], records['rentals']),
-            (error_count['product'], error_count['customer'],
-             error_count['rentals']))
+        prod_start_count = database.product.count_documents({})
+        cust_start_count = database.customer.count_documents({})
+        rent_start_count = database.rental.count_documents({})
+
+        threads = [
+            multiprocessing.Process(
+                target=slow_writer,
+                args=(
+                    directory_name,
+                    product_file,
+                    database,
+                    'product'
+                )
+            ),
+            multiprocessing.Process(
+                target=slow_writer,
+                args=(
+                    directory_name,
+                    customer_file,
+                    database,
+                    'customer'
+                )
+            ),
+            multiprocessing.Process(
+                target=slow_writer,
+                args=(
+                    directory_name,
+                    rentals_file,
+                    database,
+                    'rentals'
+                )
+            )
+        ]
+
+        for item in threads:
+            item.start()
+
+        for item in threads:
+            item.join()
+
+        prod_end_count = database.product.count_documents({})
+        cust_end_count = database.customer.count_documents({})
+        rent_end_count = database.rental.count_documents({})
+
+        # Each module will return a list of tuples, one tuple for
+        # customer and one for products. Each tuple will contain 4
+        # values: the number of records processed (int), the record
+        # count in the database prior to running (int), the record
+        # count after running (int), and the time taken to run the
+        # module (float).
+
+    return([
+        (
+            prod_end_count - prod_start_count,
+            prod_start_count,
+            prod_end_count
+        ),
+        (
+            cust_end_count - cust_start_count,
+            cust_start_count,
+            cust_end_count
+        ),
+        (
+            rent_end_count - rent_start_count,
+            rent_start_count,
+            rent_end_count
+        )
+    ])
 
 
 def show_available_products():
     '''
     Returns a python dictionary of products listed as available in the
-    'product' collection.
+    'product' collection. Contains the following fields:
 
-    Args:
-        product_id (str): Alphanumeric product ID
-        description (str): Description of the item
-        product_type (str): The product type
-        quantity_available (int): How many are available
+    product_id
+    description
+    product_type
+    quantity_available
     '''
     mongo = MongoDBConnection()
-    avail = {}
+    logger.debug('Connecting to MongoDB')
+    avail = []
     with mongo:
         logger.debug('Connecting to hpnorton database')
-        dbase = mongo.connection.hpnorton
-        records = dbase.product.find()
+        database = mongo.connection.hpnorton
+        records = database.product.find()
     for record in records:
         if int(record['quantity_available']) > 0:
-            name = record['product_id']
-            del record['_id']
-            del record['product_id']
-            avail[name] = record
+            avail.append(
+                {
+                    'product_id': record['product_id'],
+                    'description': record['description'],
+                    'product_type': record['product_type'],
+                    'quantity_available': record['quantity_available']
+                }
+            )
     return avail
 
 
@@ -181,20 +227,17 @@ def show_rentals(product_id):
     email
     '''
     mongo = MongoDBConnection()
+    logger.debug('Connecting to MongoDB')
     with mongo:
         logger.debug('Connecting to hpnorton database')
-        dbase = mongo.connection.hpnorton
+        database = mongo.connection.hpnorton
         renters = set()
-        for item in dbase.rentals.find({'product_id': product_id}):
+        for item in database.rentals.find({'product_id': product_id}):
             renters.add(item['user_id'])
         records = {}
         for item in renters:
-            renter = dbase.customer.find_one({'user_id': item})
-            name = renter['user_id']
-            del renter['_id']
-            del renter['user_id']
-            del renter['zip_code']
-            records[name] = renter
+            renter = database.customer.find_one({'user_id': item})
+            records[item] = renter
     return records
 
 
@@ -203,17 +246,19 @@ def db_clear():
     Deletes everything from all tables in the database.
     '''
     mongo = MongoDBConnection()
+    logger.debug('Connecting to MongoDB')
     with mongo:
-        dbase = mongo.connection.hpnorton
-        dbase.rentals.drop()
+        database = mongo.connection.hpnorton
+        database.rentals.drop()
         logger.debug('Rentals dropped.')
-        dbase.customer.drop()
+        database.customer.drop()
         logger.debug('Customer dropped.')
-        dbase.product.drop()
+        database.product.drop()
         logger.debug('Product dropped.')
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
+    db_clear()
     cProfile.run(
-        'import_data("../tests", "products.csv", "customers.csv", "rentals.csv")'
+        'import_data("..\data", "product.csv", "customer.csv", "rental.csv")'
     )
