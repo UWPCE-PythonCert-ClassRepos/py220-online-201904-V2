@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
 '''
-Returns total price paid for individual rentals
+Returns total price paid for individual rentals, now with fancy
+decorator-based logging.
 '''
 
 # Rachel Schirra
-# April 13, 2019
+# June 2, 2019
 # Python 220 Lesson 02
 
 
@@ -17,6 +18,10 @@ from loguru import logger
 
 
 def log_wrapper(func):
+    '''
+    A decorator that enables logging before and after a function is
+    executed.
+    '''
     def logged(*args, **kwargs):
         if args and kwargs:
             logger.debug('Executing {function} with args {args}'

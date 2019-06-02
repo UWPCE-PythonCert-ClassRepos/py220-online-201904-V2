@@ -2,7 +2,7 @@
 
 '''
 Functions to add and remove items from furniture mongoDB, now with
-decorators!
+decorators! And enhanced MongoDBConnection context manager!
 '''
 
 # Rachel Schirra
@@ -26,14 +26,26 @@ class MongoDBConnection(object):
         self.connection = None
 
     def __enter__(self):
+        # Let's move the logging for mongodb connections out of the code
+        # and put it here instead so we don't have it laying around all
+        # over the place.
+        logger.debug('Connecting to MongoDB.')
         self.connection = MongoClient(self.host, self.port)
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
+        # Report the values when we exit also
+        logger.debug(f'exc_type: {exc_type}')
+        logger.debug(f'exc_val: {exc_val}')
+        logger.debug(f'exc_traceback: {exc_tb}')
         self.connection.close()
 
 
 def log_wrapper(func):
+    '''
+    A decorator that enables logging before and after a function is
+    executed.
+    '''
     def logged(*args, **kwargs):
         if args and kwargs:
             logger.debug('Executing {function} with args {args}'
@@ -181,7 +193,6 @@ def import_data(directory_name, product_file, customer_file, rentals_file):
     }
 
     mongo = MongoDBConnection()
-    logger.debug('Connecting to MongoDB')
     with mongo:
         logger.debug('Connecting to hpnorton database')
         dbase = mongo.connection.hpnorton
@@ -212,7 +223,6 @@ def show_available_products():
         quantity_available (int): How many are available
     '''
     mongo = MongoDBConnection()
-    logger.debug('Connecting to MongoDB')
     avail = {}
     with mongo:
         logger.debug('Connecting to hpnorton database')
@@ -240,7 +250,6 @@ def show_rentals(product_id):
     email
     '''
     mongo = MongoDBConnection()
-    logger.debug('Connecting to MongoDB')
     with mongo:
         logger.debug('Connecting to hpnorton database')
         dbase = mongo.connection.hpnorton
@@ -263,7 +272,6 @@ def db_clear():
     Deletes everything from all tables in the database.
     '''
     mongo = MongoDBConnection()
-    logger.debug('Connecting to MongoDB')
     with mongo:
         dbase = mongo.connection.hpnorton
         dbase.rentals.drop()
@@ -293,3 +301,4 @@ if __name__ == "__main__":
         import_data = log_wrapper(import_data)
         bulk_writer = log_wrapper(bulk_writer)
         import_csv = log_wrapper(import_csv)
+    import_data('../tests', 'products.csv', 'customers.csv', 'rentals.csv')
