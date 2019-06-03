@@ -475,10 +475,9 @@ def test_rentals_for_customer(_list_rentals_for_customer):
 
 def test_get_line_from_file():
     """ Test get line from file function """
-    HPNorton = l.HPNortonDB()
     file = open("./data/customers.csv", "r").read()
 
-    for line in HPNorton.get_line_from_file("./data/customers.csv"):
+    for line in l.get_line_from_file("./data/customers.csv"):
         assert line in file
 
 
@@ -489,12 +488,12 @@ def test_drop_databases():
     HPNorton.insert_to_mongo("./data/customers.csv")
     assert (
         "HPNorton_PyMongo_L10"
-        in HPNorton.MONGO.connection.list_database_names()
+        in HPNorton.mongo.connection.list_database_names()
     )
     HPNorton.drop_database()
     assert (
         "HPNorton_PyMongo_L10"
-        not in HPNorton.MONGO.connection.list_database_names()
+        not in HPNorton.mongo.connection.list_database_names()
     )
 
 
@@ -506,14 +505,14 @@ def test_drop_collections():
     HPNorton.insert_to_mongo("./data/product.csv")
     HPNorton.insert_to_mongo("./data/rental.csv")
     collection_names = (
-        HPNorton.MONGO.connection.HPNorton_PyMongo_L10.list_collection_names()
+        HPNorton.mongo.connection.HPNorton_PyMongo_L10.list_collection_names()
     )
     assert "customers" in collection_names
     assert "product" in collection_names
     assert "rental" in collection_names
     HPNorton.drop_collections()
     collection_names = (
-        HPNorton.MONGO.connection.HPNorton_PyMongo_L10.list_collection_names()
+        HPNorton.mongo.connection.HPNorton_PyMongo_L10.list_collection_names()
     )
     assert "customers" not in collection_names
     assert "product" not in collection_names

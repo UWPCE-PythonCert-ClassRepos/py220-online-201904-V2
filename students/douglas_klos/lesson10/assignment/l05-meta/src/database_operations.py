@@ -1,9 +1,5 @@
-#!/usr/bin/env python3
 """ HPNorton Classes for accessing MongoDB collections """
-#pylint: disable=C0103, R0201
 
-from types import MethodType, FunctionType
-from datetime import datetime
 from multiprocessing import Process, Queue
 from os.path import splitext, basename
 from time import time
@@ -11,50 +7,30 @@ from loguru import logger
 from pymongo import ASCENDING
 from pymongo.errors import DuplicateKeyError
 import src.mongodb_conn as mdb_conn
+from src.timer_logger import TimedLogged, timer_logger_func
 
 
-def timer_logger(function):
-    """ Times functions and writes results to timings.txt """
-    def composite(*args, **kwargs):
-        start = datetime.now()
-        result = function(*args, **kwargs)
-        end = datetime.now()
-        with open("timings.txt", "a") as log_file:
-            log_file.write(
-                f"{function.__name__} "
-                f"called at {start.strftime('%Y-%m-%d %H:%M:%S')}\n"
-            )
-            if (
-                    function.__name__ == "insert_to_mongo" or
-                    function.__name__ == "get_line_from_file"
-            ):
-                record_count = 0
-                for _ in open(args[1]):
-                    record_count += 1
-                log_file.write(f"\tCalled on {record_count} records\n")
-            else:
-                log_file.write(f"\targs:{args}, kwargs:{kwargs}\n")
-            log_file.write(f"\tExecution time {end - start} seconds\n")
-        return result
+@timer_logger_func
+def get_line_from_file(filename):
+    """ Opens the file specified from the command line
 
-    return composite
+    Arguments:
+        filename {string} -- Name of CSV file to import
+
+    Yields:
+        line from filename
+    """
+    with open(filename, "rb") as content:
+        lines = content.read().decode("utf-8", errors="ignore").split("\n")
+        for line in lines:
+            yield line
 
 
-class TimerLogger(type):
-    """ Metaclass to wrap children with timer_logger function """
-    def __new__(cls, name, bases, attr):
-        for key, value in attr.items():
-            if isinstance(value, (FunctionType, MethodType)):
-                attr[key] = timer_logger(value)
-
-        return super(TimerLogger, cls).__new__(cls, name, bases, attr)
-
-
-class HPNortonDB(metaclass=TimerLogger):
+class HPNortonDB(metaclass=TimedLogged):
     """ Database operations for HPNorton """
 
     def __init__(self):
-        self.MONGO = mdb_conn.MongoDBConnection()
+        self.mongo = mdb_conn.MongoDBConnection()
         super().__init__()
 
     def linear(self, files):
@@ -78,37 +54,37 @@ class HPNortonDB(metaclass=TimerLogger):
             {{},{},,} -- {csv_file: {elapsed, fail, success, total_records},}
 
         """
+        def start_process(csv_file):
+            """ Start process on given csv_file
+
+            Arguments:
+                csv_file {string} -- csv_file to start insert process on
+
+            Returns:
+                process, Queue -- process started, Queue with dict of results
+            """
+            results = Queue()
+            process = Process(target=self.insert_to_mongo, args=(csv_file, results))
+            logger.info(f"Starting {process} : {csv_file}")
+            process.start()
+            return process, results
+
+        def join_process(process):
+            """ Joins processes in process argument
+
+            Arguments:
+                [process1, process2, process3, ...] -- list of processes to join
+
+            Returns:
+                {collection_name: {"success", "fail", "total_records", "elapsed"}}
+            """
+            logger.info(f"Joining process {process[0]}")
+            process[0].join()
+            return process[1].get()
+
         return list(
-            map(self.join_process, list(map(self.start_process, files)))
+            map(join_process, list(map(start_process, files)))
         )
-
-    def start_process(self, csv_file):
-        """ Start process on given csv_file
-
-        Arguments:
-            csv_file {string} -- csv_file to start insert process on
-
-        Returns:
-            process, Queue -- process started, Queue with dict of results
-        """
-        results = Queue()
-        process = Process(target=self.insert_to_mongo, args=(csv_file, results))
-        logger.info(f"Starting {process} : {csv_file}")
-        process.start()
-        return process, results
-
-    def join_process(self, process):
-        """ Joins processes in process argument
-
-        Arguments:
-            [process1, process2, process3, ...] -- list of processes to join
-
-        Returns:
-            {collection_name: {"success", "fail", "total_records", "elapsed"}}
-        """
-        logger.info(f"Joining process {process[0]}")
-        process[0].join()
-        return process[1].get()
 
     # pylint: disable=R0914
     def insert_to_mongo(self, filename, results=None):
@@ -126,10 +102,10 @@ class HPNortonDB(metaclass=TimerLogger):
         start = time()
         collection_name, _ = splitext(basename(filename))
 
-        with self.MONGO as mdb:
+        with self.mongo as mdb:
             logger.info(f"Inserting {collection_name} into Mongo...")
             collection = mdb[collection_name]
-            iter_lines = self.get_line_from_file(filename)
+            iter_lines = get_line_from_file(filename)
             header = next(iter_lines).split(",")
 
             # Create the indicies for the collection
@@ -181,7 +157,7 @@ class HPNortonDB(metaclass=TimerLogger):
         logger.info(f"Preparing dict of available prodcuts...")
         available_products = {}
 
-        with self.MONGO as mdb:
+        with self.mongo as mdb:
             products = mdb["product"]
             for doc in products.find():
                 del doc["_id"]
@@ -201,7 +177,7 @@ class HPNortonDB(metaclass=TimerLogger):
         logger.info(f"Perparing dict of all products...")
         all_products_dict = {}
 
-        with self.MONGO as mdb:
+        with self.mongo as mdb:
             products = mdb["product"]
             all_products = products.find({})
             for product in all_products:
@@ -220,7 +196,7 @@ class HPNortonDB(metaclass=TimerLogger):
         logger.info(f"Perparing dict of all rentals...")
         all_rentals_dict = {}
 
-        with self.MONGO as mdb:
+        with self.mongo as mdb:
             rentals = mdb["rental"]
             all_rentals = rentals.find({})
             for rental in all_rentals:
@@ -245,7 +221,7 @@ class HPNortonDB(metaclass=TimerLogger):
         logger.info(f"Perparing dict of all customers...")
         all_customers_dict = {}
 
-        with self.MONGO as mdb:
+        with self.mongo as mdb:
             customers = mdb["customers"]
             all_customers = customers.find({})
             for customer in all_customers:
@@ -267,7 +243,7 @@ class HPNortonDB(metaclass=TimerLogger):
         logger.info(f"Perparing customer dict for user_id: {user_id}...")
         rentals_for_user = []
 
-        with self.MONGO as mdb:
+        with self.mongo as mdb:
             rentals = mdb["rental"]
             products = mdb["product"]
             query = {"user_id": user_id}
@@ -302,7 +278,7 @@ class HPNortonDB(metaclass=TimerLogger):
         logger.info(f"Perparing rental dict for product_id: {product_id}...")
         users_renting_product = []
 
-        with self.MONGO as mdb:
+        with self.mongo as mdb:
 
             rentals = mdb["rental"]
             customers = mdb["customers"]
@@ -321,31 +297,17 @@ class HPNortonDB(metaclass=TimerLogger):
 
         return users_renting_product
 
-    def get_line_from_file(self, filename):
-        """ Opens the file specified from the command line
-
-        Arguments:
-            filename {string} -- Name of CSV file to import
-
-        Yields:
-            line from filename
-        """
-        with open(filename, "rb") as content:
-            lines = content.read().decode("utf-8", errors="ignore").split("\n")
-            for line in lines:
-                yield line
-
     def drop_database(self):
         """ Drops database """
 
-        logger.warning(f"Dropping {self.MONGO.database_name} database")
+        logger.warning(f"Dropping {self.mongo.database_name} database")
         mdb = mdb_conn.MongoClient()
-        mdb.drop_database(self.MONGO.database_name)
+        mdb.drop_database(self.mongo.database_name)
 
     def drop_collections(self):
         """ Drops collections from Mongo that are used for this program """
 
-        with self.MONGO as mdb:
+        with self.mongo as mdb:
             logger.info(mdb.list_collection_names())
             collections = list(
                 filter(
