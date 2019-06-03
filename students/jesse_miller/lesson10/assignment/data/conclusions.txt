@@ -1,0 +1,21 @@
+I'm better at this than I thought.
+
+But seriously, my first guess at how this all works was correct.  So, that was
+something.
+
+My timing functions worked okay:
+minerva:src cleric$ more timings.csv
+_import_csv, 0.052587032318115234, (0, 0, 0)
+_add_bulk_data, 0.5179119110107422, (9999, 0, 0)
+_import_csv, 0.08130598068237305, (9999, 0, 0)
+_add_bulk_data, 0.5048689842224121, (9999, 9999, 0)
+_import_csv, 0.07526302337646484, (9999, 9999, 0)
+_add_bulk_data, 0.4266080856323242, (9999, 9999, 9999)
+import_data, 1.529494047164917, (9999, 9999, 9999)
+show_available_products, 0.09238100051879883, (9999, 9999, 9999)
+show_rentals, 0.094451904296875, (9999, 9999, 9999)
+show_rentals, 0.12662577629089355, (9999, 9999, 9999)
+clear_data, 0.12750792503356934, (0, 0, 0)
+
+Thinking about trying to thread the import data just to try to shave some time
+off.  Not sure if I can thread a variable population.  I'll write more as I try.
