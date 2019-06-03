@@ -39,7 +39,6 @@ def logging_switch(option: int):
     :param option: int
     """
     logger.info(f'{logging_switch.__name__} arg is {option}')
-
     def dekorator(function):
         def wrapper(*args, **kwargs):
             if option:
@@ -47,9 +46,7 @@ def logging_switch(option: int):
             else:
                 result = function(*args, **kwargs)
             return result
-
         return wrapper()
-
     return dekorator
 
 
