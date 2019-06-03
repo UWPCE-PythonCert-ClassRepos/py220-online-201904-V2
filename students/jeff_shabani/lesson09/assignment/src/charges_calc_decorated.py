@@ -2,7 +2,6 @@
 Returns total price paid for individual rentals
 '''
 import argparse
-import inspect
 import json
 import logging
 from loguru import logger
@@ -34,36 +33,46 @@ def parse_cmd_arguments():
     return args
 
 
-# def args_test(arg):
-#     if arg == 1:
-#         return 'eins'
-#     return 'zwei'
+def logging_switch(option: int):
+    """
+    Decorator to turn logging on or off.
+    :param option: int
+    """
+    logger.info(f'{logging_switch.__name__} arg is {option}')
 
-def logging_decorator(func):
-    def wrapper(*args):
-        logger.info(f'{logging_decorator.__name__} args are: {args}')
-        return func(args[0])
-    return wrapper
+    def dekorator(function):
+        def wrapper(*args, **kwargs):
+            if option:
+                result = function(option)
+            else:
+                result = function(*args, **kwargs)
+            return result
 
-@logging_decorator
-def configure_logging(log_level):
+        return wrapper()
+
+    return dekorator
+
+
+@logging_switch
+def configure_logging(log_level: int):
     """
     configures logging level based on args
     :param log_level:
     :return: logging objects with specified levels
     """
+    logger.info(f'{configure_logging.__name__} arg in is {log_level}')
+    if log_level == 0:
+        LOGGER.disabled = True
+    else:
+        LOGGER.info(f'{configure_logging.__name__} Args are: {log_level}')
+        log_file = logging.FileHandler('charges_calc.log')
+        log_file.setFormatter(FORMATTER)
 
-    # if log_level == 0:
-    #     pass
-    logger.info(f'{configure_logging.__name__} Args are: {log_level}')
-    log_file = logging.FileHandler('charges_calc.log')
-    log_file.setFormatter(FORMATTER)
+        console_handler = logging.StreamHandler()
+        console_handler.setFormatter(FORMATTER)
 
-    console_handler = logging.StreamHandler()
-    console_handler.setFormatter(FORMATTER)
-
-    LOGGER.addHandler(log_file)
-    LOGGER.addHandler(console_handler)
+        LOGGER.addHandler(log_file)
+        LOGGER.addHandler(console_handler)
 
     if log_level == 1:
         LOGGER.setLevel(logging.ERROR)
@@ -71,8 +80,6 @@ def configure_logging(log_level):
         LOGGER.setLevel(logging.WARNING)
     elif log_level == 3:
         LOGGER.setLevel(logging.DEBUG)
-    elif log_level == 0:
-        LOGGER.disabled = True
     else:
         return
 
@@ -140,9 +147,9 @@ def save_to_json(filename, data):
 
 if __name__ == "__main__":
     INARGS = parse_cmd_arguments()
-    logging_decorator(INARGS.log_switch)
+    logging_switch(INARGS.log_switch)
     DEBUG_LEVEL = INARGS.debug
-    configure_logging(DEBUG_LEVEL)
+    # configure_logging(DEBUG_LEVEL)
     SOURCE = load_rentals_file(INARGS.input)
     FINALDATA = calculate_additional_fields(SOURCE)
     save_to_json(INARGS.output, FINALDATA)
