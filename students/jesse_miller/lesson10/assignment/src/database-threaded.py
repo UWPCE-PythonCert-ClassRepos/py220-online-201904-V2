@@ -10,6 +10,7 @@ import logging
 import time
 from pathlib import Path
 import types
+import threading
 import pymongo
 
 
@@ -137,24 +138,36 @@ class Database(metaclass=MetaTimer):
         Takes a directory name and three csv files as input.  Creates and
         populates three collections in MongoDB.
         '''
-
         products = db['products']
-        products_errors = Database._add_bulk_data(self,
-                                                  products,
-                                                  directory_name,
-                                                  products_file)
-
         customers = db['customers']
-        customers_errors = Database._add_bulk_data(self,
-                                                   customers,
-                                                   directory_name,
-                                                   customers_file)
-
         rentals = db['rentals']
-        rentals_errors = Database._add_bulk_data(self,
-                                                 rentals,
-                                                 directory_name,
-                                                 rentals_file)
+
+
+        products_errors = threading.Thread(target=Database._add_bulk_data, \
+        args=(self,
+              products,
+              directory_name,
+              products_file))
+        products_errors.start()
+        products_errors.join()
+
+        customers_errors = threading.Thread(target=Database._add_bulk_data, \
+        args=(self,
+              customers,
+              directory_name,
+              customers_file))
+        customers_errors.start()
+        customers_errors.join()
+
+        rentals_errors = threading.Thread(target=Database._add_bulk_data, \
+        args=(self,
+              rentals,
+              directory_name,
+              rentals_file))
+        rentals_errors.start()
+        rentals_errors.join()
+
+
 
         record_count = (db.products.count_documents({}),
                         db.customers.count_documents({}),
@@ -233,10 +246,10 @@ def main():
         logging.info('Showing available products')
         logging.info(timed_database.show_available_products(db))
 
-        print(f'Number of records for products, customers, rentals: {results[0]}.')
-        print(f'Number of errors for products, customers, rentals: {results[1]}.')
+        print(f"Number of records for products, customers, rentals: {results[0]}.")
+        print(f"Number of errors for products, customers, rentals: {results[1]}.")
 
-        print('Showing available products:')
+        print("Showing available products:")
         print(timed_database.show_available_products(db))
 
         logging.info('\nShowing rental information for P000004')
@@ -244,7 +257,7 @@ def main():
         print(timed_database.show_rentals(db, 'P000004'))
 
         logging.info('\nClearing data from database.')
-        print('\nClearing data from database.')
+        print("\nClearing data from database.")
         timed_database.clear_data(db)
 
     return results
