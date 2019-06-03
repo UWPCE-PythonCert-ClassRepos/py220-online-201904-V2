@@ -61,7 +61,7 @@ def read_file(file, collection_name):
         row = csv.DictReader(file_handler, fieldnames=header)
         return write_to_collection(collection_name, row)
     except Exception:
-        LOGGER.warning("There is issue with the your file!")
+        LOGGER.warning("There is an issue with the opening the file!")
 
 
 def write_to_collection(collection_name, data):
@@ -144,7 +144,4 @@ def drop_collection(collection):
 
 
 if __name__ == "__main__":
-    print(list(linear()))
-    # drop_collection(collections)
-    # print(list(parallel()))
-    # drop_collection(collections)
+

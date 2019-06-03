@@ -346,3 +346,45 @@ communication between processes can be achieved via:
 - file I/O"
 
 "Multiprocessing is suitable for computationally intensive work and works best on large problems with not much data to pass back and forth."
+
+
+
+# Week 9
+
+If multiple decorators are applied to a function using `@decorator` above the function definition, they will be applied from bottom to top. Ex:
+
+```python
+@strong
+@emphasis
+def greet():
+return 'Hello!'
+```
+
+First `@emphasis` will be applied to `greet` and then `@strong`
+
+The equivalent, if defining a decorated function explicitly would look like this:
+
+`decorated_greet = strong(emphasis(greet()))`
+
+
+
+### Decorators can be difficult to debug
+
+Use `functools.wraps` as a decorator to aid this. Ex:
+
+```python
+import functools
+
+def uppercase(func):
+	@functools.wraps(func)
+	def wrapper():
+		return func().upper()
+	return wrapper
+	
+@uppercase
+def greet():
+	""" Returns a friendly greeting. """
+	return "HEllO!"
+	
+```
+

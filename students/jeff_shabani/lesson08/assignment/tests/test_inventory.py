@@ -56,7 +56,7 @@ class PerformanceTesting(unittest.TestCase):
         name entered as an argument utilizing currying.
         :return: csv file
         """
-        create_invoice = partial(single_customer, 'Susan Wong', 'rented_items.csv')
+        create_invoice = single_customer('Susan Wong', 'rented_items.csv')
         create_invoice('test_items.csv')
         test = pd.read_csv(DATA_PATH / 'rented_items.csv')
         test = test[test['customer_name'] == 'Susan Wong']
