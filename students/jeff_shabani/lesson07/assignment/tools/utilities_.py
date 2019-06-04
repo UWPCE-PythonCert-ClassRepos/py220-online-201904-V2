@@ -26,3 +26,7 @@ def _delete_file_by_type(target_dir, file_ext):
             os.remove(_file.name)
         if count == 0:
             logger.info(f'No files of type {file_ext} were found.')
+
+
+if __name__ == '__main__':
+    pass
