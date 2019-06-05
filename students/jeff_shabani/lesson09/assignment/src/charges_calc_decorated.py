@@ -2,6 +2,7 @@
 Returns total price paid for individual rentals
 '''
 import argparse
+import inspect
 import json
 import logging
 from loguru import logger
@@ -33,24 +34,22 @@ def parse_cmd_arguments():
     return args
 
 
-def logging_switch(option: int):
+def logging_switch(*option: int):
     """
     Decorator to turn logging on or off.
     :param option: int
     """
     logger.info(f'{logging_switch.__name__} arg is {option}')
+    logger.info(f'{logging_switch.__doc__} arg is {option}')
     def dekorator(function):
         def wrapper(*args, **kwargs):
-            if option:
-                result = function(option)
-            else:
-                result = function(*args, **kwargs)
+            result = function(*args, **kwargs)
             return result
         return wrapper()
     return dekorator
 
 
-@logging_switch
+# @logging_switch
 def configure_logging(log_level: int):
     """
     configures logging level based on args
@@ -59,10 +58,10 @@ def configure_logging(log_level: int):
     """
     logger.info(f'{configure_logging.__name__} arg in is {log_level}')
     if log_level == 0:
-        LOGGER.disabled = True
+        LOGGER.setLevel(logging.NOTSET)
     else:
         LOGGER.info(f'{configure_logging.__name__} Args are: {log_level}')
-        log_file = logging.FileHandler('charges_calc.log')
+        log_file = logging.FileHandler(f'charges_calc_level_{log_level}.log')
         log_file.setFormatter(FORMATTER)
 
         console_handler = logging.StreamHandler()
@@ -72,7 +71,7 @@ def configure_logging(log_level: int):
         LOGGER.addHandler(console_handler)
 
     if log_level == 1:
-        LOGGER.setLevel(logging.ERROR)
+        LOGGER.setLevel(logging.INFO)
     elif log_level == 2:
         LOGGER.setLevel(logging.WARNING)
     elif log_level == 3:
@@ -146,7 +145,7 @@ if __name__ == "__main__":
     INARGS = parse_cmd_arguments()
     logging_switch(INARGS.log_switch)
     DEBUG_LEVEL = INARGS.debug
-    # configure_logging(DEBUG_LEVEL)
+    configure_logging(DEBUG_LEVEL)
     SOURCE = load_rentals_file(INARGS.input)
     FINALDATA = calculate_additional_fields(SOURCE)
     save_to_json(INARGS.output, FINALDATA)
