@@ -1,0 +1,4 @@
+Found little time different when excuting import customer, import product, and import rental
+in concurrency and parallelism.  
+Both linear and parallel modules would yeild different times if the data import sizes were vastly larger. 
+There's not enough data to justify running the three import functions in parallel instead of linear.  
