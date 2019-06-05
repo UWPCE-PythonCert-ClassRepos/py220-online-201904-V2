@@ -1,4 +1,4 @@
-product_id,description,product_type,qantity_available
+product_id,description,product_type,quantity_available
 P000001,Chair Red leather,Livingroom,21
 P000002,Table Oak,Livingroom,4
 P000003,Couch Green cloth,Livingroom,10
@@ -9997,4 +9997,3 @@ P009995,Couch Green cloth,Livingroom,10
 P009996,Dining table Plastic,Kitchen,23
 P009997,Stool Black ash,Kitchen,12
 P009998,Chair Red leather,Livingroom,21
-P009999,Table Oak,Livingroom,4
