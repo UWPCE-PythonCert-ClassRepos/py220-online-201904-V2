@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """ Main functions to interface with MongoDB """
+#pylint: disable=C0103
 
 import sys
 from argparse import ArgumentParser
@@ -11,7 +12,6 @@ import src.database_operations as db
 def main(argv=None):
     """ Database main function """
     args = parse_cmd_arguments(argv)
-
     HPNorton = db.HPNortonDB()
 
     func_struct = (
