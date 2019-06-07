@@ -70,3 +70,18 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 
 Of course, show_rentals() still doesn't work, and for the life of me I don't
 know why... it's showing up empty now.
+
+After some help from Andy, it is now loading everything and behaving as it should:
+
+
+eve:src jmiller$ python linear_db.py
+1.745246162
+21.232116215
+
+
+eve:src jmiller$ python parallel_db.py
+1.7145865059999994
+18.535026158
+Timer unit: 1e-06 s
+
+Shaved a few seconds off on this old MacBook.

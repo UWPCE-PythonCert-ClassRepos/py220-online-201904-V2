@@ -1,0 +1,4147 @@
+__init__ called at 2019-06-03 09:59:42
+	args:(<src.database_operations.HPNortonDB object at 0x7fbc4d60e828>,), kwargs:{}
+	Function/Method execution time 1.0308000128134154e-05 seconds
+start_process called at 2019-06-03 09:59:42
+	args:(<src.database_operations.HPNortonDB object at 0x7fbc4d60e828>, './data/customers.csv'), kwargs:{}
+	Function/Method execution time 0.0027953449989581713 seconds
+start_process called at 2019-06-03 09:59:42
+	args:(<src.database_operations.HPNortonDB object at 0x7fbc4d60e828>, './data/product.csv'), kwargs:{}
+	Function/Method execution time 0.0010960679992422229 seconds
+get_line_from_file called at 2019-06-03 09:59:42
+	Called on 10 records
+	Function/Method execution time 6.938000296941027e-06 seconds
+start_process called at 2019-06-03 09:59:42
+	args:(<src.database_operations.HPNortonDB object at 0x7fbc4d60e828>, './data/rental.csv'), kwargs:{}
+	Function/Method execution time 0.0011496219995024148 seconds
+get_line_from_file called at 2019-06-03 09:59:42
+	Called on 10 records
+	Function/Method execution time 6.979000318096951e-06 seconds
+get_line_from_file called at 2019-06-03 09:59:42
+	Called on 10 records
+	Function/Method execution time 6.012000085320324e-06 seconds
+insert_to_mongo called at 2019-06-03 09:59:42
+	Called on 10 records
+	Function/Method execution time 0.507333892999668 seconds
+insert_to_mongo called at 2019-06-03 09:59:42
+	Called on 10 records
+	Function/Method execution time 0.5078426790005324 seconds
+insert_to_mongo called at 2019-06-03 09:59:42
+	Called on 10 records
+	Function/Method execution time 0.5073065500000666 seconds
+join_process called at 2019-06-03 09:59:42
+	args:(<src.database_operations.HPNortonDB object at 0x7fbc4d60e828>, (<Process(Process-1, stopped)>, <multiprocessing.queues.Queue object at 0x7fbc4aadb828>)), kwargs:{}
+	Function/Method execution time 0.5088636820000829 seconds
+join_process called at 2019-06-03 09:59:43
+	args:(<src.database_operations.HPNortonDB object at 0x7fbc4d60e828>, (<Process(Process-2, stopped)>, <multiprocessing.queues.Queue object at 0x7fbc4cca67f0>)), kwargs:{}
+	Function/Method execution time 0.0013558880000346107 seconds
+join_process called at 2019-06-03 09:59:43
+	args:(<src.database_operations.HPNortonDB object at 0x7fbc4d60e828>, (<Process(Process-3, stopped)>, <multiprocessing.queues.Queue object at 0x7fbc4a68fd30>)), kwargs:{}
+	Function/Method execution time 0.0006249719990591984 seconds
+parallel called at 2019-06-03 09:59:42
+	args:(<src.database_operations.HPNortonDB object at 0x7fbc4d60e828>, ['./data/customers.csv', './data/product.csv', './data/rental.csv']), kwargs:{}
+	Function/Method execution time 0.5179811090001749 seconds
+__init__ called at 2019-06-03 10:00:25
+	args:(<src.database_operations.HPNortonDB object at 0x7f253fb0f828>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 1.290399995923508e-05 seconds
+start_process called at 2019-06-03 10:00:25
+	args:(<src.database_operations.HPNortonDB object at 0x7f253fb0f828>, './data/customers.csv', 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.0029814940007781843 seconds
+start_process called at 2019-06-03 10:00:25
+	args:(<src.database_operations.HPNortonDB object at 0x7f253fb0f828>, './data/product.csv', 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.0012064189995726338 seconds
+get_line_from_file called at 2019-06-03 10:00:25
+	Called on 10 records
+	Function/Method execution time 7.68799873185344e-06 seconds
+start_process called at 2019-06-03 10:00:25
+	args:(<src.database_operations.HPNortonDB object at 0x7f253fb0f828>, './data/rental.csv', 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.0013728510002692929 seconds
+get_line_from_file called at 2019-06-03 10:00:25
+	Called on 10 records
+	Function/Method execution time 8.835000699036755e-06 seconds
+get_line_from_file called at 2019-06-03 10:00:25
+	Called on 10 records
+	Function/Method execution time 6.597998435609043e-06 seconds
+insert_to_mongo called at 2019-06-03 10:00:25
+	Called on 10 records
+	Function/Method execution time 0.5074130350003543 seconds
+insert_to_mongo called at 2019-06-03 10:00:25
+	Called on 10 records
+	Function/Method execution time 0.5078712680005992 seconds
+insert_to_mongo called at 2019-06-03 10:00:25
+	Called on 10 records
+	Function/Method execution time 0.5075026850008726 seconds
+join_process called at 2019-06-03 10:00:25
+	args:(<src.database_operations.HPNortonDB object at 0x7f253fb0f828>, (<Process(Process-1, stopped)>, <multiprocessing.queues.Queue object at 0x7f253cfe0ac8>), 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.5089801249996526 seconds
+join_process called at 2019-06-03 10:00:26
+	args:(<src.database_operations.HPNortonDB object at 0x7f253fb0f828>, (<Process(Process-2, stopped)>, <multiprocessing.queues.Queue object at 0x7f253cb927f0>), 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.0006194480010890402 seconds
+join_process called at 2019-06-03 10:00:26
+	args:(<src.database_operations.HPNortonDB object at 0x7f253fb0f828>, (<Process(Process-3, stopped)>, <multiprocessing.queues.Queue object at 0x7f253cb92ef0>), 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.0013335980002011638 seconds
+parallel called at 2019-06-03 10:00:25
+	args:(<src.database_operations.HPNortonDB object at 0x7f253fb0f828>, ['./data/customers.csv', './data/product.csv', './data/rental.csv'], 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.5186933469994983 seconds
+__init__ called at 2019-06-03 10:02:02
+	args:(<src.database_operations.HPNortonDB object at 0x7fe27a6f2828>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 9.546000001137145e-06 seconds
+list_all_products called at 2019-06-03 10:02:02
+	args:(<src.database_operations.HPNortonDB object at 0x7fe27a6f2828>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.0018664769995666575 seconds
+__init__ called at 2019-06-03 10:06:22
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c8e3c8>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 1.5230998542392626e-05 seconds
+drop_database called at 2019-06-03 10:06:22
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c8e3c8>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.009824271999605116 seconds
+get_line_from_file called at 2019-06-03 10:06:22
+	Called on 10 records
+	Function/Method execution time 2.3329994291998446e-06 seconds
+insert_to_mongo called at 2019-06-03 10:06:22
+	Called on 10 records
+	Function/Method execution time 0.5023757970011502 seconds
+get_line_from_file called at 2019-06-03 10:06:22
+	Called on 10 records
+	Function/Method execution time 2.5360004656249657e-06 seconds
+insert_to_mongo called at 2019-06-03 10:06:22
+	Called on 10 records
+	Function/Method execution time 0.5056848710009945 seconds
+get_line_from_file called at 2019-06-03 10:06:23
+	Called on 10 records
+	Function/Method execution time 2.4990004021674395e-06 seconds
+insert_to_mongo called at 2019-06-03 10:06:23
+	Called on 10 records
+	Function/Method execution time 0.5059198899998592 seconds
+linear called at 2019-06-03 10:06:22
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c8e3c8>, ['./data/customers.csv', './data/product.csv', './data/rental.csv'], 'timings.txt'), kwargs:{}
+	Function/Method execution time 1.5150869379995129 seconds
+__init__ called at 2019-06-03 10:06:23
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c7dba8>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 6.0500005929498e-06 seconds
+drop_database called at 2019-06-03 10:06:23
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c7dba8>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.013340760000573937 seconds
+start_process called at 2019-06-03 10:06:23
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c7dba8>, './data/customers.csv', 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.0027669840001181 seconds
+start_process called at 2019-06-03 10:06:23
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c7dba8>, './data/product.csv', 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.0015553180001006695 seconds
+get_line_from_file called at 2019-06-03 10:06:23
+	Called on 10 records
+	Function/Method execution time 7.64600008551497e-06 seconds
+start_process called at 2019-06-03 10:06:23
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c7dba8>, './data/rental.csv', 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.0019349640006112168 seconds
+get_line_from_file called at 2019-06-03 10:06:23
+	Called on 10 records
+	Function/Method execution time 6.280999514274299e-06 seconds
+get_line_from_file called at 2019-06-03 10:06:23
+	Called on 10 records
+	Function/Method execution time 5.329000487108715e-06 seconds
+insert_to_mongo called at 2019-06-03 10:06:23
+	Called on 10 records
+	Function/Method execution time 0.5049371290006093 seconds
+insert_to_mongo called at 2019-06-03 10:06:23
+	Called on 10 records
+	Function/Method execution time 0.5039000710003165 seconds
+join_process called at 2019-06-03 10:06:23
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c7dba8>, (<Process(Process-1, stopped)>, <multiprocessing.queues.Queue object at 0x7f3b43c7d668>), 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.5030564690005122 seconds
+join_process called at 2019-06-03 10:06:24
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c7dba8>, (<Process(Process-2, stopped)>, <multiprocessing.queues.Queue object at 0x7f3b415bd390>), 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.00014300700058811344 seconds
+insert_to_mongo called at 2019-06-03 10:06:23
+	Called on 10 records
+	Function/Method execution time 0.5042111359998671 seconds
+join_process called at 2019-06-03 10:06:24
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c7dba8>, (<Process(Process-3, stopped)>, <multiprocessing.queues.Queue object at 0x7f3b415bdac8>), 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.0026448459993844153 seconds
+parallel called at 2019-06-03 10:06:23
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c7dba8>, ['./data/customers.csv', './data/product.csv', './data/rental.csv'], 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.5131781620002585 seconds
+__init__ called at 2019-06-03 10:06:24
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c60cf8>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 9.219998901244253e-06 seconds
+drop_collections called at 2019-06-03 10:06:24
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c60cf8>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.003045904000828159 seconds
+get_line_from_file called at 2019-06-03 10:06:24
+	Called on 10 records
+	Function/Method execution time 2.7940004656556994e-06 seconds
+insert_to_mongo called at 2019-06-03 10:06:24
+	Called on 10 records
+	Function/Method execution time 0.502269749998959 seconds
+get_line_from_file called at 2019-06-03 10:06:24
+	Called on 10 records
+	Function/Method execution time 2.1719988581025973e-06 seconds
+insert_to_mongo called at 2019-06-03 10:06:24
+	Called on 10 records
+	Function/Method execution time 0.5050654530004977 seconds
+get_line_from_file called at 2019-06-03 10:06:25
+	Called on 10 records
+	Function/Method execution time 1.1600999641814269e-05 seconds
+insert_to_mongo called at 2019-06-03 10:06:25
+	Called on 10 records
+	Function/Method execution time 0.5082802530014305 seconds
+get_line_from_file called at 2019-06-03 10:06:25
+	Called on 10 records
+	Function/Method execution time 1.1418000212870538e-05 seconds
+insert_to_mongo called at 2019-06-03 10:06:25
+	Called on 10 records
+	Function/Method execution time 0.5056041990010272 seconds
+get_line_from_file called at 2019-06-03 10:06:26
+	Called on 10 records
+	Function/Method execution time 5.746000169892795e-06 seconds
+insert_to_mongo called at 2019-06-03 10:06:26
+	Called on 10 records
+	Function/Method execution time 0.5042837429991778 seconds
+get_line_from_file called at 2019-06-03 10:06:26
+	Called on 10 records
+	Function/Method execution time 5.451998731587082e-06 seconds
+insert_to_mongo called at 2019-06-03 10:06:26
+	Called on 10 records
+	Function/Method execution time 0.503442263998295 seconds
+__init__ called at 2019-06-03 10:06:27
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c8e668>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 6.972000846872106e-06 seconds
+drop_database called at 2019-06-03 10:06:27
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c8e668>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.013250099000288174 seconds
+get_line_from_file called at 2019-06-03 10:06:27
+	Called on 10 records
+	Function/Method execution time 4.2290012061130255e-06 seconds
+insert_to_mongo called at 2019-06-03 10:06:27
+	Called on 10 records
+	Function/Method execution time 0.5034625560001587 seconds
+show_available_products called at 2019-06-03 10:06:27
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c8e668>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.001999036001507193 seconds
+__init__ called at 2019-06-03 10:06:27
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c8ea90>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 7.098000423866324e-06 seconds
+drop_database called at 2019-06-03 10:06:27
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c8ea90>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.013767984999503824 seconds
+get_line_from_file called at 2019-06-03 10:06:27
+	Called on 10 records
+	Function/Method execution time 3.441999069764279e-06 seconds
+insert_to_mongo called at 2019-06-03 10:06:27
+	Called on 10 records
+	Function/Method execution time 0.5054125169990584 seconds
+get_line_from_file called at 2019-06-03 10:06:28
+	Called on 10 records
+	Function/Method execution time 1.2069000149494968e-05 seconds
+insert_to_mongo called at 2019-06-03 10:06:28
+	Called on 10 records
+	Function/Method execution time 0.5079166880004777 seconds
+get_line_from_file called at 2019-06-03 10:06:28
+	Called on 10 records
+	Function/Method execution time 1.3038999895798042e-05 seconds
+insert_to_mongo called at 2019-06-03 10:06:28
+	Called on 10 records
+	Function/Method execution time 0.508383156000491 seconds
+customers_renting_product called at 2019-06-03 10:06:29
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c8ea90>, 'P000001', 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.012840567000239389 seconds
+__init__ called at 2019-06-03 10:06:29
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c8ea90>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 3.0068000341998413e-05 seconds
+drop_database called at 2019-06-03 10:06:29
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c8ea90>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.027624574999208562 seconds
+get_line_from_file called at 2019-06-03 10:06:29
+	Called on 10 records
+	Function/Method execution time 1.2628999684238806e-05 seconds
+insert_to_mongo called at 2019-06-03 10:06:29
+	Called on 10 records
+	Function/Method execution time 0.5077739690004819 seconds
+list_all_customers called at 2019-06-03 10:06:30
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c8ea90>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.007032650000837748 seconds
+__init__ called at 2019-06-03 10:06:30
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c60d68>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 2.408399996056687e-05 seconds
+drop_database called at 2019-06-03 10:06:30
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c60d68>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.027999498999633943 seconds
+get_line_from_file called at 2019-06-03 10:06:30
+	Called on 10 records
+	Function/Method execution time 1.9565999537007883e-05 seconds
+insert_to_mongo called at 2019-06-03 10:06:30
+	Called on 10 records
+	Function/Method execution time 0.5086434190016007 seconds
+list_all_products called at 2019-06-03 10:06:30
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c60d68>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.0075308750001568114 seconds
+__init__ called at 2019-06-03 10:06:30
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c60cc0>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 5.591000444837846e-06 seconds
+drop_database called at 2019-06-03 10:06:30
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c60cc0>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.012681617999987793 seconds
+get_line_from_file called at 2019-06-03 10:06:30
+	Called on 10 records
+	Function/Method execution time 2.3310003598453477e-06 seconds
+insert_to_mongo called at 2019-06-03 10:06:30
+	Called on 10 records
+	Function/Method execution time 0.5056313810000574 seconds
+list_all_rentals called at 2019-06-03 10:06:31
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c60cc0>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.007066619999022805 seconds
+__init__ called at 2019-06-03 10:06:31
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c60cf8>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 3.400000059627928e-05 seconds
+drop_database called at 2019-06-03 10:06:31
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c60cf8>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.02329602100144257 seconds
+get_line_from_file called at 2019-06-03 10:06:31
+	Called on 10 records
+	Function/Method execution time 4.853000064031221e-06 seconds
+insert_to_mongo called at 2019-06-03 10:06:31
+	Called on 10 records
+	Function/Method execution time 0.503906525000275 seconds
+get_line_from_file called at 2019-06-03 10:06:31
+	Called on 10 records
+	Function/Method execution time 3.0960000003688037e-06 seconds
+insert_to_mongo called at 2019-06-03 10:06:31
+	Called on 10 records
+	Function/Method execution time 0.5053646790001949 seconds
+get_line_from_file called at 2019-06-03 10:06:32
+	Called on 10 records
+	Function/Method execution time 1.3319000572664663e-05 seconds
+insert_to_mongo called at 2019-06-03 10:06:32
+	Called on 10 records
+	Function/Method execution time 0.5061085400011507 seconds
+rentals_for_customer called at 2019-06-03 10:06:32
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c60cf8>, 'C000001', 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.004651978000765666 seconds
+__init__ called at 2019-06-03 10:06:32
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c7d160>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 9.48000160860829e-06 seconds
+get_line_from_file called at 2019-06-03 10:06:32
+	Called on 10 records
+	Function/Method execution time 4.523999450611882e-06 seconds
+__init__ called at 2019-06-03 10:06:32
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c7d278>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 8.413000614382327e-06 seconds
+get_line_from_file called at 2019-06-03 10:06:32
+	Called on 10 records
+	Function/Method execution time 4.122999598621391e-06 seconds
+insert_to_mongo called at 2019-06-03 10:06:32
+	Called on 10 records
+	Function/Method execution time 0.5029019749999861 seconds
+drop_database called at 2019-06-03 10:06:33
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c7d278>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.013325662999704946 seconds
+__init__ called at 2019-06-03 10:06:33
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c7d668>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 6.787000529584475e-06 seconds
+get_line_from_file called at 2019-06-03 10:06:33
+	Called on 10 records
+	Function/Method execution time 3.187000402249396e-06 seconds
+insert_to_mongo called at 2019-06-03 10:06:33
+	Called on 10 records
+	Function/Method execution time 0.5054772560015408 seconds
+get_line_from_file called at 2019-06-03 10:06:33
+	Called on 10 records
+	Function/Method execution time 1.2661001164815389e-05 seconds
+insert_to_mongo called at 2019-06-03 10:06:33
+	Called on 10 records
+	Function/Method execution time 0.5071172230000229 seconds
+get_line_from_file called at 2019-06-03 10:06:34
+	Called on 10 records
+	Function/Method execution time 5.284000508254394e-06 seconds
+insert_to_mongo called at 2019-06-03 10:06:34
+	Called on 10 records
+	Function/Method execution time 0.5050026640001306 seconds
+drop_collections called at 2019-06-03 10:06:34
+	args:(<src.database_operations.HPNortonDB object at 0x7f3b43c7d668>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.010380282999904011 seconds
+__init__ called at 2019-06-03 10:13:27
+	args:(<src.database_operations.HPNortonDB object at 0x7fa78bb287f0>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 1.0895999366766773e-05 seconds
+list_all_products called at 2019-06-03 10:13:27
+	args:(<src.database_operations.HPNortonDB object at 0x7fa78bb287f0>, 'timings.txt'), kwargs:{}
+	Function/Method execution time 0.001716284999929485 seconds
+__init__ called at 2019-06-03 10:14:39
+	args:[<src.database_operations.HPNortonDB object at 0x7faa2ac137f0>], kwargs:{}
+	Function/Method execution time 1.0457999451318756e-05 seconds
+list_all_products called at 2019-06-03 10:14:39
+	args:[<src.database_operations.HPNortonDB object at 0x7faa2ac137f0>], kwargs:{}
+	Function/Method execution time 0.001816694999433821 seconds
+__init__ called at 2019-06-03 10:20:54
+	args:[<src.database_operations.HPNortonDB object at 0x7f04b52d87f0>], kwargs:{}
+	Function/Method execution time 1.398799940943718e-05 seconds
+list_all_products called at 2019-06-03 10:20:54
+	args:[<src.database_operations.HPNortonDB object at 0x7f04b52d87f0>], kwargs:{}
+	Function/Method execution time 0.0018604110009619035 seconds
+__init__ called at 2019-06-03 10:22:29
+	args:[<src.database_operations.HPNortonDB object at 0x7f7cb0e857f0>], kwargs:{}
+	Function/Method execution time 1.004799923975952e-05 seconds
+list_all_products called at 2019-06-03 10:22:29
+	args:[<src.database_operations.HPNortonDB object at 0x7f7cb0e857f0>], kwargs:{}
+	Function/Method execution time 0.001958566999746836 seconds
+__init__ called at 2019-06-03 10:22:50
+	args:[<src.database_operations.HPNortonDB object at 0x7f289968b7f0>], kwargs:{}
+	Function/Method execution time 1.3823999324813485e-05 seconds
+list_all_products called at 2019-06-03 10:22:50
+	args:[<src.database_operations.HPNortonDB object at 0x7f289968b7f0>], kwargs:{}
+	Function/Method execution time 0.0018860460004361812 seconds
+__init__ called at 2019-06-03 10:27:42
+	args:[<src.database_operations.HPNortonDB object at 0x7fc6b8d467f0>], kwargs:{}
+	Function/Method execution time 9.041001248988323e-06 seconds
+list_all_products called at 2019-06-03 10:27:42
+	args:[<src.database_operations.HPNortonDB object at 0x7fc6b8d467f0>], kwargs:{}
+	Function/Method execution time 0.001970850000361679 seconds
+__init__ called at 2019-06-03 10:28:59
+	args:[<src.database_operations.HPNortonDB object at 0x7f38684e47f0>], kwargs:{}
+	Function/Method execution time 9.392000720254146e-06 seconds
+get_line_from_file called at 2019-06-03 10:28:59
+	Called on 10 records
+	Function/Method execution time 4.676001481129788e-06 seconds
+get_line_from_file called at 2019-06-03 10:28:59
+	Called on 10 records
+	Function/Method execution time 9.033999958774075e-06 seconds
+get_line_from_file called at 2019-06-03 10:28:59
+	Called on 10 records
+	Function/Method execution time 8.94499862624798e-06 seconds
+insert_to_mongo called at 2019-06-03 10:28:59
+	Called on 10 records
+	Function/Method execution time 0.507560118998299 seconds
+insert_to_mongo called at 2019-06-03 10:28:59
+	Called on 10 records
+	Function/Method execution time 0.5076940009985265 seconds
+insert_to_mongo called at 2019-06-03 10:28:59
+	Called on 10 records
+	Function/Method execution time 0.5084729650006921 seconds
+parallel called at 2019-06-03 10:28:59
+	args:[<src.database_operations.HPNortonDB object at 0x7f38684e47f0>, ['./data/customers.csv', './data/rental.csv', './data/product.csv']], kwargs:{}
+	Function/Method execution time 0.5148853099999542 seconds
+__init__ called at 2019-06-03 10:31:47
+	args:[<src.database_operations.HPNortonDB object at 0x7f55592ae5f8>], kwargs:{}
+	Function/Method execution time 6.8260014813859016e-06 seconds
+drop_database called at 2019-06-03 10:31:47
+	args:[<src.database_operations.HPNortonDB object at 0x7f55592ae5f8>], kwargs:{}
+	Function/Method execution time 0.008555689000786515 seconds
+get_line_from_file called at 2019-06-03 10:31:47
+	Called on 10 records
+	Function/Method execution time 2.299000698258169e-06 seconds
+insert_to_mongo called at 2019-06-03 10:31:47
+	Called on 10 records
+	Function/Method execution time 0.5052389910015336 seconds
+get_line_from_file called at 2019-06-03 10:31:47
+	Called on 10 records
+	Function/Method execution time 3.3679989428492263e-06 seconds
+insert_to_mongo called at 2019-06-03 10:31:47
+	Called on 10 records
+	Function/Method execution time 0.5051073459999316 seconds
+get_line_from_file called at 2019-06-03 10:31:48
+	Called on 10 records
+	Function/Method execution time 3.5769990063272417e-06 seconds
+insert_to_mongo called at 2019-06-03 10:31:48
+	Called on 10 records
+	Function/Method execution time 0.5052744990007341 seconds
+linear called at 2019-06-03 10:31:47
+	args:[<src.database_operations.HPNortonDB object at 0x7f55592ae5f8>, ['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 1.5166686570009915 seconds
+__init__ called at 2019-06-03 10:31:48
+	args:[<src.database_operations.HPNortonDB object at 0x7f555b7670f0>], kwargs:{}
+	Function/Method execution time 7.452999852830544e-06 seconds
+drop_database called at 2019-06-03 10:31:48
+	args:[<src.database_operations.HPNortonDB object at 0x7f555b7670f0>], kwargs:{}
+	Function/Method execution time 0.013252128001113306 seconds
+get_line_from_file called at 2019-06-03 10:31:48
+	Called on 10 records
+	Function/Method execution time 4.76600143883843e-06 seconds
+get_line_from_file called at 2019-06-03 10:31:48
+	Called on 10 records
+	Function/Method execution time 6.553000275744125e-06 seconds
+get_line_from_file called at 2019-06-03 10:31:48
+	Called on 10 records
+	Function/Method execution time 5.782001608167775e-06 seconds
+insert_to_mongo called at 2019-06-03 10:31:48
+	Called on 10 records
+	Function/Method execution time 0.5079281549988082 seconds
+insert_to_mongo called at 2019-06-03 10:31:48
+	Called on 10 records
+	Function/Method execution time 0.5082371459993738 seconds
+insert_to_mongo called at 2019-06-03 10:31:48
+	Called on 10 records
+	Function/Method execution time 0.5086237770010484 seconds
+parallel called at 2019-06-03 10:31:48
+	args:[<src.database_operations.HPNortonDB object at 0x7f555b7670f0>, ['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.5183091640010389 seconds
+__init__ called at 2019-06-03 10:31:49
+	args:[<src.database_operations.HPNortonDB object at 0x7f555c104a90>], kwargs:{}
+	Function/Method execution time 6.549998943228275e-06 seconds
+drop_collections called at 2019-06-03 10:31:49
+	args:[<src.database_operations.HPNortonDB object at 0x7f555c104a90>], kwargs:{}
+	Function/Method execution time 0.003127117999611073 seconds
+get_line_from_file called at 2019-06-03 10:31:49
+	Called on 10 records
+	Function/Method execution time 2.1550004021264613e-06 seconds
+insert_to_mongo called at 2019-06-03 10:31:49
+	Called on 10 records
+	Function/Method execution time 0.5054864520006959 seconds
+get_line_from_file called at 2019-06-03 10:31:49
+	Called on 10 records
+	Function/Method execution time 1.1363001249264926e-05 seconds
+insert_to_mongo called at 2019-06-03 10:31:49
+	Called on 10 records
+	Function/Method execution time 0.5085505850001937 seconds
+get_line_from_file called at 2019-06-03 10:31:50
+	Called on 10 records
+	Function/Method execution time 1.2091000826330855e-05 seconds
+insert_to_mongo called at 2019-06-03 10:31:50
+	Called on 10 records
+	Function/Method execution time 0.5080149220011663 seconds
+get_line_from_file called at 2019-06-03 10:31:50
+	Called on 10 records
+	Function/Method execution time 1.235799936694093e-05 seconds
+insert_to_mongo called at 2019-06-03 10:31:50
+	Called on 10 records
+	Function/Method execution time 0.5089595179997559 seconds
+get_line_from_file called at 2019-06-03 10:31:51
+	Called on 10 records
+	Function/Method execution time 1.2009999409201555e-05 seconds
+insert_to_mongo called at 2019-06-03 10:31:51
+	Called on 10 records
+	Function/Method execution time 0.5087338379998982 seconds
+get_line_from_file called at 2019-06-03 10:31:51
+	Called on 10 records
+	Function/Method execution time 1.1314999937894754e-05 seconds
+insert_to_mongo called at 2019-06-03 10:31:51
+	Called on 10 records
+	Function/Method execution time 0.5065854329986905 seconds
+__init__ called at 2019-06-03 10:31:52
+	args:[<src.database_operations.HPNortonDB object at 0x7f5559292630>], kwargs:{}
+	Function/Method execution time 1.2922999303555116e-05 seconds
+drop_database called at 2019-06-03 10:31:52
+	args:[<src.database_operations.HPNortonDB object at 0x7f5559292630>], kwargs:{}
+	Function/Method execution time 0.019782503000897123 seconds
+get_line_from_file called at 2019-06-03 10:31:52
+	Called on 10 records
+	Function/Method execution time 2.8340000426396728e-06 seconds
+insert_to_mongo called at 2019-06-03 10:31:52
+	Called on 10 records
+	Function/Method execution time 0.5027276649998385 seconds
+show_available_products called at 2019-06-03 10:31:52
+	args:[<src.database_operations.HPNortonDB object at 0x7f5559292630>], kwargs:{}
+	Function/Method execution time 0.0018697539999266155 seconds
+__init__ called at 2019-06-03 10:31:52
+	args:[<src.database_operations.HPNortonDB object at 0x7f5559283e10>], kwargs:{}
+	Function/Method execution time 6.954000127734616e-06 seconds
+drop_database called at 2019-06-03 10:31:52
+	args:[<src.database_operations.HPNortonDB object at 0x7f5559283e10>], kwargs:{}
+	Function/Method execution time 0.012479789998906199 seconds
+get_line_from_file called at 2019-06-03 10:31:52
+	Called on 10 records
+	Function/Method execution time 2.1910000214120373e-06 seconds
+insert_to_mongo called at 2019-06-03 10:31:52
+	Called on 10 records
+	Function/Method execution time 0.5053643020000891 seconds
+get_line_from_file called at 2019-06-03 10:31:53
+	Called on 10 records
+	Function/Method execution time 1.7020000086631626e-05 seconds
+insert_to_mongo called at 2019-06-03 10:31:53
+	Called on 10 records
+	Function/Method execution time 0.5070196420001594 seconds
+get_line_from_file called at 2019-06-03 10:31:53
+	Called on 10 records
+	Function/Method execution time 5.853000402566977e-06 seconds
+insert_to_mongo called at 2019-06-03 10:31:53
+	Called on 10 records
+	Function/Method execution time 0.5039859190001152 seconds
+customers_renting_product called at 2019-06-03 10:31:54
+	args:[<src.database_operations.HPNortonDB object at 0x7f5559283e10>, 'P000001'], kwargs:{}
+	Function/Method execution time 0.0030453399995167274 seconds
+__init__ called at 2019-06-03 10:31:54
+	args:[<src.database_operations.HPNortonDB object at 0x7f5559283710>], kwargs:{}
+	Function/Method execution time 6.944001142983325e-06 seconds
+drop_database called at 2019-06-03 10:31:54
+	args:[<src.database_operations.HPNortonDB object at 0x7f5559283710>], kwargs:{}
+	Function/Method execution time 0.015001052001025528 seconds
+get_line_from_file called at 2019-06-03 10:31:54
+	Called on 10 records
+	Function/Method execution time 4.666999302571639e-06 seconds
+insert_to_mongo called at 2019-06-03 10:31:54
+	Called on 10 records
+	Function/Method execution time 0.5034821040007955 seconds
+list_all_customers called at 2019-06-03 10:31:54
+	args:[<src.database_operations.HPNortonDB object at 0x7f5559283710>], kwargs:{}
+	Function/Method execution time 0.0027552829997148365 seconds
+__init__ called at 2019-06-03 10:31:54
+	args:[<src.database_operations.HPNortonDB object at 0x7f55592aeac8>], kwargs:{}
+	Function/Method execution time 8.381999577977695e-06 seconds
+drop_database called at 2019-06-03 10:31:54
+	args:[<src.database_operations.HPNortonDB object at 0x7f55592aeac8>], kwargs:{}
+	Function/Method execution time 0.015905821001069853 seconds
+get_line_from_file called at 2019-06-03 10:31:54
+	Called on 10 records
+	Function/Method execution time 4.3239997467026114e-06 seconds
+insert_to_mongo called at 2019-06-03 10:31:54
+	Called on 10 records
+	Function/Method execution time 0.506325262998871 seconds
+list_all_products called at 2019-06-03 10:31:55
+	args:[<src.database_operations.HPNortonDB object at 0x7f55592aeac8>], kwargs:{}
+	Function/Method execution time 0.0073028589995374205 seconds
+__init__ called at 2019-06-03 10:31:55
+	args:[<src.database_operations.HPNortonDB object at 0x7f555927b208>], kwargs:{}
+	Function/Method execution time 2.949800000351388e-05 seconds
+drop_database called at 2019-06-03 10:31:55
+	args:[<src.database_operations.HPNortonDB object at 0x7f555927b208>], kwargs:{}
+	Function/Method execution time 0.025421244999961345 seconds
+get_line_from_file called at 2019-06-03 10:31:55
+	Called on 10 records
+	Function/Method execution time 1.3211001714807935e-05 seconds
+insert_to_mongo called at 2019-06-03 10:31:55
+	Called on 10 records
+	Function/Method execution time 0.5085974409994378 seconds
+list_all_rentals called at 2019-06-03 10:31:55
+	args:[<src.database_operations.HPNortonDB object at 0x7f555927b208>], kwargs:{}
+	Function/Method execution time 0.007132382001145743 seconds
+__init__ called at 2019-06-03 10:31:55
+	args:[<src.database_operations.HPNortonDB object at 0x7f5552ba8ef0>], kwargs:{}
+	Function/Method execution time 2.4433000362478197e-05 seconds
+drop_database called at 2019-06-03 10:31:55
+	args:[<src.database_operations.HPNortonDB object at 0x7f5552ba8ef0>], kwargs:{}
+	Function/Method execution time 0.027149063000251772 seconds
+get_line_from_file called at 2019-06-03 10:31:55
+	Called on 10 records
+	Function/Method execution time 1.156799953605514e-05 seconds
+insert_to_mongo called at 2019-06-03 10:31:55
+	Called on 10 records
+	Function/Method execution time 0.5086179230002017 seconds
+get_line_from_file called at 2019-06-03 10:31:56
+	Called on 10 records
+	Function/Method execution time 1.2119999155402184e-05 seconds
+insert_to_mongo called at 2019-06-03 10:31:56
+	Called on 10 records
+	Function/Method execution time 0.5086714150002081 seconds
+get_line_from_file called at 2019-06-03 10:31:56
+	Called on 10 records
+	Function/Method execution time 1.2430000424501486e-05 seconds
+insert_to_mongo called at 2019-06-03 10:31:56
+	Called on 10 records
+	Function/Method execution time 0.507863589000408 seconds
+rentals_for_customer called at 2019-06-03 10:31:57
+	args:[<src.database_operations.HPNortonDB object at 0x7f5552ba8ef0>, 'C000001'], kwargs:{}
+	Function/Method execution time 0.008856774999003392 seconds
+__init__ called at 2019-06-03 10:31:57
+	args:[<src.database_operations.HPNortonDB object at 0x7f5559292dd8>], kwargs:{}
+	Function/Method execution time 2.2774000171921216e-05 seconds
+get_line_from_file called at 2019-06-03 10:31:57
+	Called on 10 records
+	Function/Method execution time 1.0619000022416003e-05 seconds
+__init__ called at 2019-06-03 10:31:57
+	args:[<src.database_operations.HPNortonDB object at 0x7f555b7672e8>], kwargs:{}
+	Function/Method execution time 2.170000152545981e-05 seconds
+get_line_from_file called at 2019-06-03 10:31:57
+	Called on 10 records
+	Function/Method execution time 1.5853998775128275e-05 seconds
+insert_to_mongo called at 2019-06-03 10:31:57
+	Called on 10 records
+	Function/Method execution time 0.5083175279996794 seconds
+__init__ called at 2019-06-03 10:31:57
+	args:[<src.database_operations.HPNortonDB object at 0x7f5552afa400>], kwargs:{}
+	Function/Method execution time 6.246000339160673e-06 seconds
+get_line_from_file called at 2019-06-03 10:31:57
+	Called on 10 records
+	Function/Method execution time 1.9919989426853135e-06 seconds
+insert_to_mongo called at 2019-06-03 10:31:57
+	Called on 10 records
+	Function/Method execution time 0.5051962340003229 seconds
+get_line_from_file called at 2019-06-03 10:31:58
+	Called on 10 records
+	Function/Method execution time 7.702999937464483e-06 seconds
+insert_to_mongo called at 2019-06-03 10:31:58
+	Called on 10 records
+	Function/Method execution time 0.5065849359998538 seconds
+get_line_from_file called at 2019-06-03 10:31:58
+	Called on 10 records
+	Function/Method execution time 1.0615000064717606e-05 seconds
+insert_to_mongo called at 2019-06-03 10:31:58
+	Called on 10 records
+	Function/Method execution time 0.5065445119998913 seconds
+__init__ called at 2019-06-03 10:32:57
+	args:[<src.database_operations.HPNortonDB object at 0x7f38df55cac8>], kwargs:{}
+	Function/Method execution time 6.082000254536979e-06 seconds
+drop_database called at 2019-06-03 10:32:57
+	args:[<src.database_operations.HPNortonDB object at 0x7f38df55cac8>], kwargs:{}
+	Function/Method execution time 0.009781397999176988 seconds
+insert_to_mongo called at 2019-06-03 10:32:57
+	Called on 10 records
+	Function/Method execution time 0.0009175659997708863 seconds
+linear called at 2019-06-03 10:32:57
+	args:[<src.database_operations.HPNortonDB object at 0x7f38df55cac8>, ['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.0011487119991215877 seconds
+__init__ called at 2019-06-03 10:32:57
+	args:[<src.database_operations.HPNortonDB object at 0x7f38dcfff358>], kwargs:{}
+	Function/Method execution time 6.768999810446985e-06 seconds
+drop_database called at 2019-06-03 10:32:57
+	args:[<src.database_operations.HPNortonDB object at 0x7f38dcfff358>], kwargs:{}
+	Function/Method execution time 0.0013342910006031161 seconds
+insert_to_mongo called at 2019-06-03 10:32:57
+	Called on 10 records
+	Function/Method execution time 0.0020131179990130477 seconds
+insert_to_mongo called at 2019-06-03 10:32:57
+	Called on 10 records
+	Function/Method execution time 0.0017127689989138162 seconds
+insert_to_mongo called at 2019-06-03 10:32:57
+	Called on 10 records
+	Function/Method execution time 0.0017978150008275406 seconds
+parallel called at 2019-06-03 10:32:57
+	args:[<src.database_operations.HPNortonDB object at 0x7f38dcfff358>, ['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 3.2164545680006995 seconds
+__init__ called at 2019-06-03 10:33:10
+	args:[<src.database_operations.HPNortonDB object at 0x7f4dfc509358>], kwargs:{}
+	Function/Method execution time 7.669001206522807e-06 seconds
+drop_database called at 2019-06-03 10:33:10
+	args:[<src.database_operations.HPNortonDB object at 0x7f4dfc509358>], kwargs:{}
+	Function/Method execution time 0.0015323600000556326 seconds
+insert_to_mongo called at 2019-06-03 10:33:10
+	Called on 10 records
+	Function/Method execution time 0.0005353130000003148 seconds
+linear called at 2019-06-03 10:33:10
+	args:[<src.database_operations.HPNortonDB object at 0x7f4dfc509358>, ['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.0007039720003376715 seconds
+__init__ called at 2019-06-03 10:33:10
+	args:[<src.database_operations.HPNortonDB object at 0x7f4df9fcacf8>], kwargs:{}
+	Function/Method execution time 5.396001142798923e-06 seconds
+drop_database called at 2019-06-03 10:33:10
+	args:[<src.database_operations.HPNortonDB object at 0x7f4df9fcacf8>], kwargs:{}
+	Function/Method execution time 0.0012986410001758486 seconds
+insert_to_mongo called at 2019-06-03 10:33:10
+	Called on 10 records
+	Function/Method execution time 0.0014683310000691563 seconds
+insert_to_mongo called at 2019-06-03 10:33:10
+	Called on 10 records
+	Function/Method execution time 0.0020598899991455255 seconds
+insert_to_mongo called at 2019-06-03 10:33:10
+	Called on 10 records
+	Function/Method execution time 0.0018425439993734471 seconds
+parallel called at 2019-06-03 10:33:10
+	args:[<src.database_operations.HPNortonDB object at 0x7f4df9fcacf8>, ['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 2.5490057790011633 seconds
+__init__ called at 2019-06-03 10:33:24
+	args:[<src.database_operations.HPNortonDB object at 0x7f8eb64fb438>], kwargs:{}
+	Function/Method execution time 7.70699989516288e-06 seconds
+drop_database called at 2019-06-03 10:33:24
+	args:[<src.database_operations.HPNortonDB object at 0x7f8eb64fb438>], kwargs:{}
+	Function/Method execution time 0.001666465999733191 seconds
+insert_to_mongo called at 2019-06-03 10:33:24
+	Called on 10 records
+	Function/Method execution time 0.0005836259988427628 seconds
+linear called at 2019-06-03 10:33:24
+	args:[<src.database_operations.HPNortonDB object at 0x7f8eb64fb438>, ['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.0006902339991938788 seconds
+__init__ called at 2019-06-03 10:33:24
+	args:[<src.database_operations.HPNortonDB object at 0x7f8eb401e240>], kwargs:{}
+	Function/Method execution time 6.7189994297223166e-06 seconds
+drop_database called at 2019-06-03 10:33:24
+	args:[<src.database_operations.HPNortonDB object at 0x7f8eb401e240>], kwargs:{}
+	Function/Method execution time 0.0012200090004625963 seconds
+insert_to_mongo called at 2019-06-03 10:33:24
+	Called on 10 records
+	Function/Method execution time 0.0016310450009768829 seconds
+insert_to_mongo called at 2019-06-03 10:33:24
+	Called on 10 records
+	Function/Method execution time 0.0019077830002061091 seconds
+insert_to_mongo called at 2019-06-03 10:33:24
+	Called on 10 records
+	Function/Method execution time 0.0017107650000980357 seconds
+parallel called at 2019-06-03 10:33:24
+	args:[<src.database_operations.HPNortonDB object at 0x7f8eb401e240>, ['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 1.1356610729999375 seconds
+__init__ called at 2019-06-03 10:33:33
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069e7dd8>], kwargs:{}
+	Function/Method execution time 6.236999979591928e-06 seconds
+drop_database called at 2019-06-03 10:33:33
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069e7dd8>], kwargs:{}
+	Function/Method execution time 0.0017458270012866706 seconds
+insert_to_mongo called at 2019-06-03 10:33:33
+	Called on 10 records
+	Function/Method execution time 0.5055910350001795 seconds
+insert_to_mongo called at 2019-06-03 10:33:34
+	Called on 10 records
+	Function/Method execution time 0.5086731520004832 seconds
+insert_to_mongo called at 2019-06-03 10:33:34
+	Called on 10 records
+	Function/Method execution time 0.5084083269994153 seconds
+linear called at 2019-06-03 10:33:33
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069e7dd8>, ['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 1.5240578899993125 seconds
+__init__ called at 2019-06-03 10:33:35
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069e7a90>], kwargs:{}
+	Function/Method execution time 2.7475000024423935e-05 seconds
+drop_database called at 2019-06-03 10:33:35
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069e7a90>], kwargs:{}
+	Function/Method execution time 0.029828654000084498 seconds
+insert_to_mongo called at 2019-06-03 10:33:35
+	Called on 10 records
+	Function/Method execution time 0.5135828500006028 seconds
+insert_to_mongo called at 2019-06-03 10:33:35
+	Called on 10 records
+	Function/Method execution time 0.5113332669989177 seconds
+insert_to_mongo called at 2019-06-03 10:33:35
+	Called on 10 records
+	Function/Method execution time 0.5093238589997782 seconds
+parallel called at 2019-06-03 10:33:35
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069e7a90>, ['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.5342514069998288 seconds
+__init__ called at 2019-06-03 10:33:35
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069e7c50>], kwargs:{}
+	Function/Method execution time 9.813000360736623e-06 seconds
+drop_collections called at 2019-06-03 10:33:35
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069e7c50>], kwargs:{}
+	Function/Method execution time 0.003109602999757044 seconds
+insert_to_mongo called at 2019-06-03 10:33:35
+	Called on 10 records
+	Function/Method execution time 0.5052812970006926 seconds
+insert_to_mongo called at 2019-06-03 10:33:36
+	Called on 10 records
+	Function/Method execution time 0.5080054809986905 seconds
+insert_to_mongo called at 2019-06-03 10:33:36
+	Called on 10 records
+	Function/Method execution time 0.5080385940000269 seconds
+insert_to_mongo called at 2019-06-03 10:33:37
+	Called on 10 records
+	Function/Method execution time 0.5085652799989475 seconds
+insert_to_mongo called at 2019-06-03 10:33:37
+	Called on 10 records
+	Function/Method execution time 0.50605703400106 seconds
+insert_to_mongo called at 2019-06-03 10:33:38
+	Called on 10 records
+	Function/Method execution time 0.5059294180009601 seconds
+__init__ called at 2019-06-03 10:33:39
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069c9be0>], kwargs:{}
+	Function/Method execution time 1.8405000446364284e-05 seconds
+drop_database called at 2019-06-03 10:33:39
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069c9be0>], kwargs:{}
+	Function/Method execution time 0.01681303300028958 seconds
+insert_to_mongo called at 2019-06-03 10:33:39
+	Called on 10 records
+	Function/Method execution time 0.5035078229993815 seconds
+show_available_products called at 2019-06-03 10:33:39
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069c9be0>], kwargs:{}
+	Function/Method execution time 0.002600075000373181 seconds
+__init__ called at 2019-06-03 10:33:39
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069c9b70>], kwargs:{}
+	Function/Method execution time 9.126000804826617e-06 seconds
+drop_database called at 2019-06-03 10:33:39
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069c9b70>], kwargs:{}
+	Function/Method execution time 0.017520437999337446 seconds
+insert_to_mongo called at 2019-06-03 10:33:39
+	Called on 10 records
+	Function/Method execution time 0.5048761920006655 seconds
+insert_to_mongo called at 2019-06-03 10:33:40
+	Called on 10 records
+	Function/Method execution time 0.5039609470004507 seconds
+insert_to_mongo called at 2019-06-03 10:33:40
+	Called on 10 records
+	Function/Method execution time 0.5058021129989356 seconds
+customers_renting_product called at 2019-06-03 10:33:41
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069c9b70>, 'P000001'], kwargs:{}
+	Function/Method execution time 0.010970310999255162 seconds
+__init__ called at 2019-06-03 10:33:41
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069c9a90>], kwargs:{}
+	Function/Method execution time 2.375799886067398e-05 seconds
+drop_database called at 2019-06-03 10:33:41
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069c9a90>], kwargs:{}
+	Function/Method execution time 0.027746911999201984 seconds
+insert_to_mongo called at 2019-06-03 10:33:41
+	Called on 10 records
+	Function/Method execution time 0.5083007220000582 seconds
+list_all_customers called at 2019-06-03 10:33:41
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069c9a90>], kwargs:{}
+	Function/Method execution time 0.007100442999217194 seconds
+__init__ called at 2019-06-03 10:33:41
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069c9be0>], kwargs:{}
+	Function/Method execution time 2.342999869142659e-05 seconds
+drop_database called at 2019-06-03 10:33:41
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069c9be0>], kwargs:{}
+	Function/Method execution time 0.026600649998727022 seconds
+insert_to_mongo called at 2019-06-03 10:33:41
+	Called on 10 records
+	Function/Method execution time 0.5098795379999501 seconds
+list_all_products called at 2019-06-03 10:33:42
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069c9be0>], kwargs:{}
+	Function/Method execution time 0.007223296999654849 seconds
+__init__ called at 2019-06-03 10:33:42
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069f6780>], kwargs:{}
+	Function/Method execution time 2.6808000257005915e-05 seconds
+drop_database called at 2019-06-03 10:33:42
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069f6780>], kwargs:{}
+	Function/Method execution time 0.02549545600049896 seconds
+insert_to_mongo called at 2019-06-03 10:33:42
+	Called on 10 records
+	Function/Method execution time 0.5086056720010674 seconds
+list_all_rentals called at 2019-06-03 10:33:42
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069f6780>], kwargs:{}
+	Function/Method execution time 0.0068368860011105426 seconds
+__init__ called at 2019-06-03 10:33:42
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069f6a90>], kwargs:{}
+	Function/Method execution time 2.4235001546912827e-05 seconds
+drop_database called at 2019-06-03 10:33:42
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069f6a90>], kwargs:{}
+	Function/Method execution time 0.02648780799972883 seconds
+insert_to_mongo called at 2019-06-03 10:33:42
+	Called on 10 records
+	Function/Method execution time 0.5072529509998276 seconds
+insert_to_mongo called at 2019-06-03 10:33:43
+	Called on 10 records
+	Function/Method execution time 0.5051986609996675 seconds
+insert_to_mongo called at 2019-06-03 10:33:43
+	Called on 10 records
+	Function/Method execution time 0.5044479980006145 seconds
+rentals_for_customer called at 2019-06-03 10:33:44
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069f6a90>, 'C000001'], kwargs:{}
+	Function/Method execution time 0.003529011000864557 seconds
+__init__ called at 2019-06-03 10:33:44
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b04324320>], kwargs:{}
+	Function/Method execution time 8.51400000101421e-06 seconds
+__init__ called at 2019-06-03 10:33:44
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069f6860>], kwargs:{}
+	Function/Method execution time 7.954999091452919e-06 seconds
+insert_to_mongo called at 2019-06-03 10:33:44
+	Called on 10 records
+	Function/Method execution time 0.5028259869995964 seconds
+drop_database called at 2019-06-03 10:33:44
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069f6860>], kwargs:{}
+	Function/Method execution time 0.013058770999123226 seconds
+__init__ called at 2019-06-03 10:33:44
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069f6358>], kwargs:{}
+	Function/Method execution time 8.483000783598982e-06 seconds
+insert_to_mongo called at 2019-06-03 10:33:44
+	Called on 10 records
+	Function/Method execution time 0.5054339639991667 seconds
+insert_to_mongo called at 2019-06-03 10:33:45
+	Called on 10 records
+	Function/Method execution time 0.5052866209989588 seconds
+insert_to_mongo called at 2019-06-03 10:33:45
+	Called on 10 records
+	Function/Method execution time 0.505375984001148 seconds
+drop_collections called at 2019-06-03 10:33:46
+	args:[<src.database_operations.HPNortonDB object at 0x7f6b069f6358>], kwargs:{}
+	Function/Method execution time 0.014625854000769323 seconds
+__init__ called at 2019-06-03 10:38:05
+	args:[<src.database_operations.HPNortonDB object at 0x7f992605b2e8>], kwargs:{}
+	Function/Method execution time 6.426000254577957e-06 seconds
+drop_database called at 2019-06-03 10:38:05
+	args:[<src.database_operations.HPNortonDB object at 0x7f992605b2e8>], kwargs:{}
+	Function/Method execution time 0.0098517799997353 seconds
+insert_to_mongo called at 2019-06-03 10:38:05
+	Called on 10 records
+	Function/Method execution time 0.5057943070005422 seconds
+insert_to_mongo called at 2019-06-03 10:38:05
+	Called on 10 records
+	Function/Method execution time 0.5062326299994311 seconds
+insert_to_mongo called at 2019-06-03 10:38:06
+	Called on 10 records
+	Function/Method execution time 0.5041634829995019 seconds
+linear called at 2019-06-03 10:38:05
+	args:[<src.database_operations.HPNortonDB object at 0x7f992605b2e8>, ['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 1.517101379999076 seconds
+__init__ called at 2019-06-03 10:38:06
+	args:[<src.database_operations.HPNortonDB object at 0x7f992604a2e8>], kwargs:{}
+	Function/Method execution time 1.1043000995414332e-05 seconds
+drop_database called at 2019-06-03 10:38:06
+	args:[<src.database_operations.HPNortonDB object at 0x7f992604a2e8>], kwargs:{}
+	Function/Method execution time 0.015095914000994526 seconds
+insert_to_mongo called at 2019-06-03 10:38:06
+	Called on 10 records
+	Function/Method execution time 0.5051758110002993 seconds
+insert_to_mongo called at 2019-06-03 10:38:06
+	Called on 10 records
+	Function/Method execution time 0.5058027549985127 seconds
+insert_to_mongo called at 2019-06-03 10:38:06
+	Called on 10 records
+	Function/Method execution time 0.5057628979993751 seconds
+parallel called at 2019-06-03 10:38:06
+	args:[<src.database_operations.HPNortonDB object at 0x7f992604a2e8>, ['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.515926064001178 seconds
+__init__ called at 2019-06-03 10:38:07
+	args:[<src.database_operations.HPNortonDB object at 0x7f992603c978>], kwargs:{}
+	Function/Method execution time 1.7190999642480165e-05 seconds
+drop_collections called at 2019-06-03 10:38:07
+	args:[<src.database_operations.HPNortonDB object at 0x7f992603c978>], kwargs:{}
+	Function/Method execution time 0.006034403000739985 seconds
+insert_to_mongo called at 2019-06-03 10:38:07
+	Called on 10 records
+	Function/Method execution time 0.5035856209997291 seconds
+insert_to_mongo called at 2019-06-03 10:38:07
+	Called on 10 records
+	Function/Method execution time 0.50395842800026 seconds
+insert_to_mongo called at 2019-06-03 10:38:08
+	Called on 10 records
+	Function/Method execution time 0.5068897929995728 seconds
+insert_to_mongo called at 2019-06-03 10:38:08
+	Called on 10 records
+	Function/Method execution time 0.5084154509986547 seconds
+insert_to_mongo called at 2019-06-03 10:38:09
+	Called on 10 records
+	Function/Method execution time 0.5057575850005378 seconds
+insert_to_mongo called at 2019-06-03 10:38:09
+	Called on 10 records
+	Function/Method execution time 0.5052051099992241 seconds
+__init__ called at 2019-06-03 10:38:10
+	args:[<src.database_operations.HPNortonDB object at 0x7f992603c630>], kwargs:{}
+	Function/Method execution time 2.448799932608381e-05 seconds
+drop_database called at 2019-06-03 10:38:10
+	args:[<src.database_operations.HPNortonDB object at 0x7f992603c630>], kwargs:{}
+	Function/Method execution time 0.028967681000722223 seconds
+insert_to_mongo called at 2019-06-03 10:38:10
+	Called on 10 records
+	Function/Method execution time 0.505424701001175 seconds
+show_available_products called at 2019-06-03 10:38:10
+	args:[<src.database_operations.HPNortonDB object at 0x7f992603c630>], kwargs:{}
+	Function/Method execution time 0.0031376539991470054 seconds
+__init__ called at 2019-06-03 10:38:10
+	args:[<src.database_operations.HPNortonDB object at 0x7f9926f19470>], kwargs:{}
+	Function/Method execution time 8.96500023372937e-06 seconds
+drop_database called at 2019-06-03 10:38:10
+	args:[<src.database_operations.HPNortonDB object at 0x7f9926f19470>], kwargs:{}
+	Function/Method execution time 0.012485373999879812 seconds
+insert_to_mongo called at 2019-06-03 10:38:10
+	Called on 10 records
+	Function/Method execution time 0.5051889899987145 seconds
+insert_to_mongo called at 2019-06-03 10:38:11
+	Called on 10 records
+	Function/Method execution time 0.5085679630010418 seconds
+insert_to_mongo called at 2019-06-03 10:38:11
+	Called on 10 records
+	Function/Method execution time 0.5052586720012187 seconds
+customers_renting_product called at 2019-06-03 10:38:12
+	args:[<src.database_operations.HPNortonDB object at 0x7f9926f19470>, 'P000001'], kwargs:{}
+	Function/Method execution time 0.0030414209995797137 seconds
+__init__ called at 2019-06-03 10:38:12
+	args:[<src.database_operations.HPNortonDB object at 0x7f9928eaf978>], kwargs:{}
+	Function/Method execution time 9.4620008894708e-06 seconds
+drop_database called at 2019-06-03 10:38:12
+	args:[<src.database_operations.HPNortonDB object at 0x7f9928eaf978>], kwargs:{}
+	Function/Method execution time 0.013442927998767118 seconds
+insert_to_mongo called at 2019-06-03 10:38:12
+	Called on 10 records
+	Function/Method execution time 0.5057417290008743 seconds
+list_all_customers called at 2019-06-03 10:38:12
+	args:[<src.database_operations.HPNortonDB object at 0x7f9928eaf978>], kwargs:{}
+	Function/Method execution time 0.007114377000107197 seconds
+__init__ called at 2019-06-03 10:38:12
+	args:[<src.database_operations.HPNortonDB object at 0x7f99241894a8>], kwargs:{}
+	Function/Method execution time 2.3717999283690006e-05 seconds
+drop_database called at 2019-06-03 10:38:12
+	args:[<src.database_operations.HPNortonDB object at 0x7f99241894a8>], kwargs:{}
+	Function/Method execution time 0.027387076999730198 seconds
+insert_to_mongo called at 2019-06-03 10:38:12
+	Called on 10 records
+	Function/Method execution time 0.509234971999831 seconds
+list_all_products called at 2019-06-03 10:38:13
+	args:[<src.database_operations.HPNortonDB object at 0x7f99241894a8>], kwargs:{}
+	Function/Method execution time 0.008986122998976498 seconds
+__init__ called at 2019-06-03 10:38:13
+	args:[<src.database_operations.HPNortonDB object at 0x7f992605b2b0>], kwargs:{}
+	Function/Method execution time 2.38840002566576e-05 seconds
+drop_database called at 2019-06-03 10:38:13
+	args:[<src.database_operations.HPNortonDB object at 0x7f992605b2b0>], kwargs:{}
+	Function/Method execution time 0.01786067700049898 seconds
+insert_to_mongo called at 2019-06-03 10:38:13
+	Called on 10 records
+	Function/Method execution time 0.5030856119992677 seconds
+list_all_rentals called at 2019-06-03 10:38:14
+	args:[<src.database_operations.HPNortonDB object at 0x7f992605b2b0>], kwargs:{}
+	Function/Method execution time 0.00262374500016449 seconds
+__init__ called at 2019-06-03 10:38:14
+	args:[<src.database_operations.HPNortonDB object at 0x7f992602dcf8>], kwargs:{}
+	Function/Method execution time 7.87899989518337e-06 seconds
+drop_database called at 2019-06-03 10:38:14
+	args:[<src.database_operations.HPNortonDB object at 0x7f992602dcf8>], kwargs:{}
+	Function/Method execution time 0.013564147000579396 seconds
+insert_to_mongo called at 2019-06-03 10:38:14
+	Called on 10 records
+	Function/Method execution time 0.5057026159993256 seconds
+insert_to_mongo called at 2019-06-03 10:38:14
+	Called on 10 records
+	Function/Method execution time 0.5083386630012683 seconds
+insert_to_mongo called at 2019-06-03 10:38:15
+	Called on 10 records
+	Function/Method execution time 0.5061140389989305 seconds
+rentals_for_customer called at 2019-06-03 10:38:15
+	args:[<src.database_operations.HPNortonDB object at 0x7f992602dcf8>, 'C000001'], kwargs:{}
+	Function/Method execution time 0.003726117000041995 seconds
+__init__ called at 2019-06-03 10:38:15
+	args:[<src.database_operations.HPNortonDB object at 0x7f992605b2e8>], kwargs:{}
+	Function/Method execution time 1.136599894380197e-05 seconds
+insert_to_mongo called at 2019-06-03 10:38:15
+	Called on 10 records
+	Function/Method execution time 0.5036952770005882 seconds
+drop_database called at 2019-06-03 10:38:16
+	args:[<src.database_operations.HPNortonDB object at 0x7f992605b2e8>], kwargs:{}
+	Function/Method execution time 0.012907578999147518 seconds
+__init__ called at 2019-06-03 10:38:16
+	args:[<src.database_operations.HPNortonDB object at 0x7f992605b668>], kwargs:{}
+	Function/Method execution time 6.746000508428551e-06 seconds
+insert_to_mongo called at 2019-06-03 10:38:16
+	Called on 10 records
+	Function/Method execution time 0.5053008119994047 seconds
+insert_to_mongo called at 2019-06-03 10:38:16
+	Called on 10 records
+	Function/Method execution time 0.5089678410004126 seconds
+insert_to_mongo called at 2019-06-03 10:38:17
+	Called on 10 records
+	Function/Method execution time 0.5078057930004434 seconds
+drop_collections called at 2019-06-03 10:38:17
+	args:[<src.database_operations.HPNortonDB object at 0x7f992605b668>], kwargs:{}
+	Function/Method execution time 0.009512443000858184 seconds
+__init__ called at 2019-06-03 10:43:36
+	args:[], kwargs:{}
+	Function/Method execution time 6.435000614146702e-06 seconds
+drop_database called at 2019-06-03 10:43:36
+	args:[], kwargs:{}
+	Function/Method execution time 0.01014127400048892 seconds
+insert_to_mongo called at 2019-06-03 10:43:36
+linear called at 2019-06-03 10:43:36
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.5057647829999041 seconds
+__init__ called at 2019-06-03 10:43:37
+	args:[], kwargs:{}
+	Function/Method execution time 7.786999049130827e-06 seconds
+drop_database called at 2019-06-03 10:43:37
+	args:[], kwargs:{}
+	Function/Method execution time 0.012827520000428194 seconds
+insert_to_mongo called at 2019-06-03 10:43:37
+insert_to_mongo called at 2019-06-03 10:43:37
+insert_to_mongo called at 2019-06-03 10:43:37
+parallel called at 2019-06-03 10:43:37
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.5190206160004891 seconds
+__init__ called at 2019-06-03 10:43:37
+	args:[], kwargs:{}
+	Function/Method execution time 1.1727999662980437e-05 seconds
+drop_collections called at 2019-06-03 10:43:37
+	args:[], kwargs:{}
+	Function/Method execution time 0.003470366000328795 seconds
+insert_to_mongo called at 2019-06-03 10:43:37
+__init__ called at 2019-06-03 10:43:38
+	args:[], kwargs:{}
+	Function/Method execution time 8.593999154982157e-06 seconds
+drop_database called at 2019-06-03 10:43:38
+	args:[], kwargs:{}
+	Function/Method execution time 0.012646860999666387 seconds
+insert_to_mongo called at 2019-06-03 10:43:38
+__init__ called at 2019-06-03 10:43:38
+	args:[], kwargs:{}
+	Function/Method execution time 7.947999620228074e-06 seconds
+drop_database called at 2019-06-03 10:43:38
+	args:[], kwargs:{}
+	Function/Method execution time 0.013511690000086674 seconds
+insert_to_mongo called at 2019-06-03 10:43:38
+__init__ called at 2019-06-03 10:43:39
+	args:[], kwargs:{}
+	Function/Method execution time 2.6978999812854454e-05 seconds
+drop_database called at 2019-06-03 10:43:39
+	args:[], kwargs:{}
+	Function/Method execution time 0.019834171000184142 seconds
+insert_to_mongo called at 2019-06-03 10:43:39
+__init__ called at 2019-06-03 10:43:39
+	args:[], kwargs:{}
+	Function/Method execution time 1.785099993867334e-05 seconds
+drop_database called at 2019-06-03 10:43:39
+	args:[], kwargs:{}
+	Function/Method execution time 0.01842940099959378 seconds
+insert_to_mongo called at 2019-06-03 10:43:39
+__init__ called at 2019-06-03 10:43:40
+	args:[], kwargs:{}
+	Function/Method execution time 8.01699934527278e-06 seconds
+drop_database called at 2019-06-03 10:43:40
+	args:[], kwargs:{}
+	Function/Method execution time 0.012498743999458384 seconds
+insert_to_mongo called at 2019-06-03 10:43:40
+__init__ called at 2019-06-03 10:43:40
+	args:[], kwargs:{}
+	Function/Method execution time 3.092600127274636e-05 seconds
+drop_database called at 2019-06-03 10:43:40
+	args:[], kwargs:{}
+	Function/Method execution time 0.016632355000183452 seconds
+insert_to_mongo called at 2019-06-03 10:43:40
+__init__ called at 2019-06-03 10:43:41
+	args:[], kwargs:{}
+	Function/Method execution time 1.507199885963928e-05 seconds
+insert_to_mongo called at 2019-06-03 10:43:41
+__init__ called at 2019-06-03 10:43:42
+	args:[], kwargs:{}
+	Function/Method execution time 8.09499942988623e-06 seconds
+insert_to_mongo called at 2019-06-03 10:43:42
+__init__ called at 2019-06-03 10:44:15
+	args:[], kwargs:{}
+	Function/Method execution time 7.5480002124095336e-06 seconds
+drop_database called at 2019-06-03 10:44:15
+	args:[], kwargs:{}
+	Function/Method execution time 0.01191495500097517 seconds
+insert_to_mongo called at 2019-06-03 10:44:15
+linear called at 2019-06-03 10:44:15
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.5054773140000179 seconds
+__init__ called at 2019-06-03 10:44:15
+	args:[], kwargs:{}
+	Function/Method execution time 7.065998943289742e-06 seconds
+drop_database called at 2019-06-03 10:44:15
+	args:[], kwargs:{}
+	Function/Method execution time 0.016686405000655213 seconds
+insert_to_mongo called at 2019-06-03 10:44:15
+insert_to_mongo called at 2019-06-03 10:44:15
+insert_to_mongo called at 2019-06-03 10:44:15
+parallel called at 2019-06-03 10:44:15
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.5148037380004098 seconds
+__init__ called at 2019-06-03 10:44:16
+	args:[], kwargs:{}
+	Function/Method execution time 1.2456999684218317e-05 seconds
+drop_collections called at 2019-06-03 10:44:16
+	args:[], kwargs:{}
+	Function/Method execution time 0.0036972870002500713 seconds
+insert_to_mongo called at 2019-06-03 10:44:16
+__init__ called at 2019-06-03 10:44:16
+	args:[], kwargs:{}
+	Function/Method execution time 7.385000571957789e-06 seconds
+drop_database called at 2019-06-03 10:44:16
+	args:[], kwargs:{}
+	Function/Method execution time 0.011634149001110927 seconds
+insert_to_mongo called at 2019-06-03 10:44:16
+__init__ called at 2019-06-03 10:44:17
+	args:[], kwargs:{}
+	Function/Method execution time 1.062400042428635e-05 seconds
+drop_database called at 2019-06-03 10:44:17
+	args:[], kwargs:{}
+	Function/Method execution time 0.013046633999692858 seconds
+insert_to_mongo called at 2019-06-03 10:44:17
+__init__ called at 2019-06-03 10:44:17
+	args:[], kwargs:{}
+	Function/Method execution time 7.1140002546599135e-06 seconds
+drop_database called at 2019-06-03 10:44:17
+	args:[], kwargs:{}
+	Function/Method execution time 0.010402429999885499 seconds
+insert_to_mongo called at 2019-06-03 10:44:17
+__init__ called at 2019-06-03 10:44:17
+	args:[], kwargs:{}
+	Function/Method execution time 7.3070004873443395e-06 seconds
+drop_database called at 2019-06-03 10:44:17
+	args:[], kwargs:{}
+	Function/Method execution time 0.010782978999486659 seconds
+insert_to_mongo called at 2019-06-03 10:44:17
+__init__ called at 2019-06-03 10:44:17
+	args:[], kwargs:{}
+	Function/Method execution time 7.216000085463747e-06 seconds
+drop_database called at 2019-06-03 10:44:17
+	args:[], kwargs:{}
+	Function/Method execution time 0.010739411998656578 seconds
+insert_to_mongo called at 2019-06-03 10:44:17
+__init__ called at 2019-06-03 10:44:18
+	args:[], kwargs:{}
+	Function/Method execution time 7.333999747061171e-06 seconds
+drop_database called at 2019-06-03 10:44:18
+	args:[], kwargs:{}
+	Function/Method execution time 0.01091218200053845 seconds
+insert_to_mongo called at 2019-06-03 10:44:18
+__init__ called at 2019-06-03 10:44:18
+	args:[], kwargs:{}
+	Function/Method execution time 7.33299930288922e-06 seconds
+insert_to_mongo called at 2019-06-03 10:44:18
+__init__ called at 2019-06-03 10:44:18
+	args:[], kwargs:{}
+	Function/Method execution time 7.599999662488699e-06 seconds
+insert_to_mongo called at 2019-06-03 10:44:18
+__init__ called at 2019-06-03 10:45:01
+	args:[], kwargs:{}
+	Function/Method execution time 6.202000804478303e-06 seconds
+drop_database called at 2019-06-03 10:45:01
+	args:[], kwargs:{}
+	Function/Method execution time 0.009994803000154207 seconds
+insert_to_mongo called at 2019-06-03 10:45:01
+insert_to_mongo called at 2019-06-03 10:45:01
+insert_to_mongo called at 2019-06-03 10:45:01
+parallel called at 2019-06-03 10:45:01
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.5207893210008478 seconds
+__init__ called at 2019-06-03 10:45:10
+	args:[], kwargs:{}
+	Function/Method execution time 6.846001269877888e-06 seconds
+drop_database called at 2019-06-03 10:45:10
+	args:[], kwargs:{}
+	Function/Method execution time 0.012455578000299283 seconds
+insert_to_mongo called at 2019-06-03 10:45:10
+linear called at 2019-06-03 10:45:10
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.5057047959999181 seconds
+__init__ called at 2019-06-03 10:45:34
+	args:[], kwargs:{}
+	Function/Method execution time 6.268999641179107e-06 seconds
+drop_database called at 2019-06-03 10:45:34
+	args:[], kwargs:{}
+	Function/Method execution time 0.007705719001023681 seconds
+insert_to_mongo called at 2019-06-03 10:45:34
+linear called at 2019-06-03 10:45:34
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.505604306999885 seconds
+__init__ called at 2019-06-03 10:45:41
+	args:[], kwargs:{}
+	Function/Method execution time 6.188998668221757e-06 seconds
+drop_database called at 2019-06-03 10:45:41
+	args:[], kwargs:{}
+	Function/Method execution time 0.012627617999896756 seconds
+insert_to_mongo called at 2019-06-03 10:45:41
+	Called on 10 records
+	Function/Method execution time 0.5039547109990963 seconds
+insert_to_mongo called at 2019-06-03 10:45:41
+	Called on 10 records
+	Function/Method execution time 0.5045939920000819 seconds
+insert_to_mongo called at 2019-06-03 10:45:42
+	Called on 10 records
+	Function/Method execution time 0.5039673629999015 seconds
+linear called at 2019-06-03 10:45:41
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 1.5132844330000808 seconds
+__init__ called at 2019-06-03 10:45:49
+	args:[], kwargs:{}
+	Function/Method execution time 6.115000360296108e-06 seconds
+drop_database called at 2019-06-03 10:45:49
+	args:[], kwargs:{}
+	Function/Method execution time 0.01358747999984189 seconds
+insert_to_mongo called at 2019-06-03 10:45:49
+	Called on 10 records
+	Function/Method execution time 0.5055453709992435 seconds
+insert_to_mongo called at 2019-06-03 10:45:50
+	Called on 10 records
+	Function/Method execution time 0.5081291209990013 seconds
+insert_to_mongo called at 2019-06-03 10:45:50
+	Called on 10 records
+	Function/Method execution time 0.5083474579987524 seconds
+linear called at 2019-06-03 10:45:49
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 1.5234529130011651 seconds
+__init__ called at 2019-06-03 10:45:51
+	args:[], kwargs:{}
+	Function/Method execution time 2.3193999368231744e-05 seconds
+drop_database called at 2019-06-03 10:45:51
+	args:[], kwargs:{}
+	Function/Method execution time 0.02836045499861939 seconds
+insert_to_mongo called at 2019-06-03 10:45:51
+	Called on 10 records
+	Function/Method execution time 0.5117750320005143 seconds
+insert_to_mongo called at 2019-06-03 10:45:51
+	Called on 10 records
+	Function/Method execution time 0.5128986389991042 seconds
+insert_to_mongo called at 2019-06-03 10:45:51
+	Called on 10 records
+	Function/Method execution time 0.5090462410007603 seconds
+parallel called at 2019-06-03 10:45:51
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.5343524510008137 seconds
+__init__ called at 2019-06-03 10:45:51
+	args:[], kwargs:{}
+	Function/Method execution time 1.1657000868581235e-05 seconds
+drop_collections called at 2019-06-03 10:45:51
+	args:[], kwargs:{}
+	Function/Method execution time 0.0031580100003338885 seconds
+insert_to_mongo called at 2019-06-03 10:45:51
+	Called on 10 records
+	Function/Method execution time 0.5051969440009998 seconds
+insert_to_mongo called at 2019-06-03 10:45:52
+	Called on 10 records
+	Function/Method execution time 0.503862540001137 seconds
+insert_to_mongo called at 2019-06-03 10:45:52
+	Called on 10 records
+	Function/Method execution time 0.503041198999199 seconds
+insert_to_mongo called at 2019-06-03 10:45:53
+	Called on 10 records
+	Function/Method execution time 0.5030749479992664 seconds
+insert_to_mongo called at 2019-06-03 10:45:53
+	Called on 10 records
+	Function/Method execution time 0.5026634559999366 seconds
+insert_to_mongo called at 2019-06-03 10:45:54
+	Called on 10 records
+	Function/Method execution time 0.5034881960000348 seconds
+__init__ called at 2019-06-03 10:45:54
+	args:[], kwargs:{}
+	Function/Method execution time 2.479999966453761e-05 seconds
+drop_database called at 2019-06-03 10:45:54
+	args:[], kwargs:{}
+	Function/Method execution time 0.015414146000694018 seconds
+insert_to_mongo called at 2019-06-03 10:45:54
+	Called on 10 records
+	Function/Method execution time 0.5036457040005189 seconds
+show_available_products called at 2019-06-03 10:45:55
+	args:[], kwargs:{}
+	Function/Method execution time 0.0036366940003063064 seconds
+__init__ called at 2019-06-03 10:45:55
+	args:[], kwargs:{}
+	Function/Method execution time 1.1146999895572662e-05 seconds
+drop_database called at 2019-06-03 10:45:55
+	args:[], kwargs:{}
+	Function/Method execution time 0.017110607999711647 seconds
+insert_to_mongo called at 2019-06-03 10:45:55
+	Called on 10 records
+	Function/Method execution time 0.5064773070007504 seconds
+insert_to_mongo called at 2019-06-03 10:45:55
+	Called on 10 records
+	Function/Method execution time 0.5066372399996908 seconds
+insert_to_mongo called at 2019-06-03 10:45:56
+	Called on 10 records
+	Function/Method execution time 0.5034972049998032 seconds
+customers_renting_product called at 2019-06-03 10:45:56
+	args:['P000001'], kwargs:{}
+	Function/Method execution time 0.0024770379986875923 seconds
+__init__ called at 2019-06-03 10:45:56
+	args:[], kwargs:{}
+	Function/Method execution time 7.529999493272044e-06 seconds
+drop_database called at 2019-06-03 10:45:56
+	args:[], kwargs:{}
+	Function/Method execution time 0.01312412100014626 seconds
+insert_to_mongo called at 2019-06-03 10:45:56
+	Called on 10 records
+	Function/Method execution time 0.5025620339984016 seconds
+list_all_customers called at 2019-06-03 10:45:57
+	args:[], kwargs:{}
+	Function/Method execution time 0.008772540999416378 seconds
+__init__ called at 2019-06-03 10:45:57
+	args:[], kwargs:{}
+	Function/Method execution time 6.064999979571439e-06 seconds
+drop_database called at 2019-06-03 10:45:57
+	args:[], kwargs:{}
+	Function/Method execution time 0.2197857560004195 seconds
+insert_to_mongo called at 2019-06-03 10:45:57
+	Called on 10 records
+	Function/Method execution time 0.5026933799999824 seconds
+list_all_products called at 2019-06-03 10:45:57
+	args:[], kwargs:{}
+	Function/Method execution time 0.0014316190008685226 seconds
+__init__ called at 2019-06-03 10:45:57
+	args:[], kwargs:{}
+	Function/Method execution time 6.236999979591928e-06 seconds
+drop_database called at 2019-06-03 10:45:57
+	args:[], kwargs:{}
+	Function/Method execution time 0.01241121800012479 seconds
+insert_to_mongo called at 2019-06-03 10:45:57
+	Called on 10 records
+	Function/Method execution time 0.5040367199999309 seconds
+list_all_rentals called at 2019-06-03 10:45:58
+	args:[], kwargs:{}
+	Function/Method execution time 0.004881892999037518 seconds
+__init__ called at 2019-06-03 10:45:58
+	args:[], kwargs:{}
+	Function/Method execution time 1.6709998817532323e-05 seconds
+drop_database called at 2019-06-03 10:45:58
+	args:[], kwargs:{}
+	Function/Method execution time 0.020263162999981432 seconds
+insert_to_mongo called at 2019-06-03 10:45:58
+	Called on 10 records
+	Function/Method execution time 0.5043707259992516 seconds
+insert_to_mongo called at 2019-06-03 10:45:58
+	Called on 10 records
+	Function/Method execution time 0.5022861750003358 seconds
+insert_to_mongo called at 2019-06-03 10:45:59
+	Called on 10 records
+	Function/Method execution time 0.5023419310000463 seconds
+rentals_for_customer called at 2019-06-03 10:45:59
+	args:['C000001'], kwargs:{}
+	Function/Method execution time 0.0021430599990708288 seconds
+__init__ called at 2019-06-03 10:45:59
+	args:[], kwargs:{}
+	Function/Method execution time 8.524999429937452e-06 seconds
+insert_to_mongo called at 2019-06-03 10:45:59
+	Called on 10 records
+	Function/Method execution time 0.5054298089999065 seconds
+drop_database called at 2019-06-03 10:46:00
+	args:[], kwargs:{}
+	Function/Method execution time 0.02482512200003839 seconds
+__init__ called at 2019-06-03 10:46:00
+	args:[], kwargs:{}
+	Function/Method execution time 2.34159997489769e-05 seconds
+insert_to_mongo called at 2019-06-03 10:46:00
+	Called on 10 records
+	Function/Method execution time 0.5080730129993754 seconds
+insert_to_mongo called at 2019-06-03 10:46:01
+	Called on 10 records
+	Function/Method execution time 0.5083718090008915 seconds
+insert_to_mongo called at 2019-06-03 10:46:01
+	Called on 10 records
+	Function/Method execution time 0.5081563950006966 seconds
+drop_collections called at 2019-06-03 10:46:02
+	args:[], kwargs:{}
+	Function/Method execution time 0.014136847001282149 seconds
+__init__ called at 2019-06-03 10:47:39
+	args:[(), {}], kwargs:{}
+	Function/Method execution time 5.83200016990304e-06 seconds
+drop_database called at 2019-06-03 10:47:39
+	args:[(), {}], kwargs:{}
+	Function/Method execution time 0.009831626999584842 seconds
+insert_to_mongo called at 2019-06-03 10:47:39
+linear called at 2019-06-03 10:47:39
+	args:[(['./data/customers.csv', './data/product.csv', './data/rental.csv'],), {}], kwargs:{}
+	Function/Method execution time 0.5057276169991383 seconds
+__init__ called at 2019-06-03 10:47:40
+	args:[(), {}], kwargs:{}
+	Function/Method execution time 6.948999725864269e-06 seconds
+drop_database called at 2019-06-03 10:47:40
+	args:[(), {}], kwargs:{}
+	Function/Method execution time 0.01225469100063492 seconds
+insert_to_mongo called at 2019-06-03 10:47:40
+insert_to_mongo called at 2019-06-03 10:47:40
+insert_to_mongo called at 2019-06-03 10:47:40
+parallel called at 2019-06-03 10:47:40
+	args:[(['./data/customers.csv', './data/product.csv', './data/rental.csv'],), {}], kwargs:{}
+	Function/Method execution time 0.512704639999356 seconds
+__init__ called at 2019-06-03 10:47:40
+	args:[(), {}], kwargs:{}
+	Function/Method execution time 1.4682000255561434e-05 seconds
+drop_collections called at 2019-06-03 10:47:40
+	args:[(), {}], kwargs:{}
+	Function/Method execution time 0.004679876999944099 seconds
+insert_to_mongo called at 2019-06-03 10:47:40
+__init__ called at 2019-06-03 10:47:41
+	args:[(), {}], kwargs:{}
+	Function/Method execution time 1.2110998795833439e-05 seconds
+drop_database called at 2019-06-03 10:47:41
+	args:[(), {}], kwargs:{}
+	Function/Method execution time 0.015175995000390685 seconds
+insert_to_mongo called at 2019-06-03 10:47:41
+__init__ called at 2019-06-03 10:47:42
+	args:[(), {}], kwargs:{}
+	Function/Method execution time 1.7813999875215814e-05 seconds
+drop_database called at 2019-06-03 10:47:42
+	args:[(), {}], kwargs:{}
+	Function/Method execution time 0.020225727999786614 seconds
+insert_to_mongo called at 2019-06-03 10:47:42
+__init__ called at 2019-06-03 10:47:42
+	args:[(), {}], kwargs:{}
+	Function/Method execution time 2.7182999474462122e-05 seconds
+drop_database called at 2019-06-03 10:47:42
+	args:[(), {}], kwargs:{}
+	Function/Method execution time 0.0209266830006527 seconds
+insert_to_mongo called at 2019-06-03 10:47:42
+__init__ called at 2019-06-03 10:47:43
+	args:[(), {}], kwargs:{}
+	Function/Method execution time 2.5803999960771762e-05 seconds
+drop_database called at 2019-06-03 10:47:43
+	args:[(), {}], kwargs:{}
+	Function/Method execution time 0.021261547999529284 seconds
+insert_to_mongo called at 2019-06-03 10:47:43
+__init__ called at 2019-06-03 10:47:43
+	args:[(), {}], kwargs:{}
+	Function/Method execution time 7.687000106670894e-06 seconds
+drop_database called at 2019-06-03 10:47:43
+	args:[(), {}], kwargs:{}
+	Function/Method execution time 0.020325425999544677 seconds
+insert_to_mongo called at 2019-06-03 10:47:43
+__init__ called at 2019-06-03 10:47:44
+	args:[(), {}], kwargs:{}
+	Function/Method execution time 7.6289998105494305e-06 seconds
+drop_database called at 2019-06-03 10:47:44
+	args:[(), {}], kwargs:{}
+	Function/Method execution time 0.012842468000599183 seconds
+insert_to_mongo called at 2019-06-03 10:47:44
+__init__ called at 2019-06-03 10:47:44
+	args:[(), {}], kwargs:{}
+	Function/Method execution time 6.670001312159002e-06 seconds
+insert_to_mongo called at 2019-06-03 10:47:44
+__init__ called at 2019-06-03 10:47:45
+	args:[(), {}], kwargs:{}
+	Function/Method execution time 1.2819000403396785e-05 seconds
+insert_to_mongo called at 2019-06-03 10:47:45
+__init__ called at 2019-06-03 10:48:15
+	args:[((), {}), {}], kwargs:{}
+	Function/Method execution time 8.6110012489371e-06 seconds
+__init__ called at 2019-06-03 10:48:24
+	args:[(), {}], kwargs:{}
+	Function/Method execution time 6.34299976809416e-06 seconds
+drop_database called at 2019-06-03 10:48:24
+	args:[(), {}], kwargs:{}
+	Function/Method execution time 0.009854605999862542 seconds
+insert_to_mongo called at 2019-06-03 10:48:24
+insert_to_mongo called at 2019-06-03 10:48:24
+insert_to_mongo called at 2019-06-03 10:48:24
+parallel called at 2019-06-03 10:48:24
+	args:[(['./data/customers.csv', './data/product.csv', './data/rental.csv'],), {}], kwargs:{}
+	Function/Method execution time 0.5212948299995332 seconds
+__init__ called at 2019-06-03 10:48:50
+	args:[], kwargs:{}
+	Function/Method execution time 6.414000381482765e-06 seconds
+drop_database called at 2019-06-03 10:48:50
+	args:[], kwargs:{}
+	Function/Method execution time 0.011792086999776075 seconds
+insert_to_mongo called at 2019-06-03 10:48:50
+insert_to_mongo called at 2019-06-03 10:48:50
+insert_to_mongo called at 2019-06-03 10:48:50
+parallel called at 2019-06-03 10:48:50
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.5136646230002953 seconds
+__init__ called at 2019-06-03 10:48:54
+	args:[], kwargs:{}
+	Function/Method execution time 6.430998837458901e-06 seconds
+drop_database called at 2019-06-03 10:48:54
+	args:[], kwargs:{}
+	Function/Method execution time 0.013943967000159319 seconds
+insert_to_mongo called at 2019-06-03 10:48:54
+linear called at 2019-06-03 10:48:54
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.5058337850005046 seconds
+__init__ called at 2019-06-03 10:48:54
+	args:[], kwargs:{}
+	Function/Method execution time 7.241000275826082e-06 seconds
+drop_database called at 2019-06-03 10:48:54
+	args:[], kwargs:{}
+	Function/Method execution time 0.012760329998855013 seconds
+insert_to_mongo called at 2019-06-03 10:48:54
+insert_to_mongo called at 2019-06-03 10:48:54
+insert_to_mongo called at 2019-06-03 10:48:54
+parallel called at 2019-06-03 10:48:54
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.514286801999333 seconds
+__init__ called at 2019-06-03 10:48:55
+	args:[], kwargs:{}
+	Function/Method execution time 1.3423999916994944e-05 seconds
+drop_collections called at 2019-06-03 10:48:55
+	args:[], kwargs:{}
+	Function/Method execution time 0.005615646001388086 seconds
+insert_to_mongo called at 2019-06-03 10:48:55
+__init__ called at 2019-06-03 10:48:55
+	args:[], kwargs:{}
+	Function/Method execution time 1.0619000022416003e-05 seconds
+drop_database called at 2019-06-03 10:48:55
+	args:[], kwargs:{}
+	Function/Method execution time 0.01552454000011494 seconds
+insert_to_mongo called at 2019-06-03 10:48:55
+__init__ called at 2019-06-03 10:48:56
+	args:[], kwargs:{}
+	Function/Method execution time 7.096999979694374e-06 seconds
+drop_database called at 2019-06-03 10:48:56
+	args:[], kwargs:{}
+	Function/Method execution time 0.012162899000031757 seconds
+insert_to_mongo called at 2019-06-03 10:48:56
+__init__ called at 2019-06-03 10:48:56
+	args:[], kwargs:{}
+	Function/Method execution time 2.6001000151154585e-05 seconds
+drop_database called at 2019-06-03 10:48:56
+	args:[], kwargs:{}
+	Function/Method execution time 0.019223856999815325 seconds
+insert_to_mongo called at 2019-06-03 10:48:56
+__init__ called at 2019-06-03 10:48:57
+	args:[], kwargs:{}
+	Function/Method execution time 6.935999408597127e-06 seconds
+drop_database called at 2019-06-03 10:48:57
+	args:[], kwargs:{}
+	Function/Method execution time 0.010562351999396924 seconds
+insert_to_mongo called at 2019-06-03 10:48:57
+__init__ called at 2019-06-03 10:48:57
+	args:[], kwargs:{}
+	Function/Method execution time 1.8954999177367426e-05 seconds
+drop_database called at 2019-06-03 10:48:57
+	args:[], kwargs:{}
+	Function/Method execution time 0.019714984999154694 seconds
+insert_to_mongo called at 2019-06-03 10:48:57
+__init__ called at 2019-06-03 10:48:58
+	args:[], kwargs:{}
+	Function/Method execution time 1.6894000509637408e-05 seconds
+drop_database called at 2019-06-03 10:48:58
+	args:[], kwargs:{}
+	Function/Method execution time 0.018932655999378767 seconds
+insert_to_mongo called at 2019-06-03 10:48:58
+__init__ called at 2019-06-03 10:48:58
+	args:[], kwargs:{}
+	Function/Method execution time 1.7440001101931557e-05 seconds
+insert_to_mongo called at 2019-06-03 10:48:58
+__init__ called at 2019-06-03 10:48:59
+	args:[], kwargs:{}
+	Function/Method execution time 6.604999725823291e-06 seconds
+insert_to_mongo called at 2019-06-03 10:48:59
+__init__ called at 2019-06-03 10:49:03
+	args:[], kwargs:{}
+	Function/Method execution time 6.373998985509388e-06 seconds
+drop_database called at 2019-06-03 10:49:03
+	args:[], kwargs:{}
+	Function/Method execution time 0.012998637999771745 seconds
+insert_to_mongo called at 2019-06-03 10:49:03
+insert_to_mongo called at 2019-06-03 10:49:03
+insert_to_mongo called at 2019-06-03 10:49:03
+parallel called at 2019-06-03 10:49:03
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.5126525609994133 seconds
+__init__ called at 2019-06-03 10:49:07
+	args:[], kwargs:{}
+	Function/Method execution time 6.301999746938236e-06 seconds
+drop_database called at 2019-06-03 10:49:07
+	args:[], kwargs:{}
+	Function/Method execution time 0.012958629999047844 seconds
+insert_to_mongo called at 2019-06-03 10:49:07
+linear called at 2019-06-03 10:49:07
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.506146899999294 seconds
+__init__ called at 2019-06-03 10:49:14
+	args:[], kwargs:{}
+	Function/Method execution time 8.207000064430758e-06 seconds
+drop_database called at 2019-06-03 10:49:14
+	args:[], kwargs:{}
+	Function/Method execution time 0.010143740999410511 seconds
+insert_to_mongo called at 2019-06-03 10:49:14
+	Called on 10 records
+	Function/Method execution time 0.504892392000329 seconds
+insert_to_mongo called at 2019-06-03 10:49:14
+	Called on 10 records
+	Function/Method execution time 0.5078353630015044 seconds
+insert_to_mongo called at 2019-06-03 10:49:15
+	Called on 10 records
+	Function/Method execution time 0.5081295280015183 seconds
+linear called at 2019-06-03 10:49:14
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 1.5224036249983328 seconds
+__init__ called at 2019-06-03 10:49:17
+	args:[], kwargs:{}
+	Function/Method execution time 6.303998816292733e-06 seconds
+drop_database called at 2019-06-03 10:49:17
+	args:[], kwargs:{}
+	Function/Method execution time 0.013323839999429765 seconds
+insert_to_mongo called at 2019-06-03 10:49:17
+	Called on 10 records
+	Function/Method execution time 0.50514665800074 seconds
+insert_to_mongo called at 2019-06-03 10:49:17
+	Called on 10 records
+	Function/Method execution time 0.5052542920002452 seconds
+insert_to_mongo called at 2019-06-03 10:49:17
+	Called on 10 records
+	Function/Method execution time 0.505680577000021 seconds
+parallel called at 2019-06-03 10:49:17
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.5144064690011874 seconds
+__init__ called at 2019-06-03 10:49:23
+	args:[], kwargs:{}
+	Function/Method execution time 7.556000127806328e-06 seconds
+drop_database called at 2019-06-03 10:49:23
+	args:[], kwargs:{}
+	Function/Method execution time 0.013288485999510158 seconds
+insert_to_mongo called at 2019-06-03 10:49:23
+	Called on 10 records
+	Function/Method execution time 0.5056008560004557 seconds
+insert_to_mongo called at 2019-06-03 10:49:24
+	Called on 10 records
+	Function/Method execution time 0.508812764999675 seconds
+insert_to_mongo called at 2019-06-03 10:49:25
+	Called on 10 records
+	Function/Method execution time 0.509549786000207 seconds
+linear called at 2019-06-03 10:49:23
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 1.5255632690004859 seconds
+__init__ called at 2019-06-03 10:49:25
+	args:[], kwargs:{}
+	Function/Method execution time 2.2474001525552012e-05 seconds
+drop_database called at 2019-06-03 10:49:25
+	args:[], kwargs:{}
+	Function/Method execution time 0.018028574999334523 seconds
+insert_to_mongo called at 2019-06-03 10:49:25
+	Called on 10 records
+	Function/Method execution time 0.5060738280008081 seconds
+insert_to_mongo called at 2019-06-03 10:49:25
+	Called on 10 records
+	Function/Method execution time 0.5047487970005022 seconds
+insert_to_mongo called at 2019-06-03 10:49:25
+	Called on 10 records
+	Function/Method execution time 0.5046831859999656 seconds
+parallel called at 2019-06-03 10:49:25
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.5161403779984539 seconds
+__init__ called at 2019-06-03 10:49:26
+	args:[], kwargs:{}
+	Function/Method execution time 1.3344000763026997e-05 seconds
+drop_collections called at 2019-06-03 10:49:26
+	args:[], kwargs:{}
+	Function/Method execution time 0.005531318998691859 seconds
+insert_to_mongo called at 2019-06-03 10:49:26
+	Called on 10 records
+	Function/Method execution time 0.5049845640005515 seconds
+insert_to_mongo called at 2019-06-03 10:49:26
+	Called on 10 records
+	Function/Method execution time 0.5079848919995129 seconds
+insert_to_mongo called at 2019-06-03 10:49:27
+	Called on 10 records
+	Function/Method execution time 0.5080626090002625 seconds
+insert_to_mongo called at 2019-06-03 10:49:27
+	Called on 10 records
+	Function/Method execution time 0.508410507998633 seconds
+insert_to_mongo called at 2019-06-03 10:49:28
+	Called on 10 records
+	Function/Method execution time 0.5081904689996009 seconds
+insert_to_mongo called at 2019-06-03 10:49:28
+	Called on 10 records
+	Function/Method execution time 0.5084206240007916 seconds
+__init__ called at 2019-06-03 10:49:29
+	args:[], kwargs:{}
+	Function/Method execution time 6.641999789280817e-06 seconds
+drop_database called at 2019-06-03 10:49:29
+	args:[], kwargs:{}
+	Function/Method execution time 0.013092093999148346 seconds
+insert_to_mongo called at 2019-06-03 10:49:29
+	Called on 10 records
+	Function/Method execution time 0.5057275159997516 seconds
+show_available_products called at 2019-06-03 10:49:29
+	args:[], kwargs:{}
+	Function/Method execution time 0.007345011999859707 seconds
+__init__ called at 2019-06-03 10:49:29
+	args:[], kwargs:{}
+	Function/Method execution time 2.1918000129517168e-05 seconds
+drop_database called at 2019-06-03 10:49:29
+	args:[], kwargs:{}
+	Function/Method execution time 0.026571418999083107 seconds
+insert_to_mongo called at 2019-06-03 10:49:29
+	Called on 10 records
+	Function/Method execution time 0.5088814760001696 seconds
+insert_to_mongo called at 2019-06-03 10:49:30
+	Called on 10 records
+	Function/Method execution time 0.5086665430007997 seconds
+insert_to_mongo called at 2019-06-03 10:49:30
+	Called on 10 records
+	Function/Method execution time 0.50913982900056 seconds
+customers_renting_product called at 2019-06-03 10:49:31
+	args:['P000001'], kwargs:{}
+	Function/Method execution time 0.014210624000043026 seconds
+__init__ called at 2019-06-03 10:49:31
+	args:[], kwargs:{}
+	Function/Method execution time 1.585000063641928e-05 seconds
+drop_database called at 2019-06-03 10:49:31
+	args:[], kwargs:{}
+	Function/Method execution time 0.01859505500033265 seconds
+insert_to_mongo called at 2019-06-03 10:49:31
+	Called on 10 records
+	Function/Method execution time 0.5069066240012035 seconds
+list_all_customers called at 2019-06-03 10:49:31
+	args:[], kwargs:{}
+	Function/Method execution time 0.00786688299922389 seconds
+__init__ called at 2019-06-03 10:49:31
+	args:[], kwargs:{}
+	Function/Method execution time 2.342100015084725e-05 seconds
+drop_database called at 2019-06-03 10:49:31
+	args:[], kwargs:{}
+	Function/Method execution time 0.021374588999606203 seconds
+insert_to_mongo called at 2019-06-03 10:49:31
+	Called on 10 records
+	Function/Method execution time 0.5042848660013988 seconds
+list_all_products called at 2019-06-03 10:49:32
+	args:[], kwargs:{}
+	Function/Method execution time 0.0027101219984615454 seconds
+__init__ called at 2019-06-03 10:49:32
+	args:[], kwargs:{}
+	Function/Method execution time 7.970998922246508e-06 seconds
+drop_database called at 2019-06-03 10:49:32
+	args:[], kwargs:{}
+	Function/Method execution time 0.012789740001608152 seconds
+insert_to_mongo called at 2019-06-03 10:49:32
+	Called on 10 records
+	Function/Method execution time 0.5041713940008776 seconds
+list_all_rentals called at 2019-06-03 10:49:32
+	args:[], kwargs:{}
+	Function/Method execution time 0.005246150998573285 seconds
+__init__ called at 2019-06-03 10:49:32
+	args:[], kwargs:{}
+	Function/Method execution time 2.2755999452783726e-05 seconds
+drop_database called at 2019-06-03 10:49:32
+	args:[], kwargs:{}
+	Function/Method execution time 0.027045987000747118 seconds
+insert_to_mongo called at 2019-06-03 10:49:32
+	Called on 10 records
+	Function/Method execution time 0.5083989029990335 seconds
+insert_to_mongo called at 2019-06-03 10:49:33
+	Called on 10 records
+	Function/Method execution time 0.5080821789997572 seconds
+insert_to_mongo called at 2019-06-03 10:49:33
+	Called on 10 records
+	Function/Method execution time 0.5076791160008725 seconds
+rentals_for_customer called at 2019-06-03 10:49:34
+	args:['C000001'], kwargs:{}
+	Function/Method execution time 0.00992777699866565 seconds
+__init__ called at 2019-06-03 10:49:34
+	args:[], kwargs:{}
+	Function/Method execution time 4.896000973531045e-06 seconds
+insert_to_mongo called at 2019-06-03 10:49:34
+	Called on 10 records
+	Function/Method execution time 0.5030843690001348 seconds
+drop_database called at 2019-06-03 10:49:34
+	args:[], kwargs:{}
+	Function/Method execution time 0.016255242000625003 seconds
+__init__ called at 2019-06-03 10:49:34
+	args:[], kwargs:{}
+	Function/Method execution time 2.3939999664435163e-05 seconds
+insert_to_mongo called at 2019-06-03 10:49:34
+	Called on 10 records
+	Function/Method execution time 0.5085610229998565 seconds
+insert_to_mongo called at 2019-06-03 10:49:35
+	Called on 10 records
+	Function/Method execution time 0.5083375190006336 seconds
+insert_to_mongo called at 2019-06-03 10:49:35
+	Called on 10 records
+	Function/Method execution time 0.508717227001398 seconds
+drop_collections called at 2019-06-03 10:49:36
+	args:[], kwargs:{}
+	Function/Method execution time 0.013622028000099817 seconds
+__init__ called at 2019-06-03 10:50:38
+	args:[], kwargs:{}
+	Function/Method execution time 9.639999916544184e-06 seconds
+list_all_products called at 2019-06-03 10:50:38
+	args:[], kwargs:{}
+	Function/Method execution time 0.0024962949992186623 seconds
+__init__ called at 2019-06-03 10:50:44
+	args:[], kwargs:{}
+	Function/Method execution time 1.0529000064707361e-05 seconds
+insert_to_mongo called at 2019-06-03 10:50:44
+	Called on 10 records
+	Function/Method execution time 0.5043928190007136 seconds
+insert_to_mongo called at 2019-06-03 10:50:44
+	Called on 10 records
+	Function/Method execution time 0.504223379000905 seconds
+insert_to_mongo called at 2019-06-03 10:50:44
+	Called on 10 records
+	Function/Method execution time 0.5042172960002063 seconds
+parallel called at 2019-06-03 10:50:44
+	args:[['./data/customers.csv', './data/rental.csv', './data/product.csv']], kwargs:{}
+	Function/Method execution time 0.5108389209999586 seconds
+__init__ called at 2019-06-03 10:50:52
+	args:[], kwargs:{}
+	Function/Method execution time 1.0117999408976175e-05 seconds
+list_all_products called at 2019-06-03 10:50:52
+	args:[], kwargs:{}
+	Function/Method execution time 0.002297478000400588 seconds
+__init__ called at 2019-06-03 10:51:15
+	args:[], kwargs:{}
+	Function/Method execution time 9.593000868335366e-06 seconds
+rentals_for_customer called at 2019-06-03 10:51:15
+	args:['C000001'], kwargs:{}
+	Function/Method execution time 0.0027239810005994514 seconds
+__init__ called at 2019-06-03 11:51:11
+	args:[], kwargs:{}
+	Function/Method execution time 9.798000974114984e-06 seconds
+drop_database called at 2019-06-03 11:51:11
+	args:[], kwargs:{}
+	Function/Method execution time 0.010370370000600815 seconds
+insert_to_mongo called at 2019-06-03 11:51:11
+	Called on 10 records
+	Function/Method execution time 0.5062057750001259 seconds
+insert_to_mongo called at 2019-06-03 11:51:11
+	Called on 10 records
+	Function/Method execution time 0.5054492829985975 seconds
+insert_to_mongo called at 2019-06-03 11:51:12
+	Called on 10 records
+	Function/Method execution time 0.5061174629991001 seconds
+linear called at 2019-06-03 11:51:11
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 1.5190405199973611 seconds
+__init__ called at 2019-06-03 11:51:12
+	args:[], kwargs:{}
+	Function/Method execution time 2.6273002731613815e-05 seconds
+drop_database called at 2019-06-03 11:51:12
+	args:[], kwargs:{}
+	Function/Method execution time 0.019071888000326 seconds
+insert_to_mongo called at 2019-06-03 11:51:12
+	Called on 10 records
+	Function/Method execution time 0.5056534620016464 seconds
+insert_to_mongo called at 2019-06-03 11:51:12
+	Called on 10 records
+	Function/Method execution time 0.5054878459995962 seconds
+insert_to_mongo called at 2019-06-03 11:51:12
+	Called on 10 records
+	Function/Method execution time 0.5057170299987774 seconds
+parallel called at 2019-06-03 11:51:12
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.5170880299992859 seconds
+__init__ called at 2019-06-03 11:51:13
+	args:[], kwargs:{}
+	Function/Method execution time 1.1049000022467226e-05 seconds
+drop_collections called at 2019-06-03 11:51:13
+	args:[], kwargs:{}
+	Function/Method execution time 0.003986353000072995 seconds
+insert_to_mongo called at 2019-06-03 11:51:13
+	Called on 10 records
+	Function/Method execution time 0.5058958130030078 seconds
+insert_to_mongo called at 2019-06-03 11:51:13
+	Called on 10 records
+	Function/Method execution time 0.5058650620012486 seconds
+insert_to_mongo called at 2019-06-03 11:51:14
+	Called on 10 records
+	Function/Method execution time 0.5053344669977378 seconds
+insert_to_mongo called at 2019-06-03 11:51:14
+	Called on 10 records
+	Function/Method execution time 0.5054999700005283 seconds
+insert_to_mongo called at 2019-06-03 11:51:15
+	Called on 10 records
+	Function/Method execution time 0.5041711340018082 seconds
+insert_to_mongo called at 2019-06-03 11:51:15
+	Called on 10 records
+	Function/Method execution time 0.5071363569986715 seconds
+__init__ called at 2019-06-03 11:51:16
+	args:[], kwargs:{}
+	Function/Method execution time 3.419300264795311e-05 seconds
+drop_database called at 2019-06-03 11:51:16
+	args:[], kwargs:{}
+	Function/Method execution time 0.0342045550023613 seconds
+insert_to_mongo called at 2019-06-03 11:51:16
+	Called on 10 records
+	Function/Method execution time 0.5059238909998385 seconds
+show_available_products called at 2019-06-03 11:51:16
+	args:[], kwargs:{}
+	Function/Method execution time 0.0029059799999231473 seconds
+__init__ called at 2019-06-03 11:51:16
+	args:[], kwargs:{}
+	Function/Method execution time 1.2794997019227594e-05 seconds
+drop_database called at 2019-06-03 11:51:16
+	args:[], kwargs:{}
+	Function/Method execution time 0.0169149049979751 seconds
+insert_to_mongo called at 2019-06-03 11:51:16
+	Called on 10 records
+	Function/Method execution time 0.5033307760022581 seconds
+insert_to_mongo called at 2019-06-03 11:51:17
+	Called on 10 records
+	Function/Method execution time 0.5057385799991607 seconds
+insert_to_mongo called at 2019-06-03 11:51:17
+	Called on 10 records
+	Function/Method execution time 0.5064450559984834 seconds
+customers_renting_product called at 2019-06-03 11:51:18
+	args:['P000001'], kwargs:{}
+	Function/Method execution time 0.00583755600018776 seconds
+__init__ called at 2019-06-03 11:51:18
+	args:[], kwargs:{}
+	Function/Method execution time 1.1808999261120334e-05 seconds
+drop_database called at 2019-06-03 11:51:18
+	args:[], kwargs:{}
+	Function/Method execution time 0.017109768999944208 seconds
+insert_to_mongo called at 2019-06-03 11:51:18
+	Called on 10 records
+	Function/Method execution time 0.5066504729984445 seconds
+list_all_customers called at 2019-06-03 11:51:18
+	args:[], kwargs:{}
+	Function/Method execution time 0.008509671002684627 seconds
+__init__ called at 2019-06-03 11:51:18
+	args:[], kwargs:{}
+	Function/Method execution time 2.5645000278018415e-05 seconds
+drop_database called at 2019-06-03 11:51:18
+	args:[], kwargs:{}
+	Function/Method execution time 0.024786986999970395 seconds
+insert_to_mongo called at 2019-06-03 11:51:18
+	Called on 10 records
+	Function/Method execution time 0.5075422480003908 seconds
+list_all_products called at 2019-06-03 11:51:19
+	args:[], kwargs:{}
+	Function/Method execution time 0.008129589001327986 seconds
+__init__ called at 2019-06-03 11:51:19
+	args:[], kwargs:{}
+	Function/Method execution time 1.864400110207498e-05 seconds
+drop_database called at 2019-06-03 11:51:19
+	args:[], kwargs:{}
+	Function/Method execution time 0.017103646998293698 seconds
+insert_to_mongo called at 2019-06-03 11:51:19
+	Called on 10 records
+	Function/Method execution time 0.5063151489994198 seconds
+list_all_rentals called at 2019-06-03 11:51:20
+	args:[], kwargs:{}
+	Function/Method execution time 0.00763815699974657 seconds
+__init__ called at 2019-06-03 11:51:20
+	args:[], kwargs:{}
+	Function/Method execution time 2.4978999135782942e-05 seconds
+drop_database called at 2019-06-03 11:51:20
+	args:[], kwargs:{}
+	Function/Method execution time 0.02491447299689753 seconds
+insert_to_mongo called at 2019-06-03 11:51:20
+	Called on 10 records
+	Function/Method execution time 0.5049315739997837 seconds
+insert_to_mongo called at 2019-06-03 11:51:20
+	Called on 10 records
+	Function/Method execution time 0.5047328379987448 seconds
+insert_to_mongo called at 2019-06-03 11:51:21
+	Called on 10 records
+	Function/Method execution time 0.506162679001136 seconds
+rentals_for_customer called at 2019-06-03 11:51:21
+	args:['C000001'], kwargs:{}
+	Function/Method execution time 0.010371083000791259 seconds
+__init__ called at 2019-06-03 11:51:21
+	args:[], kwargs:{}
+	Function/Method execution time 1.9618000806076452e-05 seconds
+insert_to_mongo called at 2019-06-03 11:51:21
+	Called on 10 records
+	Function/Method execution time 0.503941681003198 seconds
+drop_database called at 2019-06-03 11:51:22
+	args:[], kwargs:{}
+	Function/Method execution time 0.011779213000409072 seconds
+__init__ called at 2019-06-03 11:51:22
+	args:[], kwargs:{}
+	Function/Method execution time 6.186997779877856e-06 seconds
+insert_to_mongo called at 2019-06-03 11:51:22
+	Called on 10 records
+	Function/Method execution time 0.5058512860014162 seconds
+insert_to_mongo called at 2019-06-03 11:51:22
+	Called on 10 records
+	Function/Method execution time 0.5059648530004779 seconds
+insert_to_mongo called at 2019-06-03 11:51:23
+	Called on 10 records
+	Function/Method execution time 0.5058716339990497 seconds
+drop_collections called at 2019-06-03 11:51:23
+	args:[], kwargs:{}
+	Function/Method execution time 0.0158086129995354 seconds
+__init__ called at 2019-06-03 11:51:30
+	args:[], kwargs:{}
+	Function/Method execution time 8.9230015873909e-06 seconds
+drop_database called at 2019-06-03 11:51:30
+	args:[], kwargs:{}
+	Function/Method execution time 0.01360530099918833 seconds
+insert_to_mongo called at 2019-06-03 11:51:30
+	Called on 10 records
+	Function/Method execution time 0.506148287000542 seconds
+insert_to_mongo called at 2019-06-03 11:51:31
+	Called on 10 records
+	Function/Method execution time 0.5092497620025824 seconds
+insert_to_mongo called at 2019-06-03 11:51:31
+	Called on 10 records
+	Function/Method execution time 0.5081694869986677 seconds
+linear called at 2019-06-03 11:51:30
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 1.525385657998413 seconds
+__init__ called at 2019-06-03 11:51:32
+	args:[], kwargs:{}
+	Function/Method execution time 3.516599826980382e-05 seconds
+drop_database called at 2019-06-03 11:51:32
+	args:[], kwargs:{}
+	Function/Method execution time 0.028518268998595886 seconds
+insert_to_mongo called at 2019-06-03 11:51:32
+	Called on 10 records
+	Function/Method execution time 0.5108867759990972 seconds
+insert_to_mongo called at 2019-06-03 11:51:32
+	Called on 10 records
+	Function/Method execution time 0.5096039560012287 seconds
+insert_to_mongo called at 2019-06-03 11:51:32
+	Called on 10 records
+	Function/Method execution time 0.5100523660003091 seconds
+parallel called at 2019-06-03 11:51:32
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.5329427649994614 seconds
+__init__ called at 2019-06-03 11:51:32
+	args:[], kwargs:{}
+	Function/Method execution time 4.985799751011655e-05 seconds
+drop_collections called at 2019-06-03 11:51:32
+	args:[], kwargs:{}
+	Function/Method execution time 0.016506624000612646 seconds
+insert_to_mongo called at 2019-06-03 11:51:32
+	Called on 10 records
+	Function/Method execution time 0.5070216060012172 seconds
+insert_to_mongo called at 2019-06-03 11:51:33
+	Called on 10 records
+	Function/Method execution time 0.5064779990025272 seconds
+insert_to_mongo called at 2019-06-03 11:51:33
+	Called on 10 records
+	Function/Method execution time 0.5039520369973616 seconds
+insert_to_mongo called at 2019-06-03 11:51:34
+	Called on 10 records
+	Function/Method execution time 0.5068033349998586 seconds
+insert_to_mongo called at 2019-06-03 11:51:34
+	Called on 10 records
+	Function/Method execution time 0.5087352640002791 seconds
+insert_to_mongo called at 2019-06-03 11:51:35
+	Called on 10 records
+	Function/Method execution time 0.5088675829974818 seconds
+__init__ called at 2019-06-03 11:51:35
+	args:[], kwargs:{}
+	Function/Method execution time 2.567000046838075e-05 seconds
+drop_database called at 2019-06-03 11:51:35
+	args:[], kwargs:{}
+	Function/Method execution time 0.024682865998329362 seconds
+insert_to_mongo called at 2019-06-03 11:51:35
+	Called on 10 records
+	Function/Method execution time 0.5078169549997256 seconds
+show_available_products called at 2019-06-03 11:51:36
+	args:[], kwargs:{}
+	Function/Method execution time 0.007275019001099281 seconds
+__init__ called at 2019-06-03 11:51:36
+	args:[], kwargs:{}
+	Function/Method execution time 2.6984998839907348e-05 seconds
+drop_database called at 2019-06-03 11:51:36
+	args:[], kwargs:{}
+	Function/Method execution time 0.02284094999777153 seconds
+insert_to_mongo called at 2019-06-03 11:51:36
+	Called on 10 records
+	Function/Method execution time 0.5063556870009052 seconds
+insert_to_mongo called at 2019-06-03 11:51:36
+	Called on 10 records
+	Function/Method execution time 0.508473469002638 seconds
+insert_to_mongo called at 2019-06-03 11:51:37
+	Called on 10 records
+	Function/Method execution time 0.5087976150025497 seconds
+customers_renting_product called at 2019-06-03 11:51:37
+	args:['P000001'], kwargs:{}
+	Function/Method execution time 0.013729499001783552 seconds
+__init__ called at 2019-06-03 11:51:37
+	args:[], kwargs:{}
+	Function/Method execution time 2.7654998120851815e-05 seconds
+drop_database called at 2019-06-03 11:51:37
+	args:[], kwargs:{}
+	Function/Method execution time 0.019372769002075074 seconds
+insert_to_mongo called at 2019-06-03 11:51:37
+	Called on 10 records
+	Function/Method execution time 0.5069195729993226 seconds
+list_all_customers called at 2019-06-03 11:51:38
+	args:[], kwargs:{}
+	Function/Method execution time 0.008871900001395261 seconds
+__init__ called at 2019-06-03 11:51:38
+	args:[], kwargs:{}
+	Function/Method execution time 2.4193002900574356e-05 seconds
+drop_database called at 2019-06-03 11:51:38
+	args:[], kwargs:{}
+	Function/Method execution time 0.01803476599889109 seconds
+insert_to_mongo called at 2019-06-03 11:51:38
+	Called on 10 records
+	Function/Method execution time 0.5052569729996321 seconds
+list_all_products called at 2019-06-03 11:51:38
+	args:[], kwargs:{}
+	Function/Method execution time 0.005959064998023678 seconds
+__init__ called at 2019-06-03 11:51:39
+	args:[], kwargs:{}
+	Function/Method execution time 1.7004000255838037e-05 seconds
+drop_database called at 2019-06-03 11:51:39
+	args:[], kwargs:{}
+	Function/Method execution time 0.020913611002470134 seconds
+insert_to_mongo called at 2019-06-03 11:51:39
+	Called on 10 records
+	Function/Method execution time 0.507490948002669 seconds
+list_all_rentals called at 2019-06-03 11:51:39
+	args:[], kwargs:{}
+	Function/Method execution time 0.007745950002572499 seconds
+__init__ called at 2019-06-03 11:51:39
+	args:[], kwargs:{}
+	Function/Method execution time 2.688599852262996e-05 seconds
+drop_database called at 2019-06-03 11:51:39
+	args:[], kwargs:{}
+	Function/Method execution time 0.02666478999890387 seconds
+insert_to_mongo called at 2019-06-03 11:51:39
+	Called on 10 records
+	Function/Method execution time 0.5071090400015237 seconds
+insert_to_mongo called at 2019-06-03 11:51:40
+	Called on 10 records
+	Function/Method execution time 0.5090102419999312 seconds
+insert_to_mongo called at 2019-06-03 11:51:40
+	Called on 10 records
+	Function/Method execution time 0.5087171170016518 seconds
+rentals_for_customer called at 2019-06-03 11:51:41
+	args:['C000001'], kwargs:{}
+	Function/Method execution time 0.010119505001057405 seconds
+__init__ called at 2019-06-03 11:51:41
+	args:[], kwargs:{}
+	Function/Method execution time 2.5786001060623676e-05 seconds
+insert_to_mongo called at 2019-06-03 11:51:41
+	Called on 10 records
+	Function/Method execution time 0.505976479002129 seconds
+drop_database called at 2019-06-03 11:51:41
+	args:[], kwargs:{}
+	Function/Method execution time 0.019161263000569306 seconds
+__init__ called at 2019-06-03 11:51:41
+	args:[], kwargs:{}
+	Function/Method execution time 9.008002962218598e-06 seconds
+insert_to_mongo called at 2019-06-03 11:51:41
+	Called on 10 records
+	Function/Method execution time 0.5066690859966911 seconds
+insert_to_mongo called at 2019-06-03 11:51:42
+	Called on 10 records
+	Function/Method execution time 0.5060987770011707 seconds
+insert_to_mongo called at 2019-06-03 11:51:42
+	Called on 10 records
+	Function/Method execution time 0.5028310549969319 seconds
+drop_collections called at 2019-06-03 11:51:43
+	args:[], kwargs:{}
+	Function/Method execution time 0.004430615997989662 seconds
+__init__ called at 2019-06-03 12:31:11
+	args:[], kwargs:{}
+	Function/Method execution time 6.631002179346979e-06 seconds
+drop_database called at 2019-06-03 12:31:11
+	args:[], kwargs:{}
+	Function/Method execution time 0.009834570999373682 seconds
+get_line_from_file called at 2019-06-03 12:31:11
+	Called on 10 records
+	Function/Method execution time 2.1039995772298425e-06 seconds
+insert_to_mongo called at 2019-06-03 12:31:11
+	Called on 10 records
+	Function/Method execution time 0.5053443899996637 seconds
+get_line_from_file called at 2019-06-03 12:31:12
+	Called on 10 records
+	Function/Method execution time 1.119499938795343e-05 seconds
+insert_to_mongo called at 2019-06-03 12:31:12
+	Called on 10 records
+	Function/Method execution time 0.5086260389980453 seconds
+get_line_from_file called at 2019-06-03 12:31:12
+	Called on 10 records
+	Function/Method execution time 1.6259000403806567e-05 seconds
+insert_to_mongo called at 2019-06-03 12:31:12
+	Called on 10 records
+	Function/Method execution time 0.5086186189982982 seconds
+linear called at 2019-06-03 12:31:11
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 1.5240058550007234 seconds
+__init__ called at 2019-06-03 12:31:13
+	args:[], kwargs:{}
+	Function/Method execution time 2.4290999135700986e-05 seconds
+drop_database called at 2019-06-03 12:31:13
+	args:[], kwargs:{}
+	Function/Method execution time 0.02939276799952495 seconds
+get_line_from_file called at 2019-06-03 12:31:13
+	Called on 10 records
+	Function/Method execution time 6.669000867987052e-06 seconds
+get_line_from_file called at 2019-06-03 12:31:13
+	Called on 10 records
+	Function/Method execution time 6.958001904422417e-06 seconds
+get_line_from_file called at 2019-06-03 12:31:13
+	Called on 10 records
+	Function/Method execution time 6.330999894998968e-06 seconds
+insert_to_mongo called at 2019-06-03 12:31:13
+	Called on 10 records
+	Function/Method execution time 0.5064669029998186 seconds
+insert_to_mongo called at 2019-06-03 12:31:13
+	Called on 10 records
+	Function/Method execution time 0.5056182190019172 seconds
+insert_to_mongo called at 2019-06-03 12:31:13
+	Called on 10 records
+	Function/Method execution time 0.5044959209990338 seconds
+parallel called at 2019-06-03 12:31:13
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.5218191019994265 seconds
+__init__ called at 2019-06-03 12:31:14
+	args:[], kwargs:{}
+	Function/Method execution time 1.308299761149101e-05 seconds
+drop_collections called at 2019-06-03 12:31:14
+	args:[], kwargs:{}
+	Function/Method execution time 0.004520161000982625 seconds
+get_line_from_file called at 2019-06-03 12:31:14
+	Called on 10 records
+	Function/Method execution time 2.9849979910068214e-06 seconds
+insert_to_mongo called at 2019-06-03 12:31:14
+	Called on 10 records
+	Function/Method execution time 0.5041369819991814 seconds
+get_line_from_file called at 2019-06-03 12:31:14
+	Called on 10 records
+	Function/Method execution time 9.677998605184257e-06 seconds
+insert_to_mongo called at 2019-06-03 12:31:14
+	Called on 10 records
+	Function/Method execution time 0.5066522540000733 seconds
+get_line_from_file called at 2019-06-03 12:31:15
+	Called on 10 records
+	Function/Method execution time 1.081300069927238e-05 seconds
+insert_to_mongo called at 2019-06-03 12:31:15
+	Called on 10 records
+	Function/Method execution time 0.5077273720016819 seconds
+get_line_from_file called at 2019-06-03 12:31:15
+	Called on 10 records
+	Function/Method execution time 1.0566000128164887e-05 seconds
+insert_to_mongo called at 2019-06-03 12:31:15
+	Called on 10 records
+	Function/Method execution time 0.5077668300000369 seconds
+get_line_from_file called at 2019-06-03 12:31:16
+	Called on 10 records
+	Function/Method execution time 1.2710999726550654e-05 seconds
+insert_to_mongo called at 2019-06-03 12:31:16
+	Called on 10 records
+	Function/Method execution time 0.50638020200131 seconds
+get_line_from_file called at 2019-06-03 12:31:16
+	Called on 10 records
+	Function/Method execution time 3.820998244918883e-06 seconds
+insert_to_mongo called at 2019-06-03 12:31:16
+	Called on 10 records
+	Function/Method execution time 0.5057581299988669 seconds
+__init__ called at 2019-06-03 12:31:17
+	args:[], kwargs:{}
+	Function/Method execution time 2.4733002646826208e-05 seconds
+drop_database called at 2019-06-03 12:31:17
+	args:[], kwargs:{}
+	Function/Method execution time 0.027190153999981703 seconds
+get_line_from_file called at 2019-06-03 12:31:17
+	Called on 10 records
+	Function/Method execution time 1.3343000318855047e-05 seconds
+insert_to_mongo called at 2019-06-03 12:31:17
+	Called on 10 records
+	Function/Method execution time 0.5088886669982458 seconds
+show_available_products called at 2019-06-03 12:31:17
+	args:[], kwargs:{}
+	Function/Method execution time 0.007473359000869095 seconds
+__init__ called at 2019-06-03 12:31:17
+	args:[], kwargs:{}
+	Function/Method execution time 5.0355996791040525e-05 seconds
+drop_database called at 2019-06-03 12:31:17
+	args:[], kwargs:{}
+	Function/Method execution time 0.02729028300018399 seconds
+get_line_from_file called at 2019-06-03 12:31:17
+	Called on 10 records
+	Function/Method execution time 1.079399953596294e-05 seconds
+insert_to_mongo called at 2019-06-03 12:31:17
+	Called on 10 records
+	Function/Method execution time 0.5097652060030669 seconds
+get_line_from_file called at 2019-06-03 12:31:18
+	Called on 10 records
+	Function/Method execution time 2.5510016712360084e-06 seconds
+insert_to_mongo called at 2019-06-03 12:31:18
+	Called on 10 records
+	Function/Method execution time 0.5054127259973029 seconds
+get_line_from_file called at 2019-06-03 12:31:18
+	Called on 10 records
+	Function/Method execution time 1.1338001058902591e-05 seconds
+insert_to_mongo called at 2019-06-03 12:31:18
+	Called on 10 records
+	Function/Method execution time 0.508301551999466 seconds
+customers_renting_product called at 2019-06-03 12:31:19
+	args:['P000001'], kwargs:{}
+	Function/Method execution time 0.01246401200114633 seconds
+__init__ called at 2019-06-03 12:31:19
+	args:[], kwargs:{}
+	Function/Method execution time 2.4040997232077643e-05 seconds
+drop_database called at 2019-06-03 12:31:19
+	args:[], kwargs:{}
+	Function/Method execution time 0.029620568002428627 seconds
+get_line_from_file called at 2019-06-03 12:31:19
+	Called on 10 records
+	Function/Method execution time 1.9169998267898336e-05 seconds
+insert_to_mongo called at 2019-06-03 12:31:19
+	Called on 10 records
+	Function/Method execution time 0.5093259419991227 seconds
+list_all_customers called at 2019-06-03 12:31:19
+	args:[], kwargs:{}
+	Function/Method execution time 0.007499152998207137 seconds
+__init__ called at 2019-06-03 12:31:19
+	args:[], kwargs:{}
+	Function/Method execution time 1.8045000615529716e-05 seconds
+drop_database called at 2019-06-03 12:31:19
+	args:[], kwargs:{}
+	Function/Method execution time 0.017710145002638455 seconds
+get_line_from_file called at 2019-06-03 12:31:19
+	Called on 10 records
+	Function/Method execution time 2.977998519781977e-06 seconds
+insert_to_mongo called at 2019-06-03 12:31:19
+	Called on 10 records
+	Function/Method execution time 0.5035359709982004 seconds
+list_all_products called at 2019-06-03 12:31:20
+	args:[], kwargs:{}
+	Function/Method execution time 0.002938481000455795 seconds
+__init__ called at 2019-06-03 12:31:20
+	args:[], kwargs:{}
+	Function/Method execution time 9.603998478269204e-06 seconds
+drop_database called at 2019-06-03 12:31:20
+	args:[], kwargs:{}
+	Function/Method execution time 0.014424663000681903 seconds
+get_line_from_file called at 2019-06-03 12:31:20
+	Called on 10 records
+	Function/Method execution time 3.2569987524766475e-06 seconds
+insert_to_mongo called at 2019-06-03 12:31:20
+	Called on 10 records
+	Function/Method execution time 0.5044299050023255 seconds
+list_all_rentals called at 2019-06-03 12:31:20
+	args:[], kwargs:{}
+	Function/Method execution time 0.0014502029989671428 seconds
+__init__ called at 2019-06-03 12:31:20
+	args:[], kwargs:{}
+	Function/Method execution time 5.2109971875324845e-06 seconds
+drop_database called at 2019-06-03 12:31:20
+	args:[], kwargs:{}
+	Function/Method execution time 0.012747131997457473 seconds
+get_line_from_file called at 2019-06-03 12:31:20
+	Called on 10 records
+	Function/Method execution time 2.3899992811493576e-06 seconds
+insert_to_mongo called at 2019-06-03 12:31:20
+	Called on 10 records
+	Function/Method execution time 0.5036321819970908 seconds
+get_line_from_file called at 2019-06-03 12:31:21
+	Called on 10 records
+	Function/Method execution time 6.607999239349738e-06 seconds
+insert_to_mongo called at 2019-06-03 12:31:21
+	Called on 10 records
+	Function/Method execution time 0.5063796169997659 seconds
+get_line_from_file called at 2019-06-03 12:31:21
+	Called on 10 records
+	Function/Method execution time 1.075799809768796e-05 seconds
+insert_to_mongo called at 2019-06-03 12:31:21
+	Called on 10 records
+	Function/Method execution time 0.5062774100006209 seconds
+rentals_for_customer called at 2019-06-03 12:31:22
+	args:['C000001'], kwargs:{}
+	Function/Method execution time 0.0032963359990390018 seconds
+get_line_from_file called at 2019-06-03 12:31:22
+	Called on 10 records
+	Function/Method execution time 5.1009992603212595e-06 seconds
+__init__ called at 2019-06-03 12:31:22
+	args:[], kwargs:{}
+	Function/Method execution time 9.532999683870003e-06 seconds
+get_line_from_file called at 2019-06-03 12:31:22
+	Called on 10 records
+	Function/Method execution time 4.417997843120247e-06 seconds
+insert_to_mongo called at 2019-06-03 12:31:22
+	Called on 10 records
+	Function/Method execution time 0.506100485999923 seconds
+drop_database called at 2019-06-03 12:31:22
+	args:[], kwargs:{}
+	Function/Method execution time 0.028286431999731576 seconds
+__init__ called at 2019-06-03 12:31:22
+	args:[], kwargs:{}
+	Function/Method execution time 2.3264998162630945e-05 seconds
+get_line_from_file called at 2019-06-03 12:31:22
+	Called on 10 records
+	Function/Method execution time 1.5302000974770635e-05 seconds
+insert_to_mongo called at 2019-06-03 12:31:22
+	Called on 10 records
+	Function/Method execution time 0.5085146870005701 seconds
+get_line_from_file called at 2019-06-03 12:31:23
+	Called on 10 records
+	Function/Method execution time 1.1672000255202875e-05 seconds
+insert_to_mongo called at 2019-06-03 12:31:23
+	Called on 10 records
+	Function/Method execution time 0.5084688179995283 seconds
+get_line_from_file called at 2019-06-03 12:31:23
+	Called on 10 records
+	Function/Method execution time 1.193899879581295e-05 seconds
+insert_to_mongo called at 2019-06-03 12:31:23
+	Called on 10 records
+	Function/Method execution time 0.5083336889983912 seconds
+drop_collections called at 2019-06-03 12:31:24
+	args:[], kwargs:{}
+	Function/Method execution time 0.0147125280018372 seconds
+__init__ called at 2019-06-03 12:34:25
+	args:[], kwargs:{}
+	Function/Method execution time 6.9020024966448545e-06 seconds
+drop_database called at 2019-06-03 12:34:25
+	args:[], kwargs:{}
+	Function/Method execution time 0.010211877000983804 seconds
+get_line_from_file called at 2019-06-03 12:34:25
+	Called on 10 records
+	Function/Method execution time 3.193003067281097e-06 seconds
+insert_to_mongo called at 2019-06-03 12:34:25
+	Called on 10 records
+	Function/Method execution time 0.5038992930021777 seconds
+get_line_from_file called at 2019-06-03 12:34:25
+	Called on 10 records
+	Function/Method execution time 1.3112003216519952e-05 seconds
+insert_to_mongo called at 2019-06-03 12:34:25
+	Called on 10 records
+	Function/Method execution time 0.5055484980002802 seconds
+get_line_from_file called at 2019-06-03 12:34:26
+	Called on 10 records
+	Function/Method execution time 7.5450006988830864e-06 seconds
+insert_to_mongo called at 2019-06-03 12:34:26
+	Called on 10 records
+	Function/Method execution time 0.5066173439990962 seconds
+linear called at 2019-06-03 12:34:25
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 1.5170882860002166 seconds
+__init__ called at 2019-06-03 12:34:27
+	args:[], kwargs:{}
+	Function/Method execution time 2.392200258327648e-05 seconds
+drop_database called at 2019-06-03 12:34:27
+	args:[], kwargs:{}
+	Function/Method execution time 0.013424041000689613 seconds
+get_line_from_file called at 2019-06-03 12:34:27
+	Called on 10 records
+	Function/Method execution time 7.539998478023335e-06 seconds
+get_line_from_file called at 2019-06-03 12:34:27
+	Called on 10 records
+	Function/Method execution time 9.784002031665295e-06 seconds
+get_line_from_file called at 2019-06-03 12:34:27
+	Called on 10 records
+	Function/Method execution time 7.910999556770548e-06 seconds
+insert_to_mongo called at 2019-06-03 12:34:27
+	Called on 10 records
+	Function/Method execution time 0.5060744209986296 seconds
+insert_to_mongo called at 2019-06-03 12:34:27
+	Called on 10 records
+	Function/Method execution time 0.5060850099980598 seconds
+insert_to_mongo called at 2019-06-03 12:34:27
+	Called on 10 records
+	Function/Method execution time 0.5059779469993373 seconds
+parallel called at 2019-06-03 12:34:27
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.5160294259985676 seconds
+__init__ called at 2019-06-03 12:34:27
+	args:[], kwargs:{}
+	Function/Method execution time 2.303099972778e-05 seconds
+drop_collections called at 2019-06-03 12:34:27
+	args:[], kwargs:{}
+	Function/Method execution time 0.010299864999979036 seconds
+get_line_from_file called at 2019-06-03 12:34:27
+	Called on 10 records
+	Function/Method execution time 7.754999387543648e-06 seconds
+insert_to_mongo called at 2019-06-03 12:34:27
+	Called on 10 records
+	Function/Method execution time 0.5067504510006984 seconds
+get_line_from_file called at 2019-06-03 12:34:28
+	Called on 10 records
+	Function/Method execution time 1.4225999620975927e-05 seconds
+insert_to_mongo called at 2019-06-03 12:34:28
+	Called on 10 records
+	Function/Method execution time 0.5078629050003656 seconds
+get_line_from_file called at 2019-06-03 12:34:28
+	Called on 10 records
+	Function/Method execution time 1.7996000678976998e-05 seconds
+insert_to_mongo called at 2019-06-03 12:34:28
+	Called on 10 records
+	Function/Method execution time 0.508651052001369 seconds
+get_line_from_file called at 2019-06-03 12:34:29
+	Called on 10 records
+	Function/Method execution time 1.2802000128431246e-05 seconds
+insert_to_mongo called at 2019-06-03 12:34:29
+	Called on 10 records
+	Function/Method execution time 0.5083091380001861 seconds
+get_line_from_file called at 2019-06-03 12:34:29
+	Called on 10 records
+	Function/Method execution time 1.2857999536208808e-05 seconds
+insert_to_mongo called at 2019-06-03 12:34:29
+	Called on 10 records
+	Function/Method execution time 0.508249758000602 seconds
+get_line_from_file called at 2019-06-03 12:34:30
+	Called on 10 records
+	Function/Method execution time 2.6699999580159783e-06 seconds
+insert_to_mongo called at 2019-06-03 12:34:30
+	Called on 10 records
+	Function/Method execution time 0.504809900001419 seconds
+__init__ called at 2019-06-03 12:34:30
+	args:[], kwargs:{}
+	Function/Method execution time 8.210998203139752e-06 seconds
+drop_database called at 2019-06-03 12:34:30
+	args:[], kwargs:{}
+	Function/Method execution time 0.01384055399830686 seconds
+get_line_from_file called at 2019-06-03 12:34:30
+	Called on 10 records
+	Function/Method execution time 3.225999535061419e-06 seconds
+insert_to_mongo called at 2019-06-03 12:34:30
+	Called on 10 records
+	Function/Method execution time 0.5057194010005333 seconds
+show_available_products called at 2019-06-03 12:34:31
+	args:[], kwargs:{}
+	Function/Method execution time 0.0077065559999027755 seconds
+__init__ called at 2019-06-03 12:34:31
+	args:[], kwargs:{}
+	Function/Method execution time 2.5474000722169876e-05 seconds
+drop_database called at 2019-06-03 12:34:31
+	args:[], kwargs:{}
+	Function/Method execution time 0.028020966001349734 seconds
+get_line_from_file called at 2019-06-03 12:34:31
+	Called on 10 records
+	Function/Method execution time 1.907299883896485e-05 seconds
+insert_to_mongo called at 2019-06-03 12:34:31
+	Called on 10 records
+	Function/Method execution time 0.5093406820014934 seconds
+get_line_from_file called at 2019-06-03 12:34:31
+	Called on 10 records
+	Function/Method execution time 1.2832999345846474e-05 seconds
+insert_to_mongo called at 2019-06-03 12:34:31
+	Called on 10 records
+	Function/Method execution time 0.508336662001966 seconds
+get_line_from_file called at 2019-06-03 12:34:32
+	Called on 10 records
+	Function/Method execution time 8.84799737832509e-06 seconds
+insert_to_mongo called at 2019-06-03 12:34:32
+	Called on 10 records
+	Function/Method execution time 0.5054901680014154 seconds
+customers_renting_product called at 2019-06-03 12:34:32
+	args:['P000001'], kwargs:{}
+	Function/Method execution time 0.006064540000807028 seconds
+__init__ called at 2019-06-03 12:34:32
+	args:[], kwargs:{}
+	Function/Method execution time 1.0653999197529629e-05 seconds
+drop_database called at 2019-06-03 12:34:32
+	args:[], kwargs:{}
+	Function/Method execution time 0.015413753000757424 seconds
+get_line_from_file called at 2019-06-03 12:34:32
+	Called on 10 records
+	Function/Method execution time 3.94000016967766e-06 seconds
+insert_to_mongo called at 2019-06-03 12:34:32
+	Called on 10 records
+	Function/Method execution time 0.5031984279994504 seconds
+list_all_customers called at 2019-06-03 12:34:33
+	args:[], kwargs:{}
+	Function/Method execution time 0.0017246310017071664 seconds
+__init__ called at 2019-06-03 12:34:33
+	args:[], kwargs:{}
+	Function/Method execution time 7.42799966246821e-06 seconds
+drop_database called at 2019-06-03 12:34:33
+	args:[], kwargs:{}
+	Function/Method execution time 0.012709637001535157 seconds
+get_line_from_file called at 2019-06-03 12:34:33
+	Called on 10 records
+	Function/Method execution time 2.2319982235785574e-06 seconds
+insert_to_mongo called at 2019-06-03 12:34:33
+	Called on 10 records
+	Function/Method execution time 0.5045269199981703 seconds
+list_all_products called at 2019-06-03 12:34:33
+	args:[], kwargs:{}
+	Function/Method execution time 0.006839485002274159 seconds
+__init__ called at 2019-06-03 12:34:33
+	args:[], kwargs:{}
+	Function/Method execution time 3.021700104000047e-05 seconds
+drop_database called at 2019-06-03 12:34:33
+	args:[], kwargs:{}
+	Function/Method execution time 0.02869153499705135 seconds
+get_line_from_file called at 2019-06-03 12:34:33
+	Called on 10 records
+	Function/Method execution time 1.2760003301082179e-05 seconds
+insert_to_mongo called at 2019-06-03 12:34:33
+	Called on 10 records
+	Function/Method execution time 0.5080724629988254 seconds
+list_all_rentals called at 2019-06-03 12:34:34
+	args:[], kwargs:{}
+	Function/Method execution time 0.0074777750014618505 seconds
+__init__ called at 2019-06-03 12:34:34
+	args:[], kwargs:{}
+	Function/Method execution time 2.5541001377860084e-05 seconds
+drop_database called at 2019-06-03 12:34:34
+	args:[], kwargs:{}
+	Function/Method execution time 0.022308255000098143 seconds
+get_line_from_file called at 2019-06-03 12:34:34
+	Called on 10 records
+	Function/Method execution time 1.5786998119438067e-05 seconds
+insert_to_mongo called at 2019-06-03 12:34:34
+	Called on 10 records
+	Function/Method execution time 0.5101018349996593 seconds
+get_line_from_file called at 2019-06-03 12:34:34
+	Called on 10 records
+	Function/Method execution time 1.671299833105877e-05 seconds
+insert_to_mongo called at 2019-06-03 12:34:34
+	Called on 10 records
+	Function/Method execution time 0.5091849919990636 seconds
+get_line_from_file called at 2019-06-03 12:34:35
+	Called on 10 records
+	Function/Method execution time 1.1501000699354336e-05 seconds
+insert_to_mongo called at 2019-06-03 12:34:35
+	Called on 10 records
+	Function/Method execution time 0.5077685750002274 seconds
+rentals_for_customer called at 2019-06-03 12:34:35
+	args:['C000001'], kwargs:{}
+	Function/Method execution time 0.009415786000317894 seconds
+get_line_from_file called at 2019-06-03 12:34:35
+	Called on 10 records
+	Function/Method execution time 1.4495999494101852e-05 seconds
+__init__ called at 2019-06-03 12:34:35
+	args:[], kwargs:{}
+	Function/Method execution time 2.215899803559296e-05 seconds
+get_line_from_file called at 2019-06-03 12:34:35
+	Called on 10 records
+	Function/Method execution time 1.4069999451749027e-05 seconds
+insert_to_mongo called at 2019-06-03 12:34:35
+	Called on 10 records
+	Function/Method execution time 0.5086606570002914 seconds
+drop_database called at 2019-06-03 12:34:36
+	args:[], kwargs:{}
+	Function/Method execution time 0.02722097899822984 seconds
+__init__ called at 2019-06-03 12:34:36
+	args:[], kwargs:{}
+	Function/Method execution time 3.647699850262143e-05 seconds
+get_line_from_file called at 2019-06-03 12:34:36
+	Called on 10 records
+	Function/Method execution time 1.1838998034363613e-05 seconds
+insert_to_mongo called at 2019-06-03 12:34:36
+	Called on 10 records
+	Function/Method execution time 0.5099047660005454 seconds
+get_line_from_file called at 2019-06-03 12:34:36
+	Called on 10 records
+	Function/Method execution time 1.1856998753501102e-05 seconds
+insert_to_mongo called at 2019-06-03 12:34:36
+	Called on 10 records
+	Function/Method execution time 0.5050961970009666 seconds
+get_line_from_file called at 2019-06-03 12:34:37
+	Called on 10 records
+	Function/Method execution time 2.610002411529422e-06 seconds
+insert_to_mongo called at 2019-06-03 12:34:37
+	Called on 10 records
+	Function/Method execution time 0.5026992089988198 seconds
+drop_collections called at 2019-06-03 12:34:37
+	args:[], kwargs:{}
+	Function/Method execution time 0.0029773069982184097 seconds
+__init__ called at 2019-06-03 12:39:22
+	args:[], kwargs:{}
+	Function/Method execution time 1.0749998182291165e-05 seconds
+drop_database called at 2019-06-03 12:39:22
+	args:[], kwargs:{}
+	Function/Method execution time 0.009924960999342147 seconds
+get_line_from_file called at 2019-06-03 12:39:22
+	Called on 10 records
+	Function/Method execution time 4.02299701818265e-06 seconds
+insert_to_mongo called at 2019-06-03 12:39:22
+	Called on 10 records
+	Function/Method execution time 0.5066361230019538 seconds
+get_line_from_file called at 2019-06-03 12:39:22
+	Called on 10 records
+	Function/Method execution time 1.0236999514745548e-05 seconds
+insert_to_mongo called at 2019-06-03 12:39:22
+	Called on 10 records
+	Function/Method execution time 0.5098619520031207 seconds
+get_line_from_file called at 2019-06-03 12:39:23
+	Called on 10 records
+	Function/Method execution time 1.5800000255694613e-05 seconds
+insert_to_mongo called at 2019-06-03 12:39:23
+	Called on 10 records
+	Function/Method execution time 0.5102517859995714 seconds
+linear called at 2019-06-03 12:39:22
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 1.528435800999432 seconds
+__init__ called at 2019-06-03 12:39:23
+	args:[], kwargs:{}
+	Function/Method execution time 3.0341998353833333e-05 seconds
+drop_database called at 2019-06-03 12:39:23
+	args:[], kwargs:{}
+	Function/Method execution time 0.023599105999892345 seconds
+get_line_from_file called at 2019-06-03 12:39:23
+	Called on 10 records
+	Function/Method execution time 4.912002623314038e-06 seconds
+get_line_from_file called at 2019-06-03 12:39:23
+	Called on 10 records
+	Function/Method execution time 4.446003003977239e-06 seconds
+get_line_from_file called at 2019-06-03 12:39:23
+	Called on 10 records
+	Function/Method execution time 6.0349993873387575e-06 seconds
+insert_to_mongo called at 2019-06-03 12:39:23
+	Called on 10 records
+	Function/Method execution time 0.5103710019975551 seconds
+insert_to_mongo called at 2019-06-03 12:39:23
+	Called on 10 records
+	Function/Method execution time 0.5118948410017765 seconds
+insert_to_mongo called at 2019-06-03 12:39:23
+	Called on 10 records
+	Function/Method execution time 0.5093964290026634 seconds
+parallel called at 2019-06-03 12:39:23
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.5475797330000205 seconds
+__init__ called at 2019-06-03 12:39:24
+	args:[], kwargs:{}
+	Function/Method execution time 2.0022001990582794e-05 seconds
+drop_collections called at 2019-06-03 12:39:24
+	args:[], kwargs:{}
+	Function/Method execution time 0.006326931001240155 seconds
+get_line_from_file called at 2019-06-03 12:39:24
+	Called on 10 records
+	Function/Method execution time 5.1679999160114676e-06 seconds
+insert_to_mongo called at 2019-06-03 12:39:24
+	Called on 10 records
+	Function/Method execution time 0.5069934080020175 seconds
+get_line_from_file called at 2019-06-03 12:39:24
+	Called on 10 records
+	Function/Method execution time 1.4524001016980037e-05 seconds
+insert_to_mongo called at 2019-06-03 12:39:24
+	Called on 10 records
+	Function/Method execution time 0.5093190409970703 seconds
+get_line_from_file called at 2019-06-03 12:39:25
+	Called on 10 records
+	Function/Method execution time 1.5540997992502525e-05 seconds
+insert_to_mongo called at 2019-06-03 12:39:25
+	Called on 10 records
+	Function/Method execution time 0.506701719998091 seconds
+get_line_from_file called at 2019-06-03 12:39:25
+	Called on 10 records
+	Function/Method execution time 9.822000720305368e-06 seconds
+insert_to_mongo called at 2019-06-03 12:39:25
+	Called on 10 records
+	Function/Method execution time 0.5084420279999904 seconds
+get_line_from_file called at 2019-06-03 12:39:26
+	Called on 10 records
+	Function/Method execution time 1.532600072096102e-05 seconds
+insert_to_mongo called at 2019-06-03 12:39:26
+	Called on 10 records
+	Function/Method execution time 0.5109874230001878 seconds
+get_line_from_file called at 2019-06-03 12:39:26
+	Called on 10 records
+	Function/Method execution time 1.4202996680978686e-05 seconds
+insert_to_mongo called at 2019-06-03 12:39:26
+	Called on 10 records
+	Function/Method execution time 0.5097131039983651 seconds
+__init__ called at 2019-06-03 12:39:27
+	args:[], kwargs:{}
+	Function/Method execution time 2.2071999410400167e-05 seconds
+drop_database called at 2019-06-03 12:39:27
+	args:[], kwargs:{}
+	Function/Method execution time 0.018806883999786805 seconds
+get_line_from_file called at 2019-06-03 12:39:27
+	Called on 10 records
+	Function/Method execution time 4.780999006470665e-06 seconds
+insert_to_mongo called at 2019-06-03 12:39:27
+	Called on 10 records
+	Function/Method execution time 0.5044460770004662 seconds
+show_available_products called at 2019-06-03 12:39:27
+	args:[], kwargs:{}
+	Function/Method execution time 0.004355757999292109 seconds
+__init__ called at 2019-06-03 12:39:27
+	args:[], kwargs:{}
+	Function/Method execution time 1.254699964192696e-05 seconds
+drop_database called at 2019-06-03 12:39:27
+	args:[], kwargs:{}
+	Function/Method execution time 0.015129088002140634 seconds
+get_line_from_file called at 2019-06-03 12:39:27
+	Called on 10 records
+	Function/Method execution time 4.974001058144495e-06 seconds
+insert_to_mongo called at 2019-06-03 12:39:27
+	Called on 10 records
+	Function/Method execution time 0.5070855730009498 seconds
+get_line_from_file called at 2019-06-03 12:39:28
+	Called on 10 records
+	Function/Method execution time 1.0338000720366836e-05 seconds
+insert_to_mongo called at 2019-06-03 12:39:28
+	Called on 10 records
+	Function/Method execution time 0.509336612001789 seconds
+get_line_from_file called at 2019-06-03 12:39:28
+	Called on 10 records
+	Function/Method execution time 1.9342998712090775e-05 seconds
+insert_to_mongo called at 2019-06-03 12:39:28
+	Called on 10 records
+	Function/Method execution time 0.5106347530017956 seconds
+customers_renting_product called at 2019-06-03 12:39:29
+	args:['P000001'], kwargs:{}
+	Function/Method execution time 0.016541732002224308 seconds
+__init__ called at 2019-06-03 12:39:29
+	args:[], kwargs:{}
+	Function/Method execution time 3.0820003303233534e-05 seconds
+drop_database called at 2019-06-03 12:39:29
+	args:[], kwargs:{}
+	Function/Method execution time 0.027912249002838507 seconds
+get_line_from_file called at 2019-06-03 12:39:29
+	Called on 10 records
+	Function/Method execution time 1.0469000699231401e-05 seconds
+insert_to_mongo called at 2019-06-03 12:39:29
+	Called on 10 records
+	Function/Method execution time 0.5091736099966511 seconds
+list_all_customers called at 2019-06-03 12:39:29
+	args:[], kwargs:{}
+	Function/Method execution time 0.010511361997487256 seconds
+__init__ called at 2019-06-03 12:39:29
+	args:[], kwargs:{}
+	Function/Method execution time 2.803200186463073e-05 seconds
+drop_database called at 2019-06-03 12:39:29
+	args:[], kwargs:{}
+	Function/Method execution time 0.024988909000967396 seconds
+get_line_from_file called at 2019-06-03 12:39:29
+	Called on 10 records
+	Function/Method execution time 5.4060001275502145e-06 seconds
+insert_to_mongo called at 2019-06-03 12:39:29
+	Called on 10 records
+	Function/Method execution time 0.5072596330028318 seconds
+list_all_products called at 2019-06-03 12:39:30
+	args:[], kwargs:{}
+	Function/Method execution time 0.009474507998675108 seconds
+__init__ called at 2019-06-03 12:39:30
+	args:[], kwargs:{}
+	Function/Method execution time 2.9550999897764996e-05 seconds
+drop_database called at 2019-06-03 12:39:30
+	args:[], kwargs:{}
+	Function/Method execution time 0.028351806999125984 seconds
+get_line_from_file called at 2019-06-03 12:39:30
+	Called on 10 records
+	Function/Method execution time 1.0456999007146806e-05 seconds
+insert_to_mongo called at 2019-06-03 12:39:30
+	Called on 10 records
+	Function/Method execution time 0.5093517289969896 seconds
+list_all_rentals called at 2019-06-03 12:39:30
+	args:[], kwargs:{}
+	Function/Method execution time 0.010129810001672013 seconds
+__init__ called at 2019-06-03 12:39:30
+	args:[], kwargs:{}
+	Function/Method execution time 2.9044000257272273e-05 seconds
+drop_database called at 2019-06-03 12:39:30
+	args:[], kwargs:{}
+	Function/Method execution time 0.022175988997332752 seconds
+get_line_from_file called at 2019-06-03 12:39:30
+	Called on 10 records
+	Function/Method execution time 7.383998308796436e-06 seconds
+insert_to_mongo called at 2019-06-03 12:39:30
+	Called on 10 records
+	Function/Method execution time 0.5078267530006997 seconds
+get_line_from_file called at 2019-06-03 12:39:31
+	Called on 10 records
+	Function/Method execution time 1.3701999705517665e-05 seconds
+insert_to_mongo called at 2019-06-03 12:39:31
+	Called on 10 records
+	Function/Method execution time 0.5106930000001739 seconds
+get_line_from_file called at 2019-06-03 12:39:32
+	Called on 10 records
+	Function/Method execution time 2.2121999791124836e-05 seconds
+insert_to_mongo called at 2019-06-03 12:39:31
+	Called on 10 records
+	Function/Method execution time 0.511689112001477 seconds
+rentals_for_customer called at 2019-06-03 12:39:32
+	args:['C000001'], kwargs:{}
+	Function/Method execution time 0.014195300998835592 seconds
+get_line_from_file called at 2019-06-03 12:39:32
+	Called on 10 records
+	Function/Method execution time 1.7241000023204833e-05 seconds
+__init__ called at 2019-06-03 12:39:32
+	args:[], kwargs:{}
+	Function/Method execution time 2.814999970723875e-05 seconds
+get_line_from_file called at 2019-06-03 12:39:32
+	Called on 10 records
+	Function/Method execution time 1.557100040372461e-05 seconds
+insert_to_mongo called at 2019-06-03 12:39:32
+	Called on 10 records
+	Function/Method execution time 0.510529821000091 seconds
+drop_database called at 2019-06-03 12:39:33
+	args:[], kwargs:{}
+	Function/Method execution time 0.026806361998751527 seconds
+__init__ called at 2019-06-03 12:39:33
+	args:[], kwargs:{}
+	Function/Method execution time 1.5229001292027533e-05 seconds
+get_line_from_file called at 2019-06-03 12:39:33
+	Called on 10 records
+	Function/Method execution time 7.398000889224932e-06 seconds
+insert_to_mongo called at 2019-06-03 12:39:33
+	Called on 10 records
+	Function/Method execution time 0.50760624099712 seconds
+get_line_from_file called at 2019-06-03 12:39:33
+	Called on 10 records
+	Function/Method execution time 1.53600012708921e-05 seconds
+insert_to_mongo called at 2019-06-03 12:39:33
+	Called on 10 records
+	Function/Method execution time 0.5105316419976589 seconds
+get_line_from_file called at 2019-06-03 12:39:34
+	Called on 10 records
+	Function/Method execution time 1.1877000360982493e-05 seconds
+insert_to_mongo called at 2019-06-03 12:39:34
+	Called on 10 records
+	Function/Method execution time 0.5093810880025558 seconds
+drop_collections called at 2019-06-03 12:39:34
+	args:[], kwargs:{}
+	Function/Method execution time 0.01607581600183039 seconds
+__init__ called at 2019-06-03 12:40:34
+	args:[], kwargs:{}
+	Function/Method execution time 7.3449991759844124e-06 seconds
+drop_database called at 2019-06-03 12:40:34
+	args:[], kwargs:{}
+	Function/Method execution time 0.008864247000019532 seconds
+get_line_from_file called at 2019-06-03 12:40:34
+	Called on 10 records
+	Function/Method execution time 4.1670027712825686e-06 seconds
+insert_to_mongo called at 2019-06-03 12:40:34
+	Called on 10 records
+	Function/Method execution time 0.5061829689984734 seconds
+get_line_from_file called at 2019-06-03 12:40:34
+	Called on 10 records
+	Function/Method execution time 2.2156000341055915e-05 seconds
+insert_to_mongo called at 2019-06-03 12:40:34
+	Called on 10 records
+	Function/Method execution time 0.5098293320006633 seconds
+get_line_from_file called at 2019-06-03 12:40:35
+	Called on 10 records
+	Function/Method execution time 2.1971001842757687e-05 seconds
+insert_to_mongo called at 2019-06-03 12:40:35
+	Called on 10 records
+	Function/Method execution time 0.5076764010009356 seconds
+linear called at 2019-06-03 12:40:34
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 1.524897229999624 seconds
+__init__ called at 2019-06-03 12:40:35
+	args:[], kwargs:{}
+	Function/Method execution time 1.5083998732734472e-05 seconds
+drop_database called at 2019-06-03 12:40:35
+	args:[], kwargs:{}
+	Function/Method execution time 0.02220218699949328 seconds
+get_line_from_file called at 2019-06-03 12:40:36
+	Called on 10 records
+	Function/Method execution time 5.4679985623806715e-06 seconds
+get_line_from_file called at 2019-06-03 12:40:36
+	Called on 10 records
+	Function/Method execution time 5.7249999372288585e-06 seconds
+get_line_from_file called at 2019-06-03 12:40:36
+	Called on 10 records
+	Function/Method execution time 6.424997991416603e-06 seconds
+insert_to_mongo called at 2019-06-03 12:40:36
+	Called on 10 records
+	Function/Method execution time 0.5075158740000916 seconds
+insert_to_mongo called at 2019-06-03 12:40:36
+	Called on 10 records
+	Function/Method execution time 0.5074201419993187 seconds
+insert_to_mongo called at 2019-06-03 12:40:36
+	Called on 10 records
+	Function/Method execution time 0.5069040140006109 seconds
+parallel called at 2019-06-03 12:40:36
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.5690501700009918 seconds
+__init__ called at 2019-06-03 12:40:36
+	args:[], kwargs:{}
+	Function/Method execution time 1.561899989610538e-05 seconds
+drop_collections called at 2019-06-03 12:40:36
+	args:[], kwargs:{}
+	Function/Method execution time 0.005602142999123316 seconds
+get_line_from_file called at 2019-06-03 12:40:36
+	Called on 10 records
+	Function/Method execution time 4.409001121530309e-06 seconds
+insert_to_mongo called at 2019-06-03 12:40:36
+	Called on 10 records
+	Function/Method execution time 0.5040021989989327 seconds
+get_line_from_file called at 2019-06-03 12:40:37
+	Called on 10 records
+	Function/Method execution time 6.734000635333359e-06 seconds
+insert_to_mongo called at 2019-06-03 12:40:37
+	Called on 10 records
+	Function/Method execution time 0.5053093830028956 seconds
+get_line_from_file called at 2019-06-03 12:40:37
+	Called on 10 records
+	Function/Method execution time 8.181003067875281e-06 seconds
+insert_to_mongo called at 2019-06-03 12:40:37
+	Called on 10 records
+	Function/Method execution time 0.508017951000511 seconds
+get_line_from_file called at 2019-06-03 12:40:38
+	Called on 10 records
+	Function/Method execution time 1.675500243436545e-05 seconds
+insert_to_mongo called at 2019-06-03 12:40:38
+	Called on 10 records
+	Function/Method execution time 0.5104971079999814 seconds
+get_line_from_file called at 2019-06-03 12:40:38
+	Called on 10 records
+	Function/Method execution time 1.5785997675266117e-05 seconds
+insert_to_mongo called at 2019-06-03 12:40:38
+	Called on 10 records
+	Function/Method execution time 0.5095222380004998 seconds
+get_line_from_file called at 2019-06-03 12:40:39
+	Called on 10 records
+	Function/Method execution time 1.4638000720879063e-05 seconds
+insert_to_mongo called at 2019-06-03 12:40:39
+	Called on 10 records
+	Function/Method execution time 0.508683411997481 seconds
+__init__ called at 2019-06-03 12:40:39
+	args:[], kwargs:{}
+	Function/Method execution time 3.491600000415929e-05 seconds
+drop_database called at 2019-06-03 12:40:39
+	args:[], kwargs:{}
+	Function/Method execution time 0.03137305099880905 seconds
+get_line_from_file called at 2019-06-03 12:40:39
+	Called on 10 records
+	Function/Method execution time 1.543200050946325e-05 seconds
+insert_to_mongo called at 2019-06-03 12:40:39
+	Called on 10 records
+	Function/Method execution time 0.5099575589993037 seconds
+show_available_products called at 2019-06-03 12:40:40
+	args:[], kwargs:{}
+	Function/Method execution time 0.009241122999810614 seconds
+__init__ called at 2019-06-03 12:40:40
+	args:[], kwargs:{}
+	Function/Method execution time 3.1748997571412474e-05 seconds
+drop_database called at 2019-06-03 12:40:40
+	args:[], kwargs:{}
+	Function/Method execution time 0.027545824999833712 seconds
+get_line_from_file called at 2019-06-03 12:40:40
+	Called on 10 records
+	Function/Method execution time 2.275900260428898e-05 seconds
+insert_to_mongo called at 2019-06-03 12:40:40
+	Called on 10 records
+	Function/Method execution time 0.5100610400004371 seconds
+get_line_from_file called at 2019-06-03 12:40:40
+	Called on 10 records
+	Function/Method execution time 1.7281003238167614e-05 seconds
+insert_to_mongo called at 2019-06-03 12:40:40
+	Called on 10 records
+	Function/Method execution time 0.5103405730005761 seconds
+get_line_from_file called at 2019-06-03 12:40:41
+	Called on 10 records
+	Function/Method execution time 1.7556001694174483e-05 seconds
+insert_to_mongo called at 2019-06-03 12:40:41
+	Called on 10 records
+	Function/Method execution time 0.5096212889984599 seconds
+customers_renting_product called at 2019-06-03 12:40:41
+	args:['P000001'], kwargs:{}
+	Function/Method execution time 0.011500173000968061 seconds
+__init__ called at 2019-06-03 12:40:41
+	args:[], kwargs:{}
+	Function/Method execution time 9.572002454660833e-06 seconds
+drop_database called at 2019-06-03 12:40:41
+	args:[], kwargs:{}
+	Function/Method execution time 0.01307771500069066 seconds
+get_line_from_file called at 2019-06-03 12:40:41
+	Called on 10 records
+	Function/Method execution time 2.9529983294196427e-06 seconds
+insert_to_mongo called at 2019-06-03 12:40:41
+	Called on 10 records
+	Function/Method execution time 0.507017433999863 seconds
+list_all_customers called at 2019-06-03 12:40:42
+	args:[], kwargs:{}
+	Function/Method execution time 0.008596978997957194 seconds
+__init__ called at 2019-06-03 12:40:42
+	args:[], kwargs:{}
+	Function/Method execution time 1.8770999304251745e-05 seconds
+drop_database called at 2019-06-03 12:40:42
+	args:[], kwargs:{}
+	Function/Method execution time 0.0170051790009893 seconds
+get_line_from_file called at 2019-06-03 12:40:42
+	Called on 10 records
+	Function/Method execution time 6.9590023485943675e-06 seconds
+insert_to_mongo called at 2019-06-03 12:40:42
+	Called on 10 records
+	Function/Method execution time 0.5039861109980848 seconds
+list_all_products called at 2019-06-03 12:40:42
+	args:[], kwargs:{}
+	Function/Method execution time 0.0032072960020741448 seconds
+__init__ called at 2019-06-03 12:40:42
+	args:[], kwargs:{}
+	Function/Method execution time 1.1247000657022e-05 seconds
+drop_database called at 2019-06-03 12:40:42
+	args:[], kwargs:{}
+	Function/Method execution time 0.015139482002268778 seconds
+get_line_from_file called at 2019-06-03 12:40:42
+	Called on 10 records
+	Function/Method execution time 4.933997843181714e-06 seconds
+insert_to_mongo called at 2019-06-03 12:40:42
+	Called on 10 records
+	Function/Method execution time 0.5033452809984738 seconds
+list_all_rentals called at 2019-06-03 12:40:43
+	args:[], kwargs:{}
+	Function/Method execution time 0.0016710070012777578 seconds
+__init__ called at 2019-06-03 12:40:43
+	args:[], kwargs:{}
+	Function/Method execution time 6.616999598918483e-06 seconds
+drop_database called at 2019-06-03 12:40:43
+	args:[], kwargs:{}
+	Function/Method execution time 0.011927725001442013 seconds
+get_line_from_file called at 2019-06-03 12:40:43
+	Called on 10 records
+	Function/Method execution time 2.7410023903939873e-06 seconds
+insert_to_mongo called at 2019-06-03 12:40:43
+	Called on 10 records
+	Function/Method execution time 0.5059345739973651 seconds
+get_line_from_file called at 2019-06-03 12:40:43
+	Called on 10 records
+	Function/Method execution time 2.080999911413528e-05 seconds
+insert_to_mongo called at 2019-06-03 12:40:43
+	Called on 10 records
+	Function/Method execution time 0.5102738210007374 seconds
+get_line_from_file called at 2019-06-03 12:40:44
+	Called on 10 records
+	Function/Method execution time 1.6404999769292772e-05 seconds
+insert_to_mongo called at 2019-06-03 12:40:44
+	Called on 10 records
+	Function/Method execution time 0.5101293139996415 seconds
+rentals_for_customer called at 2019-06-03 12:40:44
+	args:['C000001'], kwargs:{}
+	Function/Method execution time 0.012250546002178453 seconds
+get_line_from_file called at 2019-06-03 12:40:44
+	Called on 10 records
+	Function/Method execution time 1.719899955787696e-05 seconds
+__init__ called at 2019-06-03 12:40:44
+	args:[], kwargs:{}
+	Function/Method execution time 3.780199767788872e-05 seconds
+get_line_from_file called at 2019-06-03 12:40:44
+	Called on 10 records
+	Function/Method execution time 2.107399996020831e-05 seconds
+insert_to_mongo called at 2019-06-03 12:40:44
+	Called on 10 records
+	Function/Method execution time 0.5110413289985445 seconds
+drop_database called at 2019-06-03 12:40:45
+	args:[], kwargs:{}
+	Function/Method execution time 0.0293893529997149 seconds
+__init__ called at 2019-06-03 12:40:45
+	args:[], kwargs:{}
+	Function/Method execution time 3.244500112487003e-05 seconds
+get_line_from_file called at 2019-06-03 12:40:45
+	Called on 10 records
+	Function/Method execution time 1.9813000108115375e-05 seconds
+insert_to_mongo called at 2019-06-03 12:40:45
+	Called on 10 records
+	Function/Method execution time 0.5096364599994558 seconds
+get_line_from_file called at 2019-06-03 12:40:45
+	Called on 10 records
+	Function/Method execution time 1.5386998711619526e-05 seconds
+insert_to_mongo called at 2019-06-03 12:40:45
+	Called on 10 records
+	Function/Method execution time 0.5110356500008493 seconds
+get_line_from_file called at 2019-06-03 12:40:46
+	Called on 10 records
+	Function/Method execution time 1.664700175751932e-05 seconds
+insert_to_mongo called at 2019-06-03 12:40:46
+	Called on 10 records
+	Function/Method execution time 0.5098760580003727 seconds
+drop_collections called at 2019-06-03 12:40:47
+	args:[], kwargs:{}
+	Function/Method execution time 0.018349387999478495 seconds
+__init__ called at 2019-06-03 12:41:02
+	args:[], kwargs:{}
+	Function/Method execution time 7.746999472146854e-06 seconds
+drop_database called at 2019-06-03 12:41:02
+	args:[], kwargs:{}
+	Function/Method execution time 0.013986255002237158 seconds
+get_line_from_file called at 2019-06-03 12:41:02
+	Called on 10 records
+	Function/Method execution time 2.662996848812327e-06 seconds
+insert_to_mongo called at 2019-06-03 12:41:02
+	Called on 10 records
+	Function/Method execution time 0.5062511839969375 seconds
+get_line_from_file called at 2019-06-03 12:41:03
+	Called on 10 records
+	Function/Method execution time 1.3749999197898433e-05 seconds
+insert_to_mongo called at 2019-06-03 12:41:03
+	Called on 10 records
+	Function/Method execution time 0.5097454300012032 seconds
+get_line_from_file called at 2019-06-03 12:41:03
+	Called on 10 records
+	Function/Method execution time 2.2490999981528148e-05 seconds
+insert_to_mongo called at 2019-06-03 12:41:03
+	Called on 10 records
+	Function/Method execution time 0.5100187569987611 seconds
+linear called at 2019-06-03 12:41:02
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 1.5275111880000622 seconds
+__init__ called at 2019-06-03 12:41:04
+	args:[], kwargs:{}
+	Function/Method execution time 3.091200051130727e-05 seconds
+drop_database called at 2019-06-03 12:41:04
+	args:[], kwargs:{}
+	Function/Method execution time 0.03174633100206847 seconds
+get_line_from_file called at 2019-06-03 12:41:04
+	Called on 10 records
+	Function/Method execution time 3.8010002754162997e-06 seconds
+get_line_from_file called at 2019-06-03 12:41:04
+	Called on 10 records
+	Function/Method execution time 6.197002221597359e-06 seconds
+get_line_from_file called at 2019-06-03 12:41:04
+	Called on 10 records
+	Function/Method execution time 5.10500103700906e-06 seconds
+insert_to_mongo called at 2019-06-03 12:41:04
+	Called on 10 records
+	Function/Method execution time 0.5111618149967398 seconds
+insert_to_mongo called at 2019-06-03 12:41:04
+	Called on 10 records
+	Function/Method execution time 0.510890246998315 seconds
+insert_to_mongo called at 2019-06-03 12:41:04
+	Called on 10 records
+	Function/Method execution time 0.5106647389984573 seconds
+parallel called at 2019-06-03 12:41:04
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.5749734390010417 seconds
+__init__ called at 2019-06-03 12:41:05
+	args:[], kwargs:{}
+	Function/Method execution time 6.13269985478837e-05 seconds
+drop_collections called at 2019-06-03 12:41:05
+	args:[], kwargs:{}
+	Function/Method execution time 0.012452143000700744 seconds
+get_line_from_file called at 2019-06-03 12:41:05
+	Called on 10 records
+	Function/Method execution time 5.440000677481294e-06 seconds
+insert_to_mongo called at 2019-06-03 12:41:05
+	Called on 10 records
+	Function/Method execution time 0.507075330002408 seconds
+get_line_from_file called at 2019-06-03 12:41:05
+	Called on 10 records
+	Function/Method execution time 2.9269976948853582e-06 seconds
+insert_to_mongo called at 2019-06-03 12:41:05
+	Called on 10 records
+	Function/Method execution time 0.5072131960005208 seconds
+get_line_from_file called at 2019-06-03 12:41:06
+	Called on 10 records
+	Function/Method execution time 1.4747998648090288e-05 seconds
+insert_to_mongo called at 2019-06-03 12:41:06
+	Called on 10 records
+	Function/Method execution time 0.5113382200033811 seconds
+get_line_from_file called at 2019-06-03 12:41:06
+	Called on 10 records
+	Function/Method execution time 1.4436998753808439e-05 seconds
+insert_to_mongo called at 2019-06-03 12:41:06
+	Called on 10 records
+	Function/Method execution time 0.5108132220011612 seconds
+get_line_from_file called at 2019-06-03 12:41:07
+	Called on 10 records
+	Function/Method execution time 2.4859000404831022e-05 seconds
+insert_to_mongo called at 2019-06-03 12:41:07
+	Called on 10 records
+	Function/Method execution time 0.5087463250019937 seconds
+get_line_from_file called at 2019-06-03 12:41:07
+	Called on 10 records
+	Function/Method execution time 9.837000106927007e-06 seconds
+insert_to_mongo called at 2019-06-03 12:41:07
+	Called on 10 records
+	Function/Method execution time 0.5068803840003966 seconds
+__init__ called at 2019-06-03 12:41:08
+	args:[], kwargs:{}
+	Function/Method execution time 1.8005001038545743e-05 seconds
+drop_database called at 2019-06-03 12:41:08
+	args:[], kwargs:{}
+	Function/Method execution time 0.016936646999965888 seconds
+get_line_from_file called at 2019-06-03 12:41:08
+	Called on 10 records
+	Function/Method execution time 8.951999916462228e-06 seconds
+insert_to_mongo called at 2019-06-03 12:41:08
+	Called on 10 records
+	Function/Method execution time 0.505304744001478 seconds
+show_available_products called at 2019-06-03 12:41:08
+	args:[], kwargs:{}
+	Function/Method execution time 0.00471396799912327 seconds
+__init__ called at 2019-06-03 12:41:08
+	args:[], kwargs:{}
+	Function/Method execution time 1.747799979057163e-05 seconds
+drop_database called at 2019-06-03 12:41:08
+	args:[], kwargs:{}
+	Function/Method execution time 0.018431063002935844 seconds
+get_line_from_file called at 2019-06-03 12:41:08
+	Called on 10 records
+	Function/Method execution time 1.0301999282091856e-05 seconds
+insert_to_mongo called at 2019-06-03 12:41:08
+	Called on 10 records
+	Function/Method execution time 0.5061573689999932 seconds
+get_line_from_file called at 2019-06-03 12:41:09
+	Called on 10 records
+	Function/Method execution time 9.957002475857735e-06 seconds
+insert_to_mongo called at 2019-06-03 12:41:09
+	Called on 10 records
+	Function/Method execution time 0.506181426000694 seconds
+get_line_from_file called at 2019-06-03 12:41:09
+	Called on 10 records
+	Function/Method execution time 1.2882002920378e-05 seconds
+insert_to_mongo called at 2019-06-03 12:41:09
+	Called on 10 records
+	Function/Method execution time 0.5084395179983403 seconds
+customers_renting_product called at 2019-06-03 12:41:10
+	args:['P000001'], kwargs:{}
+	Function/Method execution time 0.016782765997049864 seconds
+__init__ called at 2019-06-03 12:41:10
+	args:[], kwargs:{}
+	Function/Method execution time 3.349899998283945e-05 seconds
+drop_database called at 2019-06-03 12:41:10
+	args:[], kwargs:{}
+	Function/Method execution time 0.029416204000881407 seconds
+get_line_from_file called at 2019-06-03 12:41:10
+	Called on 10 records
+	Function/Method execution time 2.126199979102239e-05 seconds
+insert_to_mongo called at 2019-06-03 12:41:10
+	Called on 10 records
+	Function/Method execution time 0.5106895090029866 seconds
+list_all_customers called at 2019-06-03 12:41:10
+	args:[], kwargs:{}
+	Function/Method execution time 0.01050426399888238 seconds
+__init__ called at 2019-06-03 12:41:10
+	args:[], kwargs:{}
+	Function/Method execution time 3.656599801615812e-05 seconds
+drop_database called at 2019-06-03 12:41:10
+	args:[], kwargs:{}
+	Function/Method execution time 0.02198910199876991 seconds
+get_line_from_file called at 2019-06-03 12:41:10
+	Called on 10 records
+	Function/Method execution time 4.532997991191223e-06 seconds
+insert_to_mongo called at 2019-06-03 12:41:10
+	Called on 10 records
+	Function/Method execution time 0.5068424960008997 seconds
+list_all_products called at 2019-06-03 12:41:11
+	args:[], kwargs:{}
+	Function/Method execution time 0.008687825997185428 seconds
+__init__ called at 2019-06-03 12:41:11
+	args:[], kwargs:{}
+	Function/Method execution time 2.966199826914817e-05 seconds
+drop_database called at 2019-06-03 12:41:11
+	args:[], kwargs:{}
+	Function/Method execution time 0.029406480000034207 seconds
+get_line_from_file called at 2019-06-03 12:41:11
+	Called on 10 records
+	Function/Method execution time 9.43799750530161e-06 seconds
+insert_to_mongo called at 2019-06-03 12:41:11
+	Called on 10 records
+	Function/Method execution time 0.5094680990005145 seconds
+list_all_rentals called at 2019-06-03 12:41:11
+	args:[], kwargs:{}
+	Function/Method execution time 0.006472327000665246 seconds
+__init__ called at 2019-06-03 12:41:11
+	args:[], kwargs:{}
+	Function/Method execution time 1.796099968487397e-05 seconds
+drop_database called at 2019-06-03 12:41:11
+	args:[], kwargs:{}
+	Function/Method execution time 0.016352673999790568 seconds
+get_line_from_file called at 2019-06-03 12:41:11
+	Called on 10 records
+	Function/Method execution time 4.779001756105572e-06 seconds
+insert_to_mongo called at 2019-06-03 12:41:11
+	Called on 10 records
+	Function/Method execution time 0.5040352230025746 seconds
+get_line_from_file called at 2019-06-03 12:41:12
+	Called on 10 records
+	Function/Method execution time 5.71300188312307e-06 seconds
+insert_to_mongo called at 2019-06-03 12:41:12
+	Called on 10 records
+	Function/Method execution time 0.5038196999994398 seconds
+get_line_from_file called at 2019-06-03 12:41:12
+	Called on 10 records
+	Function/Method execution time 7.747999916318804e-06 seconds
+insert_to_mongo called at 2019-06-03 12:41:12
+	Called on 10 records
+	Function/Method execution time 0.5038700219993189 seconds
+rentals_for_customer called at 2019-06-03 12:41:13
+	args:['C000001'], kwargs:{}
+	Function/Method execution time 0.00257459600106813 seconds
+get_line_from_file called at 2019-06-03 12:41:13
+	Called on 10 records
+	Function/Method execution time 3.273002221249044e-06 seconds
+__init__ called at 2019-06-03 12:41:13
+	args:[], kwargs:{}
+	Function/Method execution time 6.116002623457462e-06 seconds
+get_line_from_file called at 2019-06-03 12:41:13
+	Called on 10 records
+	Function/Method execution time 2.734999725362286e-06 seconds
+insert_to_mongo called at 2019-06-03 12:41:13
+	Called on 10 records
+	Function/Method execution time 0.5034889739981736 seconds
+drop_database called at 2019-06-03 12:41:13
+	args:[], kwargs:{}
+	Function/Method execution time 0.02487091700095334 seconds
+__init__ called at 2019-06-03 12:41:13
+	args:[], kwargs:{}
+	Function/Method execution time 3.255499905208126e-05 seconds
+get_line_from_file called at 2019-06-03 12:41:13
+	Called on 10 records
+	Function/Method execution time 2.0719002350233495e-05 seconds
+insert_to_mongo called at 2019-06-03 12:41:13
+	Called on 10 records
+	Function/Method execution time 0.5098136439992231 seconds
+get_line_from_file called at 2019-06-03 12:41:14
+	Called on 10 records
+	Function/Method execution time 1.4707999071106315e-05 seconds
+insert_to_mongo called at 2019-06-03 12:41:14
+	Called on 10 records
+	Function/Method execution time 0.5090373509992787 seconds
+get_line_from_file called at 2019-06-03 12:41:14
+	Called on 10 records
+	Function/Method execution time 1.905799945234321e-05 seconds
+insert_to_mongo called at 2019-06-03 12:41:14
+	Called on 10 records
+	Function/Method execution time 0.5097871610014408 seconds
+drop_collections called at 2019-06-03 12:41:15
+	args:[], kwargs:{}
+	Function/Method execution time 0.016009324997867225 seconds
+__init__ called at 2019-06-03 12:44:01
+	args:[], kwargs:{}
+	Function/Method execution time 1.0943000233964995e-05 seconds
+list_all_products called at 2019-06-03 12:44:01
+	args:[], kwargs:{}
+	Function/Method execution time 0.0021769960003439337 seconds
+__init__ called at 2019-06-03 12:44:02
+	args:[], kwargs:{}
+	Function/Method execution time 1.1061001714551821e-05 seconds
+list_all_customers called at 2019-06-03 12:44:02
+	args:[], kwargs:{}
+	Function/Method execution time 0.00357657300264691 seconds
+__init__ called at 2019-06-03 12:44:03
+	args:[], kwargs:{}
+	Function/Method execution time 1.3116998161422089e-05 seconds
+list_all_rentals called at 2019-06-03 12:44:03
+	args:[], kwargs:{}
+	Function/Method execution time 0.0022649769998679403 seconds
+__init__ called at 2019-06-03 12:44:03
+	args:[], kwargs:{}
+	Function/Method execution time 1.0312000085832551e-05 seconds
+show_available_products called at 2019-06-03 12:44:03
+	args:[], kwargs:{}
+	Function/Method execution time 0.0023238159992615692 seconds
+__init__ called at 2019-06-03 12:44:04
+	args:[], kwargs:{}
+	Function/Method execution time 1.1675998393911868e-05 seconds
+drop_collections called at 2019-06-03 12:44:04
+	args:[], kwargs:{}
+	Function/Method execution time 0.0024330730011570267 seconds
+__init__ called at 2019-06-03 12:44:04
+	args:[], kwargs:{}
+	Function/Method execution time 1.0201001714449376e-05 seconds
+drop_database called at 2019-06-03 12:44:04
+	args:[], kwargs:{}
+	Function/Method execution time 0.01208878300167271 seconds
+__init__ called at 2019-06-03 12:44:05
+	args:[], kwargs:{}
+	Function/Method execution time 1.2525997590273619e-05 seconds
+__init__ called at 2019-06-03 12:44:05
+	args:[], kwargs:{}
+	Function/Method execution time 9.766001312527806e-06 seconds
+rentals_for_customer called at 2019-06-03 12:44:05
+	args:['C000001'], kwargs:{}
+	Function/Method execution time 0.002296635000675451 seconds
+__init__ called at 2019-06-03 12:44:06
+	args:[], kwargs:{}
+	Function/Method execution time 1.0873001883737743e-05 seconds
+customers_renting_product called at 2019-06-03 12:44:06
+	args:['P000001'], kwargs:{}
+	Function/Method execution time 0.0021574350030277856 seconds
+__init__ called at 2019-06-03 12:44:06
+	args:[], kwargs:{}
+	Function/Method execution time 1.0695999662857503e-05 seconds
+get_line_from_file called at 2019-06-03 12:44:06
+	Called on 10 records
+	Function/Method execution time 5.051999323768541e-06 seconds
+get_line_from_file called at 2019-06-03 12:44:06
+	Called on 10 records
+	Function/Method execution time 4.7579997044522315e-06 seconds
+get_line_from_file called at 2019-06-03 12:44:06
+	Called on 10 records
+	Function/Method execution time 5.0299968279432505e-06 seconds
+insert_to_mongo called at 2019-06-03 12:44:06
+	Called on 10 records
+	Function/Method execution time 0.5041495139994367 seconds
+insert_to_mongo called at 2019-06-03 12:44:06
+	Called on 10 records
+	Function/Method execution time 0.5034815540020645 seconds
+insert_to_mongo called at 2019-06-03 12:44:06
+	Called on 10 records
+	Function/Method execution time 0.5038752799991926 seconds
+parallel called at 2019-06-03 12:44:06
+	args:[['./data/customers.csv', './data/rental.csv', './data/product.csv']], kwargs:{}
+	Function/Method execution time 0.5105669610020414 seconds
+__init__ called at 2019-06-03 12:44:07
+	args:[], kwargs:{}
+	Function/Method execution time 1.126600182033144e-05 seconds
+get_line_from_file called at 2019-06-03 12:44:07
+	Called on 10 records
+	Function/Method execution time 2.449000021442771e-06 seconds
+insert_to_mongo called at 2019-06-03 12:44:07
+	Called on 10 records
+	Function/Method execution time 0.50540078099948 seconds
+get_line_from_file called at 2019-06-03 12:44:07
+	Called on 10 records
+	Function/Method execution time 1.416700251866132e-05 seconds
+insert_to_mongo called at 2019-06-03 12:44:07
+	Called on 10 records
+	Function/Method execution time 0.5059857300002477 seconds
+get_line_from_file called at 2019-06-03 12:44:08
+	Called on 10 records
+	Function/Method execution time 5.482997949002311e-06 seconds
+insert_to_mongo called at 2019-06-03 12:44:08
+	Called on 10 records
+	Function/Method execution time 0.5058701380003185 seconds
+linear called at 2019-06-03 12:44:07
+	args:[['./data/customers.csv', './data/rental.csv', './data/product.csv']], kwargs:{}
+	Function/Method execution time 1.5183347620004497 seconds
+__init__ called at 2019-06-03 12:45:08
+	args:[], kwargs:{}
+	Function/Method execution time 1.1470001481939107e-05 seconds
+__init__ called at 2019-06-03 12:45:08
+	args:[], kwargs:{}
+	Function/Method execution time 1.0882999049499631e-05 seconds
+get_line_from_file called at 2019-06-03 12:45:08
+	Called on 10 records
+	Function/Method execution time 2.507000317564234e-06 seconds
+insert_to_mongo called at 2019-06-03 12:45:08
+	Called on 10 records
+	Function/Method execution time 0.5031483989987464 seconds
+get_line_from_file called at 2019-06-03 12:45:08
+	Called on 10 records
+	Function/Method execution time 3.670000296551734e-06 seconds
+insert_to_mongo called at 2019-06-03 12:45:08
+	Called on 10 records
+	Function/Method execution time 0.5052119130014034 seconds
+get_line_from_file called at 2019-06-03 12:45:09
+	Called on 10 records
+	Function/Method execution time 1.514999894425273e-05 seconds
+insert_to_mongo called at 2019-06-03 12:45:09
+	Called on 10 records
+	Function/Method execution time 0.5088422019980499 seconds
+linear called at 2019-06-03 12:45:08
+	args:[['./data/customers.csv', './data/rental.csv', './data/product.csv']], kwargs:{}
+	Function/Method execution time 1.5182539589986845 seconds
+__init__ called at 2019-06-03 12:45:10
+	args:[], kwargs:{}
+	Function/Method execution time 1.140600215876475e-05 seconds
+drop_collections called at 2019-06-03 12:45:10
+	args:[], kwargs:{}
+	Function/Method execution time 0.005270186000416288 seconds
+__init__ called at 2019-06-03 12:45:10
+	args:[], kwargs:{}
+	Function/Method execution time 1.1375999747542664e-05 seconds
+drop_database called at 2019-06-03 12:45:10
+	args:[], kwargs:{}
+	Function/Method execution time 0.01238234199990984 seconds
+__init__ called at 2019-06-03 12:45:11
+	args:[], kwargs:{}
+	Function/Method execution time 1.0695999662857503e-05 seconds
+get_line_from_file called at 2019-06-03 12:45:11
+	Called on 10 records
+	Function/Method execution time 4.770001396536827e-06 seconds
+get_line_from_file called at 2019-06-03 12:45:11
+	Called on 10 records
+	Function/Method execution time 7.489998097298667e-06 seconds
+get_line_from_file called at 2019-06-03 12:45:11
+	Called on 10 records
+	Function/Method execution time 7.121998351067305e-06 seconds
+insert_to_mongo called at 2019-06-03 12:45:11
+	Called on 10 records
+	Function/Method execution time 0.5076001429988537 seconds
+insert_to_mongo called at 2019-06-03 12:45:11
+	Called on 10 records
+	Function/Method execution time 0.5082918100015377 seconds
+insert_to_mongo called at 2019-06-03 12:45:11
+	Called on 10 records
+	Function/Method execution time 0.5080443380029465 seconds
+parallel called at 2019-06-03 12:45:11
+	args:[['./data/customers.csv', './data/rental.csv', './data/product.csv']], kwargs:{}
+	Function/Method execution time 0.5202160620028735 seconds
+__init__ called at 2019-06-03 12:45:12
+	args:[], kwargs:{}
+	Function/Method execution time 1.2518998119048774e-05 seconds
+list_all_products called at 2019-06-03 12:45:12
+	args:[], kwargs:{}
+	Function/Method execution time 0.002227499000582611 seconds
+__init__ called at 2019-06-03 12:45:12
+	args:[], kwargs:{}
+	Function/Method execution time 9.847000910667703e-06 seconds
+list_all_customers called at 2019-06-03 12:45:12
+	args:[], kwargs:{}
+	Function/Method execution time 0.002209659000072861 seconds
+__init__ called at 2019-06-03 12:45:13
+	args:[], kwargs:{}
+	Function/Method execution time 1.1152998922625557e-05 seconds
+list_all_rentals called at 2019-06-03 12:45:13
+	args:[], kwargs:{}
+	Function/Method execution time 0.002331710998987546 seconds
+__init__ called at 2019-06-03 12:45:13
+	args:[], kwargs:{}
+	Function/Method execution time 1.134699778049253e-05 seconds
+show_available_products called at 2019-06-03 12:45:13
+	args:[], kwargs:{}
+	Function/Method execution time 0.002233529998193262 seconds
+__init__ called at 2019-06-03 12:45:14
+	args:[], kwargs:{}
+	Function/Method execution time 1.2469998182496056e-05 seconds
+rentals_for_customer called at 2019-06-03 12:45:14
+	args:['C000001'], kwargs:{}
+	Function/Method execution time 0.0028938100003870204 seconds
+__init__ called at 2019-06-03 12:45:15
+	args:[], kwargs:{}
+	Function/Method execution time 1.2828997569158673e-05 seconds
+customers_renting_product called at 2019-06-03 12:45:15
+	args:['P000001'], kwargs:{}
+	Function/Method execution time 0.0036071059985260945 seconds
+__init__ called at 2019-06-03 12:46:45
+	args:[], kwargs:{}
+	Function/Method execution time 9.687002602731809e-06 seconds
+__init__ called at 2019-06-03 12:46:45
+	args:[], kwargs:{}
+	Function/Method execution time 1.1005999112967402e-05 seconds
+get_line_from_file called at 2019-06-03 12:46:45
+	Called on 9998 records
+	Function/Method execution time 3.2149982871487737e-06 seconds
+insert_to_mongo called at 2019-06-03 12:46:45
+	Called on 9998 records
+	Function/Method execution time 1.5164654119980696 seconds
+get_line_from_file called at 2019-06-03 12:46:47
+	Called on 10000 records
+	Function/Method execution time 1.6394998965552077e-05 seconds
+insert_to_mongo called at 2019-06-03 12:46:47
+	Called on 10000 records
+	Function/Method execution time 1.5191042230035237 seconds
+get_line_from_file called at 2019-06-03 12:46:48
+	Called on 9999 records
+	Function/Method execution time 1.569099913467653e-05 seconds
+insert_to_mongo called at 2019-06-03 12:46:48
+	Called on 9999 records
+	Function/Method execution time 1.518957195999974 seconds
+linear called at 2019-06-03 12:46:45
+	args:[['./data/customers.csv', './data/rental.csv', './data/product.csv']], kwargs:{}
+	Function/Method execution time 4.57243456300057 seconds
+__init__ called at 2019-06-03 12:46:50
+	args:[], kwargs:{}
+	Function/Method execution time 1.2976001016795635e-05 seconds
+drop_collections called at 2019-06-03 12:46:50
+	args:[], kwargs:{}
+	Function/Method execution time 0.00511997200010228 seconds
+__init__ called at 2019-06-03 12:46:51
+	args:[], kwargs:{}
+	Function/Method execution time 1.0452000424265862e-05 seconds
+drop_database called at 2019-06-03 12:46:51
+	args:[], kwargs:{}
+	Function/Method execution time 0.048020185000495985 seconds
+__init__ called at 2019-06-03 12:46:52
+	args:[], kwargs:{}
+	Function/Method execution time 1.4371998986462131e-05 seconds
+get_line_from_file called at 2019-06-03 12:46:52
+	Called on 9998 records
+	Function/Method execution time 5.595000402536243e-06 seconds
+get_line_from_file called at 2019-06-03 12:46:52
+	Called on 10000 records
+	Function/Method execution time 4.221998096909374e-06 seconds
+get_line_from_file called at 2019-06-03 12:46:52
+	Called on 9999 records
+	Function/Method execution time 5.288999091135338e-06 seconds
+insert_to_mongo called at 2019-06-03 12:46:52
+	Called on 9998 records
+	Function/Method execution time 2.022523031999299 seconds
+insert_to_mongo called at 2019-06-03 12:46:52
+	Called on 9999 records
+	Function/Method execution time 2.0262028180004563 seconds
+insert_to_mongo called at 2019-06-03 12:46:52
+	Called on 10000 records
+	Function/Method execution time 2.024369532999117 seconds
+parallel called at 2019-06-03 12:46:52
+	args:[['./data/customers.csv', './data/rental.csv', './data/product.csv']], kwargs:{}
+	Function/Method execution time 2.048549635001109 seconds
+__init__ called at 2019-06-03 12:46:54
+	args:[], kwargs:{}
+	Function/Method execution time 1.0806998034240678e-05 seconds
+list_all_products called at 2019-06-03 12:46:54
+	args:[], kwargs:{}
+	Function/Method execution time 0.024853618000634015 seconds
+__init__ called at 2019-06-03 12:46:54
+	args:[], kwargs:{}
+	Function/Method execution time 1.2325002899160609e-05 seconds
+list_all_customers called at 2019-06-03 12:46:54
+	args:[], kwargs:{}
+	Function/Method execution time 0.03873046100125066 seconds
+__init__ called at 2019-06-03 12:46:55
+	args:[], kwargs:{}
+	Function/Method execution time 1.0943997040158138e-05 seconds
+list_all_rentals called at 2019-06-03 12:46:55
+	args:[], kwargs:{}
+	Function/Method execution time 0.028062843000952853 seconds
+__init__ called at 2019-06-03 12:46:56
+	args:[], kwargs:{}
+	Function/Method execution time 1.0810999810928479e-05 seconds
+show_available_products called at 2019-06-03 12:46:56
+	args:[], kwargs:{}
+	Function/Method execution time 0.025300912999227876 seconds
+__init__ called at 2019-06-03 12:46:57
+	args:[], kwargs:{}
+	Function/Method execution time 1.2361000699456781e-05 seconds
+rentals_for_customer called at 2019-06-03 12:46:57
+	args:['C000001'], kwargs:{}
+	Function/Method execution time 0.0026988509998773225 seconds
+__init__ called at 2019-06-03 12:46:57
+	args:[], kwargs:{}
+	Function/Method execution time 1.3030003174208105e-05 seconds
+customers_renting_product called at 2019-06-03 12:46:57
+	args:['P000001'], kwargs:{}
+	Function/Method execution time 0.005324940000718925 seconds
+__init__ called at 2019-06-05 08:05:43
+	args:[], kwargs:{}
+	Function/Method execution time 9.577000128047075e-06 seconds
+drop_database called at 2019-06-05 08:05:43
+	args:[], kwargs:{}
+	Function/Method execution time 1.6675044290004735 seconds
+__init__ called at 2019-06-05 08:05:56
+	args:[], kwargs:{}
+	Function/Method execution time 9.534000128041953e-06 seconds
+drop_database called at 2019-06-05 08:05:56
+	args:[], kwargs:{}
+	Function/Method execution time 0.011372836000191455 seconds
+get_line_from_file called at 2019-06-05 08:05:56
+	Called on 10 records
+	Function/Method execution time 2.576000042608939e-06 seconds
+insert_to_mongo called at 2019-06-05 08:05:56
+	Called on 10 records
+	Function/Method execution time 0.5065461869999126 seconds
+get_line_from_file called at 2019-06-05 08:05:56
+	Called on 10 records
+	Function/Method execution time 1.797400000214111e-05 seconds
+insert_to_mongo called at 2019-06-05 08:05:56
+	Called on 10 records
+	Function/Method execution time 0.5056592129994897 seconds
+get_line_from_file called at 2019-06-05 08:05:57
+	Called on 10 records
+	Function/Method execution time 2.6110001272172667e-06 seconds
+insert_to_mongo called at 2019-06-05 08:05:57
+	Called on 10 records
+	Function/Method execution time 0.5048971109999911 seconds
+linear called at 2019-06-05 08:05:56
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 1.5183235640006387 seconds
+__init__ called at 2019-06-05 08:05:57
+	args:[], kwargs:{}
+	Function/Method execution time 2.4762000066402834e-05 seconds
+drop_database called at 2019-06-05 08:05:57
+	args:[], kwargs:{}
+	Function/Method execution time 0.022249161999752687 seconds
+get_line_from_file called at 2019-06-05 08:05:57
+	Called on 10 records
+	Function/Method execution time 1.3844000022800174e-05 seconds
+get_line_from_file called at 2019-06-05 08:05:57
+	Called on 10 records
+	Function/Method execution time 1.3012000636081211e-05 seconds
+get_line_from_file called at 2019-06-05 08:05:57
+	Called on 10 records
+	Function/Method execution time 1.2806000086129643e-05 seconds
+insert_to_mongo called at 2019-06-05 08:05:57
+	Called on 10 records
+	Function/Method execution time 0.5110076009996192 seconds
+insert_to_mongo called at 2019-06-05 08:05:57
+	Called on 10 records
+	Function/Method execution time 0.5114712109998436 seconds
+insert_to_mongo called at 2019-06-05 08:05:57
+	Called on 10 records
+	Function/Method execution time 0.5103337399996235 seconds
+parallel called at 2019-06-05 08:05:57
+	args:[['./data/customers.csv', './data/product.csv', './data/rental.csv']], kwargs:{}
+	Function/Method execution time 0.5345673829997395 seconds
+__init__ called at 2019-06-05 08:05:58
+	args:[], kwargs:{}
+	Function/Method execution time 5.9545000112848356e-05 seconds
+drop_collections called at 2019-06-05 08:05:58
+	args:[], kwargs:{}
+	Function/Method execution time 0.017685121999420517 seconds
+get_line_from_file called at 2019-06-05 08:05:58
+	Called on 10 records
+	Function/Method execution time 1.0637000741553493e-05 seconds
+insert_to_mongo called at 2019-06-05 08:05:58
+	Called on 10 records
+	Function/Method execution time 0.5083433789995979 seconds
+get_line_from_file called at 2019-06-05 08:05:58
+	Called on 10 records
+	Function/Method execution time 1.205200078402413e-05 seconds
+insert_to_mongo called at 2019-06-05 08:05:58
+	Called on 10 records
+	Function/Method execution time 0.5080627209999875 seconds
+get_line_from_file called at 2019-06-05 08:05:59
+	Called on 10 records
+	Function/Method execution time 1.2837999747716822e-05 seconds
+insert_to_mongo called at 2019-06-05 08:05:59
+	Called on 10 records
+	Function/Method execution time 0.5076784269995187 seconds
+get_line_from_file called at 2019-06-05 08:05:59
+	Called on 10 records
+	Function/Method execution time 1.2513000001490582e-05 seconds
+insert_to_mongo called at 2019-06-05 08:05:59
+	Called on 10 records
+	Function/Method execution time 0.5061049890000504 seconds
+get_line_from_file called at 2019-06-05 08:06:00
+	Called on 10 records
+	Function/Method execution time 3.565999577404e-06 seconds
+insert_to_mongo called at 2019-06-05 08:06:00
+	Called on 10 records
+	Function/Method execution time 0.5037978029995429 seconds
+get_line_from_file called at 2019-06-05 08:06:00
+	Called on 10 records
+	Function/Method execution time 5.89299997955095e-06 seconds
+insert_to_mongo called at 2019-06-05 08:06:00
+	Called on 10 records
+	Function/Method execution time 0.5064593899996908 seconds
+__init__ called at 2019-06-05 08:06:01
+	args:[], kwargs:{}
+	Function/Method execution time 3.1890999707684387e-05 seconds
+drop_database called at 2019-06-05 08:06:01
+	args:[], kwargs:{}
+	Function/Method execution time 0.02934323299996322 seconds
+get_line_from_file called at 2019-06-05 08:06:01
+	Called on 10 records
+	Function/Method execution time 1.6586999663559254e-05 seconds
+insert_to_mongo called at 2019-06-05 08:06:01
+	Called on 10 records
+	Function/Method execution time 0.5092309480005497 seconds
+show_available_products called at 2019-06-05 08:06:01
+	args:[], kwargs:{}
+	Function/Method execution time 0.008404838999922504 seconds
+__init__ called at 2019-06-05 08:06:01
+	args:[], kwargs:{}
+	Function/Method execution time 2.9910000193922315e-05 seconds
+drop_database called at 2019-06-05 08:06:01
+	args:[], kwargs:{}
+	Function/Method execution time 0.027751608000471606 seconds
+get_line_from_file called at 2019-06-05 08:06:01
+	Called on 10 records
+	Function/Method execution time 1.2986000001546927e-05 seconds
+insert_to_mongo called at 2019-06-05 08:06:01
+	Called on 10 records
+	Function/Method execution time 0.5057313310007885 seconds
+get_line_from_file called at 2019-06-05 08:06:02
+	Called on 10 records
+	Function/Method execution time 2.933999894594308e-06 seconds
+insert_to_mongo called at 2019-06-05 08:06:02
+	Called on 10 records
+	Function/Method execution time 0.5028714840000248 seconds
+get_line_from_file called at 2019-06-05 08:06:02
+	Called on 10 records
+	Function/Method execution time 4.528000317804981e-06 seconds
+insert_to_mongo called at 2019-06-05 08:06:02
+	Called on 10 records
+	Function/Method execution time 0.5034093730000677 seconds
+customers_renting_product called at 2019-06-05 08:06:03
+	args:['P000001'], kwargs:{}
+	Function/Method execution time 0.0057374279995201505 seconds
+__init__ called at 2019-06-05 08:06:03
+	args:[], kwargs:{}
+	Function/Method execution time 1.4714999451825861e-05 seconds
+drop_database called at 2019-06-05 08:06:03
+	args:[], kwargs:{}
+	Function/Method execution time 0.015895498999270785 seconds
+get_line_from_file called at 2019-06-05 08:06:03
+	Called on 10 records
+	Function/Method execution time 5.652999789163005e-06 seconds
+insert_to_mongo called at 2019-06-05 08:06:03
+	Called on 10 records
+	Function/Method execution time 0.5037663540006179 seconds
+list_all_customers called at 2019-06-05 08:06:03
+	args:[], kwargs:{}
+	Function/Method execution time 0.002738284999395546 seconds
+__init__ called at 2019-06-05 08:06:03
+	args:[], kwargs:{}
+	Function/Method execution time 8.504000106768217e-06 seconds
+drop_database called at 2019-06-05 08:06:03
+	args:[], kwargs:{}
+	Function/Method execution time 0.014918191000106162 seconds
+get_line_from_file called at 2019-06-05 08:06:03
+	Called on 10 records
+	Function/Method execution time 5.777999831479974e-06 seconds
+insert_to_mongo called at 2019-06-05 08:06:03
+	Called on 10 records
+	Function/Method execution time 0.5034411689994158 seconds
+list_all_products called at 2019-06-05 08:06:04
+	args:[], kwargs:{}
+	Function/Method execution time 0.0019276299999546609 seconds
+__init__ called at 2019-06-05 08:06:04
+	args:[], kwargs:{}
+	Function/Method execution time 8.967999747255817e-06 seconds
+drop_database called at 2019-06-05 08:06:04
+	args:[], kwargs:{}
+	Function/Method execution time 0.012444081000467122 seconds
+get_line_from_file called at 2019-06-05 08:06:04
+	Called on 10 records
+	Function/Method execution time 2.2119993445812725e-06 seconds
+insert_to_mongo called at 2019-06-05 08:06:04
+	Called on 10 records
+	Function/Method execution time 0.5028657289994953 seconds
+list_all_rentals called at 2019-06-05 08:06:04
+	args:[], kwargs:{}
+	Function/Method execution time 0.002625922000333958 seconds
+__init__ called at 2019-06-05 08:06:04
+	args:[], kwargs:{}
+	Function/Method execution time 1.20189997687703e-05 seconds
+drop_database called at 2019-06-05 08:06:04
+	args:[], kwargs:{}
+	Function/Method execution time 0.014437200999964261 seconds
+get_line_from_file called at 2019-06-05 08:06:04
+	Called on 10 records
+	Function/Method execution time 5.335999958333559e-06 seconds
+insert_to_mongo called at 2019-06-05 08:06:04
+	Called on 10 records
+	Function/Method execution time 0.5031754830006321 seconds
+get_line_from_file called at 2019-06-05 08:06:05
+	Called on 10 records
+	Function/Method execution time 5.1890001486754045e-06 seconds
+insert_to_mongo called at 2019-06-05 08:06:05
+	Called on 10 records
+	Function/Method execution time 0.5043650469997374 seconds
+get_line_from_file called at 2019-06-05 08:06:05
+	Called on 10 records
+	Function/Method execution time 5.711000085284468e-06 seconds
+insert_to_mongo called at 2019-06-05 08:06:05
+	Called on 10 records
+	Function/Method execution time 0.5040906829999585 seconds
+rentals_for_customer called at 2019-06-05 08:06:06
+	args:['C000001'], kwargs:{}
+	Function/Method execution time 0.003772046000449336 seconds
+get_line_from_file called at 2019-06-05 08:06:06
+	Called on 10 records
+	Function/Method execution time 5.105999662191607e-06 seconds
+__init__ called at 2019-06-05 08:06:06
+	args:[], kwargs:{}
+	Function/Method execution time 9.043999853020068e-06 seconds
+get_line_from_file called at 2019-06-05 08:06:06
+	Called on 10 records
+	Function/Method execution time 4.19999923906289e-06 seconds
+insert_to_mongo called at 2019-06-05 08:06:06
+	Called on 10 records
+	Function/Method execution time 0.503639371000645 seconds
+drop_database called at 2019-06-05 08:06:06
+	args:[], kwargs:{}
+	Function/Method execution time 0.015708570000242617 seconds
+__init__ called at 2019-06-05 08:06:06
+	args:[], kwargs:{}
+	Function/Method execution time 1.2309999874560162e-05 seconds
+get_line_from_file called at 2019-06-05 08:06:06
+	Called on 10 records
+	Function/Method execution time 5.4809997891425155e-06 seconds
+insert_to_mongo called at 2019-06-05 08:06:06
+	Called on 10 records
+	Function/Method execution time 0.5037437840001076 seconds
+get_line_from_file called at 2019-06-05 08:06:07
+	Called on 10 records
+	Function/Method execution time 5.1500001063686796e-06 seconds
+insert_to_mongo called at 2019-06-05 08:06:07
+	Called on 10 records
+	Function/Method execution time 0.5035868690001735 seconds
+get_line_from_file called at 2019-06-05 08:06:07
+	Called on 10 records
+	Function/Method execution time 3.89199976780219e-06 seconds
+insert_to_mongo called at 2019-06-05 08:06:07
+	Called on 10 records
+	Function/Method execution time 0.5031907009997667 seconds
+drop_collections called at 2019-06-05 08:06:08
+	args:[], kwargs:{}
+	Function/Method execution time 0.0037911439994786633 seconds
+__init__ called at 2019-06-05 08:06:20
+	args:[], kwargs:{}
+	Function/Method execution time 1.1988000551355071e-05 seconds
+__init__ called at 2019-06-05 08:06:20
+	args:[], kwargs:{}
+	Function/Method execution time 1.3869000213162508e-05 seconds
+get_line_from_file called at 2019-06-05 08:06:20
+	Called on 10 records
+	Function/Method execution time 2.58999989455333e-06 seconds
+insert_to_mongo called at 2019-06-05 08:06:20
+	Called on 10 records
+	Function/Method execution time 0.5044816729996455 seconds
+get_line_from_file called at 2019-06-05 08:06:20
+	Called on 10 records
+	Function/Method execution time 7.3430001066299155e-06 seconds
+insert_to_mongo called at 2019-06-05 08:06:20
+	Called on 10 records
+	Function/Method execution time 0.504313164999985 seconds
+get_line_from_file called at 2019-06-05 08:06:21
+	Called on 10 records
+	Function/Method execution time 5.564999810303561e-06 seconds
+insert_to_mongo called at 2019-06-05 08:06:21
+	Called on 10 records
+	Function/Method execution time 0.5041426650004723 seconds
+linear called at 2019-06-05 08:06:20
+	args:[['./data/customers.csv', './data/rental.csv', './data/product.csv']], kwargs:{}
+	Function/Method execution time 1.513717435000217 seconds
+__init__ called at 2019-06-05 08:06:22
+	args:[], kwargs:{}
+	Function/Method execution time 1.228099972649943e-05 seconds
+drop_collections called at 2019-06-05 08:06:22
+	args:[], kwargs:{}
+	Function/Method execution time 0.0037638909998349845 seconds
+__init__ called at 2019-06-05 08:06:23
+	args:[], kwargs:{}
+	Function/Method execution time 1.2526000318757724e-05 seconds
+drop_database called at 2019-06-05 08:06:23
+	args:[], kwargs:{}
+	Function/Method execution time 0.013618269999824406 seconds
+__init__ called at 2019-06-05 08:06:23
+	args:[], kwargs:{}
+	Function/Method execution time 1.3378999938140623e-05 seconds
+get_line_from_file called at 2019-06-05 08:06:23
+	Called on 10 records
+	Function/Method execution time 5.138999767950736e-06 seconds
+get_line_from_file called at 2019-06-05 08:06:23
+	Called on 10 records
+	Function/Method execution time 7.199999345175456e-06 seconds
+get_line_from_file called at 2019-06-05 08:06:23
+	Called on 10 records
+	Function/Method execution time 5.110999154567253e-06 seconds
+insert_to_mongo called at 2019-06-05 08:06:23
+	Called on 10 records
+	Function/Method execution time 0.5050267160004296 seconds
+insert_to_mongo called at 2019-06-05 08:06:23
+	Called on 10 records
+	Function/Method execution time 0.5057266399999207 seconds
+insert_to_mongo called at 2019-06-05 08:06:23
+	Called on 10 records
+	Function/Method execution time 0.5060156600002301 seconds
+parallel called at 2019-06-05 08:06:23
+	args:[['./data/customers.csv', './data/rental.csv', './data/product.csv']], kwargs:{}
+	Function/Method execution time 0.5153410829998393 seconds
+__init__ called at 2019-06-05 08:06:24
+	args:[], kwargs:{}
+	Function/Method execution time 1.156799953605514e-05 seconds
+list_all_products called at 2019-06-05 08:06:24
+	args:[], kwargs:{}
+	Function/Method execution time 0.0026535520000834367 seconds
+__init__ called at 2019-06-05 08:06:24
+	args:[], kwargs:{}
+	Function/Method execution time 1.217600038216915e-05 seconds
+list_all_customers called at 2019-06-05 08:06:24
+	args:[], kwargs:{}
+	Function/Method execution time 0.002505055999790784 seconds
+__init__ called at 2019-06-05 08:06:25
+	args:[], kwargs:{}
+	Function/Method execution time 1.1983000149484724e-05 seconds
+list_all_rentals called at 2019-06-05 08:06:25
+	args:[], kwargs:{}
+	Function/Method execution time 0.002582072000222979 seconds
+__init__ called at 2019-06-05 08:06:26
+	args:[], kwargs:{}
+	Function/Method execution time 1.1158999768667854e-05 seconds
+show_available_products called at 2019-06-05 08:06:26
+	args:[], kwargs:{}
+	Function/Method execution time 0.002390738999565656 seconds
+__init__ called at 2019-06-05 08:06:26
+	args:[], kwargs:{}
+	Function/Method execution time 1.1868999536090996e-05 seconds
+rentals_for_customer called at 2019-06-05 08:06:26
+	args:['C000001'], kwargs:{}
+	Function/Method execution time 0.003037256000425259 seconds
+__init__ called at 2019-06-05 08:06:27
+	args:[], kwargs:{}
+	Function/Method execution time 1.1459000234026462e-05 seconds
+customers_renting_product called at 2019-06-05 08:06:27
+	args:['P000001'], kwargs:{}
+	Function/Method execution time 0.003748492000340775 seconds

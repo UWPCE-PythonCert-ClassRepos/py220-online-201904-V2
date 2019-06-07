@@ -14,6 +14,8 @@ import pandas as pd
 from decorator import timer
 from tools.utilities_ import _delete_file_by_type
 
+# from students.jeff_shabani.lesson07.assignment.tools.utilities_ import _delete_file_by_type
+
 mongo = MongoClient("mongodb://localhost:27017/")
 db = mongo['HP_Norton']
 
