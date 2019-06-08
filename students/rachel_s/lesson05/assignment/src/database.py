@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
 
-'''Functions to add and remove items from furniture mongoDB'''
+'''
+Functions to add and remove items from furniture mongoDB
+'''
 
 # Rachel Schirra
-# May 4, 2019
-# Python 220 Lesson 05
+# June 02, 2019
+# Python 220 Lesson 09
 
 import os
 import csv
+import argparse
 from pymongo import MongoClient, InsertOne
-from pymongo.errors import BulkWriteError
+from pymongo.errors import PyMongoError, BulkWriteError
 from loguru import logger
 
 
@@ -22,22 +25,49 @@ class MongoDBConnection(object):
         self.connection = None
 
     def __enter__(self):
+        # Let's move the logging for mongodb connections out of the code
+        # and put it here instead so we don't have it laying around all
+        # over the place.
+        logger.debug('Connecting to MongoDB.')
         self.connection = MongoClient(self.host, self.port)
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
+        # Report the values when we exit also
+        logger.debug(f'exc_type: {exc_type}')
+        logger.debug(f'exc_val: {exc_val}')
+        logger.debug(f'exc_traceback: {exc_tb}')
         self.connection.close()
 
-'''
-import_data(directory_name, product_file, customer_file, rentals_file):
 
-This function takes a directory name three csv files as input, one with
-product data, one with customer data and the third one with rentals data
-and creates and populates a new MongoDB database with these data. It
-returns 2 tuples: the first with a record count of the number of
-products, customers and rentals added (in that order), the second with a
-count of any errors that occurred, in the same order.
-'''
+def log_wrapper(func):
+    '''
+    A decorator that enables logging before and after a function is
+    executed.
+    '''
+    def logged(*args, **kwargs):
+        if args and kwargs:
+            logger.debug('Executing {function} with args {args}'
+                         'and kwargs {kwargs}'.format(
+                             function=func.__name__, args=args, kwargs=kwargs))
+        elif args:
+            logger.debug('Executing {function} with args {args}'.format(
+                function=func.__name__, args=args))
+        elif kwargs:
+            logger.debug('Executing {function} with args {kwargs}'.format(
+                function=func.__name__, kwargs=kwargs))
+        else:
+            logger.debug('Executing {function} with no arguments'.format(
+                function=func.__name__
+            ))
+        result = func(*args, **kwargs)
+        if result:
+            logger.debug('Function {function} output: {result}'.format(
+                function=func.__name__, result=result
+            ))
+        return result
+    return logged
+
 
 def import_csv(path):
     '''
@@ -97,6 +127,49 @@ def bulk_writer(data, database, table):
         )
 
 
+def slow_writer(directory_name, data_file, database, table):
+    '''
+    When I profiled this using the bulk_writer function it turned up a
+    whole load of threading.py processes. Also I have noticed that it is
+    quite speedy. I infer that pymongo.bulk_write is in fact already
+    using threading for speed.
+    So now I have to rewrite my database insertion to be less efficient
+    and insert records one at a time so I can go back and add the
+    concurrency myself.
+    Ah, such is life.
+
+    Accepts a dictionary of data, a database, and a table name. Bulk
+    inserts the contents of the data set into the database in a table
+    with the given name.
+    Returns a tuple with the number of successful insertions and the
+    number of insertion errors.
+    '''
+
+    logger.debug('Converting {} file to dictionary'.format(table))
+    data = import_csv(os.path.join(
+        directory_name,
+        data_file
+        ))
+
+    logger.debug('Creating {} table'.format(table))
+    my_db = database[table]
+    logger.debug('Inserting data to {} table'.format(table))
+    errors = 0
+    writes = 0
+    for item in data:
+        try:
+            my_db.insert_one(item)
+            writes += 1
+        except PyMongoError as err:
+            logger.warning(err)
+            errors += 1
+    logger.debug('{} records inserted to {} table'.format(
+        writes,
+        table
+    ))
+    return (writes, errors)
+
+
 def import_data(directory_name, product_file, customer_file, rentals_file):
     '''
     Takes a directory name and three CSV files and creates and populates
@@ -112,60 +185,25 @@ def import_data(directory_name, product_file, customer_file, rentals_file):
     error_count = {'customer': 0,
                    'product': 0,
                    'rentals': 0}
-
-    logger.debug('Converting products file to dictionary')
-    product_dict = import_csv(os.path.join(
-        directory_name,
-        product_file
-        ))
-
-    logger.debug('Converting customers file to dictionary')
-    customer_dict = import_csv(os.path.join(
-        directory_name,
-        customer_file
-        ))
-
-    logger.debug('Converting rentals file to dictionary')
-    rentals_dict = import_csv(os.path.join(
-        directory_name,
-        rentals_file
-        ))
+    paths = {
+        'customer': customer_file,
+        'product': product_file,
+        'rentals': rentals_file
+    }
 
     mongo = MongoDBConnection()
-    logger.debug('Connecting to MongoDB')
     with mongo:
         logger.debug('Connecting to hpnorton database')
-        db = mongo.connection.hpnorton
+        dbase = mongo.connection.hpnorton
 
-        # Create product data collection
-        try:
-            prod_result = bulk_writer(product_dict, db, 'product')
-            records['product'] = prod_result[0]
-            error_count['product'] = prod_result[1]
-        except BulkWriteError as err:
-            logger.error(err)
-            records['product'] = err.details['nInserted']
-            error_count['product'] = len(err.details['writeErrors'])
-
-        # Create customer data collection
-        try:
-            cust_result = bulk_writer(customer_dict, db, 'customer')
-            records['customer'] = cust_result[0]
-            error_count['customer'] = cust_result[1]
-        except BulkWriteError as err:
-            logger.error(err)
-            records['customer'] = err.details['nInserted']
-            error_count['customer'] = len(err.details['writeErrors'])
-
-        # Create rentals data collection
-        try:
-            rent_result = bulk_writer(rentals_dict, db, 'rentals')
-            records['rentals'] = rent_result[0]
-            error_count['rentals'] = rent_result[1]
-        except BulkWriteError as err:
-            logger.error(err)
-            records['rentals'] = err.details['nInserted']
-            error_count['rentals'] = len(err.details['writeErrors'])
+        for name, filename in paths.items():
+            try:
+                # (directory_name, data_file, database, table):
+                result = slow_writer(directory_name, filename, dbase, name)
+                records[name] = result[0]
+                error_count[name] = result[1]
+            except BulkWriteError as err:
+                logger.error(err)
 
     return ((records['product'], records['customer'], records['rentals']),
             (error_count['product'], error_count['customer'],
@@ -175,30 +213,26 @@ def import_data(directory_name, product_file, customer_file, rentals_file):
 def show_available_products():
     '''
     Returns a python dictionary of products listed as available in the
-    'product' collection. Contains the following fields:
+    'product' collection.
 
-    product_id
-    description
-    product_type
-    quantity_available
+    Args:
+        product_id (str): Alphanumeric product ID
+        description (str): Description of the item
+        product_type (str): The product type
+        quantity_available (int): How many are available
     '''
     mongo = MongoDBConnection()
-    logger.debug('Connecting to MongoDB')
-    avail = []
+    avail = {}
     with mongo:
         logger.debug('Connecting to hpnorton database')
-        db = mongo.connection.hpnorton
-        records = db.product.find()
+        dbase = mongo.connection.hpnorton
+        records = dbase.product.find()
     for record in records:
         if int(record['quantity_available']) > 0:
-            avail.append(
-                {
-                    'product_id': record['product_id'],
-                    'description': record['description'],
-                    'product_type': record['product_type'],
-                    'quantity_available': record['quantity_available']
-                }
-            )
+            name = record['product_id']
+            del record['_id']
+            del record['product_id']
+            avail[name] = record
     return avail
 
 
@@ -215,17 +249,55 @@ def show_rentals(product_id):
     email
     '''
     mongo = MongoDBConnection()
-    logger.debug('Connecting to MongoDB')
     with mongo:
         logger.debug('Connecting to hpnorton database')
-        db = mongo.connection.hpnorton
+        dbase = mongo.connection.hpnorton
         renters = set()
-        for item in db.rentals.find({'product_id': product_id}):
+        for item in dbase.rentals.find({'product_id': product_id}):
             renters.add(item['user_id'])
         records = {}
         for item in renters:
-            renter = db.customer.find_one({'user_id': item})
+            renter = dbase.customer.find_one({'user_id': item})
+            name = renter['user_id']
             del renter['_id']
-            records[item] = renter
+            del renter['user_id']
+            del renter['zip_code']
+            records[name] = renter
     return records
 
+
+def db_clear():
+    '''
+    Deletes everything from all tables in the database.
+    '''
+    mongo = MongoDBConnection()
+    with mongo:
+        dbase = mongo.connection.hpnorton
+        dbase.rentals.drop()
+        logger.debug('Rentals dropped.')
+        dbase.customer.drop()
+        logger.debug('Customer dropped.')
+        dbase.product.drop()
+        logger.debug('Product dropped.')
+
+def parse_cmd_arguments():
+    """
+    Takes command arguments and returns arguments as parsed according to
+    the JSON file
+    """
+    parser = argparse.ArgumentParser(description='Process some integers.')
+    parser.add_argument('-d', '--debug', help='enable debugging',
+                        default=0, required=False)
+    return parser.parse_args()
+
+
+if __name__ == "__main__":
+    __args__ = parse_cmd_arguments()
+    # Set up the logger
+    if int(__args__.debug) > 0:
+        show_rentals = log_wrapper(show_rentals)
+        show_available_products = log_wrapper(show_available_products)
+        import_data = log_wrapper(import_data)
+        bulk_writer = log_wrapper(bulk_writer)
+        import_csv = log_wrapper(import_csv)
+    import_data('../tests', 'products.csv', 'customers.csv', 'rentals.csv')

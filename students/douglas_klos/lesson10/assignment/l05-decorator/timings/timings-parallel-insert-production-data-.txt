@@ -1,0 +1,39 @@
+start_process called at 2019-05-31 10:17:34
+	args:('./data/customers.csv',), kwargs:{}
+	Execution time 0:00:00.002795 seconds
+start_process called at 2019-05-31 10:17:34
+	args:('./data/product.csv',), kwargs:{}
+	Execution time 0:00:00.001062 seconds
+start_process called at 2019-05-31 10:17:34
+	args:('./data/rental.csv',), kwargs:{}
+	Execution time 0:00:00.001124 seconds
+get_line_from_file called at 2019-05-31 10:17:34
+	Called on 9998 records
+	Execution time 0:00:00.000003 seconds
+get_line_from_file called at 2019-05-31 10:17:34
+	Called on 9999 records
+	Execution time 0:00:00.000003 seconds
+get_line_from_file called at 2019-05-31 10:17:34
+	Called on 10000 records
+	Execution time 0:00:00.000003 seconds
+insert_to_mongo called at 2019-05-31 10:17:34
+	Called on 9998 records
+	Execution time 0:00:02.019332 seconds
+insert_to_mongo called at 2019-05-31 10:17:34
+	Called on 10000 records
+	Execution time 0:00:02.018705 seconds
+join_process called at 2019-05-31 10:17:34
+	args:((<Process(Process-1, stopped)>, <multiprocessing.queues.Queue object at 0x7f8f31e1ee10>),), kwargs:{}
+	Execution time 0:00:02.031703 seconds
+insert_to_mongo called at 2019-05-31 10:17:34
+	Called on 9999 records
+	Execution time 0:00:02.019009 seconds
+join_process called at 2019-05-31 10:17:36
+	args:((<Process(Process-2, stopped)>, <multiprocessing.queues.Queue object at 0x7f8f31be20b8>),), kwargs:{}
+	Execution time 0:00:00.007537 seconds
+join_process called at 2019-05-31 10:17:36
+	args:((<Process(Process-3, stopped)>, <multiprocessing.queues.Queue object at 0x7f8f31be2dd8>),), kwargs:{}
+	Execution time 0:00:00.000592 seconds
+parallel called at 2019-05-31 10:17:34
+	args:(['./data/customers.csv', './data/product.csv', './data/rental.csv'],), kwargs:{}
+	Execution time 0:00:02.046901 seconds

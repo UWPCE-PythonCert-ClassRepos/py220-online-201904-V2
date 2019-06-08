@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 
-'''Functions to add and remove items from furniture mongoDB'''
+'''
+Functions to add and remove items from furniture mongoDB
+'''
 
 # Rachel Schirra
-# May 4, 2019
-# Python 220 Lesson 05
+# June 02, 2019
+# Python 220 Lesson 09
 
 import os
 import csv
 import cProfile
-from pymongo import MongoClient, InsertOne
+from pymongo import MongoClient
 from pymongo.errors import PyMongoError, BulkWriteError
 from loguru import logger
 
@@ -23,10 +25,18 @@ class MongoDBConnection(object):
         self.connection = None
 
     def __enter__(self):
+        # Let's move the logging for mongodb connections out of the code
+        # and put it here instead so we don't have it laying around all
+        # over the place.
+        logger.debug('Connecting to MongoDB.')
         self.connection = MongoClient(self.host, self.port)
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
+        # Report the values when we exit also
+        logger.debug(f'exc_type: {exc_type}')
+        logger.debug(f'exc_val: {exc_val}')
+        logger.debug(f'exc_traceback: {exc_tb}')
         self.connection.close()
 
 
@@ -49,46 +59,7 @@ def import_csv(path):
     return file_dicts
 
 
-def bulk_writer(data, database, table):
-    '''
-    Accepts a dictionary of data, a database, and a table name. Bulk
-    inserts the contents of the data set into the database in a table
-    with the given name.
-    Returns a tuple with the number of successful insertions and the
-    number of insertion errors.
-    '''
-    logger.debug('Creating {} table'.format(table))
-    my_db = database[table]
-    logger.debug('Inserting data to {} table'.format(table))
-    requests = []
-    for item in data:
-        requests.append(InsertOne(item))
-    result = my_db.bulk_write(requests)
-    try:
-        result = my_db.bulk_write(requests)
-    except BulkWriteError as err:
-        logger.warning(err)
-    logger.debug('{} records inserted to {} table'.format(
-        result.bulk_api_result['nInserted'],
-        table
-    ))
-    if result.bulk_api_result['writeErrors']:
-        logger.warning('{} errors occurred on insertion to {} table'.format(
-            len(result.bulk_api_result['writeErrors']),
-            table
-        ))
-    else:
-        logger.debug('{} errors occurred on insertion to {} table'.format(
-            len(result.bulk_api_result['writeErrors']),
-            table
-        ))
-    return (
-        result.bulk_api_result['nInserted'],
-        len(result.bulk_api_result['writeErrors'])
-        )
-
-
-def slow_writer(data, database, table):
+def slow_writer(directory_name, data_file, database, table):
     '''
     When I profiled this using the bulk_writer function it turned up a
     whole load of threading.py processes. Also I have noticed that it is
@@ -105,6 +76,13 @@ def slow_writer(data, database, table):
     Returns a tuple with the number of successful insertions and the
     number of insertion errors.
     '''
+
+    logger.debug('Converting {} file to dictionary'.format(table))
+    data = import_csv(os.path.join(
+        directory_name,
+        data_file
+        ))
+
     logger.debug('Creating {} table'.format(table))
     my_db = database[table]
     logger.debug('Inserting data to {} table'.format(table))
@@ -121,7 +99,7 @@ def slow_writer(data, database, table):
         writes,
         table
     ))
-    return((writes, errors))
+    return (writes, errors)
 
 
 def import_data(directory_name, product_file, customer_file, rentals_file):
@@ -139,54 +117,25 @@ def import_data(directory_name, product_file, customer_file, rentals_file):
     error_count = {'customer': 0,
                    'product': 0,
                    'rentals': 0}
-
-    logger.debug('Converting products file to dictionary')
-    product_dict = import_csv(os.path.join(
-        directory_name,
-        product_file
-        ))
-
-    logger.debug('Converting customers file to dictionary')
-    customer_dict = import_csv(os.path.join(
-        directory_name,
-        customer_file
-        ))
-
-    logger.debug('Converting rentals file to dictionary')
-    rentals_dict = import_csv(os.path.join(
-        directory_name,
-        rentals_file
-        ))
+    paths = {
+        'customer': customer_file,
+        'product': product_file,
+        'rentals': rentals_file
+    }
 
     mongo = MongoDBConnection()
-    logger.debug('Connecting to MongoDB')
     with mongo:
         logger.debug('Connecting to hpnorton database')
-        db = mongo.connection.hpnorton
+        dbase = mongo.connection.hpnorton
 
-        # Create product data collection
-        try:
-            prod_result = slow_writer(product_dict, db, 'product')
-            records['product'] = prod_result[0]
-            error_count['product'] = prod_result[1]
-        except error.BulkWriteError as err:
-            logger.error(err)
-
-        # Create customer data collection
-        try:
-            cust_result = slow_writer(customer_dict, db, 'customer')
-            records['customer'] = cust_result[0]
-            error_count['customer'] = cust_result[1]
-        except BulkWriteError as err:
-            logger.error(err)
-
-        # Create rentals data collection
-        try:
-            rent_result = slow_writer(rentals_dict, db, 'rentals')
-            records['rentals'] = rent_result[0]
-            error_count['rentals'] = rent_result[1]
-        except BulkWriteError as err:
-            logger.error(err)
+        for name, filename in paths.items():
+            try:
+                # (directory_name, data_file, database, table):
+                result = slow_writer(directory_name, filename, dbase, name)
+                records[name] = result[0]
+                error_count[name] = result[1]
+            except BulkWriteError as err:
+                logger.error(err)
 
     return ((records['product'], records['customer'], records['rentals']),
             (error_count['product'], error_count['customer'],
@@ -196,30 +145,26 @@ def import_data(directory_name, product_file, customer_file, rentals_file):
 def show_available_products():
     '''
     Returns a python dictionary of products listed as available in the
-    'product' collection. Contains the following fields:
+    'product' collection.
 
-    product_id
-    description
-    product_type
-    quantity_available
+    Args:
+        product_id (str): Alphanumeric product ID
+        description (str): Description of the item
+        product_type (str): The product type
+        quantity_available (int): How many are available
     '''
     mongo = MongoDBConnection()
-    logger.debug('Connecting to MongoDB')
-    avail = []
+    avail = {}
     with mongo:
         logger.debug('Connecting to hpnorton database')
-        db = mongo.connection.hpnorton
-        records = db.product.find()
+        dbase = mongo.connection.hpnorton
+        records = dbase.product.find()
     for record in records:
         if int(record['quantity_available']) > 0:
-            avail.append(
-                {
-                    'product_id': record['product_id'],
-                    'description': record['description'],
-                    'product_type': record['product_type'],
-                    'quantity_available': record['quantity_available']
-                }
-            )
+            name = record['product_id']
+            del record['_id']
+            del record['product_id']
+            avail[name] = record
     return avail
 
 
@@ -236,18 +181,20 @@ def show_rentals(product_id):
     email
     '''
     mongo = MongoDBConnection()
-    logger.debug('Connecting to MongoDB')
     with mongo:
         logger.debug('Connecting to hpnorton database')
-        db = mongo.connection.hpnorton
+        dbase = mongo.connection.hpnorton
         renters = set()
-        for item in db.rentals.find({'product_id': product_id}):
+        for item in dbase.rentals.find({'product_id': product_id}):
             renters.add(item['user_id'])
         records = {}
         for item in renters:
-            renter = db.customer.find_one({'user_id': item})
+            renter = dbase.customer.find_one({'user_id': item})
+            name = renter['user_id']
             del renter['_id']
-            records[item] = renter
+            del renter['user_id']
+            del renter['zip_code']
+            records[name] = renter
     return records
 
 
@@ -256,18 +203,17 @@ def db_clear():
     Deletes everything from all tables in the database.
     '''
     mongo = MongoDBConnection()
-    logger.debug('Connecting to MongoDB')
     with mongo:
-        db = mongo.connection.hpnorton
-        db.rentals.drop()
+        dbase = mongo.connection.hpnorton
+        dbase.rentals.drop()
         logger.debug('Rentals dropped.')
-        db.customer.drop()
+        dbase.customer.drop()
         logger.debug('Customer dropped.')
-        db.product.drop()
+        dbase.product.drop()
         logger.debug('Product dropped.')
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cProfile.run(
-        'import_data("..\data", "product.csv", "customer.csv", "rental.csv")'
+        'import_data("../tests", "products.csv", "customers.csv", "rentals.csv")'
     )

@@ -1,0 +1,627 @@
+start_process called at 2019-05-31 10:28:50
+	args:('./data/customers.csv',), kwargs:{}
+	Execution time 0:00:00.002838 seconds
+start_process called at 2019-05-31 10:28:50
+	args:('./data/product.csv',), kwargs:{}
+	Execution time 0:00:00.001061 seconds
+get_line_from_file called at 2019-05-31 10:28:50
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+start_process called at 2019-05-31 10:28:50
+	args:('./data/rental.csv',), kwargs:{}
+	Execution time 0:00:00.001325 seconds
+get_line_from_file called at 2019-05-31 10:28:50
+	Called on 10 records
+	Execution time 0:00:00.000004 seconds
+get_line_from_file called at 2019-05-31 10:28:50
+	Called on 10 records
+	Execution time 0:00:00.000004 seconds
+insert_to_mongo called at 2019-05-31 10:28:50
+	Called on 10 records
+	Execution time 0:00:00.520876 seconds
+join_process called at 2019-05-31 10:28:50
+	args:((<Process(Process-1, stopped)>, <multiprocessing.queues.Queue object at 0x7fb42249ccf8>),), kwargs:{}
+	Execution time 0:00:00.522046 seconds
+insert_to_mongo called at 2019-05-31 10:28:50
+	Called on 10 records
+	Execution time 0:00:00.525479 seconds
+insert_to_mongo called at 2019-05-31 10:28:50
+	Called on 10 records
+	Execution time 0:00:00.525781 seconds
+join_process called at 2019-05-31 10:28:51
+	args:((<Process(Process-2, stopped)>, <multiprocessing.queues.Queue object at 0x7fb4238e2630>),), kwargs:{}
+	Execution time 0:00:00.005588 seconds
+join_process called at 2019-05-31 10:28:51
+	args:((<Process(Process-3, stopped)>, <multiprocessing.queues.Queue object at 0x7fb422262cf8>),), kwargs:{}
+	Execution time 0:00:00.000604 seconds
+parallel called at 2019-05-31 10:28:50
+	args:(['./data/customers.csv', './data/product.csv', './data/rental.csv'],), kwargs:{}
+	Execution time 0:00:00.535317 seconds
+start_process called at 2019-05-31 10:29:41
+	args:('./data/customers.csv',), kwargs:{}
+	Execution time 0:00:00.002790 seconds
+start_process called at 2019-05-31 10:29:41
+	args:('./data/product.csv',), kwargs:{}
+	Execution time 0:00:00.001020 seconds
+get_line_from_file called at 2019-05-31 10:29:41
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+start_process called at 2019-05-31 10:29:41
+	args:('./data/rental.csv',), kwargs:{}
+	Execution time 0:00:00.001119 seconds
+get_line_from_file called at 2019-05-31 10:29:41
+	Called on 10 records
+	Execution time 0:00:00.000004 seconds
+get_line_from_file called at 2019-05-31 10:29:41
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+insert_to_mongo called at 2019-05-31 10:29:41
+	Called on 10 records
+	Execution time 0:00:00.517411 seconds
+insert_to_mongo called at 2019-05-31 10:29:41
+	Called on 10 records
+	Execution time 0:00:00.516269 seconds
+insert_to_mongo called at 2019-05-31 10:29:41
+	Called on 10 records
+	Execution time 0:00:00.516545 seconds
+join_process called at 2019-05-31 10:29:41
+	args:((<Process(Process-1, stopped)>, <multiprocessing.queues.Queue object at 0x7f2632ac9d30>),), kwargs:{}
+	Execution time 0:00:00.519667 seconds
+join_process called at 2019-05-31 10:29:42
+	args:((<Process(Process-2, stopped)>, <multiprocessing.queues.Queue object at 0x7f263288d0f0>),), kwargs:{}
+	Execution time 0:00:00.000745 seconds
+join_process called at 2019-05-31 10:29:42
+	args:((<Process(Process-3, stopped)>, <multiprocessing.queues.Queue object at 0x7f263288ddd8>),), kwargs:{}
+	Execution time 0:00:00.000739 seconds
+parallel called at 2019-05-31 10:29:41
+	args:(['./data/customers.csv', './data/product.csv', './data/rental.csv'],), kwargs:{}
+	Execution time 0:00:00.528489 seconds
+start_process called at 2019-05-31 10:32:21
+	args:('./data/customers.csv',), kwargs:{}
+	Execution time 0:00:00.002725 seconds
+start_process called at 2019-05-31 10:32:21
+	args:('./data/product.csv',), kwargs:{}
+	Execution time 0:00:00.001247 seconds
+get_line_from_file called at 2019-05-31 10:32:21
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+start_process called at 2019-05-31 10:32:21
+	args:('./data/rental.csv',), kwargs:{}
+	Execution time 0:00:00.001281 seconds
+get_line_from_file called at 2019-05-31 10:32:21
+	Called on 10 records
+	Execution time 0:00:00.000004 seconds
+get_line_from_file called at 2019-05-31 10:32:21
+	Called on 10 records
+	Execution time 0:00:00.000004 seconds
+insert_to_mongo called at 2019-05-31 10:32:21
+	Called on 10 records
+	Execution time 0:00:00.513204 seconds
+insert_to_mongo called at 2019-05-31 10:32:21
+	Called on 10 records
+	Execution time 0:00:00.510165 seconds
+insert_to_mongo called at 2019-05-31 10:32:21
+	Called on 10 records
+	Execution time 0:00:00.511866 seconds
+join_process called at 2019-05-31 10:32:21
+	args:((<Process(Process-1, stopped)>, <multiprocessing.queues.Queue object at 0x7ff95e527ba8>),), kwargs:{}
+	Execution time 0:00:00.511553 seconds
+join_process called at 2019-05-31 10:32:21
+	args:((<Process(Process-2, stopped)>, <multiprocessing.queues.Queue object at 0x7ff95e2ee048>),), kwargs:{}
+	Execution time 0:00:00.000131 seconds
+join_process called at 2019-05-31 10:32:21
+	args:((<Process(Process-3, stopped)>, <multiprocessing.queues.Queue object at 0x7ff95e2eec88>),), kwargs:{}
+	Execution time 0:00:00.000085 seconds
+parallel called at 2019-05-31 10:32:21
+	args:(['./data/customers.csv', './data/product.csv', './data/rental.csv'],), kwargs:{}
+	Execution time 0:00:00.517940 seconds
+drop_database called at 2019-05-31 10:33:02
+	args:(), kwargs:{}
+	Execution time 0:00:00.011345 seconds
+get_line_from_file called at 2019-05-31 10:33:02
+	Called on 10 records
+	Execution time 0:00:00.000001 seconds
+insert_to_mongo called at 2019-05-31 10:33:02
+	Called on 10 records
+	Execution time 0:00:00.505820 seconds
+get_line_from_file called at 2019-05-31 10:33:03
+	Called on 10 records
+	Execution time 0:00:00.000005 seconds
+insert_to_mongo called at 2019-05-31 10:33:03
+	Called on 10 records
+	Execution time 0:00:00.508467 seconds
+get_line_from_file called at 2019-05-31 10:33:03
+	Called on 10 records
+	Execution time 0:00:00.000005 seconds
+insert_to_mongo called at 2019-05-31 10:33:03
+	Called on 10 records
+	Execution time 0:00:00.505638 seconds
+linear called at 2019-05-31 10:33:02
+	args:(['./data/customers.csv', './data/product.csv', './data/rental.csv'],), kwargs:{}
+	Execution time 0:00:01.520923 seconds
+drop_database called at 2019-05-31 10:33:04
+	args:(), kwargs:{}
+	Execution time 0:00:00.013318 seconds
+start_process called at 2019-05-31 10:33:04
+	args:('./data/customers.csv',), kwargs:{}
+	Execution time 0:00:00.003295 seconds
+start_process called at 2019-05-31 10:33:04
+	args:('./data/product.csv',), kwargs:{}
+	Execution time 0:00:00.001497 seconds
+get_line_from_file called at 2019-05-31 10:33:04
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+start_process called at 2019-05-31 10:33:04
+	args:('./data/rental.csv',), kwargs:{}
+	Execution time 0:00:00.002094 seconds
+get_line_from_file called at 2019-05-31 10:33:04
+	Called on 10 records
+	Execution time 0:00:00.000004 seconds
+get_line_from_file called at 2019-05-31 10:33:04
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+insert_to_mongo called at 2019-05-31 10:33:04
+	Called on 10 records
+	Execution time 0:00:00.508940 seconds
+insert_to_mongo called at 2019-05-31 10:33:04
+	Called on 10 records
+	Execution time 0:00:00.508213 seconds
+join_process called at 2019-05-31 10:33:04
+	args:((<Process(Process-1, stopped)>, <multiprocessing.queues.Queue object at 0x7fe20fc57c18>),), kwargs:{}
+	Execution time 0:00:00.510573 seconds
+insert_to_mongo called at 2019-05-31 10:33:04
+	Called on 10 records
+	Execution time 0:00:00.507968 seconds
+join_process called at 2019-05-31 10:33:04
+	args:((<Process(Process-2, stopped)>, <multiprocessing.queues.Queue object at 0x7fe20d7b24a8>),), kwargs:{}
+	Execution time 0:00:00.000731 seconds
+join_process called at 2019-05-31 10:33:04
+	args:((<Process(Process-3, stopped)>, <multiprocessing.queues.Queue object at 0x7fe20d7b2c18>),), kwargs:{}
+	Execution time 0:00:00.002119 seconds
+parallel called at 2019-05-31 10:33:04
+	args:(['./data/customers.csv', './data/product.csv', './data/rental.csv'],), kwargs:{}
+	Execution time 0:00:00.522533 seconds
+drop_collections called at 2019-05-31 10:33:04
+	args:(), kwargs:{}
+	Execution time 0:00:00.019977 seconds
+get_line_from_file called at 2019-05-31 10:33:04
+	Called on 10 records
+	Execution time 0:00:00.000005 seconds
+insert_to_mongo called at 2019-05-31 10:33:04
+	Called on 10 records
+	Execution time 0:00:00.504823 seconds
+get_line_from_file called at 2019-05-31 10:33:05
+	Called on 10 records
+	Execution time 0:00:00.000001 seconds
+insert_to_mongo called at 2019-05-31 10:33:05
+	Called on 10 records
+	Execution time 0:00:00.505263 seconds
+get_line_from_file called at 2019-05-31 10:33:05
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-05-31 10:33:05
+	Called on 10 records
+	Execution time 0:00:00.506955 seconds
+get_line_from_file called at 2019-05-31 10:33:06
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+insert_to_mongo called at 2019-05-31 10:33:06
+	Called on 10 records
+	Execution time 0:00:00.504979 seconds
+get_line_from_file called at 2019-05-31 10:33:06
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+insert_to_mongo called at 2019-05-31 10:33:06
+	Called on 10 records
+	Execution time 0:00:00.504257 seconds
+get_line_from_file called at 2019-05-31 10:33:07
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-05-31 10:33:07
+	Called on 10 records
+	Execution time 0:00:00.503847 seconds
+drop_database called at 2019-05-31 10:33:07
+	args:(), kwargs:{}
+	Execution time 0:00:00.014486 seconds
+get_line_from_file called at 2019-05-31 10:33:07
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-05-31 10:33:07
+	Called on 10 records
+	Execution time 0:00:00.504199 seconds
+show_available_products called at 2019-05-31 10:33:08
+	args:(), kwargs:{}
+	Execution time 0:00:00.003082 seconds
+drop_database called at 2019-05-31 10:33:08
+	args:(), kwargs:{}
+	Execution time 0:00:00.016503 seconds
+get_line_from_file called at 2019-05-31 10:33:08
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-05-31 10:33:08
+	Called on 10 records
+	Execution time 0:00:00.503964 seconds
+get_line_from_file called at 2019-05-31 10:33:08
+	Called on 10 records
+	Execution time 0:00:00.000004 seconds
+insert_to_mongo called at 2019-05-31 10:33:08
+	Called on 10 records
+	Execution time 0:00:00.504532 seconds
+get_line_from_file called at 2019-05-31 10:33:09
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-05-31 10:33:09
+	Called on 10 records
+	Execution time 0:00:00.506356 seconds
+customers_renting_product called at 2019-05-31 10:33:10
+	args:('P000001',), kwargs:{}
+	Execution time 0:00:00.013122 seconds
+drop_database called at 2019-05-31 10:33:10
+	args:(), kwargs:{}
+	Execution time 0:00:00.028676 seconds
+get_line_from_file called at 2019-05-31 10:33:10
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-05-31 10:33:10
+	Called on 10 records
+	Execution time 0:00:00.509129 seconds
+list_all_customers called at 2019-05-31 10:33:10
+	args:(), kwargs:{}
+	Execution time 0:00:00.007582 seconds
+drop_database called at 2019-05-31 10:33:10
+	args:(), kwargs:{}
+	Execution time 0:00:00.026790 seconds
+get_line_from_file called at 2019-05-31 10:33:10
+	Called on 10 records
+	Execution time 0:00:00.000007 seconds
+insert_to_mongo called at 2019-05-31 10:33:10
+	Called on 10 records
+	Execution time 0:00:00.508570 seconds
+list_all_products called at 2019-05-31 10:33:11
+	args:(), kwargs:{}
+	Execution time 0:00:00.007607 seconds
+drop_database called at 2019-05-31 10:33:11
+	args:(), kwargs:{}
+	Execution time 0:00:00.028309 seconds
+get_line_from_file called at 2019-05-31 10:33:11
+	Called on 10 records
+	Execution time 0:00:00.000009 seconds
+insert_to_mongo called at 2019-05-31 10:33:11
+	Called on 10 records
+	Execution time 0:00:00.509659 seconds
+list_all_rentals called at 2019-05-31 10:33:11
+	args:(), kwargs:{}
+	Execution time 0:00:00.009140 seconds
+drop_database called at 2019-05-31 10:33:11
+	args:(), kwargs:{}
+	Execution time 0:00:00.021652 seconds
+get_line_from_file called at 2019-05-31 10:33:11
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-05-31 10:33:11
+	Called on 10 records
+	Execution time 0:00:00.504042 seconds
+get_line_from_file called at 2019-05-31 10:33:12
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+insert_to_mongo called at 2019-05-31 10:33:12
+	Called on 10 records
+	Execution time 0:00:00.506948 seconds
+get_line_from_file called at 2019-05-31 10:33:12
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-05-31 10:33:12
+	Called on 10 records
+	Execution time 0:00:00.503438 seconds
+rentals_for_customer called at 2019-05-31 10:33:13
+	args:('C000001',), kwargs:{}
+	Execution time 0:00:00.003209 seconds
+get_line_from_file called at 2019-05-31 10:33:13
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+get_line_from_file called at 2019-05-31 10:33:13
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+insert_to_mongo called at 2019-05-31 10:33:13
+	Called on 10 records
+	Execution time 0:00:00.503868 seconds
+drop_database called at 2019-05-31 10:33:13
+	args:(), kwargs:{}
+	Execution time 0:00:00.016189 seconds
+get_line_from_file called at 2019-05-31 10:33:13
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-05-31 10:33:13
+	Called on 10 records
+	Execution time 0:00:00.506366 seconds
+get_line_from_file called at 2019-05-31 10:33:14
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-05-31 10:33:14
+	Called on 10 records
+	Execution time 0:00:00.508712 seconds
+get_line_from_file called at 2019-05-31 10:33:14
+	Called on 10 records
+	Execution time 0:00:00.000008 seconds
+insert_to_mongo called at 2019-05-31 10:33:14
+	Called on 10 records
+	Execution time 0:00:00.508516 seconds
+drop_collections called at 2019-05-31 10:33:15
+	args:(), kwargs:{}
+	Execution time 0:00:00.014830 seconds
+drop_database called at 2019-05-31 15:45:38
+	args:(), kwargs:{}
+	Execution time 0:00:00.009856 seconds
+get_line_from_file called at 2019-05-31 15:45:38
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-05-31 15:45:38
+	Called on 10 records
+	Execution time 0:00:00.502608 seconds
+get_line_from_file called at 2019-05-31 15:45:38
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+insert_to_mongo called at 2019-05-31 15:45:38
+	Called on 10 records
+	Execution time 0:00:00.502877 seconds
+get_line_from_file called at 2019-05-31 15:45:39
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-05-31 15:45:39
+	Called on 10 records
+	Execution time 0:00:00.502954 seconds
+linear called at 2019-05-31 15:45:38
+	args:(['./data/customers.csv', './data/product.csv', './data/rental.csv'],), kwargs:{}
+	Execution time 0:00:01.508859 seconds
+drop_database called at 2019-05-31 15:45:39
+	args:(), kwargs:{}
+	Execution time 0:00:00.014945 seconds
+start_process called at 2019-05-31 15:45:39
+	args:('./data/customers.csv',), kwargs:{}
+	Execution time 0:00:00.005258 seconds
+start_process called at 2019-05-31 15:45:39
+	args:('./data/product.csv',), kwargs:{}
+	Execution time 0:00:00.002697 seconds
+get_line_from_file called at 2019-05-31 15:45:39
+	Called on 10 records
+	Execution time 0:00:00.000004 seconds
+start_process called at 2019-05-31 15:45:39
+	args:('./data/rental.csv',), kwargs:{}
+	Execution time 0:00:00.002836 seconds
+get_line_from_file called at 2019-05-31 15:45:39
+	Called on 10 records
+	Execution time 0:00:00.000004 seconds
+get_line_from_file called at 2019-05-31 15:45:39
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-05-31 15:45:39
+	Called on 10 records
+	Execution time 0:00:00.508833 seconds
+insert_to_mongo called at 2019-05-31 15:45:39
+	Called on 10 records
+	Execution time 0:00:00.508973 seconds
+join_process called at 2019-05-31 15:45:39
+	args:((<Process(Process-1, stopped)>, <multiprocessing.queues.Queue object at 0x7f9ace648550>),), kwargs:{}
+	Execution time 0:00:00.507826 seconds
+join_process called at 2019-05-31 15:45:40
+	args:((<Process(Process-2, stopped)>, <multiprocessing.queues.Queue object at 0x7f9acc1a4518>),), kwargs:{}
+	Execution time 0:00:00.002739 seconds
+insert_to_mongo called at 2019-05-31 15:45:39
+	Called on 10 records
+	Execution time 0:00:00.509964 seconds
+join_process called at 2019-05-31 15:45:40
+	args:((<Process(Process-3, stopped)>, <multiprocessing.queues.Queue object at 0x7f9acc1a4c88>),), kwargs:{}
+	Execution time 0:00:00.004598 seconds
+parallel called at 2019-05-31 15:45:39
+	args:(['./data/customers.csv', './data/product.csv', './data/rental.csv'],), kwargs:{}
+	Execution time 0:00:00.528603 seconds
+drop_collections called at 2019-05-31 15:45:40
+	args:(), kwargs:{}
+	Execution time 0:00:00.016721 seconds
+get_line_from_file called at 2019-05-31 15:45:40
+	Called on 10 records
+	Execution time 0:00:00.000008 seconds
+insert_to_mongo called at 2019-05-31 15:45:40
+	Called on 10 records
+	Execution time 0:00:00.508954 seconds
+get_line_from_file called at 2019-05-31 15:45:41
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-05-31 15:45:41
+	Called on 10 records
+	Execution time 0:00:00.508038 seconds
+get_line_from_file called at 2019-05-31 15:45:41
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-05-31 15:45:41
+	Called on 10 records
+	Execution time 0:00:00.508948 seconds
+get_line_from_file called at 2019-05-31 15:45:42
+	Called on 10 records
+	Execution time 0:00:00.000008 seconds
+insert_to_mongo called at 2019-05-31 15:45:42
+	Called on 10 records
+	Execution time 0:00:00.509099 seconds
+get_line_from_file called at 2019-05-31 15:45:42
+	Called on 10 records
+	Execution time 0:00:00.000008 seconds
+insert_to_mongo called at 2019-05-31 15:45:42
+	Called on 10 records
+	Execution time 0:00:00.508009 seconds
+get_line_from_file called at 2019-05-31 15:45:43
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-05-31 15:45:43
+	Called on 10 records
+	Execution time 0:00:00.507587 seconds
+drop_database called at 2019-05-31 15:45:43
+	args:(), kwargs:{}
+	Execution time 0:00:00.028890 seconds
+get_line_from_file called at 2019-05-31 15:45:43
+	Called on 10 records
+	Execution time 0:00:00.000005 seconds
+insert_to_mongo called at 2019-05-31 15:45:43
+	Called on 10 records
+	Execution time 0:00:00.506668 seconds
+show_available_products called at 2019-05-31 15:45:44
+	args:(), kwargs:{}
+	Execution time 0:00:00.002393 seconds
+drop_database called at 2019-05-31 15:45:44
+	args:(), kwargs:{}
+	Execution time 0:00:00.014756 seconds
+get_line_from_file called at 2019-05-31 15:45:44
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-05-31 15:45:44
+	Called on 10 records
+	Execution time 0:00:00.506150 seconds
+get_line_from_file called at 2019-05-31 15:45:44
+	Called on 10 records
+	Execution time 0:00:00.000007 seconds
+insert_to_mongo called at 2019-05-31 15:45:44
+	Called on 10 records
+	Execution time 0:00:00.505768 seconds
+get_line_from_file called at 2019-05-31 15:45:45
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-05-31 15:45:45
+	Called on 10 records
+	Execution time 0:00:00.505599 seconds
+customers_renting_product called at 2019-05-31 15:45:45
+	args:('P000001',), kwargs:{}
+	Execution time 0:00:00.007315 seconds
+drop_database called at 2019-05-31 15:45:45
+	args:(), kwargs:{}
+	Execution time 0:00:00.016339 seconds
+get_line_from_file called at 2019-05-31 15:45:45
+	Called on 10 records
+	Execution time 0:00:00.000001 seconds
+insert_to_mongo called at 2019-05-31 15:45:45
+	Called on 10 records
+	Execution time 0:00:00.503335 seconds
+list_all_customers called at 2019-05-31 15:45:46
+	args:(), kwargs:{}
+	Execution time 0:00:00.001788 seconds
+drop_database called at 2019-05-31 15:45:46
+	args:(), kwargs:{}
+	Execution time 0:00:00.012898 seconds
+get_line_from_file called at 2019-05-31 15:45:46
+	Called on 10 records
+	Execution time 0:00:00.000001 seconds
+insert_to_mongo called at 2019-05-31 15:45:46
+	Called on 10 records
+	Execution time 0:00:00.503444 seconds
+list_all_products called at 2019-05-31 15:45:46
+	args:(), kwargs:{}
+	Execution time 0:00:00.002300 seconds
+drop_database called at 2019-05-31 15:45:46
+	args:(), kwargs:{}
+	Execution time 0:00:00.015137 seconds
+get_line_from_file called at 2019-05-31 15:45:46
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+insert_to_mongo called at 2019-05-31 15:45:46
+	Called on 10 records
+	Execution time 0:00:00.506014 seconds
+list_all_rentals called at 2019-05-31 15:45:47
+	args:(), kwargs:{}
+	Execution time 0:00:00.007637 seconds
+drop_database called at 2019-05-31 15:45:47
+	args:(), kwargs:{}
+	Execution time 0:00:00.026889 seconds
+get_line_from_file called at 2019-05-31 15:45:47
+	Called on 10 records
+	Execution time 0:00:00.000008 seconds
+insert_to_mongo called at 2019-05-31 15:45:47
+	Called on 10 records
+	Execution time 0:00:00.508539 seconds
+get_line_from_file called at 2019-05-31 15:45:47
+	Called on 10 records
+	Execution time 0:00:00.000004 seconds
+insert_to_mongo called at 2019-05-31 15:45:47
+	Called on 10 records
+	Execution time 0:00:00.507123 seconds
+get_line_from_file called at 2019-05-31 15:45:48
+	Called on 10 records
+	Execution time 0:00:00.000005 seconds
+insert_to_mongo called at 2019-05-31 15:45:48
+	Called on 10 records
+	Execution time 0:00:00.507316 seconds
+rentals_for_customer called at 2019-05-31 15:45:48
+	args:('C000001',), kwargs:{}
+	Execution time 0:00:00.009708 seconds
+get_line_from_file called at 2019-05-31 15:45:48
+	Called on 10 records
+	Execution time 0:00:00.000007 seconds
+get_line_from_file called at 2019-05-31 15:45:48
+	Called on 10 records
+	Execution time 0:00:00.000006 seconds
+insert_to_mongo called at 2019-05-31 15:45:48
+	Called on 10 records
+	Execution time 0:00:00.508507 seconds
+drop_database called at 2019-05-31 15:45:49
+	args:(), kwargs:{}
+	Execution time 0:00:00.027499 seconds
+get_line_from_file called at 2019-05-31 15:45:49
+	Called on 10 records
+	Execution time 0:00:00.000005 seconds
+insert_to_mongo called at 2019-05-31 15:45:49
+	Called on 10 records
+	Execution time 0:00:00.505920 seconds
+get_line_from_file called at 2019-05-31 15:45:49
+	Called on 10 records
+	Execution time 0:00:00.000002 seconds
+insert_to_mongo called at 2019-05-31 15:45:49
+	Called on 10 records
+	Execution time 0:00:00.505961 seconds
+get_line_from_file called at 2019-05-31 15:45:50
+	Called on 10 records
+	Execution time 0:00:00.000005 seconds
+insert_to_mongo called at 2019-05-31 15:45:50
+	Called on 10 records
+	Execution time 0:00:00.505310 seconds
+drop_collections called at 2019-05-31 15:45:50
+	args:(), kwargs:{}
+	Execution time 0:00:00.002910 seconds
+start_process called at 2019-05-31 15:57:49
+	args:('./data/customers.csv',), kwargs:{}
+	Execution time 0:00:00.002762 seconds
+start_process called at 2019-05-31 15:57:49
+	args:('./data/product.csv',), kwargs:{}
+	Execution time 0:00:00.001029 seconds
+get_line_from_file called at 2019-05-31 15:57:49
+	Called on 10 records
+	Execution time 0:00:00.000004 seconds
+start_process called at 2019-05-31 15:57:49
+	args:('./data/rental.csv',), kwargs:{}
+	Execution time 0:00:00.001363 seconds
+get_line_from_file called at 2019-05-31 15:57:49
+	Called on 10 records
+	Execution time 0:00:00.000004 seconds
+get_line_from_file called at 2019-05-31 15:57:49
+	Called on 10 records
+	Execution time 0:00:00.000003 seconds
+insert_to_mongo called at 2019-05-31 15:57:49
+	Called on 10 records
+	Execution time 0:00:00.505241 seconds
+insert_to_mongo called at 2019-05-31 15:57:49
+	Called on 10 records
+	Execution time 0:00:00.505523 seconds
+join_process called at 2019-05-31 15:57:49
+	args:((<Process(Process-1, stopped)>, <multiprocessing.queues.Queue object at 0x7f7c25de9da0>),), kwargs:{}
+	Execution time 0:00:00.505047 seconds
+insert_to_mongo called at 2019-05-31 15:57:49
+	Called on 10 records
+	Execution time 0:00:00.505534 seconds
+join_process called at 2019-05-31 15:57:50
+	args:((<Process(Process-2, stopped)>, <multiprocessing.queues.Queue object at 0x7f7c25bae0b8>),), kwargs:{}
+	Execution time 0:00:00.001085 seconds
+join_process called at 2019-05-31 15:57:50
+	args:((<Process(Process-3, stopped)>, <multiprocessing.queues.Queue object at 0x7f7c25baed68>),), kwargs:{}
+	Execution time 0:00:00.001275 seconds
+parallel called at 2019-05-31 15:57:49
+	args:(['./data/customers.csv', './data/product.csv', './data/rental.csv'],), kwargs:{}
+	Execution time 0:00:00.514100 seconds
+show_available_products called at 2019-05-31 16:01:27
+	args:(), kwargs:{}
+	Execution time 0:00:00.001985 seconds

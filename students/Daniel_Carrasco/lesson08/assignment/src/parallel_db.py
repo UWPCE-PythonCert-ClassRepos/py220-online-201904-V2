@@ -38,7 +38,7 @@ def print_mdb_collection(collection_name):
         print(doc)
 
 
-def import_data(filename):
+def _import_csv(filename):
     '''
     Returns a list of dictionaries.  One dictionary for each row of data in a
     csv file.
@@ -49,9 +49,9 @@ def import_data(filename):
 
         csv_data = csv.reader(csvfile)
 
-        headers = next(csv_data, None)
+        headers = next(csv_data, None)  # Save the first line as the headers
 
-        if headers[0].startswith('ï»¿'):
+        if headers[0].startswith('ï»¿'):  # Check for weird formatting
             headers[0] = headers[0][3:]
 
         for row in csv_data:
@@ -135,22 +135,24 @@ def show_available_products(db):
 
 def show_rentals(db, product_id):
     '''
-    Returns a dictionary with user information from users who have rented
-    products matching the product_id.
+    Function to look up customers who have rented a specific product.
     '''
-
-    customer_info = {}
+    rental_users_dict = {}
 
     for rental in db.rentals.find():
-        if rental["product_id"] == product_id:
-            customer_id = rental["user_id"]
-            customer_record = db.customers.find_one({"user_id": customer_id})
+        if rental['product_id'] == product_id:
+            customer_id = rental['user_id']
 
-            short_dict = {key: value for key, value in customer_record.items() \
-            if key not in ("_id", "user_id")}
-            customer_info[customer_id] = short_dict
+            customer_record = db.customers.find_one({'Id': customer_id})
 
-        return customer_info
+            rental_users = {'name': customer_record['Name'] + ' ' +
+                                    customer_record['Last_name'],
+                            'address': customer_record['Home_address'],
+                            'phone_number': customer_record['Phone_number'],
+                            'email': customer_record['Email_address']}
+            rental_users_dict[customer_id] = rental_users
+
+    return rental_users_dict
 
 
 def clear_data(db):
