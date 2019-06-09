@@ -54,7 +54,7 @@ class TimerDec:
     """
 
     LOG_FORMAT = ("\n%(asctime)s %(filename)s:%(lineno)-3d %(levelname)s"
-              "\n%(message)s")
+                  "\n%(message)s")
     FORMATTER = logging.Formatter(LOG_FORMAT)
     timer_log = logging.getLogger("timing_logger")
     timer_file_handler = logging.FileHandler('timings.txt')
@@ -72,6 +72,12 @@ class TimerDec:
         self.timer_log.info((f"Function {self.func_to_decorate.__name__}\n"
                              f"With args {args}\n"
                              f"Took {end - start} to run\n"))
+
+        if self.func_to_decorate.__name__ == 'import_data':
+            self.timer_log.info((f"\nNumber of records processed:\n"
+                f"products = {func_return[0][0]} | customers = {func_return[0][1]}"
+                f" | rentals = {func_return[0][2]}"
+                ))
         return func_return
 
 
@@ -263,10 +269,10 @@ def show_rentals(product_id):  # {{{
 
 
 if __name__ == "__main__":
-    import_data("../data/", "product.csv",
-                "customer.csv", "rental.csv")
     # import_data("../data/", "product.csv",
-    #             "customer.csv", "test_rental.csv")
+    #             "customer.csv", "rental.csv")
+    import_data("../data/", "test_product.csv",
+                "test_customer.csv", "test_rental.csv")
 
     # print(f'Len show_available_products = { len(show_available_products()) }')
 
