@@ -713,3 +713,24 @@
 2019-06-09 19:36:33,654 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
 2019-06-09 19:36:33,657 database.py:161 INFO starting show_rentals method
 2019-06-09 19:36:33,670 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:40:15,782 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:40:15,865 database.py:63  INFO importing data
+2019-06-09 19:40:15,865 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:40:15,865 database.py:108 INFO successfully read in data
+2019-06-09 19:40:15,866 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:40:15,866 database.py:108 INFO successfully read in data
+2019-06-09 19:40:15,866 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:40:15,867 database.py:108 INFO successfully read in data
+2019-06-09 19:40:15,916 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:40:15,968 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:40:16,018 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:40:16,291 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:40:16,291 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:40:16,291 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:40:16,291 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:40:16,291 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:40:16,291 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:40:16,295 database.py:137 INFO starting show_available_products method
+2019-06-09 19:40:16,306 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:40:16,311 database.py:161 INFO starting show_rentals method
+2019-06-09 19:40:16,323 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}

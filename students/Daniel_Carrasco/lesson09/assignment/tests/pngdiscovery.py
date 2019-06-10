@@ -1,5 +1,9 @@
+"""
+lesson 09
+"""
 import sys
 import os
+#pylint: disable=R1710
 
 def png_recursion(folder):
     """
@@ -7,11 +11,11 @@ def png_recursion(folder):
     ex: path_list = [folder,file1,file2,subfolder,file3,file4,subsubfolder,file1]
     """
     if folder == "images":
-        start_path = os.getcwd()+"/"+folder
+        start_path = os.getcwd() + "/" + folder
         file_list = []
         all_files = []
         return_list = []
-        #for root, directories, files in os.walk(start_path):
+        # for root, directories, files in os.walk(start_path):
 
         for dirpath, dirnames, filenames in os.walk(start_path):
 
@@ -26,12 +30,12 @@ def png_recursion(folder):
                 return_list.append(file_list)
 
             if dirnames:
-                for folder in dirnames:
-                    png_recursion(folder)
+                for folders in dirnames:
+                    png_recursion(folders)
         return all_files
 
 
 if __name__ == "__main__":
-    #sys.argv.append(1)
+    # sys.argv.append(1)
     OUTPUT = png_recursion(str(sys.argv[1]))
     print(OUTPUT)
