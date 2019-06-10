@@ -1,0 +1,715 @@
+2019-06-09 17:43:59,881 database.py:47  INFO starting MongoDBConnection
+2019-06-09 17:43:59,885 database.py:63  INFO importing data
+2019-06-09 17:43:59,886 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 17:43:59,886 database.py:108 INFO successfully read in data
+2019-06-09 17:43:59,886 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 17:43:59,887 database.py:108 INFO successfully read in data
+2019-06-09 17:43:59,887 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 17:43:59,887 database.py:108 INFO successfully read in data
+2019-06-09 17:43:59,936 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 17:43:59,999 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 17:44:00,048 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 17:44:00,395 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 17:44:00,395 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 17:44:00,395 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 17:44:00,395 database.py:83  INFO product import errors = 0 to db
+2019-06-09 17:44:00,395 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 17:44:00,396 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 17:44:00,396 database.py:137 INFO starting show_available_products method
+2019-06-09 17:44:00,399 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 17:44:00,400 database.py:161 INFO starting show_rentals method
+2019-06-09 17:44:00,404 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 17:44:00,404 database.py:190 INFO starting drop data method
+2019-06-09 17:46:10,074 database.py:47  INFO starting MongoDBConnection
+2019-06-09 17:46:10,153 database.py:63  INFO importing data
+2019-06-09 17:46:10,154 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 17:46:10,154 database.py:108 INFO successfully read in data
+2019-06-09 17:46:10,154 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 17:46:10,154 database.py:108 INFO successfully read in data
+2019-06-09 17:46:10,154 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 17:46:10,154 database.py:108 INFO successfully read in data
+2019-06-09 17:46:10,202 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 17:46:10,249 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 17:46:10,304 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 17:46:10,592 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 17:46:10,592 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 17:46:10,592 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 17:46:10,592 database.py:83  INFO product import errors = 0 to db
+2019-06-09 17:46:10,593 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 17:46:10,593 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 17:46:10,598 database.py:137 INFO starting show_available_products method
+2019-06-09 17:46:10,613 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 17:46:10,621 database.py:161 INFO starting show_rentals method
+2019-06-09 17:46:10,634 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:04:11,413 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:04:11,503 database.py:63  INFO importing data
+2019-06-09 19:04:11,503 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:04:11,503 database.py:108 INFO successfully read in data
+2019-06-09 19:04:11,504 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:04:11,504 database.py:108 INFO successfully read in data
+2019-06-09 19:04:11,504 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:04:11,505 database.py:108 INFO successfully read in data
+2019-06-09 19:04:11,554 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:04:11,602 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:04:11,670 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:04:11,926 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:04:11,926 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:04:11,926 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:04:11,926 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:04:11,926 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:04:11,927 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:04:11,929 database.py:137 INFO starting show_available_products method
+2019-06-09 19:04:11,933 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:04:11,935 database.py:161 INFO starting show_rentals method
+2019-06-09 19:04:11,942 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:05:17,780 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:05:17,866 database.py:63  INFO importing data
+2019-06-09 19:05:17,866 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:05:17,867 database.py:108 INFO successfully read in data
+2019-06-09 19:05:17,867 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:05:17,867 database.py:108 INFO successfully read in data
+2019-06-09 19:05:17,867 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:05:17,868 database.py:108 INFO successfully read in data
+2019-06-09 19:05:17,918 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:05:17,970 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:05:18,021 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:05:18,291 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:05:18,291 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:05:18,291 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:05:18,291 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:05:18,291 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:05:18,291 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:05:18,294 database.py:137 INFO starting show_available_products method
+2019-06-09 19:05:18,300 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:05:18,304 database.py:161 INFO starting show_rentals method
+2019-06-09 19:05:18,314 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:05:40,399 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:05:40,482 database.py:63  INFO importing data
+2019-06-09 19:05:40,482 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:05:40,483 database.py:108 INFO successfully read in data
+2019-06-09 19:05:40,483 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:05:40,483 database.py:108 INFO successfully read in data
+2019-06-09 19:05:40,483 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:05:40,484 database.py:108 INFO successfully read in data
+2019-06-09 19:05:40,538 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:05:40,599 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:05:40,648 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:05:40,932 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:05:40,932 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:05:40,932 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:05:40,932 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:05:40,932 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:05:40,932 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:05:40,937 database.py:137 INFO starting show_available_products method
+2019-06-09 19:05:40,949 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:05:40,953 database.py:161 INFO starting show_rentals method
+2019-06-09 19:05:40,968 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:06:58,478 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:06:58,562 database.py:63  INFO importing data
+2019-06-09 19:06:58,563 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:06:58,563 database.py:108 INFO successfully read in data
+2019-06-09 19:06:58,563 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:06:58,564 database.py:108 INFO successfully read in data
+2019-06-09 19:06:58,564 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:06:58,564 database.py:108 INFO successfully read in data
+2019-06-09 19:06:58,611 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:06:58,684 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:06:58,730 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:06:58,995 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:06:58,995 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:06:58,995 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:06:58,995 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:06:58,995 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:06:58,995 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:06:59,001 database.py:137 INFO starting show_available_products method
+2019-06-09 19:06:59,014 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:06:59,017 database.py:161 INFO starting show_rentals method
+2019-06-09 19:06:59,029 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:07:39,871 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:07:39,967 database.py:63  INFO importing data
+2019-06-09 19:07:39,967 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:07:39,968 database.py:108 INFO successfully read in data
+2019-06-09 19:07:39,968 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:07:39,968 database.py:108 INFO successfully read in data
+2019-06-09 19:07:39,969 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:07:39,969 database.py:108 INFO successfully read in data
+2019-06-09 19:07:40,029 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:07:40,079 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:07:40,126 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:07:40,384 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:07:40,384 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:07:40,384 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:07:40,384 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:07:40,384 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:07:40,385 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:07:40,387 database.py:137 INFO starting show_available_products method
+2019-06-09 19:07:40,395 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:07:40,398 database.py:161 INFO starting show_rentals method
+2019-06-09 19:07:40,405 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:08:16,218 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:08:16,298 database.py:63  INFO importing data
+2019-06-09 19:08:16,299 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:08:16,299 database.py:108 INFO successfully read in data
+2019-06-09 19:08:16,300 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:08:16,300 database.py:108 INFO successfully read in data
+2019-06-09 19:08:16,300 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:08:16,300 database.py:108 INFO successfully read in data
+2019-06-09 19:08:16,348 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:08:16,397 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:08:16,455 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:08:16,725 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:08:16,725 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:08:16,725 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:08:16,725 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:08:16,725 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:08:16,726 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:08:16,729 database.py:137 INFO starting show_available_products method
+2019-06-09 19:08:16,737 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:08:16,741 database.py:161 INFO starting show_rentals method
+2019-06-09 19:08:16,750 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:10:03,474 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:10:03,557 database.py:63  INFO importing data
+2019-06-09 19:10:03,557 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:10:03,557 database.py:108 INFO successfully read in data
+2019-06-09 19:10:03,557 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:10:03,557 database.py:108 INFO successfully read in data
+2019-06-09 19:10:03,557 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:10:03,558 database.py:108 INFO successfully read in data
+2019-06-09 19:10:03,606 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:10:03,687 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:10:03,760 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:10:03,985 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:10:03,985 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:10:03,985 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:10:03,985 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:10:03,985 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:10:03,985 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:10:03,991 database.py:137 INFO starting show_available_products method
+2019-06-09 19:10:04,005 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:10:04,009 database.py:161 INFO starting show_rentals method
+2019-06-09 19:10:04,024 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:11:25,614 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:11:25,702 database.py:63  INFO importing data
+2019-06-09 19:11:25,703 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:11:25,703 database.py:108 INFO successfully read in data
+2019-06-09 19:11:25,703 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:11:25,704 database.py:108 INFO successfully read in data
+2019-06-09 19:11:25,704 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:11:25,704 database.py:108 INFO successfully read in data
+2019-06-09 19:11:25,781 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:11:25,837 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:11:25,888 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:11:26,126 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:11:26,127 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:11:26,127 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:11:26,127 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:11:26,127 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:11:26,127 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:11:26,131 database.py:137 INFO starting show_available_products method
+2019-06-09 19:11:26,145 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:11:26,149 database.py:161 INFO starting show_rentals method
+2019-06-09 19:11:26,164 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:12:10,573 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:12:10,666 database.py:63  INFO importing data
+2019-06-09 19:12:10,666 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:12:10,667 database.py:108 INFO successfully read in data
+2019-06-09 19:12:10,667 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:12:10,667 database.py:108 INFO successfully read in data
+2019-06-09 19:12:10,667 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:12:10,668 database.py:108 INFO successfully read in data
+2019-06-09 19:12:10,720 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:12:10,772 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:12:10,837 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:12:11,089 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:12:11,089 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:12:11,089 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:12:11,089 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:12:11,089 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:12:11,089 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:12:11,092 database.py:137 INFO starting show_available_products method
+2019-06-09 19:12:11,099 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:12:11,103 database.py:161 INFO starting show_rentals method
+2019-06-09 19:12:11,107 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:14:27,928 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:14:28,054 database.py:63  INFO importing data
+2019-06-09 19:14:28,055 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:14:28,055 database.py:108 INFO successfully read in data
+2019-06-09 19:14:28,055 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:14:28,056 database.py:108 INFO successfully read in data
+2019-06-09 19:14:28,056 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:14:28,056 database.py:108 INFO successfully read in data
+2019-06-09 19:14:28,128 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:14:28,191 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:14:28,254 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:14:28,441 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:14:28,441 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:14:28,441 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:14:28,441 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:14:28,442 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:14:28,442 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:14:28,446 database.py:137 INFO starting show_available_products method
+2019-06-09 19:14:28,459 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:14:28,463 database.py:161 INFO starting show_rentals method
+2019-06-09 19:14:28,474 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:14:56,250 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:14:56,342 database.py:63  INFO importing data
+2019-06-09 19:14:56,342 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:14:56,343 database.py:108 INFO successfully read in data
+2019-06-09 19:14:56,343 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:14:56,343 database.py:108 INFO successfully read in data
+2019-06-09 19:14:56,343 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:14:56,344 database.py:108 INFO successfully read in data
+2019-06-09 19:14:56,407 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:14:56,460 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:14:56,521 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:14:56,767 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:14:56,767 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:14:56,767 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:14:56,767 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:14:56,767 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:14:56,767 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:14:56,770 database.py:137 INFO starting show_available_products method
+2019-06-09 19:14:56,776 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:14:56,781 database.py:161 INFO starting show_rentals method
+2019-06-09 19:14:56,785 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:15:25,089 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:15:25,166 database.py:63  INFO importing data
+2019-06-09 19:15:25,167 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:15:25,167 database.py:108 INFO successfully read in data
+2019-06-09 19:15:25,167 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:15:25,168 database.py:108 INFO successfully read in data
+2019-06-09 19:15:25,168 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:15:25,168 database.py:108 INFO successfully read in data
+2019-06-09 19:15:25,236 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:15:25,294 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:15:25,363 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:15:25,601 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:15:25,601 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:15:25,601 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:15:25,601 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:15:25,601 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:15:25,601 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:15:25,604 database.py:137 INFO starting show_available_products method
+2019-06-09 19:15:25,613 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:15:25,616 database.py:161 INFO starting show_rentals method
+2019-06-09 19:15:25,627 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:15:48,691 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:15:48,771 database.py:63  INFO importing data
+2019-06-09 19:15:48,771 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:15:48,772 database.py:108 INFO successfully read in data
+2019-06-09 19:15:48,772 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:15:48,772 database.py:108 INFO successfully read in data
+2019-06-09 19:15:48,772 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:15:48,772 database.py:108 INFO successfully read in data
+2019-06-09 19:15:48,822 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:15:48,873 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:15:48,924 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:15:49,207 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:15:49,208 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:15:49,208 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:15:49,208 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:15:49,208 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:15:49,208 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:15:49,210 database.py:137 INFO starting show_available_products method
+2019-06-09 19:15:49,216 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:15:49,221 database.py:161 INFO starting show_rentals method
+2019-06-09 19:15:49,230 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:15:58,038 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:15:58,126 database.py:63  INFO importing data
+2019-06-09 19:15:58,126 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:15:58,127 database.py:108 INFO successfully read in data
+2019-06-09 19:15:58,127 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:15:58,127 database.py:108 INFO successfully read in data
+2019-06-09 19:15:58,127 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:15:58,128 database.py:108 INFO successfully read in data
+2019-06-09 19:15:58,189 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:15:58,239 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:15:58,305 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:15:58,551 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:15:58,552 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:15:58,552 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:15:58,552 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:15:58,552 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:15:58,552 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:15:58,555 database.py:137 INFO starting show_available_products method
+2019-06-09 19:15:58,561 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:15:58,565 database.py:161 INFO starting show_rentals method
+2019-06-09 19:15:58,576 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:16:28,053 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:16:28,156 database.py:63  INFO importing data
+2019-06-09 19:16:28,156 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:16:28,156 database.py:108 INFO successfully read in data
+2019-06-09 19:16:28,156 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:16:28,156 database.py:108 INFO successfully read in data
+2019-06-09 19:16:28,156 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:16:28,157 database.py:108 INFO successfully read in data
+2019-06-09 19:16:28,205 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:16:28,262 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:16:28,326 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:16:28,572 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:16:28,572 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:16:28,573 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:16:28,573 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:16:28,573 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:16:28,573 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:16:28,577 database.py:137 INFO starting show_available_products method
+2019-06-09 19:16:28,588 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:16:28,591 database.py:161 INFO starting show_rentals method
+2019-06-09 19:16:28,602 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:16:48,650 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:16:48,730 database.py:63  INFO importing data
+2019-06-09 19:16:48,731 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:16:48,731 database.py:108 INFO successfully read in data
+2019-06-09 19:16:48,731 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:16:48,732 database.py:108 INFO successfully read in data
+2019-06-09 19:16:48,732 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:16:48,732 database.py:108 INFO successfully read in data
+2019-06-09 19:16:48,807 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:16:48,862 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:16:48,911 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:16:49,161 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:16:49,161 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:16:49,161 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:16:49,161 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:16:49,162 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:16:49,162 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:16:49,165 database.py:137 INFO starting show_available_products method
+2019-06-09 19:16:49,178 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:16:49,182 database.py:161 INFO starting show_rentals method
+2019-06-09 19:16:49,194 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:18:42,867 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:18:42,952 database.py:63  INFO importing data
+2019-06-09 19:18:42,952 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:18:42,952 database.py:108 INFO successfully read in data
+2019-06-09 19:18:42,952 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:18:42,953 database.py:108 INFO successfully read in data
+2019-06-09 19:18:42,953 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:18:42,953 database.py:108 INFO successfully read in data
+2019-06-09 19:18:43,034 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:18:43,084 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:18:43,144 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:18:43,379 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:18:43,379 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:18:43,379 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:18:43,379 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:18:43,379 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:18:43,380 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:18:43,383 database.py:137 INFO starting show_available_products method
+2019-06-09 19:18:43,395 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:18:43,399 database.py:161 INFO starting show_rentals method
+2019-06-09 19:18:43,416 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:18:50,468 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:18:50,550 database.py:63  INFO importing data
+2019-06-09 19:18:50,550 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:18:50,551 database.py:108 INFO successfully read in data
+2019-06-09 19:18:50,551 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:18:50,551 database.py:108 INFO successfully read in data
+2019-06-09 19:18:50,551 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:18:50,552 database.py:108 INFO successfully read in data
+2019-06-09 19:18:50,600 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:18:50,650 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:18:50,713 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:18:50,977 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:18:50,977 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:18:50,977 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:18:50,977 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:18:50,977 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:18:50,978 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:18:50,980 database.py:137 INFO starting show_available_products method
+2019-06-09 19:18:50,992 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:18:50,994 database.py:161 INFO starting show_rentals method
+2019-06-09 19:18:51,005 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:19:28,243 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:19:28,327 database.py:63  INFO importing data
+2019-06-09 19:19:28,327 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:19:28,328 database.py:108 INFO successfully read in data
+2019-06-09 19:19:28,328 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:19:28,328 database.py:108 INFO successfully read in data
+2019-06-09 19:19:28,328 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:19:28,328 database.py:108 INFO successfully read in data
+2019-06-09 19:19:28,389 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:19:28,442 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:19:28,494 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:19:28,753 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:19:28,754 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:19:28,754 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:19:28,754 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:19:28,754 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:19:28,754 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:19:28,759 database.py:137 INFO starting show_available_products method
+2019-06-09 19:19:28,771 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:19:28,774 database.py:161 INFO starting show_rentals method
+2019-06-09 19:19:28,787 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:22:24,682 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:22:24,789 database.py:63  INFO importing data
+2019-06-09 19:22:24,789 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:22:24,789 database.py:108 INFO successfully read in data
+2019-06-09 19:22:24,790 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:22:24,790 database.py:108 INFO successfully read in data
+2019-06-09 19:22:24,790 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:22:24,791 database.py:108 INFO successfully read in data
+2019-06-09 19:22:24,875 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:22:24,936 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:22:25,002 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:22:25,195 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:22:25,195 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:22:25,195 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:22:25,196 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:22:25,196 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:22:25,196 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:22:25,199 database.py:137 INFO starting show_available_products method
+2019-06-09 19:22:25,208 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:22:25,212 database.py:161 INFO starting show_rentals method
+2019-06-09 19:22:25,223 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:24:43,299 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:24:43,394 database.py:63  INFO importing data
+2019-06-09 19:24:43,394 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:24:43,394 database.py:108 INFO successfully read in data
+2019-06-09 19:24:43,394 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:24:43,395 database.py:108 INFO successfully read in data
+2019-06-09 19:24:43,395 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:24:43,395 database.py:108 INFO successfully read in data
+2019-06-09 19:24:43,472 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:24:43,524 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:24:43,571 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:24:43,815 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:24:43,816 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:24:43,816 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:24:43,816 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:24:43,816 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:24:43,816 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:24:43,820 database.py:137 INFO starting show_available_products method
+2019-06-09 19:24:43,831 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:24:43,835 database.py:161 INFO starting show_rentals method
+2019-06-09 19:24:43,848 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:25:17,203 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:25:17,305 database.py:63  INFO importing data
+2019-06-09 19:25:17,305 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:25:17,305 database.py:108 INFO successfully read in data
+2019-06-09 19:25:17,306 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:25:17,306 database.py:108 INFO successfully read in data
+2019-06-09 19:25:17,306 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:25:17,307 database.py:108 INFO successfully read in data
+2019-06-09 19:25:17,350 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:25:17,410 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:25:17,465 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:25:17,714 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:25:17,714 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:25:17,714 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:25:17,714 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:25:17,714 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:25:17,714 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:25:17,718 database.py:137 INFO starting show_available_products method
+2019-06-09 19:25:17,728 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:25:17,732 database.py:161 INFO starting show_rentals method
+2019-06-09 19:25:17,743 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:25:33,826 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:25:33,908 database.py:63  INFO importing data
+2019-06-09 19:25:33,908 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:25:33,908 database.py:108 INFO successfully read in data
+2019-06-09 19:25:33,908 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:25:33,909 database.py:108 INFO successfully read in data
+2019-06-09 19:25:33,909 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:25:33,909 database.py:108 INFO successfully read in data
+2019-06-09 19:25:33,972 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:25:34,024 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:25:34,084 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:25:34,339 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:25:34,339 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:25:34,339 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:25:34,339 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:25:34,339 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:25:34,340 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:25:34,344 database.py:137 INFO starting show_available_products method
+2019-06-09 19:25:34,355 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:25:34,359 database.py:161 INFO starting show_rentals method
+2019-06-09 19:25:34,372 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:26:59,823 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:26:59,901 database.py:63  INFO importing data
+2019-06-09 19:26:59,901 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:26:59,902 database.py:108 INFO successfully read in data
+2019-06-09 19:26:59,902 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:26:59,902 database.py:108 INFO successfully read in data
+2019-06-09 19:26:59,902 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:26:59,903 database.py:108 INFO successfully read in data
+2019-06-09 19:26:59,951 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:27:00,017 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:27:00,062 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:27:00,331 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:27:00,331 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:27:00,331 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:27:00,331 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:27:00,331 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:27:00,331 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:27:00,335 database.py:137 INFO starting show_available_products method
+2019-06-09 19:27:00,343 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:27:00,347 database.py:161 INFO starting show_rentals method
+2019-06-09 19:27:00,358 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:31:23,149 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:31:23,231 database.py:63  INFO importing data
+2019-06-09 19:31:23,232 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:31:23,232 database.py:108 INFO successfully read in data
+2019-06-09 19:31:23,232 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:31:23,233 database.py:108 INFO successfully read in data
+2019-06-09 19:31:23,233 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:31:23,233 database.py:108 INFO successfully read in data
+2019-06-09 19:31:23,293 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:31:23,347 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:31:23,407 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:31:23,662 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:31:23,662 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:31:23,663 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:31:23,663 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:31:23,663 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:31:23,663 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:31:23,667 database.py:137 INFO starting show_available_products method
+2019-06-09 19:31:23,679 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:31:23,684 database.py:161 INFO starting show_rentals method
+2019-06-09 19:31:23,692 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:31:53,557 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:31:53,643 database.py:63  INFO importing data
+2019-06-09 19:31:53,643 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:31:53,644 database.py:108 INFO successfully read in data
+2019-06-09 19:31:53,644 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:31:53,644 database.py:108 INFO successfully read in data
+2019-06-09 19:31:53,644 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:31:53,644 database.py:108 INFO successfully read in data
+2019-06-09 19:31:53,693 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:31:53,746 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:31:53,803 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:31:54,070 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:31:54,070 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:31:54,070 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:31:54,070 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:31:54,071 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:31:54,071 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:31:54,075 database.py:137 INFO starting show_available_products method
+2019-06-09 19:31:54,085 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:31:54,091 database.py:161 INFO starting show_rentals method
+2019-06-09 19:31:54,101 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:32:23,129 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:32:23,216 database.py:63  INFO importing data
+2019-06-09 19:32:23,216 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:32:23,217 database.py:108 INFO successfully read in data
+2019-06-09 19:32:23,217 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:32:23,217 database.py:108 INFO successfully read in data
+2019-06-09 19:32:23,217 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:32:23,217 database.py:108 INFO successfully read in data
+2019-06-09 19:32:23,265 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:32:23,338 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:32:23,393 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:32:23,641 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:32:23,641 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:32:23,641 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:32:23,641 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:32:23,642 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:32:23,642 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:32:23,646 database.py:137 INFO starting show_available_products method
+2019-06-09 19:32:23,657 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:32:23,660 database.py:161 INFO starting show_rentals method
+2019-06-09 19:32:23,674 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:33:06,531 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:33:06,611 database.py:63  INFO importing data
+2019-06-09 19:33:06,611 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:33:06,612 database.py:108 INFO successfully read in data
+2019-06-09 19:33:06,612 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:33:06,612 database.py:108 INFO successfully read in data
+2019-06-09 19:33:06,612 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:33:06,612 database.py:108 INFO successfully read in data
+2019-06-09 19:33:06,668 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:33:06,732 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:33:06,797 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:33:07,044 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:33:07,045 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:33:07,045 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:33:07,045 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:33:07,045 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:33:07,045 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:33:07,048 database.py:137 INFO starting show_available_products method
+2019-06-09 19:33:07,056 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:33:07,060 database.py:161 INFO starting show_rentals method
+2019-06-09 19:33:07,067 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:34:57,002 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:34:57,086 database.py:63  INFO importing data
+2019-06-09 19:34:57,086 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:34:57,086 database.py:108 INFO successfully read in data
+2019-06-09 19:34:57,086 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:34:57,087 database.py:108 INFO successfully read in data
+2019-06-09 19:34:57,087 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:34:57,087 database.py:108 INFO successfully read in data
+2019-06-09 19:34:57,134 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:34:57,184 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:34:57,238 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:34:57,511 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:34:57,511 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:34:57,511 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:34:57,511 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:34:57,512 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:34:57,512 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:34:57,515 database.py:137 INFO starting show_available_products method
+2019-06-09 19:34:57,524 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:34:57,526 database.py:161 INFO starting show_rentals method
+2019-06-09 19:34:57,534 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:35:13,725 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:35:13,811 database.py:63  INFO importing data
+2019-06-09 19:35:13,811 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:35:13,812 database.py:108 INFO successfully read in data
+2019-06-09 19:35:13,812 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:35:13,812 database.py:108 INFO successfully read in data
+2019-06-09 19:35:13,812 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:35:13,812 database.py:108 INFO successfully read in data
+2019-06-09 19:35:13,862 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:35:13,914 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:35:13,965 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:35:14,266 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:35:14,271 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:35:14,272 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:35:14,286 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:35:14,292 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:35:14,293 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:35:14,324 database.py:137 INFO starting show_available_products method
+2019-06-09 19:35:14,338 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:35:14,341 database.py:161 INFO starting show_rentals method
+2019-06-09 19:35:14,347 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:35:24,307 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:35:24,387 database.py:63  INFO importing data
+2019-06-09 19:35:24,387 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:35:24,388 database.py:108 INFO successfully read in data
+2019-06-09 19:35:24,389 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:35:24,389 database.py:108 INFO successfully read in data
+2019-06-09 19:35:24,390 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:35:24,390 database.py:108 INFO successfully read in data
+2019-06-09 19:35:24,439 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:35:24,503 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:35:24,556 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:35:24,815 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:35:24,815 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:35:24,815 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:35:24,815 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:35:24,815 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:35:24,815 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:35:24,818 database.py:137 INFO starting show_available_products method
+2019-06-09 19:35:24,823 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:35:24,827 database.py:161 INFO starting show_rentals method
+2019-06-09 19:35:24,832 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
+2019-06-09 19:36:33,127 database.py:47  INFO starting MongoDBConnection
+2019-06-09 19:36:33,212 database.py:63  INFO importing data
+2019-06-09 19:36:33,212 database.py:94  INFO reading product.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:36:33,212 database.py:108 INFO successfully read in data
+2019-06-09 19:36:33,212 database.py:94  INFO reading customers.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:36:33,212 database.py:108 INFO successfully read in data
+2019-06-09 19:36:33,212 database.py:94  INFO reading rental.csv data from /Users/Daniel/Library/Mobile Documents/com~apple~CloudDocs/Python_Cert/py220-online-201904-V2/students/Daniel_Carrasco/lesson09/assignment/tests/
+2019-06-09 19:36:33,213 database.py:108 INFO successfully read in data
+2019-06-09 19:36:33,263 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'products') 
+2019-06-09 19:36:33,313 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'customers') 
+2019-06-09 19:36:33,373 database.py:123 INFO no errors importing to Collection(Database(MongoClient(host=['127.0.0.1:27017'], document_class=dict, tz_aware=False, connect=True), 'HPNorton'), 'rentals') 
+2019-06-09 19:36:33,639 database.py:78  INFO succesful product imports = 10 to db
+2019-06-09 19:36:33,639 database.py:79  INFO succesful customer imports = 10 to db
+2019-06-09 19:36:33,639 database.py:80  INFO succesful rental imports = 9 to db
+2019-06-09 19:36:33,639 database.py:83  INFO product import errors = 0 to db
+2019-06-09 19:36:33,639 database.py:84  INFO customer import errors = 0 to db
+2019-06-09 19:36:33,639 database.py:85  INFO rental import errors = 0 to db
+2019-06-09 19:36:33,643 database.py:137 INFO starting show_available_products method
+2019-06-09 19:36:33,654 database.py:152 INFO available products = {'prd001': {'description': '60-inch TV stand', 'product_type': 'livingroom', 'quantity_available': '3'}, 'prd003': {'description': 'Acacia kitchen table', 'product_type': 'kitchen', 'quantity_available': '7'}, 'prd004': {'description': 'Queen bed', 'product_type': 'bedroom', 'quantity_available': '10'}, 'prd005': {'description': 'Reading lamp', 'product_type': 'bedroom', 'quantity_available': '20'}, 'prd006': {'description': 'Portable heater', 'product_type': 'bathroom', 'quantity_available': '14'}, 'prd008': {'description': 'Smart microwave', 'product_type': 'kitchen', 'quantity_available': '30'}, 'prd010': {'description': '60-inch TV', 'product_type': 'livingroom', 'quantity_available': '3'}}
+2019-06-09 19:36:33,657 database.py:161 INFO starting show_rentals method
+2019-06-09 19:36:33,670 database.py:180 INFO showing rentals that match "prd002" = {'user008': {'name': 'Shirlene Harris', 'address': '4329 Honeysuckle Lane', 'phone_number': '206-279-5340', 'email': 'harrisfamily@gmail.com'}, 'user005': {'name': 'Dan Sounders', 'address': '861 Honeysuckle Lane', 'phone_number': '206-279-1723', 'email': 'soundersoccer@mls.com'}}
