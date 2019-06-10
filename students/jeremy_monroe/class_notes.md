@@ -52,11 +52,11 @@ Then, in `CalculatorTests` after initializing instances of `adder, subtractor, m
 ```python
 def test_adder_call(self):
     self.adder.calc = MagicMock(return_value=0)
-    
+
     self.calculator.enter_number(1)
     self.calculator.enter_number(2)
     self.calculator.add()
-    
+
     self.adder.calc.assert_called_with(1, 2)
 ```
 
@@ -380,11 +380,14 @@ def uppercase(func):
 	def wrapper():
 		return func().upper()
 	return wrapper
-	
+
 @uppercase
 def greet():
 	""" Returns a friendly greeting. """
 	return "HEllO!"
-	
+
 ```
 
+
+# Week 10
+## Metaprogramming!
