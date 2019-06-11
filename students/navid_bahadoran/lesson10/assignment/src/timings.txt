@@ -1,0 +1,7 @@
+HPNorton.write_to_collection took 0.7578875999999999 seconds to process 9999 data
+HPNorton.write_to_collection took 1.2143246 seconds to process 9999 data
+HPNorton.write_to_collection took 0.8980473 seconds to process 9999 data
+HPNorton.import_data took 2.8930724000000003 seconds to process 29997 data
+HPNorton.show_available_products took 0.09090469999999984 seconds to process 9999 data
+HPNorton.show_rentals took 0.026153199999999988 seconds to process 3 data
+HPNorton.drop_collection took 0.2235083999999996 seconds to process 3 data
