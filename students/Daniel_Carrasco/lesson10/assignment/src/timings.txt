@@ -1,0 +1,54 @@
+So I did three runs, one with the original data. 2nd with the original data x2.
+and the third with the original data x15.
+
+So the first and second run had similar run times for all functions. The second was a little slower
+but not by much
+
+When you get to the third run though you the time slows down by a factor of 10 for some functions.
+
+
+1st run
+read_data took 0.00032210350036621094 seconds to run
+read_data took 0.0003058910369873047 seconds to run
+read_data took 0.0003948211669921875 seconds to run
+add_many_ip took 0.04842185974121094 seconds to run
+add_many_ip took 0.05103492736816406 seconds to run
+add_many_ip took 0.05025315284729004 seconds to run
+import_data took 0.5115361213684082 seconds to run
+show_available_products took 0.004685640335083008 seconds to run
+show_rentals took 0.0047969818115234375 seconds to run
+drop_data took 0.08037710189819336 seconds to run
+
+2nd run
+read_data took 0.0032618045806884766 seconds to run
+read_data took 0.0007221698760986328 seconds to run
+read_data took 0.000370025634765625 seconds to run
+add_many_ip took 0.06514906883239746 seconds to run
+add_many_ip took 0.06609201431274414 seconds to run
+add_many_ip took 0.05266308784484863 seconds to run
+import_data took 0.5145821571350098 seconds to run
+show_available_products took 0.005814075469970703 seconds to run
+show_rentals took 0.015330076217651367 seconds to run
+drop_data took 0.09280681610107422 seconds to run
+
+
+3rd run
+read_data took 0.002696990966796875 seconds to run
+read_data took 0.008984088897705078 seconds to run
+read_data took 0.0032110214233398438 seconds to run
+add_many_ip took 0.08280491828918457 seconds to run
+add_many_ip took 0.0892641544342041 seconds to run
+add_many_ip took 0.06940603256225586 seconds to run
+import_data took 0.5119187831878662 seconds to run
+show_available_products took 0.010298967361450195 seconds to run
+show_rentals took 0.11218976974487305 seconds to run
+drop_data took 0.0977180004119873 seconds to run
+read_data took 0.0006420612335205078 seconds to run
+read_data took 0.0008919239044189453 seconds to run
+read_data took 0.0007760524749755859 seconds to run
+add_many_ip took 0.060717105865478516 seconds to run
+add_many_ip took 0.06823015213012695 seconds to run
+add_many_ip took 0.050205230712890625 seconds to run
+import_data took 0.5098941326141357 seconds to run
+show_available_products took 0.013607978820800781 seconds to run
+show_rentals took 0.017000913619995117 seconds to run
