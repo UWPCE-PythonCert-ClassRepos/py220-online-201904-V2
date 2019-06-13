@@ -5,6 +5,7 @@ HP Norton.
 from contextlib import contextmanager
 import gc
 import json
+from loguru import logger
 from pathlib import Path
 import subprocess
 import sys
@@ -13,6 +14,8 @@ from pymongo import MongoClient
 import time
 
 mongo = MongoClient("mongodb://localhost:27017/")
+
+logger.add('100K_Record_Log.log')
 
 
 def open_db():
@@ -58,7 +61,7 @@ def import_data(*args):
     data source names
     :return: collections with same name as data sources
     """
-
+    logger.info('Importing 100K records')
     DATA_PATH = Path(args[0])
     colls = [i for i in args[1:]]
     remove_a_collection()
@@ -94,7 +97,9 @@ def import_data(*args):
     else:
         rent_error = 1
     errors = (prod_error, rent_error, cust_error)
+    logger.info(f"Process time was {time.process_time()}:")
     return count, errors
+
 
 
 def show_available_products():
@@ -169,7 +174,7 @@ if __name__ == "__main__":
         remove_a_collection()
         src_path = Path.cwd().with_name('data')
         print(import_data(src_path,
-                          'product.csv', 'customer.csv', 'rental.csv'))
+                          'product.csv', 'customer_large.csv', 'rental.csv'))
         print(show_available_products())
         print(show_rentals('prd001'))
 
