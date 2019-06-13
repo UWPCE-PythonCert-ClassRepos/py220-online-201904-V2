@@ -2,31 +2,28 @@
 This module utilizes MongoDB to build a product database for
 HP Norton.
 """
-from contextlib import contextmanager
 import gc
 import json
-from loguru import logger
 from pathlib import Path
-import subprocess
-import sys
-import pandas as pd
 from pymongo import MongoClient
 import time
+from loguru import logger
+import pandas as pd
 
-mongo = MongoClient("mongodb://localhost:27017/")
+MONGO = MongoClient("mongodb://localhost:27017/")
 
 logger.add('100K_Record_Log.log')
 
 
-def open_db():
+def open_DB():
     try:
-        db = mongo['HP_Norton']
-        return db
+        DB = MONGO['HP_Norton']
+        return DB
     except Exception as e:
         print(f'Error {e} encountered')
 
 
-db = open_db()
+DB = open_DB()
 
 
 def view_collections():
@@ -35,7 +32,7 @@ def view_collections():
     :return: Collection names.
     """
     collections_list = []
-    for i in db.list_collection_names():
+    for i in DB.list_collection_names():
         collections_list.append(i)
     return collections_list
 
@@ -49,7 +46,7 @@ def remove_a_collection():
     """
     collection_names = ["customers", "product", "rental"]
     for name in collection_names:
-        remove = db[name]
+        remove = DB[name]
         remove.drop()
 
 
@@ -74,14 +71,14 @@ def import_data(*args):
         coll_json = open(src_json).read()
         coll_json = json.loads(coll_json)
 
-        coll = db[arg[:-4]]
+        coll = DB[arg[:-4]]
         source = coll_json
-        result = coll.insert_many(source)
-    set_prod_index = db.product.create_index('product_id', unique=True)
-    set_cust_index = db.customers.create_index('user_id', unique=True)
-    prod_count = db.product.count_documents({})
-    customer_count = db.customers.count_documents({})
-    rental_count = db.rental.count_documents({})
+        coll.insert_many(source)
+    DB.product.create_index('product_id', unique=True)
+    DB.customers.create_index('user_id', unique=True)
+    prod_count = DB.product.count_documents({})
+    customer_count = DB.customers.count_documents({})
+    rental_count = DB.rental.count_documents({})
     count = (prod_count, customer_count, rental_count)
     if prod_count == 10:
         prod_error = 0
@@ -112,7 +109,7 @@ def show_available_products():
                      'description': True,
                      'product_type': True,
                      'quantity_available': True}
-    available = [i for i in db.product.find({'quantity_available': {'$ne': 0}},
+    available = [i for i in DB.product.find({'quantity_available': {'$ne': 0}},
                                             projection=return_fields)]
     return available
 
@@ -123,7 +120,7 @@ def get_all_product_ids():
     :return: list
     """
     product_id_list = []
-    products = db.product.find()
+    products = DB.product.find()
     for prod_id in products:
         product_id_list.append(prod_id['product_id'])
     return product_id_list
@@ -137,7 +134,7 @@ def get_rental_user_id(product_id):
     :return: set of user_id's
     """
     user_id_set = set()
-    renters = db.rental.find({'product_id': product_id})
+    renters = DB.rental.find({'product_id': product_id})
     for item in renters:
         user_id_set.add(item['user_id'])
     return user_id_set
@@ -157,7 +154,7 @@ def show_rentals(product_id):
                      'email': True}
     if product_id in get_all_product_ids():
         for i in get_rental_user_id(product_id):
-            renters = db.customers.find({'user_id': i}
+            renters = DB.customers.find({'user_id': i}
                                         , projection=return_fields)
             for renter in renters:
                 return renter
