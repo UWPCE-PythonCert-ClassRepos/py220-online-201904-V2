@@ -1,0 +1,4 @@
+Using the timing decorator wrapped around query products and rentals. First profiling performance
+yeild very little time difference between the two functions. As the record sizes increased, 
+iterating over the rental queries of multiple collections did increase the time in processing 
+from .57 seconds in timings2 to 2.24 seconds in timings3.
