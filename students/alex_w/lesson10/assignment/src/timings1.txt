@@ -1,0 +1,2 @@
+Function: query_products , Time: 0:00:00.000160 , Records Processed: 7
+Function: query_rentals , Time: 0:00:00.011022 , Records Processed: 9
