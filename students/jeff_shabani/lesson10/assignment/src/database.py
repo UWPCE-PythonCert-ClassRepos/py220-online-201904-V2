@@ -5,10 +5,10 @@ HP Norton.
 import gc
 import json
 from pathlib import Path
-from pymongo import MongoClient
 import time
 from loguru import logger
 import pandas as pd
+from pymongo import MongoClient
 
 MONGO = MongoClient("mongodb://localhost:27017/")
 
