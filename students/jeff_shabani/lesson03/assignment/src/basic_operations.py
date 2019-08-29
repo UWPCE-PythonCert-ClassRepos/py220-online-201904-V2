@@ -5,7 +5,7 @@ adding, searching, deleting, updating, and listing customers.
 import logging
 
 from peewee import *
-from customer_model import Customer
+from .customer_model import Customer
 
 logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
