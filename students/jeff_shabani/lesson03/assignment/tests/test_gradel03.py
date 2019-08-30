@@ -8,7 +8,7 @@
 
 import pytest
 
-import basic_operations as l
+from students.jeff_shabani.lesson03.assignment.src import basic_operations as l
 
 
 @pytest.fixture
